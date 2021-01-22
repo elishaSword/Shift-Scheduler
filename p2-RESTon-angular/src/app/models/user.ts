@@ -1,7 +1,8 @@
 import { UserInterface } from './../interfaces/user-interface';
 export class User implements UserInterface {
   id = 0;
-  username = '';
+  firstName = '';
+  lastName = '';
   email = '';
   password = '';
   isManager = null;
