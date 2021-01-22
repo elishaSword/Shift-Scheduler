@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
 import { UserApiService } from 'src/app/services/rest/user-api.service';
 
 @Component({
@@ -11,18 +12,25 @@ export class LoginFormComponent implements OnInit {
 
   user: User;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
-
-
   
-  onSubmit(user: User){
+  onSubmit(){
     console.log("submitted");
-    this.user.username = user.username;
-    this.user.password = user.password;
-    console.log(user.username);
+    this.authService.login(this.user)
+    .then(response => {
+      console.log(response);
+    }).catch(
+      errorMessage => {
+        console.log(errorMessage);
+      }
+    )
   }
+
+
+
+
 
 }
