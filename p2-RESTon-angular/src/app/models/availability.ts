@@ -1,5 +1,4 @@
 import { AvailabilityInterface } from './../interfaces/availability-interface';
-import { User } from './user';
 export class Availability implements AvailabilityInterface {
   id = 0;
   user = null;
