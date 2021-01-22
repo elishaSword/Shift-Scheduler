@@ -104,6 +104,22 @@ export class AuthService {
   register(user: User): Promise<string> {
     return new Promise((resolve, reject) => {
 
+
+      if(!this.apiSetup) {
+        this.setLoggedInUser(user);
+        return resolve("Successfully created your Account!");
+      }
+
+
+      this.userApi.post(user)
+      .then(u => {
+        resolve("Successfully created your Account!");
+        this.setLoggedInUser(u);
+      })
+      .catch(error => {
+        console.log(error);
+        reject("There was an error creating your account.")
+      })
     })
   }
 
