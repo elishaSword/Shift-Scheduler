@@ -13,43 +13,43 @@ export class MessageApiService {
 
   public get(): Promise<MessageInterface[]> {
     return new Promise((resolve, reject) => {
-      this.api.get<MessageInterface[]>('Message').pipe(take(1)).subscribe(res => {
+      this.api.get<MessageInterface[]>(`Message`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
       })
     })
   }
-  public getById(): Promise<MessageInterface> {
+  public getById(message: Message): Promise<MessageInterface> {
     return new Promise((resolve, reject) => {
-      this.api.get<MessageInterface>('Message').pipe(take(1)).subscribe(res => {
+      this.api.get<MessageInterface>(`Message/${message.id}`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
       })
     })
   }
-  public post(Message: Message): Promise<MessageInterface> {
+  public post(message: Message): Promise<MessageInterface> {
     return new Promise((resolve, reject) => {
-      this.api.post<MessageInterface>('Message', Message).pipe(take(1)).subscribe(res => {
+      this.api.post<MessageInterface>(`Message`, message).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
       })
     })
   }
-  public put(Message: Message): Promise<MessageInterface> {
+  public put(message: Message): Promise<MessageInterface> {
     return new Promise((resolve, reject) => {
-      this.api.put<MessageInterface>('Message', Message).pipe(take(1)).subscribe(res => {
+      this.api.put<MessageInterface>(`Message`, message).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
       })
     })
   }
-  public delete(Message: Message): Promise<MessageInterface> {
+  public delete(message: Message): Promise<MessageInterface> {
     return new Promise((resolve, reject) => {
-      this.api.delete<MessageInterface>('Message', Message).pipe(take(1)).subscribe(res => {
+      this.api.delete<MessageInterface>(`Message/${message.id}`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);

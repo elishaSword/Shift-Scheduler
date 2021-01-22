@@ -13,16 +13,16 @@ export class AvailabilityApiService {
 
   public get(): Promise<AvailabilityInterface[]> {
     return new Promise((resolve, reject) => {
-      this.api.get<AvailabilityInterface[]>('availability').pipe(take(1)).subscribe(res => {
+      this.api.get<AvailabilityInterface[]>(`availability`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
       })
     })
   }
-  public getById(): Promise<AvailabilityInterface> {
+  public getById(availability: Availability): Promise<AvailabilityInterface> {
     return new Promise((resolve, reject) => {
-      this.api.get<AvailabilityInterface>('availability').pipe(take(1)).subscribe(res => {
+      this.api.get<AvailabilityInterface>(`availability/${availability.id}`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
@@ -31,7 +31,7 @@ export class AvailabilityApiService {
   }
   public post(availability: Availability): Promise<AvailabilityInterface> {
     return new Promise((resolve, reject) => {
-      this.api.post<AvailabilityInterface>('availability', availability).pipe(take(1)).subscribe(res => {
+      this.api.post<AvailabilityInterface>(`availability`, availability).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
@@ -40,7 +40,7 @@ export class AvailabilityApiService {
   }
   public put(availability: Availability): Promise<AvailabilityInterface> {
     return new Promise((resolve, reject) => {
-      this.api.put<AvailabilityInterface>('availability', availability).pipe(take(1)).subscribe(res => {
+      this.api.put<AvailabilityInterface>(`availability`, availability).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
@@ -49,7 +49,7 @@ export class AvailabilityApiService {
   }
   public delete(availability: Availability): Promise<AvailabilityInterface> {
     return new Promise((resolve, reject) => {
-      this.api.delete<AvailabilityInterface>('availability', availability).pipe(take(1)).subscribe(res => {
+      this.api.delete<AvailabilityInterface>(`availability/${availability.id}`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
