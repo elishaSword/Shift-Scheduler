@@ -7,10 +7,14 @@ import { LandingPageComponent } from './pages/landing/landing-page/landing-page.
 import { EmployeeDashboardComponent } from './pages/employee/employee-dashboard/employee-dashboard.component';
 import { ManagerDashboardComponent } from './pages/manager/manager-dashboard/manager-dashboard.component';
 import { ScheduleCalanderComponent } from './shared/schedule-calander/schedule-calander.component';
+import { RolesComponent } from './shared/roles/roles.component';
+import { ShiftsComponent } from './shared/shifts/shifts.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    RolesComponent,
+    ShiftsComponent,
   ],
   imports: [
     BrowserModule,

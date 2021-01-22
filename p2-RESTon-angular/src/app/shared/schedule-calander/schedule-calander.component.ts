@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScheduleCalanderComponent implements OnInit {
 
+  num: number = 80;
+
   constructor() { }
 
   ngOnInit(): void {
