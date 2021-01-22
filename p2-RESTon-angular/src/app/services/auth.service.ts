@@ -69,7 +69,7 @@ export class AuthService {
       //   return resolve('Successfully logged in!');
       // }
       if(!this.apiSetup) {
-        reject('Email/password is incorrect');
+        return reject('Email/password is incorrect');
       }
 
       if (!user.email || !user.password) {
@@ -104,6 +104,23 @@ export class AuthService {
   register(user: User): Promise<string> {
     return new Promise((resolve, reject) => {
 
+
+      if(!this.apiSetup) {
+        user.id = 9000;
+        this.setLoggedInUser(user);
+        return resolve("Successfully created your Account!");
+      }
+
+
+      this.userApi.post(user)
+      .then(u => {
+        resolve("Successfully created your Account!");
+        this.setLoggedInUser(u);
+      })
+      .catch(error => {
+        console.log(error);
+        reject("There was an error creating your account.")
+      })
     })
   }
 
