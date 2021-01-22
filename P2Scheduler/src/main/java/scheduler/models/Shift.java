@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 public class Shift {
 
 	@Id
@@ -29,7 +31,8 @@ public class Shift {
 	@JoinColumn(name = "position_id", nullable = false)
 	private Position position;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonBackReference
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "schedule_id", nullable = false)
 	private Schedule schedule;
 	
