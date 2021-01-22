@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
+  apiSetup: boolean = false;
+
   loggedInUser: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
   constructor(
@@ -57,7 +59,15 @@ export class AuthService {
 
 
       // While we don't have a login endpoint...
-
+      if (!this.apiSetup) {
+        user.id = 1;
+        user.isManager = false;
+        user.phone = 5551234567;
+        user.firstName = 'Test User';
+        user.lastName = 'Test User';
+        this.setLoggedInUser(user);
+        return resolve('Successfully logged in!');
+      }
 
       if (!user.email || !user.password) {
         return reject("Email and Passord are required.")
