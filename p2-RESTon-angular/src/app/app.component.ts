@@ -1,4 +1,6 @@
+import { environment } from './../environments/environment';
 import { Component } from '@angular/core';
+import { User } from './models/user';
 
 @Component({
   selector: 'rev-root',
@@ -7,4 +9,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'p2-RESTon-angular';
+
+  baseUrl: string = environment.api;
 }
