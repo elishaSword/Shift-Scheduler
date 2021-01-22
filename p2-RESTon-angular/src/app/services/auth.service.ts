@@ -69,7 +69,7 @@ export class AuthService {
       //   return resolve('Successfully logged in!');
       // }
       if(!this.apiSetup) {
-        reject('Email/password is incorrect');
+        return reject('Email/password is incorrect');
       }
 
       if (!user.email || !user.password) {
