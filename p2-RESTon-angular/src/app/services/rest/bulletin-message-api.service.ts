@@ -13,16 +13,16 @@ export class BulletinMessageApiService {
 
   public get(): Promise<BulletinMessageInterface[]> {
     return new Promise((resolve, reject) => {
-      this.api.get<BulletinMessageInterface[]>('bulletin-message').pipe(take(1)).subscribe(res => {
+      this.api.get<BulletinMessageInterface[]>(`bulletin-message`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
       })
     })
   }
-  public getById(): Promise<BulletinMessageInterface> {
+  public getById(bulletinMessage: BulletinMessage): Promise<BulletinMessageInterface> {
     return new Promise((resolve, reject) => {
-      this.api.get<BulletinMessageInterface>('bulletin-message').pipe(take(1)).subscribe(res => {
+      this.api.get<BulletinMessageInterface>(`bulletin-message/${bulletinMessage.id}`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
@@ -31,7 +31,7 @@ export class BulletinMessageApiService {
   }
   public post(bulletinMessage: BulletinMessage): Promise<BulletinMessageInterface> {
     return new Promise((resolve, reject) => {
-      this.api.post<BulletinMessageInterface>('bulletin-message', bulletinMessage).pipe(take(1)).subscribe(res => {
+      this.api.post<BulletinMessageInterface>(`bulletin-message`, bulletinMessage).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
@@ -40,7 +40,7 @@ export class BulletinMessageApiService {
   }
   public put(bulletinMessage: BulletinMessage): Promise<BulletinMessageInterface> {
     return new Promise((resolve, reject) => {
-      this.api.put<BulletinMessageInterface>('bulletin-message', bulletinMessage).pipe(take(1)).subscribe(res => {
+      this.api.put<BulletinMessageInterface>(`bulletin-message`, bulletinMessage).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
@@ -49,7 +49,7 @@ export class BulletinMessageApiService {
   }
   public delete(bulletinMessage: BulletinMessage): Promise<BulletinMessageInterface> {
     return new Promise((resolve, reject) => {
-      this.api.delete<BulletinMessageInterface>('bulletin-message', bulletinMessage).pipe(take(1)).subscribe(res => {
+      this.api.delete<BulletinMessageInterface>(`bulletin-message/${bulletinMessage.id}`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);

@@ -13,43 +13,43 @@ export class ShiftApiService {
 
   public get(): Promise<ShiftInterface[]> {
     return new Promise((resolve, reject) => {
-      this.api.get<ShiftInterface[]>('Shift').pipe(take(1)).subscribe(res => {
+      this.api.get<ShiftInterface[]>(`Shift`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
       })
     })
   }
-  public getById(): Promise<ShiftInterface> {
+  public getById(shift: Shift): Promise<ShiftInterface> {
     return new Promise((resolve, reject) => {
-      this.api.get<ShiftInterface>('Shift').pipe(take(1)).subscribe(res => {
+      this.api.get<ShiftInterface>(`Shift/${shift.id}`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
       })
     })
   }
-  public post(Shift: Shift): Promise<ShiftInterface> {
+  public post(shift: Shift): Promise<ShiftInterface> {
     return new Promise((resolve, reject) => {
-      this.api.post<ShiftInterface>('Shift', Shift).pipe(take(1)).subscribe(res => {
+      this.api.post<ShiftInterface>(`Shift`, shift).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
       })
     })
   }
-  public put(Shift: Shift): Promise<ShiftInterface> {
+  public put(shift: Shift): Promise<ShiftInterface> {
     return new Promise((resolve, reject) => {
-      this.api.put<ShiftInterface>('Shift', Shift).pipe(take(1)).subscribe(res => {
+      this.api.put<ShiftInterface>(`Shift`, shift).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
       })
     })
   }
-  public delete(Shift: Shift): Promise<ShiftInterface> {
+  public delete(shift: Shift): Promise<ShiftInterface> {
     return new Promise((resolve, reject) => {
-      this.api.delete<ShiftInterface>('Shift', Shift).pipe(take(1)).subscribe(res => {
+      this.api.delete<ShiftInterface>(`Shift/${shift.id}`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);

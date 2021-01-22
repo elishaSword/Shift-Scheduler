@@ -13,43 +13,43 @@ export class PositionApiService {
 
   public get(): Promise<PositionInterface[]> {
     return new Promise((resolve, reject) => {
-      this.api.get<PositionInterface[]>('Position').pipe(take(1)).subscribe(res => {
+      this.api.get<PositionInterface[]>(`Position`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
       })
     })
   }
-  public getById(): Promise<PositionInterface> {
+  public getById(position: Position): Promise<PositionInterface> {
     return new Promise((resolve, reject) => {
-      this.api.get<PositionInterface>('Position').pipe(take(1)).subscribe(res => {
+      this.api.get<PositionInterface>(`Position/${position.id}`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
       })
     })
   }
-  public post(Position: Position): Promise<PositionInterface> {
+  public post(position: Position): Promise<PositionInterface> {
     return new Promise((resolve, reject) => {
-      this.api.post<PositionInterface>('Position', Position).pipe(take(1)).subscribe(res => {
+      this.api.post<PositionInterface>(`Position`, position).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
       })
     })
   }
-  public put(Position: Position): Promise<PositionInterface> {
+  public put(position: Position): Promise<PositionInterface> {
     return new Promise((resolve, reject) => {
-      this.api.put<PositionInterface>('Position', Position).pipe(take(1)).subscribe(res => {
+      this.api.put<PositionInterface>(`Position`, position).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
       })
     })
   }
-  public delete(Position: Position): Promise<PositionInterface> {
+  public delete(position: Position): Promise<PositionInterface> {
     return new Promise((resolve, reject) => {
-      this.api.delete<PositionInterface>('Position', Position).pipe(take(1)).subscribe(res => {
+      this.api.delete<PositionInterface>(`Position/${position.id}`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
