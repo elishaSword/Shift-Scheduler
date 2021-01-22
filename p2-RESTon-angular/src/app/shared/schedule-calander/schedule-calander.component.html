@@ -1,1 +1,63 @@
-<p>schedule-calander works!</p>
+<ng-container>
+  <div class="container column">
+    <table>
+      <tr id="outter-table">
+        <!-- This will need a static width -->
+        <!-- Possibly dynamically render times using recursion -->
+        <th></th>
+        <th data="6">6:00 am</th>
+        <th>7:00 am</th>
+        <th>8:00 am</th>
+        <th>9:00 am</th>
+        <th>10:00 am</th>
+        <th>11:00 am</th>
+        <th>12:00 pm</th>
+        <th data="13">1:00 pm</th>
+      </tr>
+      <!-- ----------------- START OF ROLE COMPONENT ----------------- -->
+      <!-- Specific tables per each role -->
+        <tr>
+          <td>Chef</td>
+          <td colspan="8">
+            <table class="inner-table">
+              <tr>
+                <!-- Replace this with a dynamic bar -->
+                <td></td>
+                <!-- ----------------- START OF SHIFT COMPONENTS ----------------- -->
+                <td><span class="shift">George</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <!-- Replace this with a dynamic bar -->
+                <td><span class="shift-2"></span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <!-- Replace this with a dynamic bar -->
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>.</td>
+                <td>.</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+    </table>
+
+  </div>
+</ng-container>
