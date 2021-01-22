@@ -6,36 +6,42 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 public class User {
+
 	@Id
 	@Column(name = "user_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
-	@Column(name = "username", unique=true, nullable = false)
-	private String username;
-	
-	@Column(name = "email", unique=true, nullable = false)
+
+	@Column(name = "first_name", nullable = false)
+	private String firstName;
+
+	@Column(name = "last_name", nullable = false)
+	private String lastName;
+
+	@Column(name = "email", unique = true, nullable = false)
 	private String email;
-	
+
 	@Column(name = "password", nullable = false)
 	private String password;
-	
+
 	@Column(name = "is_manager", nullable = false)
 	private boolean isManager;
-	
+
 	@Column(name = "phone")
 	private int phone;
-	
-	public User(int id, String username, String email, String password, boolean isManager, int phone) {
+
+	public User(int id, String firstName, String lastName, String email, String password, boolean isManager,
+			int phone) {
 		super();
 		this.id = id;
-		this.username = username;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
 		this.isManager = isManager;
 		this.phone = phone;
 	}
-	
+
 	public User() {
 		super();
 	}
@@ -46,14 +52,6 @@ public class User {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
 	}
 
 	public String getEmail() {
@@ -88,9 +86,25 @@ public class User {
 		this.phone = phone;
 	}
 
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password
-				+ ", isManager=" + isManager + ", phone=" + phone + "]";
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", password=" + password + ", isManager=" + isManager + ", phone=" + phone + "]";
 	}
 }
