@@ -1,11 +1,17 @@
 package scheduler.models;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 public class Schedule {
 	
@@ -16,6 +22,10 @@ public class Schedule {
 	
 	@Column(name = "schedule_date", nullable = false)
 	private Date startDate;
+	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "schedule", fetch = FetchType.EAGER)
+	private List<Shift> shifts = new ArrayList<>();
 	
 	public Schedule() {
 		super();
