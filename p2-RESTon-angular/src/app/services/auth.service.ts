@@ -1,7 +1,8 @@
+import { User } from './../models/user';
 import { UserApiService } from './rest/user-api.service';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { User } from '../models/user';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,87 @@ export class AuthService {
 
   loggedInUser: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
-  constructor(private userApi: UserApiService) { }
+  constructor(
+    private userApi: UserApiService,
+    private router: Router
+  ) { }
 
-  login(): Promise<string> {
+  /**
+   * @returns boolean
+   *  checks if user logged in is a manager
+   *  used for route guards
+   */
+  public loggedInIsManager(): boolean {
+    let user: User = JSON.parse(atob(localStorage.getItem("user")));
+    if (user) {
+      this.loggedInUser.next(user);
+    }
+    return this.loggedInUser.value.isManager;
+  }
+
+  /**
+   * @param User
+   *  sets logged in user
+   *  Used in login/register methods
+   */
+  private setLoggedInUser(user: User) {
+    localStorage.setItem("user", btoa(JSON.stringify(user)));
+    this.loggedInUser.next(user);
+    let navigateTo = 'employee';
+    if (user.isManager) {
+      navigateTo = 'manager';
+    }
+    this.router.navigate([navigateTo]);
+  }
+
+  /**
+   * @param User
+   *  must have username and password set on user argument
+   *
+   * @returns string
+   *  Message - successfuly logged in or
+   *            reject with error message
+   */
+  public login(user: User): Promise<string> {
+    return new Promise((resolve, reject) => {
+
+
+      // While we don't have a login endpoint...
+
+
+      if (!user.email || !user.password) {
+        return reject("Email and Passord are required.")
+      }
+      this.userApi.getByEmail(user)
+      .then(u => {
+        if(u.password == user.password) {
+          resolve("Successfully logged in!");
+          this.setLoggedInUser(u);
+        } else {
+          reject("Email/Password is incorrect")
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        reject("There was a problem logging in");
+      })
+    })
+  }
+
+  /**
+   * Logs out the logged in user
+   * returns you to the landing page
+   */
+  public logout() {
+    localStorage.clear();
+    this.loggedInUser.next(null);
+    this.router.navigate(['']);
+  }
+
+  register(user: User): Promise<string> {
     return new Promise((resolve, reject) => {
 
     })
   }
+
 }

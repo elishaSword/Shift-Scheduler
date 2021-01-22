@@ -29,6 +29,15 @@ export class UserApiService {
       })
     })
   }
+  public getByEmail(user: User): Promise<UserInterface> {
+    return new Promise((resolve, reject) => {
+      this.api.get<UserInterface>(`User/${user.email}`).pipe(take(1)).subscribe(res => {
+        resolve(res);
+      }, error => {
+        reject("Error: " + error);
+      })
+    })
+  }
   public post(user: User): Promise<UserInterface> {
     return new Promise((resolve, reject) => {
       this.api.post<UserInterface>(`User`, user).pipe(take(1)).subscribe(res => {
