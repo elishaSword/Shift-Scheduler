@@ -10,12 +10,16 @@ import { MessageService } from 'src/app/services/message-service.service';
 })
 export class BulletinComponent implements OnInit {
 
-  message: Array<BulletinMessage>;
+  messages: Array<BulletinMessage>;
 
   constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
     //Query for Bulletin Messages
+    this.getBulletinMessages();
   }
 
+  getBulletinMessages(): void {
+    this.messageService.getBulletinMessages().subscribe(messages => this.messages = messages);
+  }
 }

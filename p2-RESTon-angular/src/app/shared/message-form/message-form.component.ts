@@ -1,4 +1,6 @@
+import { Message } from 'src/app/models/message';
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'src/app/services/message-service.service';
 
 @Component({
   selector: 'rev-message-form',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessageFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
+
+  }
+
+  createMessage(): void {
+    let message: Message = new Message();
+    this.messageService.createMessage(message).subscribe();
   }
 
 }
