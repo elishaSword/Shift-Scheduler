@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ShiftInterface } from 'src/app/interfaces/shift-interface';
+import { Shift } from 'src/app/models/shift';
 
 @Component({
   selector: 'rev-shifts',
@@ -8,35 +10,28 @@ import { Component, OnInit } from '@angular/core';
 
 export class ShiftsComponent implements OnInit {
 
+  num: number[] = [
+    6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 1, 2, 3, 4, 5
+  ]
+
+  @Input() shift: Shift;
+
+
   empName: string = 'Dylan';
-
-
-  // ------------- Below is experimental depending on how timestamp is sent as a response -------------
-  // startTime: number = Date.now();
-  startTime: any = +new Date('2021-01-20');
-  endTime: any = +new Date('2021-01-21');
-
-  testTime: number = (((this.endTime/1000)/60)/60) - (((this.startTime/1000)/60)/60);
-    // ------------- ------------------------------------------------------------------- -------------
-
-
-  color: string = 'green';
-
-  // parse the string after the colon in time (i.e., 01:05 -> parsed -> 05 -> cast to integer)
-  increment: number = this.calculateIncrement(0);
-
-  // Need to capture the hours of work (start to miliseconds - end to miliseconds -> convert to hours (*1000, *60, *60))
-  width: number = this.calculateWidth(5);
-
-  shiftObject = {
-    'background-color': this.color,
-    width: this.width + "px",
-    left: this.increment + "px"
-  }
+  startTime: any;
+  endTime: any;
+  testTime: number;
+  color: string;
+  increment: number;
+  width: number;
+  shiftObject;
 
   constructor() { }
 
   ngOnInit(): void {
+    console.log(new Date('2021-01-20T06:59:00Z').getMinutes());
+    console.log(new Date('2021-01-20T08:59:00Z').getHours()+5);
+    this.initialize();
   }
 
   // Width of times (hours) are currently static pixels, needs to change to something more responsive
@@ -48,4 +43,19 @@ export class ShiftsComponent implements OnInit {
     return (startTime/60)*100;
   }
 
+  initialize(): void {
+    this.startTime = +this.shift.shiftTime.getHours();
+    this.endTime = this.shift.shiftTime.getHours() + 8;
+    this.testTime = (this.endTime) - (this.startTime);
+    this.color = 'green';
+    this.increment = this.calculateIncrement(this.shift.shiftTime.getMinutes());
+    this.width = this.calculateWidth(this.testTime);
+
+    this.shiftObject = {
+      'background-color': this.color,
+      width: this.width + "px",
+      left: this.increment + "px"
+    }
+
+  }
 }

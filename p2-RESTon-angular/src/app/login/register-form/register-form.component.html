@@ -60,10 +60,10 @@
                 placeHolder = "confirm password" 
                 formControlName = "confirmPassword"
                 class="input"
-                [ngClass]="{'input is-danger':confirmPassword.errors && confirmPassword.touched}"
+                [ngClass]="{'is-danger':confirmPassword.errors && confirmPassword.touched}"
                 type = "password"
             >
-            
+
             <div class = "input is-danger" *ngIf = "confirmPassword.hasError('passwordMismatch') && confirmPassword.touched">
                 it's the same thing, just type it again boi.
             </div>

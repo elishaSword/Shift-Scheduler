@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'rev-register-form',
@@ -13,7 +14,7 @@ export class RegisterFormComponent implements OnInit {
 
   user: User = new User();
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private authService: AuthService) { }
 
 
   ngOnInit(): void {
@@ -82,8 +83,22 @@ export class RegisterFormComponent implements OnInit {
 
 
   onSubmit(form: FormGroup) {
+    this.user = form.value;
+
     console.log('Your form data : ', form.value);
-}
+    console.log("this is the user data: ", this.user)
+
+    console.log("submitted");
+    this.authService.register(this.user)
+    .then(response => {
+      console.log(response);
+    }).catch(
+      errorMessage => {
+        console.log(errorMessage);
+        // this.error = errorMessage;
+      }
+    )
+  }
 
   get email(){
     return this.myForm.get('email');
