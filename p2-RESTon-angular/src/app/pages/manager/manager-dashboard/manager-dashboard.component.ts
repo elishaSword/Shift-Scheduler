@@ -12,4 +12,12 @@ export class ManagerDashboardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // openDialog() {
+  //   const dialogRef = this.dialog.open(DialogContentExampleDialog);
+
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log(`Dialog result: ${result}`);
+  //   });
+  // }
+
 }
