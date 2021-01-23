@@ -1,0 +1,27 @@
+td,
+th {
+  min-width: 100px;
+  height: 25px;
+}
+
+#outter-table th {
+  text-align: left;
+}
+
+.inner-table tr td {
+  position: relative;
+  height: 25px;
+}
+
+.shift {
+  position: absolute;
+  height: 25px;
+  border-style: solid;
+  border-radius: 5px;
+  top: 0;
+
+  // flex
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

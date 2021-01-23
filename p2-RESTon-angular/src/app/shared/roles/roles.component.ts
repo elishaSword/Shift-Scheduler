@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RolesComponent implements OnInit {
 
+  roleName: string = "Cashier";
+
   constructor() { }
 
   ngOnInit(): void {
