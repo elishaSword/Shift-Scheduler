@@ -91,6 +91,7 @@ export class ScheduleService {
 
   schedules: BehaviorSubject<Schedule[]> = new BehaviorSubject<Schedule[]>([]);
 
+
   constructor() {}
 
   newShift(scheduleId: number) {
@@ -98,6 +99,7 @@ export class ScheduleService {
   }
 
   parseShifts(schedule: Schedule) {
+
     console.log("called");
 
     let shiftMap = {};
@@ -107,6 +109,7 @@ export class ScheduleService {
       }
       shiftMap[shift.position.name].push(shift);
     }
+
   }
 
 }
