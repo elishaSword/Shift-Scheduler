@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ScheduleService } from './../../services/schedule.service';
+import { Schedule } from 'src/app/models/schedule';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'rev-schedule-calander',
@@ -7,11 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScheduleCalanderComponent implements OnInit {
 
+  @Input() schedule: Schedule;
+  parsedShifts;
+
   num: number = 80;
 
-  constructor() { }
+  constructor(private scheduleService: ScheduleService) { }
 
   ngOnInit(): void {
+    this.parsedShifts = this.scheduleService.parseShifts(this.schedule);
   }
 
 }
