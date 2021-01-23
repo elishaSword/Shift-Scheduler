@@ -13,14 +13,16 @@ import { ScheduleViewComponent } from 'src/app/pages/manager/schedule-view/sched
   declarations: [
     ManagerDashboardComponent,
     ScheduleViewComponent,
+    NewShiftComponent
   ],
   imports: [
     CommonModule,
     ManagerDashboardRoutingModule,
     SharedComponentsModule,
   ],
-  declarations: [
+  exports: [
     ManagerDashboardComponent,
+    ScheduleViewComponent,
     NewShiftComponent
   ],
 })
