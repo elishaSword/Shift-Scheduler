@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   apiSetup: boolean = false;
+  isSuccess: boolean = true;
 
   loggedInUser: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
@@ -59,16 +60,16 @@ export class AuthService {
 
 
       // While we don't have a login endpoint...
-      // if (!this.apiSetup) {
-      //   user.id = 1;
-      //   user.isManager = false;
-      //   user.phone = 5551234567;
-      //   user.firstName = 'Test User';
-      //   user.lastName = 'Test User';
-      //   this.setLoggedInUser(user);
-      //   return resolve('Successfully logged in!');
-      // }
-      if(!this.apiSetup) {
+      if (!this.apiSetup && this.isSuccess) {
+        user.id = 1;
+        user.isManager = false;
+        user.phone = 5551234567;
+        user.firstName = 'Test User';
+        user.lastName = 'Test User';
+        this.setLoggedInUser(user);
+        return resolve('Successfully logged in!');
+      }
+      if(!this.apiSetup && !this.isSuccess) {
         return reject('Email/password is incorrect');
       }
 
@@ -105,10 +106,13 @@ export class AuthService {
     return new Promise((resolve, reject) => {
 
 
-      if(!this.apiSetup) {
+      if(!this.apiSetup && this.isSuccess) {
         user.id = 9000;
         this.setLoggedInUser(user);
         return resolve("Successfully created your Account!");
+      }
+      if(!this.apiSetup && !this.isSuccess) {
+        return reject("There was an error creating your user");
       }
 
 
