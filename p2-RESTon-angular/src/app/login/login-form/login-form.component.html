@@ -1,1 +1,30 @@
-<p>login-form works!</p>
+<p>login-form</p>
+
+<form (submit) = "onSubmit($event)">
+    <div class = "box">
+        <div class="field">
+            <label class="label">Email</label>
+            <div class="control">
+            <input [(ngModel)]="user.email" class="input" type="email" placeholder="username" name = "email">
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+            <input [(ngModel)]="user.password" class="input" type="password" placeholder="password" name = "password">
+            </div>
+        </div>
+
+        <div class="field is-grouped">
+                <div class="control">
+                <button class="button is-link" type = "submit" value = "Submit">Submit</button>
+                <p *ngIf = "error" class = "text-danger"> {{ error }}</p>
+            </div>
+        </div>
+    </div>
+</form>
+<div>{{user.email}}</div>
+<div>{{user.password}}</div>
+
+

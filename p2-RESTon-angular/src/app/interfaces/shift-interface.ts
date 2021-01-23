@@ -1,11 +1,11 @@
-import { Schedule } from './../models/schedule';
-import { Position } from './../models/position';
-import { User } from "../models/user";
+import { ScheduleInterface } from './schedule-interface';
+import { PositionInterface } from './position-interface';
+import { UserInterface } from 'src/app/interfaces/user-interface';
 
 export interface ShiftInterface {
   id: number;
-  user: User;
+  user: UserInterface;
   shiftTime: Date;
-  position: Position;
-  schedule: Schedule;
+  position: PositionInterface;
+  schedule: ScheduleInterface;
 }
