@@ -29,7 +29,18 @@ import { NavBarComponent } from 'src/app/shared/nav-bar/nav-bar.component';
   imports: [
     CommonModule,
     HttpClientModule,
-
+  ],
+  exports: [
+    ScheduleCalanderComponent,
+    NavBarComponent,
+    RolesComponent,
+    ShiftsComponent,
+    BulletinComponent,
+    MessageComponent,
+    BulletinMessageComponent,
+    MessageFormComponent,
+    ScheduleViewComponent,
+    ScheduleCalanderComponent,
   ]
 })
 export class SharedComponentsModule { }
