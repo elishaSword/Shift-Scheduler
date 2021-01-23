@@ -11,9 +11,9 @@ import { EmployeeDashboardComponent } from 'src/app/pages/employee/employee-dash
     EmployeeDashboardComponent,
   ],
   imports: [
+    SharedComponentsModule,
     CommonModule,
     EmployeeDashboardRoutingModule,
-    SharedComponentsModule,
   ]
 })
 export class EmployeeDashboardModule { }

@@ -27,7 +27,18 @@ import { MessageFormComponent } from 'src/app/shared/message-form/message-form.c
   imports: [
     CommonModule,
     HttpClientModule,
-
+  ],
+  exports: [
+    ScheduleCalanderComponent,
+    NavBarComponent,
+    RolesComponent,
+    ShiftsComponent,
+    BulletinComponent,
+    MessageComponent,
+    BulletinMessageComponent,
+    MessageFormComponent,
+    ScheduleViewComponent,
+    ScheduleCalanderComponent,
   ]
 })
 export class SharedComponentsModule { }

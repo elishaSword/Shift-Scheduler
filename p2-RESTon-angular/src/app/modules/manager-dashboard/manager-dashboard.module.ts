@@ -7,13 +7,14 @@ import { ManagerDashboardComponent } from 'src/app/pages/manager/manager-dashboa
 
 
 @NgModule({
-  declarations: [
-    ManagerDashboardComponent,
-  ],
+
   imports: [
     CommonModule,
     ManagerDashboardRoutingModule,
     SharedComponentsModule,
-  ]
+  ],
+  declarations: [
+    ManagerDashboardComponent,
+  ],
 })
 export class ManagerDashboardModule { }
