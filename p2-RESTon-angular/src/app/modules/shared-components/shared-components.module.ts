@@ -20,7 +20,8 @@ import { MessageFormComponent } from 'src/app/shared/message-form/message-form.c
   ],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    
   ]
 })
 export class SharedComponentsModule { }

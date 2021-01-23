@@ -7,7 +7,10 @@ import { LoginFormComponent } from 'src/app/login/login-form/login-form.componen
 import { LoginPageComponent } from 'src/app/pages/landing/login-page/login-page.component';
 import { SharedComponentsModule } from '../shared-components/shared-components.module';
 import { LandingPageComponent } from 'src/app/pages/landing/landing-page/landing-page.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
+
 
 
 @NgModule({
@@ -21,7 +24,9 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     LandingRoutingModule,
     SharedComponentsModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
+
   ]
 })
 export class LandingModule { }

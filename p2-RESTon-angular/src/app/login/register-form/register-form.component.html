@@ -1,1 +1,83 @@
-<p>register-form works!</p>
+<p>Register-form</p>
+<form [formGroup] = "myForm" (ngSubmit) = "onSubmit(myForm)">
+    Value: {{myForm.value | json}}
+
+    <hr>
+
+    <div>
+        <div>
+
+            <input placeHolder = "first name" formControlName = "firstName"  class = "input is-rounded">
+            <div *ngIf = "firstName.errors?.required && firstName.touched">
+                what's your name boooiii
+            </div>
+
+        </div>
+
+        <div>
+
+            <input placeHolder = "last name" formControlName = "lastName" class = "input is-rounded">
+            <div *ngIf = "lastName.errors?.required && lastName.touched">
+                who's your daddy
+            </div>
+
+        </div>
+
+        <div>
+
+            <div >
+                <input placeHolder = "email" formControlName = "email" class = "input is-rounded">
+            </div>
+            <div *ngIf = "email.invalid && email.touched">
+                eeeemail, don't you know what that is?
+            </div>
+            <div *ngIf = "email.errors?.required && email.touched">
+                we need your eeeemail, no questions!
+            </div>
+
+        </div>
+
+        <div>
+
+            <input placeHolder = "phone" formControlName = "phone" class = "input is-rounded">
+            <div *ngIf = "email.errors?.required && email.touched">
+                let me get dat numbaa
+            </div>
+
+        </div>
+
+        <div>
+
+            <input placeHolder = "password" formControlName = "password"  class = "input is-rounded" type = "password">
+            <div *ngIf = "email.errors?.required && email.touched">
+                let me get dat numbaa
+            </div>
+
+        </div>
+        <div class="control">
+
+            <input 
+                placeHolder = "confirm password" 
+                formControlName = "confirmPassword"
+                class="input"
+                [ngClass]="{'input is-danger':confirmPassword.errors && confirmPassword.touched}"
+                type = "password"
+            >
+            
+            <div class = "input is-danger" *ngIf = "confirmPassword.hasError('passwordMismatch') && confirmPassword.touched">
+                it's the same thing, just type it again boi.
+            </div>
+            <div class = "input is-danger" *ngIf = "confirmPassword.errors?.required && confirmPassword.touched">
+                bruh, why click away
+            </div>
+
+        </div>
+        
+        <div>
+            <button type = "submit" [disabled] = "myForm.invalid" class = "button is-link">Submit</button>
+        </div>
+    </div>
+
+
+
+</form>
