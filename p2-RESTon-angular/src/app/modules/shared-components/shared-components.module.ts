@@ -1,4 +1,3 @@
-import { ScheduleViewComponent } from './../../pages/manager/schedule-view/schedule-view.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -22,7 +21,6 @@ import { ModalComponent } from 'src/app/shared/modal/modal.component';
     MessageComponent,
     BulletinMessageComponent,
     MessageFormComponent,
-    ScheduleViewComponent,
     ScheduleCalanderComponent,
     NavBarComponent,
     ModalComponent
@@ -40,7 +38,6 @@ import { ModalComponent } from 'src/app/shared/modal/modal.component';
     MessageComponent,
     BulletinMessageComponent,
     MessageFormComponent,
-    ScheduleViewComponent,
     ScheduleCalanderComponent,
     ModalComponent
   ]

@@ -5,10 +5,15 @@ import { ManagerDashboardRoutingModule } from './manager-dashboard-routing.modul
 import { SharedComponentsModule } from '../shared-components/shared-components.module';
 import { ManagerDashboardComponent } from 'src/app/pages/manager/manager-dashboard/manager-dashboard.component';
 import { NewShiftComponent } from 'src/app/components/manager/new-shift/new-shift.component';
+import { ScheduleViewComponent } from 'src/app/pages/manager/schedule-view/schedule-view.component';
+
 
 
 @NgModule({
-
+  declarations: [
+    ManagerDashboardComponent,
+    ScheduleViewComponent,
+  ],
   imports: [
     CommonModule,
     ManagerDashboardRoutingModule,

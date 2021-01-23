@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ShiftInterface } from 'src/app/interfaces/shift-interface';
 
 @Component({
@@ -8,7 +8,7 @@ import { ShiftInterface } from 'src/app/interfaces/shift-interface';
 })
 export class RolesComponent implements OnInit {
 
-  shift: ShiftInterface[] =
+  @Input() shifts: ShiftInterface[] =
   [
     {
     id: 1,
@@ -30,7 +30,7 @@ export class RolesComponent implements OnInit {
   }
 ]
 
-  roleName: string = "Cashier";
+  @Input() roleName: string = "Cashier";
 
   constructor() { }
 
