@@ -91,21 +91,22 @@ export class ScheduleService {
 
   schedules: BehaviorSubject<Schedule[]> = new BehaviorSubject<Schedule[]>([]);
 
-  constructor() {
-    this.schedules.next(this.dummyData);
-    this.schedules.subscribe(s => {
-      let myVar = s.filter(sch => sch.shifts);
-    })
-
-  }
+  constructor() {}
 
   newShift(scheduleId: number) {
     // this.schedules.next(shift)
   }
 
   parseShifts(schedule: Schedule) {
+    console.log("called");
+
     let shiftMap = {};
-    schedule.shifts.map(shift => shiftMap[shift.position.name])
+    for(let shift of schedule.shifts) {
+      if(!shiftMap[shift.position.name]) {
+        shiftMap[shift.position.name] = []
+      }
+      shiftMap[shift.position.name].push(shift);
+    }
   }
 
 }

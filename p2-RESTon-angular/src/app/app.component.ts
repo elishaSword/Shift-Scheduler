@@ -1,3 +1,4 @@
+import { ScheduleService } from './services/schedule.service';
 import { environment } from './../environments/environment';
 import { Component } from '@angular/core';
 import { User } from './models/user';

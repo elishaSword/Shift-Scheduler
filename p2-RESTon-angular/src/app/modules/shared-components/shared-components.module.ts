@@ -1,3 +1,4 @@
+import { ScheduleViewComponent } from './../../pages/manager/schedule-view/schedule-view.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,18 +14,19 @@ import { MessageFormComponent } from 'src/app/shared/message-form/message-form.c
 
 @NgModule({
   declarations: [
-    ScheduleCalanderComponent,
     RolesComponent,
     ShiftsComponent,
     BulletinComponent,
     MessageComponent,
     BulletinMessageComponent,
-    MessageFormComponent
+    MessageFormComponent,
+    ScheduleViewComponent,
+    ScheduleCalanderComponent,
   ],
   imports: [
     CommonModule,
     HttpClientModule,
-    
+
   ]
 })
 export class SharedComponentsModule { }
