@@ -107,6 +107,7 @@ export class AuthService {
 
       if(!this.apiSetup) {
         user.id = 9000;
+        user.isManager = false;
         this.setLoggedInUser(user);
         return resolve("Successfully created your Account!");
       }
