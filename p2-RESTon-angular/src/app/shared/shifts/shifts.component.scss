@@ -16,16 +16,9 @@ th {
 .shift {
   position: absolute;
   height: 25px;
-  // Possible color
-  background-color: aqua;
   border-style: solid;
   border-radius: 5px;
   top: 0;
-  // adjusts within the hour
-  left: 0;
-  // Styling max goes here
-  // Width math goes here
-  width: 400px;
 
   // flex
   display: flex;
