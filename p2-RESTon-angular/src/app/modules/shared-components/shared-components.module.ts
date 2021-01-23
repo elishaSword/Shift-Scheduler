@@ -8,6 +8,7 @@ import { BulletinComponent } from 'src/app/shared/bulletin/bulletin.component';
 import { MessageComponent } from 'src/app/shared/message/message.component';
 import { BulletinMessageComponent } from 'src/app/shared/bulletin-message/bulletin-message.component';
 import { MessageFormComponent } from 'src/app/shared/message-form/message-form.component';
+import { ModalComponent } from 'src/app/shared/modal/modal.component';
 
 
 
@@ -19,12 +20,12 @@ import { MessageFormComponent } from 'src/app/shared/message-form/message-form.c
     BulletinComponent,
     MessageComponent,
     BulletinMessageComponent,
-    MessageFormComponent
+    MessageFormComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,
-    HttpClientModule,
-    
+    HttpClientModule
   ]
 })
 export class SharedComponentsModule { }
