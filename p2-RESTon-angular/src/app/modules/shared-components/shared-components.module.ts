@@ -9,6 +9,7 @@ import { BulletinComponent } from 'src/app/shared/bulletin/bulletin.component';
 import { MessageComponent } from 'src/app/shared/message/message.component';
 import { BulletinMessageComponent } from 'src/app/shared/bulletin-message/bulletin-message.component';
 import { MessageFormComponent } from 'src/app/shared/message-form/message-form.component';
+import { NavBarComponent } from 'src/app/shared/nav-bar/nav-bar.component';
 
 
 
@@ -23,6 +24,7 @@ import { MessageFormComponent } from 'src/app/shared/message-form/message-form.c
     MessageFormComponent,
     ScheduleViewComponent,
     ScheduleCalanderComponent,
+    NavBarComponent
   ],
   imports: [
     CommonModule,
