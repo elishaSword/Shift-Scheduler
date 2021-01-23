@@ -1,3 +1,4 @@
+import { ScheduleViewComponent } from './../../pages/manager/schedule-view/schedule-view.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -8,7 +9,6 @@ import { BulletinComponent } from 'src/app/shared/bulletin/bulletin.component';
 import { MessageComponent } from 'src/app/shared/message/message.component';
 import { BulletinMessageComponent } from 'src/app/shared/bulletin-message/bulletin-message.component';
 import { MessageFormComponent } from 'src/app/shared/message-form/message-form.component';
-import { ModalComponent } from 'src/app/shared/modal/modal.component';
 
 
 
@@ -21,11 +21,13 @@ import { ModalComponent } from 'src/app/shared/modal/modal.component';
     MessageComponent,
     BulletinMessageComponent,
     MessageFormComponent,
-    ModalComponent
+    ScheduleViewComponent,
+    ScheduleCalanderComponent,
   ],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+
   ]
 })
 export class SharedComponentsModule { }

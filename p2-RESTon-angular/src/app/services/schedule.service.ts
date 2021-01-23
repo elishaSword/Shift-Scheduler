@@ -91,5 +91,25 @@ export class ScheduleService {
 
   schedules: BehaviorSubject<Schedule[]> = new BehaviorSubject<Schedule[]>([]);
 
-  constructor() { }
+
+  constructor() {}
+
+  newShift(scheduleId: number) {
+    // this.schedules.next(shift)
+  }
+
+  parseShifts(schedule: Schedule) {
+
+    console.log("called");
+
+    let shiftMap = {};
+    for(let shift of schedule.shifts) {
+      if(!shiftMap[shift.position.name]) {
+        shiftMap[shift.position.name] = []
+      }
+      shiftMap[shift.position.name].push(shift);
+    }
+
+  }
+
 }
