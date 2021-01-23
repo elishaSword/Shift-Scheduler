@@ -15,7 +15,6 @@ import { NavBarComponent } from 'src/app/shared/nav-bar/nav-bar.component';
 @NgModule({
   declarations: [
     ScheduleCalanderComponent,
-    NavBarComponent,
     RolesComponent,
     ShiftsComponent,
     BulletinComponent,
@@ -23,6 +22,7 @@ import { NavBarComponent } from 'src/app/shared/nav-bar/nav-bar.component';
     BulletinMessageComponent,
     MessageFormComponent,
     ScheduleCalanderComponent,
+    NavBarComponent
   ],
   imports: [
     CommonModule,
