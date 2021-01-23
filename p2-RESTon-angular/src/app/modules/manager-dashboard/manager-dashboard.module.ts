@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ManagerDashboardRoutingModule } from './manager-dashboard-routing.module';
 import { SharedComponentsModule } from '../shared-components/shared-components.module';
 import { ManagerDashboardComponent } from 'src/app/pages/manager/manager-dashboard/manager-dashboard.component';
+import { NewShiftComponent } from 'src/app/components/manager/new-shift/new-shift.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { ManagerDashboardComponent } from 'src/app/pages/manager/manager-dashboa
   ],
   declarations: [
     ManagerDashboardComponent,
+    NewShiftComponent
   ],
 })
 export class ManagerDashboardModule { }
