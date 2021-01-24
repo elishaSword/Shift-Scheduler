@@ -4,13 +4,13 @@
   </div>
 </div> -->
 
-<div class="modal is-active" [ngClass]="{'is-active':modalFlag}">
-  <div class="modal-background" (click)="closeModal()"></div>
+<div class="modal is-active">
+  <div class="modal-background" (click)="close()"></div>
   <div class="modal-content">
     <div class="box">
       <ng-content></ng-content>
     </div>
     <!-- Poops -->
   </div>
-  <button class="modal-close is-large" aria-label="close" (click)="closeModal()"></button>
+  <button class="modal-close is-large" aria-label="close" (click)="close()"></button>
 </div>

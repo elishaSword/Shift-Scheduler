@@ -16,6 +16,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
+import { ViewShiftComponent } from 'src/app/shared/view-shift/view-shift.component';
+import { WeeklyViewComponent } from 'src/app/pages/shared/weekly-view/weekly-view.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { ModalComponent } from 'src/app/shared/modal/modal.component';
     MessageFormComponent,
     ScheduleCalanderComponent,
     NavBarComponent,
-    ModalComponent
+    ModalComponent,
+    ViewShiftComponent,
+    WeeklyViewComponent
   ],
   imports: [
     CommonModule,
@@ -52,7 +56,9 @@ import { ModalComponent } from 'src/app/shared/modal/modal.component';
     BulletinMessageComponent,
     MessageFormComponent,
     ScheduleCalanderComponent,
-    ModalComponent
+    ModalComponent,
+    ViewShiftComponent,
+    WeeklyViewComponent
   ]
 })
 export class SharedComponentsModule { }
