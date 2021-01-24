@@ -229,7 +229,12 @@ export class ScheduleService {
         shiftMap[shift.user.firstName + ' ' + shift.user.lastName] = [];
       }
       shiftMap[shift.user.firstName + ' ' + shift.user.lastName].push(shift);
+      for(let i=0;i<=6;i++) {
+
+      }
     }
+
+
 
     return shiftMap;
   }
