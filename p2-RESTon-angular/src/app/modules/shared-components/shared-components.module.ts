@@ -27,7 +27,6 @@ import { ModalComponent } from 'src/app/shared/modal/modal.component';
     MessageComponent,
     BulletinMessageComponent,
     MessageFormComponent,
-    ScheduleCalanderComponent,
     NavBarComponent,
     ModalComponent
   ],
@@ -51,7 +50,6 @@ import { ModalComponent } from 'src/app/shared/modal/modal.component';
     MessageComponent,
     BulletinMessageComponent,
     MessageFormComponent,
-    ScheduleCalanderComponent,
     ModalComponent
   ]
 })
