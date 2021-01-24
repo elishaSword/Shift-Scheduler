@@ -19,11 +19,6 @@ import { ScheduleViewComponent } from 'src/app/pages/manager/schedule-view/sched
     CommonModule,
     ManagerDashboardRoutingModule,
     SharedComponentsModule,
-  ],
-  exports: [
-    ManagerDashboardComponent,
-    ScheduleViewComponent,
-    NewShiftComponent
-  ],
+  ]
 })
 export class ManagerDashboardModule { }
