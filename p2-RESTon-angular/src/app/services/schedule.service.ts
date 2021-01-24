@@ -166,6 +166,24 @@ export class ScheduleService {
           },
           schedule: null
         },
+        {
+          id: 5,
+          user: {
+            id: 4,
+            firstName: 'Calvin',
+            lastName: 'Mak',
+            email: 'calvin@mail.com',
+            password: null,
+            isManager: false,
+            phone: 15
+          },
+          shiftTime:  new Date('2021-01-21T12:15:00Z'),
+          position: {
+            id: 2,
+            name: 'Waiter'
+          },
+          schedule: null
+        },
       ]
     }
   ]);
@@ -187,7 +205,33 @@ export class ScheduleService {
     }
 
     return shiftMap;
+  }
 
+  parseShiftsByDay(schedule: Schedule, day: number) {
+    let shiftMap = {};
+    let shifts = schedule.shifts.filter(s => s.shiftTime.getUTCDate() == day);
+
+    for(let shift of shifts) {
+      if(!shiftMap[shift.position.name]) {
+        shiftMap[shift.position.name] = [];
+      }
+      shiftMap[shift.position.name].push(shift);
+    }
+
+    return shiftMap;
+  }
+
+  parseShiftsByEmployee(schedule: Schedule) {
+    let shiftMap = {};
+
+    for(let shift of schedule.shifts) {
+      if(!shiftMap[shift.user.firstName + ' ' + shift.user.lastName]) {
+        shiftMap[shift.user.firstName + ' ' + shift.user.lastName] = [];
+      }
+      shiftMap[shift.user.firstName + ' ' + shift.user.lastName].push(shift);
+    }
+
+    return shiftMap;
   }
 
 }

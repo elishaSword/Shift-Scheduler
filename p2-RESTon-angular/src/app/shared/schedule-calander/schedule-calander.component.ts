@@ -17,7 +17,7 @@ export class ScheduleCalanderComponent implements OnInit {
   constructor(private scheduleService: ScheduleService) { }
 
   ngOnInit(): void {
-    this.parsedShifts = this.scheduleService.parseShifts(this.schedule);
+    this.parsedShifts = this.scheduleService.parseShiftsByDay(this.schedule, 20);
   }
 
 }

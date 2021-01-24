@@ -29,7 +29,6 @@ import { WeeklyScheduleCalendarComponent } from 'src/app/shared/weekly-schedule-
     MessageComponent,
     BulletinMessageComponent,
     MessageFormComponent,
-    ScheduleCalanderComponent,
     NavBarComponent,
     ModalComponent,
     ViewShiftComponent,
