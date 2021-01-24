@@ -9,6 +9,12 @@ import { MessageComponent } from 'src/app/shared/message/message.component';
 import { BulletinMessageComponent } from 'src/app/shared/bulletin-message/bulletin-message.component';
 import { MessageFormComponent } from 'src/app/shared/message-form/message-form.component';
 import { NavBarComponent } from 'src/app/shared/nav-bar/nav-bar.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
 
 
@@ -27,7 +33,14 @@ import { ModalComponent } from 'src/app/shared/modal/modal.component';
   ],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+
   ],
   exports: [
     ScheduleCalanderComponent,
