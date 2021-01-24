@@ -1,4 +1,3 @@
-import { ScheduleViewComponent } from './../../pages/manager/schedule-view/schedule-view.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -16,7 +15,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-
+import { ModalComponent } from 'src/app/shared/modal/modal.component';
 
 
 @NgModule({
@@ -28,9 +27,9 @@ import { MatListModule } from '@angular/material/list';
     MessageComponent,
     BulletinMessageComponent,
     MessageFormComponent,
-    ScheduleViewComponent,
     ScheduleCalanderComponent,
-    NavBarComponent
+    NavBarComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,
@@ -41,6 +40,7 @@ import { MatListModule } from '@angular/material/list';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+
   ],
   exports: [
     ScheduleCalanderComponent,
@@ -51,8 +51,8 @@ import { MatListModule } from '@angular/material/list';
     MessageComponent,
     BulletinMessageComponent,
     MessageFormComponent,
-    ScheduleViewComponent,
     ScheduleCalanderComponent,
+    ModalComponent
   ]
 })
 export class SharedComponentsModule { }

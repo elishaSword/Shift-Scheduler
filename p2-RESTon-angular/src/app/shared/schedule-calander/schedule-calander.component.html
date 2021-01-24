@@ -29,7 +29,10 @@
         <th>4:00 am</th>
         <th>5:00 am</th>
       </tr>
-        <rev-roles></rev-roles>
-        <rev-roles></rev-roles>
+        <rev-roles
+        *ngFor="let shifts of parsedShifts | keyvalue"
+         [shifts] = "shifts.value"
+         [roleName]="shifts.key"></rev-roles>
+        <!-- <rev-roles></rev-roles> -->
   </div>
 </ng-container>
