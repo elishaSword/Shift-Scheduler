@@ -18,7 +18,7 @@ import { MatListModule } from '@angular/material/list';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
 import { ViewShiftComponent } from 'src/app/shared/view-shift/view-shift.component';
 import { WeeklyViewComponent } from 'src/app/pages/shared/weekly-view/weekly-view.component';
-
+import { WeeklyScheduleCalendarComponent } from 'src/app/shared/weekly-schedule-calendar/weekly-schedule-calendar.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,8 @@ import { WeeklyViewComponent } from 'src/app/pages/shared/weekly-view/weekly-vie
     NavBarComponent,
     ModalComponent,
     ViewShiftComponent,
-    WeeklyViewComponent
+    WeeklyViewComponent,
+    WeeklyScheduleCalendarComponent,
   ],
   imports: [
     CommonModule,
@@ -58,7 +59,8 @@ import { WeeklyViewComponent } from 'src/app/pages/shared/weekly-view/weekly-vie
     ScheduleCalanderComponent,
     ModalComponent,
     ViewShiftComponent,
-    WeeklyViewComponent
+    WeeklyViewComponent,
+    WeeklyScheduleCalendarComponent,
   ]
 })
 export class SharedComponentsModule { }
