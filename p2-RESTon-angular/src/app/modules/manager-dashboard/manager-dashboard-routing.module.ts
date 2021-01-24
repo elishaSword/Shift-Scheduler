@@ -9,8 +9,8 @@ const routes: Routes = [
     path: '',
     component: ManagerDashboardComponent,
     children :[
-      {path: '', component: ScheduleViewComponent},
-      {path: 'week-calendar', component: WeeklyViewComponent}
+      {path: '', component: WeeklyViewComponent},
+      {path: 'view-day', component: ScheduleViewComponent}
     ]
   }
 ];
