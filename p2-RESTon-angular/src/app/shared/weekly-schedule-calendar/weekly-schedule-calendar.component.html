@@ -15,30 +15,13 @@
       </tr>
 
       <!--ngFor here-->
-      <tr>
-        <td>{{name}}</td>
+      <tr *ngFor='let employee of parsedShifts | keyvalue'>
+        <td>{{employee.key}}</td>
 
-        <!-- ngFor, ngIf-->
-        <td class="">
-          <button class="">test</button>
-        </td>
-        <td class="">
-          <button class="">test</button>
-        </td>
-        <td class="">
-          <button class="">test</button>
-        </td>
-        <td class="">
-          <button class="">test</button>
-        </td>
-        <td class="">
-          <button class="">test</button>
-        </td>
-        <td class="">
-          <button class="">test</button>
-        </td>
-        <td class="">
-          <button class="">test</button>
+        <!-- ngFor-->
+        <td class="" *ngFor='let employee of employee.value'>
+          <!-- ngIf -->
+          <button class="">{{employee}}</button>
         </td>
 <!--
   - View Shift
