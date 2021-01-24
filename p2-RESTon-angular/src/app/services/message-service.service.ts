@@ -10,8 +10,8 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class MessageService {
 
-  bulletinUrl: String = "";
-  messagesBankUrl: String = "";
+  bulletinUrl: string = "";
+  messagesBankUrl: string = "";
 
   dummyBulletin = {
 
@@ -19,12 +19,13 @@ export class MessageService {
 
   constructor(private http: HttpClient) { }
 
-  getBulletinMessage(): BehaviorSubject<BulletinMessage> {
-    let bMessage: BehaviorSubject<BulletinMessage> = this.http.get<BulletinMessage[]>(this.bulletinUrl).pipe(tap(_ => this.handleError<BulletinMessage>('getBulletinMessage')));
-    if(bMessage == null) {
-      bMessage = of(this.dummyBulletin);
-    } 
-    return bMessage;
+  getBulletinMessage(): BulletinMessage {
+    // let bMessage: BehaviorSubject<BulletinMessage> = this.http.get<BulletinMessage[]>(this.bulletinUrl).pipe(tap(_ => this.handleError<BulletinMessage>('getBulletinMessage')));
+    // if(bMessage == null) {
+    //   bMessage = of(this.dummyBulletin);
+    // } 
+    // return bMessage;
+    return null;
   }
 
   getBulletinMessages(): BehaviorSubject<BulletinMessage[]> {
