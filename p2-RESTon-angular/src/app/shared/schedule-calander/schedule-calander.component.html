@@ -1,6 +1,6 @@
 <ng-container>
-  <div class="container column">
-    <table>
+  <div class="container calendar-container">
+    <!-- <table border="1" cellpadding="0" cellspacing="0" width="100%"> -->
       <tr id="outter-table">
         <!-- This will need a static width -->
         <!-- Possibly dynamically render times using recursion -->
@@ -13,51 +13,26 @@
         <th>11:00 am</th>
         <th>12:00 pm</th>
         <th data="13">1:00 pm</th>
+        <th>2:00 pm</th>
+        <th>3:00 pm</th>
+        <th>4:00 pm</th>
+        <th>5:00 pm</th>
+        <th>6:00 pm</th>
+        <th>7:00 pm</th>
+        <th>9:00 pm</th>
+        <th>10:00 pm</th>
+        <th>11:00 pm</th>
+        <th>12:00 am</th>
+        <th>1:00 am</th>
+        <th>2:00 am</th>
+        <th>3:00 am</th>
+        <th>4:00 am</th>
+        <th>5:00 am</th>
       </tr>
-      <!-- ----------------- START OF ROLE COMPONENT ----------------- -->
-      <!-- Specific tables per each role -->
-        <tr>
-          <td>Chef</td>
-          <td colspan="8">
-            <table class="inner-table">
-              <tr>
-                <!-- Replace this with a dynamic bar -->
-                <td></td>
-                <!-- ----------------- START OF SHIFT COMPONENTS ----------------- -->
-                <td><span class="shift">George</span></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <!-- Replace this with a dynamic bar -->
-                <td><span class="shift-2"></span></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <!-- Replace this with a dynamic bar -->
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>.</td>
-                <td>.</td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-    </table>
-
+        <rev-roles
+        *ngFor="let shifts of parsedShifts | keyvalue"
+         [shifts] = "shifts.value"
+         [roleName]="shifts.key"></rev-roles>
+        <!-- <rev-roles></rev-roles> -->
   </div>
 </ng-container>

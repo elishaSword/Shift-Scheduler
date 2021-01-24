@@ -1,0 +1,8 @@
+<p *ngIf="currentSchedule" >
+  <span><-</span>
+  {{currentSchedule.startDate.getUTCMonth()}} /
+  {{currentSchedule.startDate.getUTCDay()}} /
+  {{currentSchedule.startDate.getUTCFullYear()}}
+  <span>-></span>
+</p>
+<rev-schedule-calander [schedule]="currentSchedule"></rev-schedule-calander>

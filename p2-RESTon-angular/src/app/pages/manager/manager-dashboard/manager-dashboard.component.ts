@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'rev-manager-dashboard',
   templateUrl: './manager-dashboard.component.html',
@@ -11,5 +10,4 @@ export class ManagerDashboardComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

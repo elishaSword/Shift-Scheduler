@@ -4,20 +4,20 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { RolesComponent } from './shared/roles/roles.component';
-import { ShiftsComponent } from './shared/shifts/shifts.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    RolesComponent,
-    ShiftsComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
+
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,14 +10,17 @@ import { UserApiService } from 'src/app/services/rest/user-api.service';
 })
 export class LoginFormComponent implements OnInit {
 
-  user: User;
+  user: User = new User();
+  error: string = '';
 
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
   
-  onSubmit(){
+  onSubmit(event){
+    event.preventDefault();
+
     console.log("submitted");
     this.authService.login(this.user)
     .then(response => {
@@ -25,6 +28,7 @@ export class LoginFormComponent implements OnInit {
     }).catch(
       errorMessage => {
         console.log(errorMessage);
+        this.error = errorMessage;
       }
     )
   }
