@@ -5,8 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { EmployeeScheduleViewComponent } from './pages/employee/employee-schedule-view/employee-schedule-view.component';
-
 
 @NgModule({
   declarations: [
@@ -17,8 +15,6 @@ import { EmployeeScheduleViewComponent } from './pages/employee/employee-schedul
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule
-
-
   ],
   providers: [],
   bootstrap: [AppComponent]
