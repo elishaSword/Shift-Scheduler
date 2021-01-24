@@ -1,4 +1,5 @@
-import { Component, Inject, Injectable, Input, OnInit } from '@angular/core';
+import { EventEmitter } from '@angular/core';
+import { Component, Inject, Injectable, Input, OnInit, Output } from '@angular/core';
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 
 // @Injectable()
@@ -9,15 +10,14 @@ import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 })
 export class ModalComponent implements OnInit {
 
-  @Input()
-  modalFlag: boolean;
+  @Output() closeModal = new EventEmitter<void>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  closeModal(): void {
-    this.modalFlag = false;
+  close(): void {
+    this.closeModal.emit();
   }
 }
