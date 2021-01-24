@@ -5,5 +5,5 @@ export interface MessageInterface {
   sender: User;
   content: string;
   time: Date;
-  reciever: User;
+  receiver: User;
 }
