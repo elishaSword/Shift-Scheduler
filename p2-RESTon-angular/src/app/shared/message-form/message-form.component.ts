@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'src/app/services/message-service.service';
 import { Position } from 'src/app/models/position';
 import { PositionService } from 'src/app/services/position.service';
+import { User } from 'src/app/models/user';
+import { send } from 'process';
 
 /**
  * Message Model
@@ -32,12 +34,17 @@ import { PositionService } from 'src/app/services/position.service';
 export class MessageFormComponent implements OnInit {
 
   message: Message = new Message();
+  user: User = new User();
+  
+
+  senderType: boolean = false;
 
   positions: Array<Position>;
   constructor(private messageService: MessageService, private positionService: PositionService) { }
 
   ngOnInit(): void {
     this.getPositions();
+    this.getUser();
   }
 
   createMessage(): void {
@@ -48,4 +55,11 @@ export class MessageFormComponent implements OnInit {
     this.positionService.getPositions().subscribe(positions => this.positions = positions);
   }
 
+  getUser(): void {
+
+  }
+
+  changeSender(): void {
+    this.senderType = !this.senderType;
+  }
 }
