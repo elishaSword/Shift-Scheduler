@@ -134,7 +134,7 @@ export class ScheduleService {
 
   parseShiftsByDay(schedule: Schedule, day: number) {
     let shiftMap = {};
-    let shifts = schedule.shifts.filter(s => s.shiftTime.getUTCDate() == day);
+    let shifts = schedule.shifts.filter(s => s.shiftTime.getUTCDay() == day);
 
     for(let shift of shifts) {
       if(!shiftMap[shift.position.name]) {

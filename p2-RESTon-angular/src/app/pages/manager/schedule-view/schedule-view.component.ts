@@ -1,6 +1,7 @@
 import { ScheduleService } from './../../../services/schedule.service';
 import { Component, OnInit } from '@angular/core';
 import { Schedule } from 'src/app/models/schedule';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'rev-schedule-view',
@@ -9,18 +10,19 @@ import { Schedule } from 'src/app/models/schedule';
 })
 export class ScheduleViewComponent implements OnInit {
 
-  schedules: Schedule[] = [];
   currentSchedule: Schedule;
 
   constructor(
-    private scheduleService: ScheduleService
+    private scheduleService: ScheduleService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.scheduleService.schedules.subscribe(schedules => {
-      this.schedules = schedules;
-      this.currentSchedule = schedules[0];
-
+      this.currentSchedule = schedules.find(e => {
+        const csId = this.activatedRoute.snapshot.queryParams.scheduleId;
+        return e.id == csId;
+      });
     })
   }
 

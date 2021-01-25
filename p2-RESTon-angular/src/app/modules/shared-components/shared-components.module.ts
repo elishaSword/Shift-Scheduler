@@ -21,6 +21,7 @@ import { WeeklyViewComponent } from 'src/app/pages/shared/weekly-view/weekly-vie
 import { WeeklyScheduleCalendarComponent } from 'src/app/shared/weekly-schedule-calendar/weekly-schedule-calendar.component';
 import { LoaderOneComponent } from 'src/app/shared/loaders/loader-one/loader-one.component';
 import { WeeklyEnrollsComponent } from 'src/app/shared/weekly-enrolls/weekly-enrolls.component';
+import { LoaderTwoComponent } from 'src/app/shared/loaders/loader-two/loader-two.component';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -38,7 +39,8 @@ import { RouterModule } from '@angular/router';
     WeeklyViewComponent,
     WeeklyScheduleCalendarComponent,
     LoaderOneComponent,
-    WeeklyEnrollsComponent
+    WeeklyEnrollsComponent,
+    LoaderTwoComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +51,7 @@ import { RouterModule } from '@angular/router';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    RouterModule 
+    RouterModule
 
   ],
   exports: [
@@ -67,7 +69,8 @@ import { RouterModule } from '@angular/router';
     WeeklyViewComponent,
     WeeklyScheduleCalendarComponent,
     LoaderOneComponent,
-    WeeklyEnrollsComponent
+    WeeklyEnrollsComponent,
+    LoaderTwoComponent
   ]
 })
 export class SharedComponentsModule { }
