@@ -1,3 +1,4 @@
+import { UserService } from './user.service';
 import { ScheduleInterface } from './../interfaces/schedule-interface';
 import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -189,7 +190,7 @@ export class ScheduleService {
   ]);
 
 
-  constructor() {}
+  constructor(private userService: UserService) {}
 
   newShift(scheduleId: number) {
     // this.schedules.next(shift)
@@ -221,22 +222,36 @@ export class ScheduleService {
     return shiftMap;
   }
 
-  parseShiftsByEmployee(schedule: Schedule) {
-    let shiftMap = {};
-
-    for(let shift of schedule.shifts) {
-      if(!shiftMap[shift.user.firstName + ' ' + shift.user.lastName]) {
-        shiftMap[shift.user.firstName + ' ' + shift.user.lastName] = [];
-      }
-      shiftMap[shift.user.firstName + ' ' + shift.user.lastName].push(shift);
-      for(let i=0;i<=6;i++) {
-
-      }
-    }
+  parseShiftsByEmployee(schedule: Schedule): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let shiftMap = {};
+      this.userService.getAllEmployees()
+      .then(users => {
+        for(let user of users) {
+          shiftMap[user.firstName + ' ' + user.lastName] = [];
+          let employeeShifts = schedule.shifts.filter(shift => shift.user.id == user.id);
+          for(let i=0;i<=6;i++) {
 
 
+            if(employeeShifts.filter(shift => shift.shiftTime.getUTCDay() == i).length){
+              let shift = employeeShifts.find(shift => shift.shiftTime.getUTCDay() == i);
+              shiftMap[user.firstName + ' ' + user.lastName].push(shift);
+            } else {
+              shiftMap[user.firstName + ' ' + user.lastName].push(null);
+            }
 
-    return shiftMap;
+
+          }
+        }
+
+        resolve(shiftMap);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+
+
+    });
   }
 
 }
