@@ -24,9 +24,16 @@ import { WeeklyEnrollsComponent } from 'src/app/shared/weekly-enrolls/weekly-enr
 import { LoaderTwoComponent } from 'src/app/shared/loaders/loader-two/loader-two.component';
 import { RouterModule } from '@angular/router';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { ProfileComponent } from 'src/app/pages/user/profile/profile.component';
+import { UserComponent } from 'src/app/pages/user/user/user.component';
 
 @NgModule({
   declarations: [
+    ProfileComponent,
+    UserComponent,
     ScheduleCalanderComponent,
     RolesComponent,
     ShiftsComponent,
@@ -41,7 +48,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     WeeklyScheduleCalendarComponent,
     LoaderOneComponent,
     WeeklyEnrollsComponent,
-    LoaderTwoComponent
+    LoaderTwoComponent,
   ],
   imports: [
     CommonModule,
@@ -53,11 +60,15 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatIconModule,
     MatListModule,
     RouterModule,
-    MatDialogModule
-
+    MatGridListModule,
+    MatDialogModule,
+    MatCardModule,
+    MatMenuModule,
 
   ],
   exports: [
+    ProfileComponent,
+    UserComponent,
     ScheduleCalanderComponent,
     NavBarComponent,
     RolesComponent,
@@ -73,7 +84,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     WeeklyScheduleCalendarComponent,
     LoaderOneComponent,
     WeeklyEnrollsComponent,
-    LoaderTwoComponent
+    LoaderTwoComponent,
   ]
 })
 export class SharedComponentsModule { }
