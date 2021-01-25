@@ -1,4 +1,6 @@
+import { Route } from '@angular/compiler/src/core';
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ShiftInterface } from 'src/app/interfaces/shift-interface';
 import { Shift } from 'src/app/models/shift';
 
@@ -15,7 +17,8 @@ export class ShiftsComponent implements OnInit {
   ]
 
   @Input() shift: Shift;
-
+  viewModal: boolean = false;
+  currentUser: string;
 
   empName: string = 'Dylan';
   startTime: any;
@@ -26,10 +29,11 @@ export class ShiftsComponent implements OnInit {
   width: number;
   shiftObject;
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute, private route: Router) { }
 
   ngOnInit(): void {
     this.initialize();
+    this.currentUser = this.route.url.split('/')[1];
   }
 
   // Width of times (hours) are currently static pixels, needs to change to something more responsive
@@ -55,5 +59,9 @@ export class ShiftsComponent implements OnInit {
       left: this.increment + "px"
     }
 
+  }
+
+  viewModals(bool: boolean): void {
+    this.viewModal = bool;
   }
 }

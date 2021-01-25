@@ -29,6 +29,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ProfileComponent } from 'src/app/pages/user/profile/profile.component';
 import { UserComponent } from 'src/app/pages/user/user/user.component';
+import { EditShiftComponent } from 'src/app/component/manager/edit-shift/edit-shift.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { UserComponent } from 'src/app/pages/user/user/user.component';
     LoaderOneComponent,
     WeeklyEnrollsComponent,
     LoaderTwoComponent,
+    EditShiftComponent
   ],
   imports: [
     CommonModule,
@@ -85,6 +87,7 @@ import { UserComponent } from 'src/app/pages/user/user/user.component';
     LoaderOneComponent,
     WeeklyEnrollsComponent,
     LoaderTwoComponent,
+    EditShiftComponent
   ]
 })
 export class SharedComponentsModule { }

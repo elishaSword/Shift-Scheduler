@@ -1,15 +1,15 @@
-<tr *ngFor='let employee of parsedShifts | keyvalue'>
-  <td>{{employee.key}}</td>
+<tr *ngFor='let employee of parsedShifts'>
+  <td>{{employee.employeeName}}</td>
 
-  <td class="" *ngFor='let shift of employee.value.shifts; let i = index'>
+  <td class="" *ngFor='let shift of employee.shifts; let i = index'>
     <div *ngIf="scheduleCheck(shift) == 'Scheduled'">
       <button class="" (click)="viewModals(shift)">Scheduled</button>
     </div>
-    <div *ngIf="scheduleCheck(shift, employee.value.availability, i) == 'Off'">
+    <div *ngIf="scheduleCheck(shift, employee.availability, i) == 'Off'">
       <p class="">Off</p>
 
     </div>
-    <div *ngIf="scheduleCheck(shift, employee.value.availability, i) == 'Not Scheduled'">
+    <div *ngIf="scheduleCheck(shift, employee.availability, i) == 'Not Scheduled'">
       <p class="">Not Available</p>
     </div>
   </td>

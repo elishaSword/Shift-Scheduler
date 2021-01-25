@@ -19,7 +19,21 @@ export class WeeklyScheduleCalendarComponent implements OnInit {
     this.scheduleService.schedules.subscribe(schedules => {
       this.schedules = schedules;
       this.currentSchedule = schedules[0];
-      // console.log(this.currentSchedule);
     })
+  }
+
+  addDays(currentDate: Date, days: any) {
+    let newDate: Date = new Date(currentDate);
+    console.log(newDate);
+    newDate.setDate(newDate.getDate() + days);
+    console.log(newDate);
+    return newDate;
+  }
+
+  dateFormatter(date: Date) {
+    let dateString: string = `
+      ${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}
+    `
+    return dateString;
   }
 }
