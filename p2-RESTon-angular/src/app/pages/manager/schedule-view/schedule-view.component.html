@@ -7,3 +7,8 @@
 </p>
 <rev-schedule-calander [schedule]="currentSchedule" *ngIf="currentSchedule; else elseBlock"></rev-schedule-calander>
 <ng-template #elseBlock> blah </ng-template>
+
+<button (click)="viewModals('a')">Click</button>
+<rev-modal *ngIf="viewModal" (closeModal)="viewModals('')" [ngSwitch]="viewModal">
+  <rev-new-shift *ngSwitchCase="'a'"></rev-new-shift>
+</rev-modal>

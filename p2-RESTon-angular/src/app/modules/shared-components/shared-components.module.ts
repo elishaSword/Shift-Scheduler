@@ -23,6 +23,7 @@ import { LoaderOneComponent } from 'src/app/shared/loaders/loader-one/loader-one
 import { WeeklyEnrollsComponent } from 'src/app/shared/weekly-enrolls/weekly-enrolls.component';
 import { LoaderTwoComponent } from 'src/app/shared/loaders/loader-two/loader-two.component';
 import { RouterModule } from '@angular/router';
+import { EditShiftComponent } from 'src/app/component/manager/edit-shift/edit-shift.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { RouterModule } from '@angular/router';
     WeeklyScheduleCalendarComponent,
     LoaderOneComponent,
     WeeklyEnrollsComponent,
-    LoaderTwoComponent
+    LoaderTwoComponent,
+    EditShiftComponent
   ],
   imports: [
     CommonModule,
@@ -70,7 +72,8 @@ import { RouterModule } from '@angular/router';
     WeeklyScheduleCalendarComponent,
     LoaderOneComponent,
     WeeklyEnrollsComponent,
-    LoaderTwoComponent
+    LoaderTwoComponent,
+    EditShiftComponent
   ]
 })
 export class SharedComponentsModule { }

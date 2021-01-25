@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Shift } from 'src/app/models/shift';
 
 @Component({
   selector: 'rev-edit-shift',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-shift.component.scss']
 })
 export class EditShiftComponent implements OnInit {
+
+  @Input() shift:Shift;
 
   constructor() { }
 
