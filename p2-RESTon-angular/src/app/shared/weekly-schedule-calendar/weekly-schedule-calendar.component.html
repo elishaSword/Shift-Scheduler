@@ -1,5 +1,6 @@
 <ng-container>
-  <table class="container calendar-container table is-full-width">
+  <button>View Daily Calendar</button>
+  <div class="container calendar-container table is-full-width">
     <!-- <table border="1" cellpadding="0" cellspacing="0" width="100%"> -->
       <tr id="outter-table">
         <!-- This will need a static width -->
@@ -13,22 +14,7 @@
         <th>Friday</th>
         <th>Saturday</th>
       </tr>
-
-      <!--ngFor here-->
-      <tr *ngFor='let employee of parsedShifts | keyvalue'>
-        <td>{{employee.key}}</td>
-
-        <!-- ngFor-->
-        <td class="" *ngFor='let employee of employee.value'>
-          <!-- ngIf -->
-          <button class="">{{employee}}</button>
-        </td>
-<!--
-  - View Shift
-  - Unavailable
-  - Blank
- -->
-      </tr>
-    </table>
+      <rev-weekly-enrolls [schedule]="currentSchedule"></rev-weekly-enrolls>
+    </div>
 </ng-container>
 

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Shift } from 'src/app/models/shift';
 
 @Component({
   selector: 'rev-view-shift',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewShiftComponent implements OnInit {
 
+@Input() shift: Shift;
+
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.shift);
   }
 
 }
