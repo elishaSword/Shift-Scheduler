@@ -29,8 +29,6 @@ export class ShiftsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(new Date('2021-01-20T06:59:00Z').getMinutes());
-    console.log(new Date('2021-01-20T08:59:00Z').getHours()+5);
     this.initialize();
   }
 

@@ -1,13 +1,9 @@
-
 <tr *ngFor='let employee of parsedShifts | keyvalue'>
   <td>{{employee.key}}</td>
 
   <td class="" *ngFor='let shift of employee.value.shifts; let i = index'>
     <div *ngIf="scheduleCheck(shift) == 'Scheduled'">
-      <button class="" (click)="viewModals('a')">Scheduled</button>
-      <rev-modal *ngIf="viewModal" (closeModal)="viewModals('')">
-        <rev-view-shift [shift]='shift'></rev-view-shift>
-      </rev-modal>
+      <button class="" (click)="viewModals(shift)">Scheduled</button>
     </div>
     <div *ngIf="scheduleCheck(shift, employee.value.availability, i) == 'Off'">
       <p class="">Off</p>
@@ -18,3 +14,7 @@
     </div>
   </td>
 </tr>
+
+<rev-modal *ngIf="viewShift" (closeModal)="viewModals(null)">
+  <rev-view-shift [shift]='viewShift'></rev-view-shift>
+</rev-modal>
