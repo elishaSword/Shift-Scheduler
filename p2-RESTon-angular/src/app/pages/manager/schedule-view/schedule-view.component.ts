@@ -21,11 +21,8 @@ export class ScheduleViewComponent implements OnInit {
     this.scheduleService.schedules.subscribe(schedules => {
       this.currentSchedule = schedules.find(e => {
         const csId = this.activatedRoute.snapshot.queryParams.scheduleId;
-        console.log(csId);
         return e.id == csId;
       });
-
-      console.log(this.currentSchedule);
     })
   }
 
