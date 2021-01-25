@@ -21,11 +21,8 @@ import { WeeklyViewComponent } from 'src/app/pages/shared/weekly-view/weekly-vie
 import { WeeklyScheduleCalendarComponent } from 'src/app/shared/weekly-schedule-calendar/weekly-schedule-calendar.component';
 import { LoaderOneComponent } from 'src/app/shared/loaders/loader-one/loader-one.component';
 import { WeeklyEnrollsComponent } from 'src/app/shared/weekly-enrolls/weekly-enrolls.component';
-<<<<<<< HEAD
 import { LoaderTwoComponent } from 'src/app/shared/loaders/loader-two/loader-two.component';
-=======
 import { RouterModule } from '@angular/router';
->>>>>>> 6e20319cb43d2519bc97fcfc2cdd8fc25a087f10
 
 @NgModule({
   declarations: [
@@ -54,7 +51,7 @@ import { RouterModule } from '@angular/router';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    RouterModule 
+    RouterModule
 
   ],
   exports: [
