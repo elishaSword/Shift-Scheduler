@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ScheduleViewComponent implements OnInit {
 
   currentSchedule: Schedule;
+  viewModal:string = "";
 
   constructor(
     private scheduleService: ScheduleService,
@@ -24,6 +25,10 @@ export class ScheduleViewComponent implements OnInit {
         return e.id == csId;
       });
     })
+  }
+
+  viewModals(modal: string): void{
+    this.viewModal = modal;
   }
 
 }
