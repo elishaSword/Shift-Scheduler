@@ -16,7 +16,12 @@ export class WeeklyScheduleCalendarComponent implements OnInit {
   constructor(private scheduleService: ScheduleService) { }
 
   ngOnInit(): void {
-    this.parsedShifts = this.scheduleService.parseShiftsByEmployee(this.schedule);
+    this.scheduleService.parseShiftsByEmployee(this.schedule)
+    .then(shifts => {
+      console.log(shifts);
+      this.parsedShifts = shifts;
+    })
+    // this.parsedShifts = this.scheduleService.parseShiftsByEmployee(this.schedule);
     console.log(this.parsedShifts);
   }
 }

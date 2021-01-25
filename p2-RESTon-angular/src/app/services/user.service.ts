@@ -10,7 +10,44 @@ export class UserService {
 
   apiWorking: boolean = false;
 
-  users: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
+  users: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([
+    {
+      id: 1,
+      firstName: 'George',
+      lastName: 'Yoo',
+      email: 'g@g.com',
+      password: null,
+      isManager: false,
+      phone: 12
+    },
+    {
+      id: 2,
+      firstName: 'Dylan',
+      lastName: 'Mahaffey',
+      email: 'dylan@mail.com',
+      password: null,
+      isManager: false,
+      phone: 13
+    },
+    {
+      id: 3,
+      firstName: 'Will',
+      lastName: 'He',
+      email: 'will@mail.com',
+      password: null,
+      isManager: false,
+      phone: 14
+    },
+    {
+      id: 4,
+      firstName: 'Calvin',
+      lastName: 'Mak',
+      email: 'calvin@mail.com',
+      password: null,
+      isManager: false,
+      phone: 15
+    }
+  ]);
 
   constructor(private userApiService: UserApiService) { }
 
@@ -18,7 +55,7 @@ export class UserService {
     return new Promise((resolve, reject) => {
 
       if(!this.apiWorking) {
-        return resolve([]);
+        return resolve(this.users.value);
       }
 
       if(this.users.value.length) {

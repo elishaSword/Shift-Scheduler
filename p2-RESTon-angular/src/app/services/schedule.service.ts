@@ -227,6 +227,8 @@ export class ScheduleService {
       let shiftMap = {};
       this.userService.getAllEmployees()
       .then(users => {
+        console.log(users);
+
         for(let user of users) {
           shiftMap[user.firstName + ' ' + user.lastName] = [];
           let employeeShifts = schedule.shifts.filter(shift => shift.user.id == user.id);
