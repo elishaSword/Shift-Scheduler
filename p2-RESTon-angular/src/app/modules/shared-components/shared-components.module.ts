@@ -16,7 +16,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
-
+import { ViewShiftComponent } from 'src/app/shared/view-shift/view-shift.component';
+import { WeeklyViewComponent } from 'src/app/pages/shared/weekly-view/weekly-view.component';
+import { WeeklyScheduleCalendarComponent } from 'src/app/shared/weekly-schedule-calendar/weekly-schedule-calendar.component';
+import { LoaderOneComponent } from 'src/app/shared/loaders/loader-one/loader-one.component';
+import { WeeklyEnrollsComponent } from 'src/app/shared/weekly-enrolls/weekly-enrolls.component';
+import { LoaderTwoComponent } from 'src/app/shared/loaders/loader-two/loader-two.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -27,9 +33,14 @@ import { ModalComponent } from 'src/app/shared/modal/modal.component';
     MessageComponent,
     BulletinMessageComponent,
     MessageFormComponent,
-    ScheduleCalanderComponent,
     NavBarComponent,
-    ModalComponent
+    ModalComponent,
+    ViewShiftComponent,
+    WeeklyViewComponent,
+    WeeklyScheduleCalendarComponent,
+    LoaderOneComponent,
+    WeeklyEnrollsComponent,
+    LoaderTwoComponent
   ],
   imports: [
     CommonModule,
@@ -40,6 +51,7 @@ import { ModalComponent } from 'src/app/shared/modal/modal.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    RouterModule
 
   ],
   exports: [
@@ -52,7 +64,13 @@ import { ModalComponent } from 'src/app/shared/modal/modal.component';
     BulletinMessageComponent,
     MessageFormComponent,
     ScheduleCalanderComponent,
-    ModalComponent
+    ModalComponent,
+    ViewShiftComponent,
+    WeeklyViewComponent,
+    WeeklyScheduleCalendarComponent,
+    LoaderOneComponent,
+    WeeklyEnrollsComponent,
+    LoaderTwoComponent
   ]
 })
 export class SharedComponentsModule { }

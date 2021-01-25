@@ -1,0 +1,10 @@
+<p *ngIf="currentSchedule">
+  <span>
+    <-</span>
+      {{currentSchedule.startDate.getUTCMonth()}} /
+      {{currentSchedule.startDate.getUTCDay()}} /
+      {{currentSchedule.startDate.getUTCFullYear()}}
+      <span>-></span>
+</p>
+<rev-schedule-calander [schedule]="currentSchedule" *ngIf="currentSchedule; else elseBlock"></rev-schedule-calander>
+<ng-template #elseBlock>plah</ng-template>

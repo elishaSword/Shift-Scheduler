@@ -6,8 +6,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManagerDashboardComponent implements OnInit {
 
+  viewModal:string = "";
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  viewModals(modal: string): void{
+    this.viewModal = modal;
   }
 }
