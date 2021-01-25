@@ -9,19 +9,16 @@ import { ScheduleService } from 'src/app/services/schedule.service';
 })
 export class WeeklyScheduleCalendarComponent implements OnInit {
 
-  @Input() schedule: Schedule;
-  parsedShifts;
-  name: string = "Ted";
+  schedules: Schedule[] = [];
+  currentSchedule: Schedule;
 
   constructor(private scheduleService: ScheduleService) { }
 
   ngOnInit(): void {
-    this.scheduleService.parseShiftsByEmployee(this.schedule)
-    .then(shifts => {
-      console.log(shifts);
-      this.parsedShifts = shifts;
+    this.scheduleService.schedules.subscribe(schedules => {
+      this.schedules = schedules;
+      this.currentSchedule = schedules[0];
+
     })
-    // this.parsedShifts = this.scheduleService.parseShiftsByEmployee(this.schedule);
-    console.log(this.parsedShifts);
   }
 }
