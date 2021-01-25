@@ -1,12 +1,4 @@
 <rev-nav-bar>
-<p>manager-dashboard works!</p>
-<p>This is where the manager nav bar would go or whatever we decide on</p>
-<button (click)="viewModals('a')">Click</button>
-<button (click)="viewModals('b')">Click</button>
-<rev-modal *ngIf="viewModal" (closeModal)="viewModals('')" [ngSwitch]="viewModal">
-  <rev-new-shift *ngSwitchCase="'a'"></rev-new-shift>
-  <rev-edit-shift *ngSwitchCase="'b'"></rev-edit-shift>
-</rev-modal>
 
 <router-outlet></router-outlet>
 
