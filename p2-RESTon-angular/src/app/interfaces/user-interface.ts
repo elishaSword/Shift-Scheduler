@@ -1,3 +1,4 @@
+import { AvailabilityInterface } from './availability-interface';
 export interface UserInterface {
   id: number;
   firstName :string;
@@ -6,4 +7,5 @@ export interface UserInterface {
   password: string;
   isManager: boolean;
   phone: number;
+  availability: AvailabilityInterface;
 }
