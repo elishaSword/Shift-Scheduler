@@ -11,7 +11,60 @@ export class BulletinServiceService {
 
   apiWorking: boolean = false;
 
-  buletinMessages: BehaviorSubject<BulletinMessage[]> = new BehaviorSubject<BulletinMessage[]>([]);
+  bulletinMessages: BehaviorSubject<BulletinMessage[]> = new BehaviorSubject<BulletinMessage[]>([
+    {
+      id: 0,
+      user: {
+        id: 4,
+        firstName: 'Calvin',
+        lastName: 'Mak',
+        email: 'calvin@mail.com',
+        password: null,
+        isManager: false,
+        phone: 15,
+        availability: {
+          id: 1,
+          user: null,
+          monday: true,
+          tuesday: true,
+          wednesday: true,
+          thursday: true,
+          friday: true,
+          saturday: true,
+          sunday: true
+        }
+      },
+      content: 'test',
+      time: 637,
+      position: null,
+    },
+    {
+      id: 1,
+      user: {
+        id: 4,
+        firstName: 'Calvin',
+        lastName: 'Mak',
+        email: 'calvin@mail.com',
+        password: null,
+        isManager: false,
+        phone: 15,
+        availability: {
+          id: 1,
+          user: null,
+          monday: true,
+          tuesday: true,
+          wednesday: true,
+          thursday: true,
+          friday: true,
+          saturday: true,
+          sunday: true
+        }
+      },
+      content: 'test2',
+      time: 640,
+      position: null,
+    }
+  ]);
 
   isPolling: boolean = false;
 
@@ -36,7 +89,7 @@ export class BulletinServiceService {
 
       this.bulletinMessageApiService.get()
       .then(res => {
-        this.buletinMessages.next(res);
+        this.bulletinMessages.next(res);
         resolve('Messages retrieved successfully.');
       })
       .catch(error => {
@@ -45,6 +98,8 @@ export class BulletinServiceService {
       })
     })
   }
+
+  
 
   postBulletinMessage(message: BulletinMessage): Promise<string> {
     return new Promise((resolve, reject) => {
@@ -68,8 +123,8 @@ export class BulletinServiceService {
   }
 
   private addMessageToBulletin(message: BulletinMessage): void {
-    let messages = this.buletinMessages.value;
+    let messages = this.bulletinMessages.value;
     messages.push(message);
-    this.buletinMessages.next(messages);
+    this.bulletinMessages.next(messages);
   }
 }

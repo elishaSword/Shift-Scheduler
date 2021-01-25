@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ManagerDashboardComponent } from 'src/app/pages/manager/manager-dashboard/manager-dashboard.component';
 import { WeeklyViewComponent } from 'src/app/pages/shared/weekly-view/weekly-view.component';
+import { ManagerBulletinComponent } from 'src/app/pages/manager/manager-bulletin/manager-bulletin.component';
 
 const routes: Routes = [
   {
@@ -10,7 +11,8 @@ const routes: Routes = [
     component: ManagerDashboardComponent,
     children :[
       {path: '', component: WeeklyViewComponent},
-      {path: 'view-day', component: ScheduleViewComponent}
+      {path: 'view-day', component: ScheduleViewComponent},
+      {path: 'bulletin', component: ManagerBulletinComponent},
     ]
   }
 ];

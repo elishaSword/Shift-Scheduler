@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EmployeeDashboardComponent } from 'src/app/pages/employee/employee-dashboard/employee-dashboard.component';
 import { WeeklyViewComponent } from 'src/app/pages/shared/weekly-view/weekly-view.component';
+import { EmployeeBulletinComponent } from 'src/app/pages/employee/employee-bulletin/employee-bulletin.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,7 @@ const routes: Routes = [
     children :[
       {path: '', component: WeeklyViewComponent},
       {path: 'view-day', component: EmployeeScheduleViewComponent},
+      {path: 'bulletin', component: EmployeeBulletinComponent},
       // Lets change the below to something else
       {path: '**', redirectTo: "/week-calender"},
     ]
