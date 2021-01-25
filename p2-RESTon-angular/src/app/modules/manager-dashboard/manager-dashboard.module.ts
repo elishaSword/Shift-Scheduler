@@ -7,6 +7,7 @@ import { ManagerDashboardComponent } from 'src/app/pages/manager/manager-dashboa
 import { NewShiftComponent } from 'src/app/components/manager/new-shift/new-shift.component';
 import { ScheduleViewComponent } from 'src/app/pages/manager/schedule-view/schedule-view.component';
 import { EditShiftComponent } from 'src/app/component/manager/edit-shift/edit-shift.component';
+import { ManagerBulletinComponent } from 'src/app/pages/manager/manager-bulletin/manager-bulletin.component';
 
 
 
@@ -15,7 +16,8 @@ import { EditShiftComponent } from 'src/app/component/manager/edit-shift/edit-sh
     ManagerDashboardComponent,
     ScheduleViewComponent,
     NewShiftComponent,
-    EditShiftComponent
+    EditShiftComponent,
+    ManagerBulletinComponent
   ],
   imports: [
     CommonModule,
