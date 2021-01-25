@@ -18,7 +18,18 @@ export class UserService {
       email: 'g@g.com',
       password: null,
       isManager: false,
-      phone: 12
+      phone: 12,
+      availability: {
+        id: 1,
+        user: null,
+        monday: true,
+        tuesday: true,
+        wednesday: true,
+        thursday: true,
+        friday: true,
+        saturday: true,
+        sunday: true
+      }
     },
     {
       id: 2,
@@ -27,7 +38,18 @@ export class UserService {
       email: 'dylan@mail.com',
       password: null,
       isManager: false,
-      phone: 13
+      phone: 13,
+      availability: {
+        id: 1,
+        user: null,
+        monday: true,
+        tuesday: true,
+        wednesday: true,
+        thursday: true,
+        friday: false,
+        saturday: false,
+        sunday: false
+      }
     },
     {
       id: 3,
@@ -36,7 +58,18 @@ export class UserService {
       email: 'will@mail.com',
       password: null,
       isManager: false,
-      phone: 14
+      phone: 14,
+      availability: {
+        id: 1,
+        user: null,
+        monday: true,
+        tuesday: false,
+        wednesday: true,
+        thursday: true,
+        friday: true,
+        saturday: true,
+        sunday: true
+      }
     },
     {
       id: 4,
@@ -45,7 +78,18 @@ export class UserService {
       email: 'calvin@mail.com',
       password: null,
       isManager: false,
-      phone: 15
+      phone: 15,
+      availability: {
+        id: 1,
+        user: null,
+        monday: true,
+        tuesday: true,
+        wednesday: true,
+        thursday: true,
+        friday: true,
+        saturday: true,
+        sunday: true
+      }
     }
   ]);
 
