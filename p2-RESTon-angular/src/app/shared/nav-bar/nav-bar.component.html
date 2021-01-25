@@ -4,9 +4,10 @@
       [opened]="(isHandset$ | async) === true">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
+      <a mat-list-item [routerLink]="['']">Bulletin</a>
+      <a mat-list-item [routerLink]="['./view-day']">View Daily</a>
+      <a mat-list-item [routerLink]="['']">Employee Page</a>
+      <button mat-list-item (click) = "logout()">Logout</button>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
