@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Schedule } from 'src/app/models/schedule';
+import { ScheduleService } from 'src/app/services/schedule.service';
 
 @Component({
   selector: 'rev-weekly-view',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeeklyViewComponent implements OnInit {
 
-  constructor() { }
+  schedules: Schedule[] = [];
+  currentSchedule: Schedule;
+
+  constructor(
+    private scheduleService: ScheduleService
+  ) { }
 
   ngOnInit(): void {
-  }
+    this.scheduleService.schedules.subscribe(schedules => {
+      this.schedules = schedules;
+      this.currentSchedule = schedules[0];
 
+    })
+  }
 }
