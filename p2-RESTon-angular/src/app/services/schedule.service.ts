@@ -4,6 +4,7 @@ import { ScheduleInterface } from './../interfaces/schedule-interface';
 import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Schedule } from '../models/schedule';
+import { Shift } from '../models/shift';
 
 @Injectable({
   providedIn: 'root'
@@ -117,8 +118,10 @@ export class ScheduleService {
 
   constructor(private userService: UserService) {}
 
-  newShift(scheduleId: number) {
-    // this.schedules.next(shift)
+  addShiftToSchedule(shift: Shift) {
+    let schedules = this.schedules.value;
+    schedules.find(e => e.id == shift.schedule.id).shifts.push(shift);
+    this.schedules.next(schedules);
   }
 
   parseShifts(schedule: Schedule) {
