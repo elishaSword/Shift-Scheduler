@@ -233,19 +233,17 @@ export class ScheduleService {
           shiftMap[user.firstName + ' ' + user.lastName] = [];
           let employeeShifts = schedule.shifts.filter(shift => shift.user.id == user.id);
           for(let i=0;i<=6;i++) {
-
-
             if(employeeShifts.filter(shift => shift.shiftTime.getUTCDay() == i).length){
               let shift = employeeShifts.find(shift => shift.shiftTime.getUTCDay() == i);
               shiftMap[user.firstName + ' ' + user.lastName].push(shift);
             } else {
-              shiftMap[user.firstName + ' ' + user.lastName].push(null);
+              shiftMap[user.firstName + ' ' + user.lastName].push(0);
             }
 
 
           }
         }
-
+        console.log(shiftMap)
         resolve(shiftMap);
       })
       .catch(error => {
