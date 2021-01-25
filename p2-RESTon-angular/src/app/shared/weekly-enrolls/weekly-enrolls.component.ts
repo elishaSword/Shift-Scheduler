@@ -23,7 +23,6 @@ export class WeeklyEnrollsComponent implements OnInit {
     this.scheduleService.parseShiftsByEmployee(this.schedule)
     .then(shifts => {
       this.parsedShifts = shifts;
-      console.log(shifts)
     })
   }
 

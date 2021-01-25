@@ -147,9 +147,8 @@ export class ScheduleService {
     return shiftMap;
   }
 
-  parseShiftsByEmployee(schedule: Schedule): Promise<any> {
+  parseShiftsByEmployee(schedule: Schedule): Promise<EmployeeShifts[]> {
     return new Promise((resolve, reject) => {
-      let shiftMap = {};
       let employeeMap: EmployeeShifts[] = [];
       this.userService.getAllEmployees()
       .then(users => {
@@ -158,22 +157,13 @@ export class ScheduleService {
           employeeShifts.employeeName = user.firstName + ' ' + user.lastName;
           employeeShifts.availability = user.availability
 
-
-
-          shiftMap[user.firstName + ' ' + user.lastName] = {
-            shifts: [],
-            employee: user,
-            availability: user.availability
-          };
           let es = schedule.shifts.filter(shift => shift.user.id == user.id);
           for(let i=0;i<=6;i++) {
             if(es.filter(shift => shift.shiftTime.getUTCDay() == i).length){
               let shift = es.find(shift => shift.shiftTime.getUTCDay() == i);
               employeeShifts.shifts.push(shift);
-              shiftMap[user.firstName + ' ' + user.lastName].shifts.push(shift);
             } else {
               employeeShifts.shifts.push(undefined);
-              shiftMap[user.firstName + ' ' + user.lastName].shifts.push(undefined);
             }
 
 
