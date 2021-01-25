@@ -22,6 +22,7 @@ import { WeeklyScheduleCalendarComponent } from 'src/app/shared/weekly-schedule-
 import { LoaderOneComponent } from 'src/app/shared/loaders/loader-one/loader-one.component';
 import { WeeklyEnrollsComponent } from 'src/app/shared/weekly-enrolls/weekly-enrolls.component';
 import { RouterModule } from '@angular/router';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { RouterModule } from '@angular/router';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    RouterModule 
+    RouterModule,
+    MatDialogModule
 
   ],
   exports: [

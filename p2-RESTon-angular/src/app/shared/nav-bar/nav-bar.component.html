@@ -6,12 +6,13 @@
     <mat-nav-list>
       <a mat-list-item [routerLink]="['']">Bulletin</a>
       <a mat-list-item [routerLink]="['./view-day']">View Daily</a>
-      <a mat-list-item [routerLink]="['']">Employee Page</a>
-      <button mat-list-item (click) = "logout()">Logout</button>
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLink]="['employee']">Employee Page</a>
+      <button mat-list-item (click) = "logout()" class = "button is-danger is-ligh" id ="logout">Logout</button>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar color="primary" class="mat-elevation-z6">
       <button
         type="button"
         aria-label="Toggle sidenav"
