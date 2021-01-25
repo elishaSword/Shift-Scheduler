@@ -1,3 +1,4 @@
+import { Availability } from './../models/availability';
 import { User } from './../models/user';
 import { UserApiService } from './rest/user-api.service';
 import { Injectable } from '@angular/core';
@@ -109,7 +110,16 @@ export class AuthService {
       if(!this.apiSetup && this.isSuccess) {
         user.id = 9000;
         user.isManager = false;
-        user.availability = null;
+        let availability = new Availability();
+        availability.id = 50;
+        availability.sunday = true;
+        availability.monday = true;
+        availability.thursday = true;
+        availability.wednesday = true;
+        availability.thursday = true;
+        availability.friday = true;
+        availability.saturday = true;
+        user.availability = availability;
         this.setLoggedInUser(user);
         return resolve("Successfully created your Account!");
       }
