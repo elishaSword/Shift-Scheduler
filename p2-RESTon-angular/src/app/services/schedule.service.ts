@@ -165,7 +165,7 @@ export class ScheduleService {
               let shift = employeeShifts.find(shift => shift.shiftTime.getUTCDay() == i);
               shiftMap[user.firstName + ' ' + user.lastName].shifts.push(shift);
             } else {
-              shiftMap[user.firstName + ' ' + user.lastName].push(0);
+              shiftMap[user.firstName + ' ' + user.lastName].shifts.push(0);
             }
 
 

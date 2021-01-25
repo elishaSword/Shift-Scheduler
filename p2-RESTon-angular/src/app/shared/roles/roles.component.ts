@@ -8,27 +8,7 @@ import { ShiftInterface } from 'src/app/interfaces/shift-interface';
 })
 export class RolesComponent implements OnInit {
 
-  @Input() shifts: ShiftInterface[] =
-  [
-    {
-    id: 1,
-    user: {
-      id: 1,
-      firstName: 'George',
-      lastName: 'Yoo',
-      email: 'g@g.com',
-      password: null,
-      isManager: false,
-      phone: 12
-    },
-    shiftTime: new Date('2021-01-20T10:00:00Z'),
-    position: {
-      id: 1,
-      name: 'Cook'
-    },
-    schedule: null
-  }
-]
+  @Input() shifts: ShiftInterface[];
 
   @Input() roleName: string = "Cashier";
 
