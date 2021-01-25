@@ -21,6 +21,7 @@ import { WeeklyViewComponent } from 'src/app/pages/shared/weekly-view/weekly-vie
 import { WeeklyScheduleCalendarComponent } from 'src/app/shared/weekly-schedule-calendar/weekly-schedule-calendar.component';
 import { LoaderOneComponent } from 'src/app/shared/loaders/loader-one/loader-one.component';
 import { WeeklyEnrollsComponent } from 'src/app/shared/weekly-enrolls/weekly-enrolls.component';
+import { LoaderTwoComponent } from 'src/app/shared/loaders/loader-two/loader-two.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { WeeklyEnrollsComponent } from 'src/app/shared/weekly-enrolls/weekly-enr
     WeeklyViewComponent,
     WeeklyScheduleCalendarComponent,
     LoaderOneComponent,
-    WeeklyEnrollsComponent
+    WeeklyEnrollsComponent,
+    LoaderTwoComponent
   ],
   imports: [
     CommonModule,
@@ -65,7 +67,8 @@ import { WeeklyEnrollsComponent } from 'src/app/shared/weekly-enrolls/weekly-enr
     WeeklyViewComponent,
     WeeklyScheduleCalendarComponent,
     LoaderOneComponent,
-    WeeklyEnrollsComponent
+    WeeklyEnrollsComponent,
+    LoaderTwoComponent
   ]
 })
 export class SharedComponentsModule { }

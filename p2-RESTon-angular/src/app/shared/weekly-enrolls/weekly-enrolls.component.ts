@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Availability } from 'src/app/models/availability';
 import { Schedule } from 'src/app/models/schedule';
+import { Shift } from 'src/app/models/shift';
 import { ScheduleService } from 'src/app/services/schedule.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class WeeklyEnrollsComponent implements OnInit {
   @Input() schedule: Schedule;
   parsedShifts: any;
   name: string = "Ted";
-  viewModal:string = "";
+  viewShift: Shift = null;
 
   constructor(private scheduleService: ScheduleService) { }
 
@@ -21,6 +22,7 @@ export class WeeklyEnrollsComponent implements OnInit {
     this.scheduleService.parseShiftsByEmployee(this.schedule)
     .then(shifts => {
       this.parsedShifts = shifts;
+      console.log(shifts)
     })
   }
 
@@ -36,18 +38,14 @@ export class WeeklyEnrollsComponent implements OnInit {
           return "Off";
         }
         break;
-      // case "string":
-      //   return "Not Scheduled";
-      //   break;
     }
   }
 
-  viewModals(modal: string): void{
-    this.viewModal = modal;
+  viewModals(modal: Shift): void{
+    this.viewShift = modal;
   }
 
   checkAvailability(day: number, availability: any): boolean {
-    console.log(day, availability);
     switch(day) {
       case 0:
         return availability.sunday;

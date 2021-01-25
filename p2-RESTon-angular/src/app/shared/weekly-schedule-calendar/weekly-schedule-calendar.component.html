@@ -5,13 +5,13 @@
         <!-- This will need a static width -->
         <!-- Possibly dynamically render times using recursion -->
         <th></th>
-        <th>Sunday</th>
-        <th>Monday</th>
-        <th>Tuesday</th>
-        <th>Wednesday</th>
-        <th>Thursday</th>
-        <th>Friday</th>
-        <th>Saturday</th>
+        <th><a [routerLink]="['/employee']" [queryParams]="{day: 'sunday'}">Sunday</a></th>
+        <th><a>Monday</a></th>
+        <th><a>Tuesday</a></th>
+        <th><a>Wednesday</a></th>
+        <th><a>Thursday</a></th>
+        <th><a>Friday</a></th>
+        <th><a>Saturday</a></th>
       </tr>
       <rev-weekly-enrolls [schedule]="currentSchedule"></rev-weekly-enrolls>
     </div>
