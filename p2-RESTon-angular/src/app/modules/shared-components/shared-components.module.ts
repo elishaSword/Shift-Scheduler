@@ -23,10 +23,18 @@ import { LoaderOneComponent } from 'src/app/shared/loaders/loader-one/loader-one
 import { WeeklyEnrollsComponent } from 'src/app/shared/weekly-enrolls/weekly-enrolls.component';
 import { LoaderTwoComponent } from 'src/app/shared/loaders/loader-two/loader-two.component';
 import { RouterModule } from '@angular/router';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { ProfileComponent } from 'src/app/pages/user/profile/profile.component';
+import { UserComponent } from 'src/app/pages/user/user/user.component';
 import { EditShiftComponent } from 'src/app/component/manager/edit-shift/edit-shift.component';
 
 @NgModule({
   declarations: [
+    ProfileComponent,
+    UserComponent,
     ScheduleCalanderComponent,
     RolesComponent,
     ShiftsComponent,
@@ -53,10 +61,16 @@ import { EditShiftComponent } from 'src/app/component/manager/edit-shift/edit-sh
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    RouterModule
+    RouterModule,
+    MatGridListModule,
+    MatDialogModule,
+    MatCardModule,
+    MatMenuModule,
 
   ],
   exports: [
+    ProfileComponent,
+    UserComponent,
     ScheduleCalanderComponent,
     NavBarComponent,
     RolesComponent,
