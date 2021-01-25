@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BulletinMessage } from 'src/app/models/bulletin-message';
+import { BulletinServiceService } from 'src/app/services/bulletin-service.service';
 
 @Component({
   selector: 'rev-employee-bulletin',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeBulletinComponent implements OnInit {
 
-  constructor() { }
+  // message: BulletinMessage
+  // messages: Array<BulletinMessage>
+  myMessages: Array<BulletinMessage>
+
+  constructor(private bulletinService: BulletinServiceService) { }
 
   ngOnInit(): void {
+    this.bulletinService.bulletinMessages.subscribe(messages => this.myMessages = messages);
   }
 
 }

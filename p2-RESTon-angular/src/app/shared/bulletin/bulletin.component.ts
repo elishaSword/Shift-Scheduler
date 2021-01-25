@@ -18,7 +18,7 @@ export class BulletinComponent implements OnInit {
   ngOnInit(): void {
     //Query for Bulletin Messages
     // this.getBulletinMessages();
-    this.bulletinService.buletinMessages.subscribe(messages => this.messages = messages);
+    this.bulletinService.bulletinMessages.subscribe(messages => this.messages = messages);
   }
 
   // getBulletinMessages(): void {

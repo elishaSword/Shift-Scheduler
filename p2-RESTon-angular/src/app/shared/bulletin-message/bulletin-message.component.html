@@ -1,11 +1,15 @@
 <article class="media">
+    <figure class="media-left"></figure>
     <div class="media-content">
       <div class="content">
         <p>
-          <strong>{{message.user}}</strong><small>Manager</small><small>{{message.time}}</small>
+          
+          {{message.user.firstName}} {{message.user.lastName}}Manager{{message.time}}
           <br>
-          {{message.content}}
+          {{message.content}} and stuff
         </p>
       </div>
     </div>
+    <div class="media-right">
+      </div>
   </article>
