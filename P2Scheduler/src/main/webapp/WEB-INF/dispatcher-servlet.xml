@@ -19,7 +19,7 @@
 	<context:annotation-config/>
 	
 	<!-- Spring will can all packages and subpackages that start with "com" -->
-	<context:component-scan base-package="com"></context:component-scan>
+	<context:component-scan base-package="scheduler"></context:component-scan>
 	
 	<!--  Turning on tx annotations (Spring ORM) -->
 	<tx:annotation-driven/>
@@ -31,9 +31,9 @@
 			
 	<bean id = "dataSource" class = "org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name = "driverClassName" value ="org.postgresql.Driver"></property>
-		<property name = "url" value =""></property>
-		<property name = "username" value =""></property>
-		<property name = "password" value =""></property>
+		<property name = "url" value ="jdbc:postgresql://shift-scheduler.cecy1cjykpwr.us-east-2.rds.amazonaws.com/postgres"></property>
+		<property name = "username" value ="postgres"></property>
+		<property name = "password" value ="p4ssw0rd"></property>
 	</bean>
 	
 	
@@ -43,7 +43,7 @@
 			
 	<bean id = "sessionFactory" class = "org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name = "dataSource" ref = "dataSource"/> <!-- This is the details to connect to our db -->
-		<property name="packagesToScan" value = "com.revature.models"/> <!-- This is the details of our POJOs -->
+		<property name="packagesToScan" value = "scheduler.models"/> <!-- This is the details of our POJOs -->
 		<property name = "hibernateProperties"> <!-- Hibernate specific properites -->
 			<props>
 				<prop key = "hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
@@ -52,8 +52,6 @@
 				<prop key = "hibernate.format_sql">false</prop>
 			</props>
 		</property>
-		
-		
 	</bean>
 	
 	<!--  TRANSACTION MANAGER

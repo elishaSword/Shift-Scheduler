@@ -3,6 +3,7 @@ package scheduler.repo;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,17 +13,23 @@ import scheduler.models.User;
 @Transactional
 public class UserRepoImplementation implements UserRepo{
 
+	@Autowired
+	private SessionFactory sesFact;
+	
 	public UserRepoImplementation(SessionFactory sesFact) {
 		super();
 		this.sesFact = sesFact;
 	}
-
-	private SessionFactory sesFact;
 	
 	@Override
-	public void insertUser(User user) {
-		sesFact.getCurrentSession().save(user);
-		
+	public boolean insertUser(User user) {
+		try {
+			sesFact.getCurrentSession().save(user);
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
@@ -37,19 +44,36 @@ public class UserRepoImplementation implements UserRepo{
 
 	@Override
 	public User getByCredentials(String email, String password) {
-		return sesFact.getCurrentSession().createQuery("FROM User WHERE email = :email AND password = :password", User.class)
+		List<User> userList;
+		userList = sesFact.getCurrentSession().createQuery("FROM User WHERE email = :email AND password = :password", User.class)
 				.setParameter("email", email)
-				.setParameter("password", password).list().get(0);
+				.setParameter("password", password).list();
+		if(userList.size() >= 1) {
+			return userList.get(0);
+		}
+		return null;
 	}
 
 	@Override
-	public void updateUser(User user) {
-		sesFact.getCurrentSession().update(user);
+	public boolean updateUser(User user) {
+		try {
+			sesFact.getCurrentSession().update(user);
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
-	public void deleteUser(User user) {
-		sesFact.getCurrentSession().delete(user);
+	public boolean deleteUser(User user) {
+		try {
+			sesFact.getCurrentSession().delete(user);
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }

@@ -1,10 +1,14 @@
 package scheduler.models;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "user_table")
 public class User {
 
 	@Id
@@ -28,10 +32,13 @@ public class User {
 	private boolean isManager;
 
 	@Column(name = "phone")
-	private int phone;
-
-	public User(int id, String firstName, String lastName, String email, String password, boolean isManager,
-			int phone) {
+	private Integer phone;
+	
+	public User() {
+		super();
+	}
+	
+	public User(int id, String firstName, String lastName, String email, String password, boolean isManager, Integer phone) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -41,9 +48,21 @@ public class User {
 		this.isManager = isManager;
 		this.phone = phone;
 	}
-
-	public User() {
+	
+	public User(int id, String firstName, String lastName, String email, String password, boolean isManager) {
 		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.isManager = isManager;
+	}
+
+	public User(String email, String password) {
+		super();
+		this.email = email;
+		this.password = password;
 	}
 
 	public int getId() {
@@ -70,19 +89,19 @@ public class User {
 		this.password = password;
 	}
 
-	public boolean isManager() {
+	public boolean getIsManager() {
 		return isManager;
 	}
 
-	public void setManager(boolean isManager) {
+	public void setIsManager(boolean isManager) {
 		this.isManager = isManager;
 	}
 
-	public int getPhone() {
+	public Integer getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(Integer phone) {
 		this.phone = phone;
 	}
 
