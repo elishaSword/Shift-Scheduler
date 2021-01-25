@@ -11,7 +11,6 @@ export class LandingPageComponent implements OnInit {
   constructor(private scheduleSercice: ScheduleService) { }
 
   ngOnInit(): void {
-    console.log(this.scheduleSercice.parseShifts(this.scheduleSercice.dummyData[0]));
     console.log('test');
 
   }
