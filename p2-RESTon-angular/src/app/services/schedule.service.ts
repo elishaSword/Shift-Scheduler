@@ -1,3 +1,4 @@
+import { EmployeeShifts } from './../models/employee-shifts';
 import { UserService } from './user.service';
 import { ScheduleInterface } from './../interfaces/schedule-interface';
 import { BehaviorSubject } from 'rxjs';
@@ -8,87 +9,6 @@ import { Schedule } from '../models/schedule';
   providedIn: 'root'
 })
 export class ScheduleService {
-
-  dummyData: Schedule[] = [
-    {
-      id: 1,
-      startDate: new Date(),
-      shifts: [
-        {
-          id: 1,
-          user: {
-            id: 1,
-            firstName: 'George',
-            lastName: 'Yoo',
-            email: 'g@g.com',
-            password: null,
-            isManager: false,
-            phone: 12
-          },
-          shiftTime:  new Date(),
-          position: {
-            id: 1,
-            name: 'Cook'
-          },
-          schedule: null
-        },
-        {
-          id: 2,
-          user: {
-            id: 2,
-            firstName: 'Dylan',
-            lastName: 'Mahaffey',
-            email: 'dylan@mail.com',
-            password: null,
-            isManager: false,
-            phone: 13
-          },
-          shiftTime:  new Date(),
-          position: {
-            id: 1,
-            name: 'Cook'
-          },
-          schedule: null
-        },
-        {
-          id: 3,
-          user: {
-            id: 3,
-            firstName: 'Will',
-            lastName: 'He',
-            email: 'will@mail.com',
-            password: null,
-            isManager: false,
-            phone: 14
-          },
-          shiftTime:  new Date(),
-          position: {
-            id: 2,
-            name: 'Waiter'
-          },
-          schedule: null
-        },
-        {
-          id: 4,
-          user: {
-            id: 4,
-            firstName: 'Calvin',
-            lastName: 'Mak',
-            email: 'calvin@mail.com',
-            password: null,
-            isManager: false,
-            phone: 15
-          },
-          shiftTime:  new Date(),
-          position: {
-            id: 2,
-            name: 'Waiter'
-          },
-          schedule: null
-        },
-      ]
-    }
-  ];
 
   schedules: BehaviorSubject<Schedule[]> = new BehaviorSubject<Schedule[]>([
     {
@@ -104,7 +24,8 @@ export class ScheduleService {
             email: 'g@g.com',
             password: null,
             isManager: false,
-            phone: 12
+            phone: 12,
+            availability: null
           },
           shiftTime:  new Date('2021-01-20T06:00:00Z'),
           position: {
@@ -122,7 +43,8 @@ export class ScheduleService {
             email: 'dylan@mail.com',
             password: null,
             isManager: false,
-            phone: 13
+            phone: 13,
+            availability: null
           },
           shiftTime:  new Date('2021-01-20T10:00:00Z'),
           position: {
@@ -140,7 +62,8 @@ export class ScheduleService {
             email: 'will@mail.com',
             password: null,
             isManager: false,
-            phone: 14
+            phone: 14,
+            availability: null
           },
           shiftTime:  new Date('2021-01-20T08:30:00Z'),
           position: {
@@ -158,7 +81,8 @@ export class ScheduleService {
             email: 'calvin@mail.com',
             password: null,
             isManager: false,
-            phone: 15
+            phone: 15,
+            availability: null
           },
           shiftTime:  new Date('2021-01-20T12:15:00Z'),
           position: {
@@ -176,7 +100,8 @@ export class ScheduleService {
             email: 'calvin@mail.com',
             password: null,
             isManager: false,
-            phone: 15
+            phone: 15,
+            availability: null
           },
           shiftTime:  new Date('2021-01-21T12:15:00Z'),
           position: {
@@ -210,7 +135,7 @@ export class ScheduleService {
 
   parseShiftsByDay(schedule: Schedule, day: number) {
     let shiftMap = {};
-    let shifts = schedule.shifts.filter(s => s.shiftTime.getUTCDate() == day);
+    let shifts = schedule.shifts.filter(s => s.shiftTime.getUTCDay() == day);
 
     for(let shift of shifts) {
       if(!shiftMap[shift.position.name]) {
@@ -222,29 +147,30 @@ export class ScheduleService {
     return shiftMap;
   }
 
-  parseShiftsByEmployee(schedule: Schedule): Promise<any> {
+  parseShiftsByEmployee(schedule: Schedule): Promise<EmployeeShifts[]> {
     return new Promise((resolve, reject) => {
-      let shiftMap = {};
+      let employeeMap: EmployeeShifts[] = [];
       this.userService.getAllEmployees()
       .then(users => {
-        console.log(users);
-
         for(let user of users) {
-          shiftMap[user.firstName + ' ' + user.lastName] = [];
-          let employeeShifts = schedule.shifts.filter(shift => shift.user.id == user.id);
+          let employeeShifts: EmployeeShifts = new EmployeeShifts();
+          employeeShifts.employeeName = user.firstName + ' ' + user.lastName;
+          employeeShifts.availability = user.availability
+
+          let es = schedule.shifts.filter(shift => shift.user.id == user.id);
           for(let i=0;i<=6;i++) {
-            if(employeeShifts.filter(shift => shift.shiftTime.getUTCDay() == i).length){
-              let shift = employeeShifts.find(shift => shift.shiftTime.getUTCDay() == i);
-              shiftMap[user.firstName + ' ' + user.lastName].push(shift);
+            if(es.filter(shift => shift.shiftTime.getUTCDay() == i).length){
+              let shift = es.find(shift => shift.shiftTime.getUTCDay() == i);
+              employeeShifts.shifts.push(shift);
             } else {
-              shiftMap[user.firstName + ' ' + user.lastName].push(0);
+              employeeShifts.shifts.push(undefined);
             }
 
 
           }
+          employeeMap.push(employeeShifts);
         }
-        console.log(shiftMap)
-        resolve(shiftMap);
+        resolve(employeeMap);
       })
       .catch(error => {
         console.log(error);

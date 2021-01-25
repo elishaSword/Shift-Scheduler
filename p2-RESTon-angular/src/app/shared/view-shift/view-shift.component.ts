@@ -14,6 +14,7 @@ export class ViewShiftComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.shift);
+    console.log("------------");
   }
 
 }
