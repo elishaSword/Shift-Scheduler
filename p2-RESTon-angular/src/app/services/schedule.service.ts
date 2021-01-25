@@ -1,3 +1,4 @@
+import { EmployeeShifts } from './../models/employee-shifts';
 import { UserService } from './user.service';
 import { ScheduleInterface } from './../interfaces/schedule-interface';
 import { BehaviorSubject } from 'rxjs';
@@ -149,30 +150,37 @@ export class ScheduleService {
   parseShiftsByEmployee(schedule: Schedule): Promise<any> {
     return new Promise((resolve, reject) => {
       let shiftMap = {};
+      let employeeMap: EmployeeShifts[] = [];
       this.userService.getAllEmployees()
       .then(users => {
-        console.log(users);
-
         for(let user of users) {
+          let employeeShifts: EmployeeShifts = new EmployeeShifts();
+          employeeShifts.employeeName = user.firstName + ' ' + user.lastName;
+          employeeShifts.availability = user.availability
+
+
+
           shiftMap[user.firstName + ' ' + user.lastName] = {
             shifts: [],
             employee: user,
             availability: user.availability
           };
-          let employeeShifts = schedule.shifts.filter(shift => shift.user.id == user.id);
+          let es = schedule.shifts.filter(shift => shift.user.id == user.id);
           for(let i=0;i<=6;i++) {
-            if(employeeShifts.filter(shift => shift.shiftTime.getUTCDay() == i).length){
-              let shift = employeeShifts.find(shift => shift.shiftTime.getUTCDay() == i);
+            if(es.filter(shift => shift.shiftTime.getUTCDay() == i).length){
+              let shift = es.find(shift => shift.shiftTime.getUTCDay() == i);
+              employeeShifts.shifts.push(shift);
               shiftMap[user.firstName + ' ' + user.lastName].shifts.push(shift);
             } else {
-              shiftMap[user.firstName + ' ' + user.lastName].shifts.push(0);
+              employeeShifts.shifts.push(undefined);
+              shiftMap[user.firstName + ' ' + user.lastName].shifts.push(undefined);
             }
 
 
           }
+          employeeMap.push(employeeShifts);
         }
-        console.log(shiftMap)
-        resolve(shiftMap);
+        resolve(employeeMap);
       })
       .catch(error => {
         console.log(error);

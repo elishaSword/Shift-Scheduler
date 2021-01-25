@@ -1,3 +1,4 @@
+import { EmployeeShifts } from './../../models/employee-shifts';
 import { Component, Input, OnInit } from '@angular/core';
 import { Availability } from 'src/app/models/availability';
 import { Schedule } from 'src/app/models/schedule';
@@ -12,7 +13,7 @@ import { ScheduleService } from 'src/app/services/schedule.service';
 export class WeeklyEnrollsComponent implements OnInit {
 
   @Input() schedule: Schedule;
-  parsedShifts: any;
+  parsedShifts: EmployeeShifts[];
   name: string = "Ted";
   viewShift: Shift = null;
 
@@ -31,7 +32,7 @@ export class WeeklyEnrollsComponent implements OnInit {
       case "object":
         return "Scheduled";
       break;
-      case "number":
+      case "undefined":
         if(availability && !this.checkAvailability(day, availability)) {
           return "Not Scheduled";
         } else {
