@@ -18,18 +18,6 @@ export class EmployeeMessageFormComponent implements OnInit {
   constructor(private messageService: MessageService, private userService: UserService) { }
 
   ngOnInit(): void {
-    this.getUser();
-  }
-
-  getUser(): void {
-
   }
   
-  getUsers(): void {
-    this.userService.getAllEmployees().then(users => users = this.users);
-  }
-
-  // changeSender(): void {
-  //   this.senderType = !this.senderType;
-  // }
 }

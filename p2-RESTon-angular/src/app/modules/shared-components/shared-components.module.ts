@@ -31,6 +31,7 @@ import { EditShiftComponent } from 'src/app/component/manager/edit-shift/edit-sh
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MessageFormComponent } from 'src/app/shared/message-form/message-form.component';
 
 
 
@@ -54,7 +55,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     LoaderOneComponent,
     WeeklyEnrollsComponent,
     LoaderTwoComponent,
-    EditShiftComponent
+    EditShiftComponent,
+    MessageFormComponent,
   ],
   imports: [
     CommonModule,
@@ -93,7 +95,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     LoaderOneComponent,
     WeeklyEnrollsComponent,
     LoaderTwoComponent,
-    EditShiftComponent
+    EditShiftComponent,
+    MessageFormComponent,
   ]
 })
 export class SharedComponentsModule { }
