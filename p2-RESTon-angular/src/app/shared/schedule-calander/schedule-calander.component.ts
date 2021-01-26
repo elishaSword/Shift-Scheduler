@@ -1,6 +1,6 @@
 import { ScheduleService } from './../../services/schedule.service';
 import { Schedule } from 'src/app/models/schedule';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DateService } from 'src/app/services/date.service';
 
@@ -9,7 +9,7 @@ import { DateService } from 'src/app/services/date.service';
   templateUrl: './schedule-calander.component.html',
   styleUrls: ['./schedule-calander.component.scss']
 })
-export class ScheduleCalanderComponent implements OnInit {
+export class ScheduleCalanderComponent implements OnInit, OnChanges {
 
   @Input() schedule: Schedule;
   parsedShifts;
@@ -26,9 +26,13 @@ export class ScheduleCalanderComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(): void {
     this.day = parseInt(this.activatedRoute.snapshot.queryParams.day);
     this.parsedShifts = this.scheduleService.parseShiftsByDay(this.schedule, this.day);
     this.date = this.dateService.addDays(this.schedule.startDate, this.day);
+    console.log("Parsed Shifts: ", this.parsedShifts);
   }
 
   dateFormatter(date: Date) {

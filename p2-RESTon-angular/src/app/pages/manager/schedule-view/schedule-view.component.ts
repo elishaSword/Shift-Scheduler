@@ -28,6 +28,7 @@ export class ScheduleViewComponent implements OnInit {
         const csId = this.activatedRoute.snapshot.queryParams.scheduleId;
         return e.id == csId;
       });
+      console.log("current Schedule View: ", this.currentSchedule);
     })
     this.day = parseInt(this.activatedRoute.snapshot.queryParams.day);
     this.date = this.dateService.addDays(this.currentSchedule.startDate, this.day);
