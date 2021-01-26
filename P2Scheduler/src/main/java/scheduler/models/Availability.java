@@ -1,20 +1,25 @@
 package scheduler.models;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+@Entity
+@Table(name = "availability_table")
 public class Availability {
 	@Id
 	@Column(name = "availability_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@OneToOne
-	@JoinColumn(name = "user_id", nullable = false)
+	@JsonBackReference
+	@OneToOne(mappedBy = "availability")
 	private User user;
 	
 	@Column(name = "monday", nullable = false)
@@ -40,6 +45,25 @@ public class Availability {
 	
 	public Availability() {
 		super();
+	}
+	
+	public Availability(User user) {
+		super();
+		this.user = user;
+	}
+
+	public Availability(int id, User user, boolean monday, boolean tuesday, boolean wednesday, boolean thursday,
+			boolean friday, boolean saturday, boolean sunday) {
+		super();
+		this.id = id;
+		this.user = user;
+		this.monday = monday;
+		this.tuesday = tuesday;
+		this.wednesday = wednesday;
+		this.thursday = thursday;
+		this.friday = friday;
+		this.saturday = saturday;
+		this.sunday = sunday;
 	}
 
 	public int getId() {
