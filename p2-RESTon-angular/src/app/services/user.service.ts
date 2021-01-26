@@ -8,8 +8,9 @@ import { User } from '../models/user';
 })
 export class UserService {
 
-  apiWorking: boolean = false;
+  apiWorking: boolean = true;
 
+  // users: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
   users: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([
     {
       id: 1,
@@ -103,7 +104,7 @@ export class UserService {
       }
 
       if(this.users.value.length) {
-        return resolve(this.users.value);
+        resolve(this.users.value);
       }
 
       this.userApiService.get()

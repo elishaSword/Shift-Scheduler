@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: "localhost:8080/Cafe-Application"
+  api: "localhost:8080/P2Scheduler/"
 };
 
 /*
