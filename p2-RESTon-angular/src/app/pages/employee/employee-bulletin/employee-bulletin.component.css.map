@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,UAAU,CAAC;EACP,UAAU,EAAE,MAAM;EAClB,YAAY,EAAE,GAAG;EACjB,YAAY,EAAE,KAAK;EACnB,YAAY,EANA,KAAa;EAOzB,OAAO,EAAE,GAAG;CACf",
+    "sources": [
+        "employee-bulletin.component.scss"
+    ],
+    "names": [],
+    "file": "employee-bulletin.component.css"
+}

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "employee-schedule-view.component.scss"
+    ],
+    "names": [],
+    "file": "employee-schedule-view.component.css"
+}

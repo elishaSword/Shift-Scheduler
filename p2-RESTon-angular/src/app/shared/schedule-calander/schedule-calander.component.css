@@ -1,0 +1,25 @@
+.calendar-container {
+  margin-top: 8%;
+  margin-left: 15%;
+  margin-right: 15%;
+  height: 50vh;
+  border-style: solid;
+  border-width: 1px;
+  overflow: auto;
+  padding: 2.5em;
+}
+
+td,
+th {
+  min-width: 100px;
+  height: 100px;
+}
+
+tr td {
+  width: 100px;
+}
+
+#outter-table th {
+  text-align: left;
+}
+/*# sourceMappingURL=schedule-calander.component.css.map */

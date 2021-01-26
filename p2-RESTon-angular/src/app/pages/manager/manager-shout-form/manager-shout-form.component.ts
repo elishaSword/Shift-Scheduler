@@ -1,40 +1,17 @@
-import { Message } from 'src/app/models/message';
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'src/app/services/message-service.service';
-import { Position } from 'src/app/models/position';
-import { PositionService } from 'src/app/services/position.service';
-import { User } from 'src/app/models/user';
-import { send } from 'process';
-import { BulletinServiceService } from 'src/app/services/bulletin-service.service';
 import { BulletinMessage } from 'src/app/models/bulletin-message';
-
-/**
- * Message Model
- * id = 0;
-  sender = null;
-  content = '';
-  time = null;
-  receiver = null;
- * 
- */
-
- /**
-  * Bulletin Model
-  * id: number;
-  user: User;
-  content: string;
-  time: Date;
-  position: Position;
-  */
-
+import { Position } from 'src/app/models/position';
+import { User } from 'src/app/models/user';
+import { BulletinServiceService } from 'src/app/services/bulletin-service.service';
+import { PositionService } from 'src/app/services/position.service';
 
 @Component({
-  selector: 'rev-message-form',
-  templateUrl: './message-form.component.html',
-  styleUrls: ['./message-form.component.scss']
+  selector: 'rev-manager-shout-form',
+  templateUrl: './manager-shout-form.component.html',
+  styleUrls: ['./manager-shout-form.component.scss']
 })
-export class MessageFormComponent implements OnInit {
-
+export class ManagerShoutFormComponent implements OnInit {  
+  
   message: BulletinMessage = new BulletinMessage();
   user: User = new User();
   
@@ -42,13 +19,14 @@ export class MessageFormComponent implements OnInit {
   senderType: boolean = false;
 
   positions: Array<Position>;
-  constructor(private messageService: MessageService, private positionService: PositionService, private bulletinService: BulletinServiceService) { }
+
+  constructor(private bulletinService: BulletinServiceService, private positionService: PositionService) { }
 
   ngOnInit(): void {
     this.getPositions();
     this.getUser();
-  }
-
+  } 
+  
   postMessage(): void {
     // this.messageService.createMessage(this.message).subscribe();
     this.bulletinService.postBulletinMessage(this.message)
@@ -59,6 +37,8 @@ export class MessageFormComponent implements OnInit {
   getPositions(): void {
     this.positionService.getPositions().subscribe(positions => this.positions = positions);
   }
+
+
 
   getUser(): void {
 

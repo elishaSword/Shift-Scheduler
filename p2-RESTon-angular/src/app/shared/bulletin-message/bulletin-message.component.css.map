@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,MAAM,CAAC;EACH,UAAU,EAAE,GAAG,CAHD,KAAa;EAI3B,aAAa,EAAE,GAAG,CAJJ,KAAa;EAK3B,WAAW,EAAE,GAAG;EAChB,YAAY,EAAE,GAAG;EACjB,YAAY,EAAE,KAAK;EACnB,KAAK,EAAE,GAAG;EACV,WAAW,EAAE,GAAG;EAChB,OAAO,EAAE,GAAG;CACf",
+    "sources": [
+        "bulletin-message.component.scss"
+    ],
+    "names": [],
+    "file": "bulletin-message.component.css"
+}

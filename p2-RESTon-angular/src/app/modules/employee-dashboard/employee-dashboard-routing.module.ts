@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { EmployeeDashboardComponent } from 'src/app/pages/employee/employee-dashboard/employee-dashboard.component';
 import { WeeklyViewComponent } from 'src/app/pages/shared/weekly-view/weekly-view.component';
 import { EmployeeBulletinComponent } from 'src/app/pages/employee/employee-bulletin/employee-bulletin.component';
+import { EmployeeMessageFormComponent } from 'src/app/pages/employee/employee-message-form/employee-message-form.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
       {path: '', component: WeeklyViewComponent},
       {path: 'view-day', component: EmployeeScheduleViewComponent},
       {path: 'bulletin', component: EmployeeBulletinComponent},
+      {path: 'message-form', component: EmployeeMessageFormComponent},
       // Lets change the below to something else
       {path: '**', redirectTo: "/week-calender"},
     ]

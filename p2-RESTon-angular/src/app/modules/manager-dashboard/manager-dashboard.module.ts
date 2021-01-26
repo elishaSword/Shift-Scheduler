@@ -8,6 +8,8 @@ import { NewShiftComponent } from 'src/app/components/manager/new-shift/new-shif
 import { ScheduleViewComponent } from 'src/app/pages/manager/schedule-view/schedule-view.component';
 import { EditShiftComponent } from 'src/app/component/manager/edit-shift/edit-shift.component';
 import { ManagerBulletinComponent } from 'src/app/pages/manager/manager-bulletin/manager-bulletin.component';
+import { ManagerMessageFormComponent } from 'src/app/pages/manager/manager-message-form/manager-message-form.component';
+import { ManagerShoutFormComponent } from 'src/app/pages/manager/manager-shout-form/manager-shout-form.component';
 
 
 
@@ -17,7 +19,9 @@ import { ManagerBulletinComponent } from 'src/app/pages/manager/manager-bulletin
     ScheduleViewComponent,
     NewShiftComponent,
     EditShiftComponent,
-    ManagerBulletinComponent
+    ManagerBulletinComponent,
+    ManagerMessageFormComponent,
+    ManagerShoutFormComponent
   ],
   imports: [
     CommonModule,

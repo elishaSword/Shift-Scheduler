@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MessageFormComponent } from './message-form.component';
+import { ManagerMessageFormComponent } from './manager-message-form.component';
 
-describe('MessageFormComponent', () => {
-  let component: MessageFormComponent;
-  let fixture: ComponentFixture<MessageFormComponent>;
+describe('ManagerMessageFormComponent', () => {
+  let component: ManagerMessageFormComponent;
+  let fixture: ComponentFixture<ManagerMessageFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MessageFormComponent ]
+      declarations: [ ManagerMessageFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MessageFormComponent);
+    fixture = TestBed.createComponent(ManagerMessageFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

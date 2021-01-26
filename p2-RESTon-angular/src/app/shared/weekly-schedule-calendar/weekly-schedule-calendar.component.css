@@ -1,0 +1,32 @@
+td,
+th {
+  min-width: 150px;
+  height: 25px;
+}
+
+#outter-table th {
+  text-align: left;
+}
+
+.inner-table tr td {
+  position: relative;
+  height: 25px;
+}
+
+.shift {
+  position: absolute;
+  height: 25px;
+  border-style: solid;
+  border-radius: 5px;
+  top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+/*# sourceMappingURL=weekly-schedule-calendar.component.css.map */
