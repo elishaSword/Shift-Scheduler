@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'src/app/services/message-service.service';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'rev-manager-message-form',
@@ -16,7 +17,7 @@ export class ManagerMessageFormComponent implements OnInit {
   currentUser: User;
   targetUser: User;
 
-  constructor(private messageService: MessageService, private userService: UserService) { }
+  constructor(private messageService: MessageService, private userService: UserService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.getUser();
@@ -32,7 +33,7 @@ export class ManagerMessageFormComponent implements OnInit {
 
 
   getUser(): void {
-
+    this.authService.loggedInUser.subscribe(user => this.currentUser = user);
   }
 
   getUsers(): void {
