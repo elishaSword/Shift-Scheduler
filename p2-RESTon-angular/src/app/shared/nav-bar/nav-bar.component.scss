@@ -36,13 +36,20 @@
 }
 
 #logout {
+  display: flex;
+  align-items: center;
   position: absolute;
   bottom: 0;
   left: 0;
-  margin-bottom: 2px;
+  width: 100%;
+
 }
 
 #profile-info {
   margin-left: auto; 
   margin-right: 15px;
 }
+
+
+
+
