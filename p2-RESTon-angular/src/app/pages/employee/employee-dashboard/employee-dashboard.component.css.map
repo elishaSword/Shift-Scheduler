@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "employee-dashboard.component.scss"
-    ],
-    "names": [],
-    "file": "employee-dashboard.component.css"
-}
