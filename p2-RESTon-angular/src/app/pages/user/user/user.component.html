@@ -2,8 +2,9 @@
 
 <form class="example-form" [formGroup] = "myForm" >
 
-    <img class = "profile-pic" src = "https://media.giphy.com/media/LW5vBvAb48Oe9OoEKT/giphy.gif" />
-
+    <div class = "block">
+        <img class = "profile-pic" src = "https://media.giphy.com/media/LW5vBvAb48Oe9OoEKT/giphy.gif" />
+    </div>
 
     <mat-form-field class="example-full-width">
         <mat-label>ID</mat-label>
@@ -40,7 +41,7 @@
     </mat-form-field>
 
     <div>
-        <button type = "submit" [disabled] = "myForm.invalid" class = "button is-link">Submit</button>
+        <button mat-raised-button type = "submit" [disabled] = "myForm.invalid" color="accent">Update Profile</button>
     </div>
 
 
