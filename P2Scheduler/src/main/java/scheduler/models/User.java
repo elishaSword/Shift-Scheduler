@@ -1,11 +1,16 @@
 package scheduler.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "user_table")
@@ -34,8 +39,30 @@ public class User {
 	@Column(name = "phone")
 	private Integer phone;
 	
+	@JsonManagedReference
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "availability_id", referencedColumnName = "availability_id", nullable = false)
+	private Availability availability;
+	
 	public User() {
 		super();
+	}
+	
+	public User(String email, String password) {
+		super();
+		this.email = email;
+		this.password = password;
+	}
+	
+	public User(int id, String firstName, String lastName, String email, String password, boolean isManager) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.isManager = isManager;
+		this.availability = new Availability(this);
 	}
 	
 	public User(int id, String firstName, String lastName, String email, String password, boolean isManager, Integer phone) {
@@ -47,9 +74,11 @@ public class User {
 		this.password = password;
 		this.isManager = isManager;
 		this.phone = phone;
+		this.availability = new Availability(this);
 	}
 	
-	public User(int id, String firstName, String lastName, String email, String password, boolean isManager) {
+	public User(int id, String firstName, String lastName, String email, String password, boolean isManager,
+			Integer phone, Availability availability) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -57,12 +86,8 @@ public class User {
 		this.email = email;
 		this.password = password;
 		this.isManager = isManager;
-	}
-
-	public User(String email, String password) {
-		super();
-		this.email = email;
-		this.password = password;
+		this.phone = phone;
+		this.availability = availability;
 	}
 
 	public int getId() {
@@ -120,10 +145,19 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	
+	public Availability getAvailability() {
+		return availability;
+	}
+
+	public void setAvailability(Availability availability) {
+		this.availability = availability;
+	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + ", isManager=" + isManager + ", phone=" + phone + "]";
+				+ ", password=" + password + ", isManager=" + isManager + ", phone=" + phone + ", availability="
+				+ availability + "]";
 	}
 }

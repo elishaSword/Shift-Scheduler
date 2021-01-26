@@ -1,5 +1,8 @@
 /.metadata/
 
+# Target folder
+target.*
+
 # Compiled class file
 *.class
 

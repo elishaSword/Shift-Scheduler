@@ -59,7 +59,7 @@ public class UserController {
 	}
 	
 	@PostMapping(value = "/login")
-	public String login(HttpServletRequest req, HttpServletResponse resp, @RequestBody() User user) {
+	public User login(HttpServletRequest req, HttpServletResponse resp, @RequestBody() User user) {
 		user = userService.getByCredentials(user.getEmail(), user.getPassword());
 		
 		if(user != null) {
@@ -68,30 +68,29 @@ public class UserController {
 			
 			resp.setStatus(200);
 			
-			return "Successfully logged in!";
+			return user;
 		}
 		
 		resp.setStatus(400);
-		
-		return "Incorrect email or password";
+		return null;
 	}
 	
 	@PostMapping(value = "/logout")
-	public String logout(HttpServletRequest req, HttpServletResponse resp) {
+	public User logout(HttpServletRequest req, HttpServletResponse resp) {
 		HttpSession session = req.getSession();
 		session.invalidate();
 		resp.setStatus(200);
-		return "Successfully log out!";
+		return null;
 	}
 	
 	@PutMapping(value = "update-user")
-	public String update(HttpServletRequest req, HttpServletResponse resp, @RequestBody() User user) {
+	public User update(HttpServletRequest req, HttpServletResponse resp, @RequestBody() User user) {
 		if(userService.updateUser(user)) {
 			resp.setStatus(200);
-			return "Update successful!";
+			return user;
 		} else {
 			resp.setStatus(500);
-			return "Failed to update account";
+			return null;
 		}
 	}
 	
