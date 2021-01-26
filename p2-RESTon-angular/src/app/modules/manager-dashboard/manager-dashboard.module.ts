@@ -6,7 +6,6 @@ import { SharedComponentsModule } from '../shared-components/shared-components.m
 import { ManagerDashboardComponent } from 'src/app/pages/manager/manager-dashboard/manager-dashboard.component';
 import { NewShiftComponent } from 'src/app/component/manager/new-shift/new-shift.component';
 import { ScheduleViewComponent } from 'src/app/pages/manager/schedule-view/schedule-view.component';
-import { EditShiftComponent } from 'src/app/component/manager/edit-shift/edit-shift.component';
 import { ManagerBulletinComponent } from 'src/app/pages/manager/manager-bulletin/manager-bulletin.component';
 
 
@@ -16,7 +15,6 @@ import { ManagerBulletinComponent } from 'src/app/pages/manager/manager-bulletin
     ManagerDashboardComponent,
     ScheduleViewComponent,
     NewShiftComponent,
-    EditShiftComponent,
     ManagerBulletinComponent
   ],
   imports: [

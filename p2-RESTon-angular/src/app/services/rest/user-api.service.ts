@@ -13,7 +13,7 @@ export class UserApiService {
 
   public get(): Promise<UserInterface[]> {
     return new Promise((resolve, reject) => {
-      this.api.get<UserInterface[]>(`User`).pipe(take(1)).subscribe(res => {
+      this.api.get<UserInterface[]>(`all-users`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
@@ -49,7 +49,7 @@ export class UserApiService {
   }
   public put(user: User): Promise<UserInterface> {
     return new Promise((resolve, reject) => {
-      this.api.put<UserInterface>(`User`, user).pipe(take(1)).subscribe(res => {
+      this.api.put<UserInterface>(`login`, user).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
@@ -59,6 +59,17 @@ export class UserApiService {
   public delete(user: User): Promise<UserInterface> {
     return new Promise((resolve, reject) => {
       this.api.delete<UserInterface>(`User/${user.id}`).pipe(take(1)).subscribe(res => {
+        resolve(res);
+      }, error => {
+        reject("Error: " + error);
+      })
+    })
+  }
+
+  // Auth calls
+  public logout(user: User): Promise<string> {
+    return new Promise((resolve, reject) => {
+      this.api.post<string>(`logout`, user).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);

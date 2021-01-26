@@ -97,10 +97,19 @@ export class AuthService {
    * Logs out the logged in user
    * returns you to the landing page
    */
-  public logout() {
-    localStorage.clear();
-    this.loggedInUser.next(null);
-    this.router.navigate(['']);
+  public logout(): Promise<string> {
+    return new Promise((resolve, reject) => {
+      this.userApi.logout(this.loggedInUser.value)
+      .then(res => {
+        localStorage.clear();
+        this.loggedInUser.next(null);
+        this.router.navigate(['']);
+        resolve(res);
+      }).catch(error => {
+        reject("There was an error logging out.")
+      });
+
+    })
   }
 
   register(user: User): Promise<string> {
