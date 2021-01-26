@@ -10,11 +10,11 @@ import { PositionService } from 'src/app/services/position.service';
   templateUrl: './manager-shout-form.component.html',
   styleUrls: ['./manager-shout-form.component.scss']
 })
-export class ManagerShoutFormComponent implements OnInit {  
-  
+export class ManagerShoutFormComponent implements OnInit {
+
   message: BulletinMessage = new BulletinMessage();
   user: User = new User();
-  
+
 
   senderType: boolean = false;
 
@@ -25,8 +25,8 @@ export class ManagerShoutFormComponent implements OnInit {
   ngOnInit(): void {
     this.getPositions();
     this.getUser();
-  } 
-  
+  }
+
   postMessage(): void {
     // this.messageService.createMessage(this.message).subscribe();
     this.bulletinService.postBulletinMessage(this.message)
@@ -35,7 +35,7 @@ export class ManagerShoutFormComponent implements OnInit {
   }
 
   getPositions(): void {
-    this.positionService.getPositions().subscribe(positions => this.positions = positions);
+    this.positionService.positions.subscribe(positions => this.positions = positions);
   }
 
 
