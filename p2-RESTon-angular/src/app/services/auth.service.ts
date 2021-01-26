@@ -110,6 +110,11 @@ export class AuthService {
       if(!this.apiSetup && this.isSuccess) {
         user.id = 9000;
         user.isManager = false;
+        user.firstName= 'Calvin';
+        user.lastName= 'Mak';
+        user.email= 'calvin@mail.com';
+        user.password= null;
+        user.phone= 15;
         let availability = new Availability();
         availability.id = 50;
         availability.sunday = true;

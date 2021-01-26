@@ -30,6 +30,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { ProfileComponent } from 'src/app/pages/user/profile/profile.component';
 import { UserComponent } from 'src/app/pages/user/user/user.component';
 import { EditShiftComponent } from 'src/app/component/manager/edit-shift/edit-shift.component';
+import {MatInputModule} from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -66,6 +69,8 @@ import { EditShiftComponent } from 'src/app/component/manager/edit-shift/edit-sh
     MatDialogModule,
     MatCardModule,
     MatMenuModule,
+    MatInputModule,
+    ReactiveFormsModule 
 
   ],
   exports: [
