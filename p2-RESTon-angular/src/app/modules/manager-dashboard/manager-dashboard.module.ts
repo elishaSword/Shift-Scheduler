@@ -18,7 +18,6 @@ import { ManagerShoutFormComponent } from 'src/app/pages/manager/manager-shout-f
     ManagerDashboardComponent,
     ScheduleViewComponent,
     NewShiftComponent,
-    EditShiftComponent,
     ManagerBulletinComponent,
     ManagerMessageFormComponent,
     ManagerShoutFormComponent
