@@ -14,6 +14,7 @@ export class ScheduleCalanderComponent implements OnInit {
   @Input() schedule: Schedule;
   parsedShifts;
   day: number;
+  date: Date;
 
 
   num: number = 80;
@@ -27,6 +28,7 @@ export class ScheduleCalanderComponent implements OnInit {
   ngOnInit(): void {
     this.day = parseInt(this.activatedRoute.snapshot.queryParams.day);
     this.parsedShifts = this.scheduleService.parseShiftsByDay(this.schedule, this.day);
+    this.date = this.dateService.addDays(this.schedule.startDate, this.day);
   }
 
   dateFormatter(date: Date) {
