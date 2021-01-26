@@ -1,5 +1,5 @@
 import { EmployeeShifts } from './../../models/employee-shifts';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Availability } from 'src/app/models/availability';
 import { Schedule } from 'src/app/models/schedule';
 import { Shift } from 'src/app/models/shift';
@@ -10,7 +10,7 @@ import { ScheduleService } from 'src/app/services/schedule.service';
   templateUrl: './weekly-enrolls.component.html',
   styleUrls: ['./weekly-enrolls.component.scss']
 })
-export class WeeklyEnrollsComponent implements OnInit {
+export class WeeklyEnrollsComponent implements OnInit, OnChanges {
 
   @Input() schedule: Schedule;
   parsedShifts: EmployeeShifts[];
@@ -20,6 +20,9 @@ export class WeeklyEnrollsComponent implements OnInit {
   constructor(private scheduleService: ScheduleService) { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(): void {
     this.scheduleService.parseShiftsByEmployee(this.schedule)
     .then(shifts => {
       this.parsedShifts = shifts;

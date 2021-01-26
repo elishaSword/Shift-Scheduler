@@ -33,5 +33,24 @@ export class ShiftService {
     })
   }
 
+  putShift(shift: Shift): Promise<string> {
+    return new Promise((resolve, reject) => {
+      if(!this.apiSetUp) {
+        shift.id = 100;
+        this.scheduleService.addShiftToSchedule(shift);
+        return resolve("Shift successfully updated!");
+      }
+      this.shiftAPIService.put(shift)
+      .then(shift => {
+        this.scheduleService.addShiftToSchedule(shift);
+        resolve("Shift successfully updated!");
+      })
+      .catch(error => {
+        console.log(error)
+        reject("There was an issue updating the shift.")
+      });
+    })
+  }
+
 }
 

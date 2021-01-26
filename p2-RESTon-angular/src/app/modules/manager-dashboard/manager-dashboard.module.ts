@@ -16,7 +16,6 @@ import { ManagerBulletinComponent } from 'src/app/pages/manager/manager-bulletin
     ManagerDashboardComponent,
     ScheduleViewComponent,
     NewShiftComponent,
-    EditShiftComponent,
     ManagerBulletinComponent
   ],
   imports: [
