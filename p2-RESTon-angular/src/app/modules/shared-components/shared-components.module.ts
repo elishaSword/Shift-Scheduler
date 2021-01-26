@@ -33,6 +33,7 @@ import {MatInputModule} from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
+
 @NgModule({
   declarations: [
     ProfileComponent,
@@ -56,9 +57,9 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     HttpClientModule,
+    MatButtonModule,
     LayoutModule,
     MatToolbarModule,
-    MatButtonModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule,
