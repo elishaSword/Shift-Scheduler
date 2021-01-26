@@ -28,7 +28,7 @@ export class EditShiftComponent implements OnInit {
     "saturday"
   ]
   currentDay: string;
-
+  userId: number;
   startTime: string;
   endTime: string;
 
@@ -50,8 +50,9 @@ export class EditShiftComponent implements OnInit {
   }
 
   editShift() {
-    console.log(this.startTime);
-    console.log('clicked');
+    // console.log(this.users);
+    this.shift.user = this.users.find(e => e.id == this.userId)
+    console.log(this.shift.user);
     this.shift.shiftTime = this.dateService.changeTime(this.shift.shiftTime, this.startTime)
     console.log(this.shift);
     // this.shiftService.putShift(this.shift)
