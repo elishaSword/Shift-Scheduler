@@ -31,6 +31,10 @@ import { UserComponent } from 'src/app/pages/user/user/user.component';
 import { EditShiftComponent } from 'src/app/component/manager/edit-shift/edit-shift.component';
 import {MatInputModule} from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
+
+
 
 
 
@@ -69,7 +73,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCardModule,
     MatMenuModule,
     MatInputModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule ,
+    MatProgressSpinnerModule
 
   ],
   exports: [
