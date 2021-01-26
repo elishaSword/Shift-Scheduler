@@ -49,6 +49,13 @@ export class NewShiftComponent implements OnInit {
   postShift() {
     this.shift.shiftTime = this.dateService.changeTime(this.date, this.startTime)
     console.log(this.shift);
+        // this.shiftService.post(this.shift)
+    // .then(res => {
+    //   console.log(res);
+    // })
+    // .catch(err => {
+    //   this.errorMessage = err;
+    // })
   }
 
 
