@@ -62,7 +62,6 @@ public class User {
 		this.email = email;
 		this.password = password;
 		this.isManager = isManager;
-		this.availability = new Availability(this);
 	}
 	
 	public User(int id, String firstName, String lastName, String email, String password, boolean isManager, Integer phone) {
@@ -74,7 +73,6 @@ public class User {
 		this.password = password;
 		this.isManager = isManager;
 		this.phone = phone;
-		this.availability = new Availability(this);
 	}
 	
 	public User(int id, String firstName, String lastName, String email, String password, boolean isManager,

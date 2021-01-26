@@ -140,7 +140,7 @@ public class Availability {
 
 	@Override
 	public String toString() {
-		return "Availability [id=" + id + ", user=" + user + ", monday=" + monday + ", tuesday=" + tuesday
+		return "Availability [id=" + id + "monday=" + monday + ", tuesday=" + tuesday
 				+ ", wednesday=" + wednesday + ", thursday=" + thursday + ", friday=" + friday + ", saturday="
 				+ saturday + ", sunday=" + sunday + "]";
 	}

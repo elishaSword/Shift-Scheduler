@@ -20,8 +20,14 @@ public class ShiftRepoImplementation implements ShiftRepo{
 	private SessionFactory sesFact;
 	
 	@Override
-	public void insertShift(Shift shift) {
-		sesFact.getCurrentSession().save(shift);
+	public boolean insertShift(Shift shift) {
+		try{ 
+			sesFact.getCurrentSession().save(shift);
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 		
 	}
 
@@ -54,13 +60,25 @@ public class ShiftRepoImplementation implements ShiftRepo{
 	}
 
 	@Override
-	public void updateShift(Shift shift) {
-		sesFact.getCurrentSession().update(shift);
+	public boolean updateShift(Shift shift) {
+		try{ 
+			sesFact.getCurrentSession().update(shift);
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
-	public void deleteShift(Shift shift) {
-		sesFact.getCurrentSession().delete(shift);
+	public boolean deleteShift(Shift shift) {
+		try{ 
+			sesFact.getCurrentSession().delete(shift);
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }

@@ -20,8 +20,14 @@ public class AvailabilityRepoImplementation implements AvailabilityRepo {
 	private SessionFactory sesFact;
 
 	@Override
-	public void insertAvailability(Availability availability) {
-		sesFact.getCurrentSession().save(availability);
+	public boolean insertAvailability(Availability availability) {
+		try{ 
+			sesFact.getCurrentSession().save(availability);
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 
 	}
 
@@ -35,20 +41,28 @@ public class AvailabilityRepoImplementation implements AvailabilityRepo {
 		return sesFact.getCurrentSession().createQuery("from Availability", Availability.class).list();
 	}
 
+
+
 	@Override
-	public Availability getByUsers(int id) {
-		return sesFact.getCurrentSession().createQuery("from Availability where user_id = :user_id", Availability.class)
-				.setParameter("user_id", id).list().get(0);
+	public boolean updateAvailability(Availability availability) {
+		try{ 
+			sesFact.getCurrentSession().update(availability);
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
-	public void updateAvailability(Availability availability) {
-		sesFact.getCurrentSession().update(availability);
-	}
-
-	@Override
-	public void deleteAvailability(Availability availability) {
-		sesFact.getCurrentSession().delete(availability);
+	public boolean deleteAvailability(Availability availability) {
+		try{ 
+			sesFact.getCurrentSession().delete(availability);
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }

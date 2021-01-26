@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import scheduler.models.Availability;
 import scheduler.models.User;
 import scheduler.repo.UserRepo;
 
@@ -20,6 +21,8 @@ public class UserService {
 	}
 	
 	public boolean insertUser(User user) {
+		Availability availability = new Availability(user);
+		user.setAvailability(availability);
 		return userRepo.insertUser(user);
 	}
 	

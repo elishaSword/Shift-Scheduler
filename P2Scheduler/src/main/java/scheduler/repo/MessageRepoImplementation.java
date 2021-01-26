@@ -20,8 +20,14 @@ public class MessageRepoImplementation implements MessageRepo {
 	private SessionFactory sesFact;
 
 	@Override
-	public void insertMessage(Message message) {
-		sesFact.getCurrentSession().save(message);
+	public boolean insertMessage(Message message) {
+		try{ 
+			sesFact.getCurrentSession().save(message);
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 
 	}
 
@@ -55,13 +61,25 @@ public class MessageRepoImplementation implements MessageRepo {
 	}
 
 	@Override
-	public void updateMessage(Message message) {
-		sesFact.getCurrentSession().update(message);
+	public boolean updateMessage(Message message) {
+		try{ 
+			sesFact.getCurrentSession().update(message);
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
-	public void deleteMessage(Message message) {
-		sesFact.getCurrentSession().update(message);
+	public boolean deleteMessage(Message message) {
+		try{ 
+			sesFact.getCurrentSession().delete(message);
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }

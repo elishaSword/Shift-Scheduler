@@ -20,8 +20,14 @@ public class ScheduleRepoImplementation implements ScheduleRepo{
 	private SessionFactory sesFact;
 	
 	@Override
-	public void insertSchedule(Schedule schedule) {
-		sesFact.getCurrentSession().save(schedule);
+	public boolean insertSchedule(Schedule schedule) {
+		try{ 
+			sesFact.getCurrentSession().save(schedule);
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 		
 	}
 
@@ -36,13 +42,25 @@ public class ScheduleRepoImplementation implements ScheduleRepo{
 	}
 
 	@Override
-	public void updateSchedule(Schedule schedule) {
-		sesFact.getCurrentSession().update(schedule);
+	public boolean updateSchedule(Schedule schedule) {
+		try{ 
+			sesFact.getCurrentSession().update(schedule);
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
-	public void deleteSchedule(Schedule schedule) {
-		sesFact.getCurrentSession().delete(schedule);
+	public boolean deleteSchedule(Schedule schedule) {
+		try{ 
+			sesFact.getCurrentSession().delete(schedule);
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }

@@ -6,7 +6,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import scheduler.models.Availability;
+
 import scheduler.models.BulletinMessage;
 
 @Repository("BulletinMessageRepo")
@@ -21,9 +21,14 @@ public class BulletinMessageRepoImplementation implements BulletinMessageRepo {
 	private SessionFactory sesFact;
 
 	@Override
-	public void insertBulletinMessage(BulletinMessage bulletinmessage) {
-		sesFact.getCurrentSession().save(bulletinmessage);
-
+	public boolean insertBulletinMessage(BulletinMessage bulletinmessage) {
+		try{ 
+			sesFact.getCurrentSession().save(bulletinmessage);
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
@@ -49,13 +54,25 @@ public class BulletinMessageRepoImplementation implements BulletinMessageRepo {
 	}
 
 	@Override
-	public void updateBulletinMessage(BulletinMessage bulletinmessage) {
-		sesFact.getCurrentSession().update(bulletinmessage);
+	public boolean updateBulletinMessage(BulletinMessage bulletinmessage) {
+		try{ 
+			sesFact.getCurrentSession().update(bulletinmessage);
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
-	public void deleteBulletinMessage(BulletinMessage bulletinmessage) {
-		sesFact.getCurrentSession().delete(bulletinmessage);
+	public boolean deleteBulletinMessage(BulletinMessage bulletinmessage) {
+		try{ 
+			sesFact.getCurrentSession().delete(bulletinmessage);
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }

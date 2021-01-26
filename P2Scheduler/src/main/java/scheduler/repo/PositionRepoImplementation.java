@@ -20,8 +20,14 @@ public class PositionRepoImplementation implements PositionRepo{
 	private SessionFactory sesFact;
 	
 	@Override
-	public void insertPosition(Position position) {
-		sesFact.getCurrentSession().save(position);
+	public boolean insertPosition(Position position) {
+		try{ 
+			sesFact.getCurrentSession().save(position);
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 		
 	}
 
@@ -36,13 +42,25 @@ public class PositionRepoImplementation implements PositionRepo{
 	}
 
 	@Override
-	public void updatePosition(Position position) {
-		sesFact.getCurrentSession().update(position);
+	public boolean updatePosition(Position position) {
+		try{ 
+			sesFact.getCurrentSession().update(position);
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
-	public void deletePosition(Position position) {
-		sesFact.getCurrentSession().delete(position);
+	public boolean deletePosition(Position position) {
+		try{ 
+			sesFact.getCurrentSession().delete(position);
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }

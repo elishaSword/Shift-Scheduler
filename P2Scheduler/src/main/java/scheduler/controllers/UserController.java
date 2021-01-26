@@ -64,7 +64,7 @@ public class UserController {
 		
 		if(user != null) {
 			HttpSession session = req.getSession();
-			session.setAttribute("user", user);
+			session.setAttribute("user_id", user.getId());
 			
 			resp.setStatus(200);
 			
