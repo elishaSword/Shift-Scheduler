@@ -7,13 +7,26 @@
 }
 
 .mat-toolbar {
-  background: rgb(250, 90, 255);
+  // background: rgb(250, 90, 255);
+  // background: linear-gradient(
+  //   90deg,
+  //   rgba(250, 90, 255, 1) 0%,
+  //   rgba(63, 96, 255, 1) 81%,
+  //   rgba(82, 100, 255, 1) 100%
+  // );
+  background: rgb(250,90,255);
   background: linear-gradient(
-    90deg,
-    rgba(250, 90, 255, 1) 0%,
-    rgba(63, 96, 255, 1) 81%,
-    rgba(82, 100, 255, 1) 100%
-  );
+    90deg, 
+    rgba(250,90,255,1) 2%, 
+    rgba(163,63,255,1) 47%, 
+    rgba(0,195,157,1) 94%);
+    background-size: 400%;
+    animation:bg-animation 60s infinite alternate;
+}
+
+@keyframes bg-animation{
+  0% {background-position: left}
+  100% {background-position: right}
 }
 
 .mat-toolbar.mat-primary {
@@ -23,8 +36,20 @@
 }
 
 #logout {
+  display: flex;
+  align-items: center;
   position: absolute;
   bottom: 0;
   left: 0;
-  margin-bottom: 2px;
+  width: 100%;
+
 }
+
+#profile-info {
+  margin-left: auto; 
+  margin-right: 15px;
+}
+
+
+
+

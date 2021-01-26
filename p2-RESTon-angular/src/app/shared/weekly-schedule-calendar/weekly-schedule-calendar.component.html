@@ -1,4 +1,6 @@
 <ng-container>
+  <button (click)='changeSchedule(1)'>OCD</button>
+  <button (click)='changeSchedule(-1)'>DCO</button>
   <div class="container calendar-container table is-full-width">
     <!-- <table border="1" cellpadding="0" cellspacing="0" width="100%"> -->
       <tr id="outter-table">
@@ -6,12 +8,12 @@
         <!-- Possibly dynamically render times using recursion -->
         <th></th>
         <th><a [routerLink]="'view-day'" [queryParams]="{day: 0, scheduleId: currentSchedule.id}">Sunday</a><p>{{dateFormatter(currentSchedule.startDate)}}</p></th>
-        <th><a [routerLink]="'view-day'" [queryParams]="{day: 1, scheduleId: currentSchedule.id}">Monday</a><p>{{dateFormatter(addDays(currentSchedule.startDate, 1))}}</p></th>
-        <th><a [routerLink]="'view-day'" [queryParams]="{day: 2, scheduleId: currentSchedule.id}">Tuesday</a><p>{{dateFormatter(addDays(currentSchedule.startDate, 2))}}</p></th>
-        <th><a [routerLink]="'view-day'" [queryParams]="{day: 3, scheduleId: currentSchedule.id}">Wednesday</a><p>{{dateFormatter(addDays(currentSchedule.startDate, 3))}}</p></th>
-        <th><a [routerLink]="'view-day'" [queryParams]="{day: 4, scheduleId: currentSchedule.id}">Thursday</a><p>{{dateFormatter(addDays(currentSchedule.startDate, 4))}}</p></th>
-        <th><a [routerLink]="'view-day'" [queryParams]="{day: 5, scheduleId: currentSchedule.id}">Friday</a><p>{{dateFormatter(addDays(currentSchedule.startDate, 5))}}</p></th>
-        <th><a [routerLink]="'view-day'" [queryParams]="{day: 6, scheduleId: currentSchedule.id}">Saturday</a><p>{{dateFormatter(addDays(currentSchedule.startDate, 6))}}</p></th>
+        <th><a [routerLink]="'view-day'" [queryParams]="{day: 1, scheduleId: currentSchedule.id}">Monday</a><p>{{dateFormatter(currentSchedule.startDate, 1)}}</p></th>
+        <th><a [routerLink]="'view-day'" [queryParams]="{day: 2, scheduleId: currentSchedule.id}">Tuesday</a><p>{{dateFormatter(currentSchedule.startDate, 2)}}</p></th>
+        <th><a [routerLink]="'view-day'" [queryParams]="{day: 3, scheduleId: currentSchedule.id}">Wednesday</a><p>{{dateFormatter(currentSchedule.startDate, 3)}}</p></th>
+        <th><a [routerLink]="'view-day'" [queryParams]="{day: 4, scheduleId: currentSchedule.id}">Thursday</a><p>{{dateFormatter(currentSchedule.startDate, 4)}}</p></th>
+        <th><a [routerLink]="'view-day'" [queryParams]="{day: 5, scheduleId: currentSchedule.id}">Friday</a><p>{{dateFormatter(currentSchedule.startDate, 5)}}</p></th>
+        <th><a [routerLink]="'view-day'" [queryParams]="{day: 6, scheduleId: currentSchedule.id}">Saturday</a><p>{{dateFormatter(currentSchedule.startDate, 6)}}</p></th>
       </tr>
       <rev-weekly-enrolls [schedule]="currentSchedule"></rev-weekly-enrolls>
     </div>

@@ -7,6 +7,7 @@ import { EmployeeDashboardComponent } from 'src/app/pages/employee/employee-dash
 import { EmployeeScheduleViewComponent } from 'src/app/pages/employee/employee-schedule-view/employee-schedule-view.component';
 import { ViewMyShiftComponent } from 'src/app/component/employee/view-my-shift/view-my-shift.component';
 import { EmployeeBulletinComponent } from 'src/app/pages/employee/employee-bulletin/employee-bulletin.component';
+import { EmployeeMessageFormComponent } from 'src/app/pages/employee/employee-message-form/employee-message-form.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { EmployeeBulletinComponent } from 'src/app/pages/employee/employee-bulle
     EmployeeDashboardComponent,
     EmployeeScheduleViewComponent,
     ViewMyShiftComponent,
-    EmployeeBulletinComponent
+    EmployeeBulletinComponent,
+    EmployeeMessageFormComponent
   ],
   imports: [
     SharedComponentsModule,

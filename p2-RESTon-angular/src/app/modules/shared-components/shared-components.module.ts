@@ -7,7 +7,6 @@ import { ShiftsComponent } from 'src/app/shared/shifts/shifts.component';
 import { BulletinComponent } from 'src/app/shared/bulletin/bulletin.component';
 import { MessageComponent } from 'src/app/shared/message/message.component';
 import { BulletinMessageComponent } from 'src/app/shared/bulletin-message/bulletin-message.component';
-import { MessageFormComponent } from 'src/app/shared/message-form/message-form.component';
 import { NavBarComponent } from 'src/app/shared/nav-bar/nav-bar.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -30,6 +29,14 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { ProfileComponent } from 'src/app/pages/user/profile/profile.component';
 import { UserComponent } from 'src/app/pages/user/user/user.component';
 import { EditShiftComponent } from 'src/app/component/manager/edit-shift/edit-shift.component';
+import {MatInputModule} from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -41,7 +48,6 @@ import { EditShiftComponent } from 'src/app/component/manager/edit-shift/edit-sh
     BulletinComponent,
     MessageComponent,
     BulletinMessageComponent,
-    MessageFormComponent,
     NavBarComponent,
     ModalComponent,
     ViewShiftComponent,
@@ -55,9 +61,9 @@ import { EditShiftComponent } from 'src/app/component/manager/edit-shift/edit-sh
   imports: [
     CommonModule,
     HttpClientModule,
+    MatButtonModule,
     LayoutModule,
     MatToolbarModule,
-    MatButtonModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule,
@@ -66,6 +72,9 @@ import { EditShiftComponent } from 'src/app/component/manager/edit-shift/edit-sh
     MatDialogModule,
     MatCardModule,
     MatMenuModule,
+    MatInputModule,
+    ReactiveFormsModule ,
+    MatProgressSpinnerModule
 
   ],
   exports: [
@@ -78,7 +87,6 @@ import { EditShiftComponent } from 'src/app/component/manager/edit-shift/edit-sh
     BulletinComponent,
     MessageComponent,
     BulletinMessageComponent,
-    MessageFormComponent,
     ScheduleCalanderComponent,
     ModalComponent,
     ViewShiftComponent,

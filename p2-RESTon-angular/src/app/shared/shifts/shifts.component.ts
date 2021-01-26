@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ShiftInterface } from 'src/app/interfaces/shift-interface';
 import { Shift } from 'src/app/models/shift';
+import { DateService } from 'src/app/services/date.service';
 
 @Component({
   selector: 'rev-shifts',
@@ -29,7 +30,9 @@ export class ShiftsComponent implements OnInit {
   width: number;
   shiftObject;
 
-  constructor(private activatedRoute: ActivatedRoute, private route: Router) { }
+  constructor(
+    private route: Router
+    ) { }
 
   ngOnInit(): void {
     this.initialize();
@@ -49,7 +52,7 @@ export class ShiftsComponent implements OnInit {
     this.startTime = +this.shift.shiftTime.getHours();
     this.endTime = this.shift.shiftTime.getHours() + 8;
     this.testTime = (this.endTime) - (this.startTime);
-    this.color = 'green';
+    this.color = 'aqua';
     this.increment = this.calculateIncrement(this.shift.shiftTime.getMinutes());
     this.width = this.calculateWidth(this.testTime);
 

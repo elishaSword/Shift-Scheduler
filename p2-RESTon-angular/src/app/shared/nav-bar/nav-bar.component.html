@@ -8,12 +8,19 @@
       <a mat-list-item [routerLink]="['./view-day']">View Daily</a>
       <mat-divider></mat-divider>
       <a mat-list-item [routerLink]="['employee']">Employee Page</a>
-      <button mat-list-item (click) = "logout()" class = "button is-danger is-ligh" id ="logout">Logout</button>
+      <button mat-raised-button (click) = "logout()" class = "button is-danger is-ligh" id ="logout" [disabled] = "showSpinner">
+        <span>
+          <mat-spinner [diameter]="30" *ngIf = "showSpinner" class = "spinny"></mat-spinner>
+           <span *ngIf = "!showSpinner">Logout</span>
+        </span>
+      </button>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary" class="mat-elevation-z6">
+      
       <button
+        
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
@@ -22,6 +29,13 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span><img src = "https://www.brandbucket.com/sites/default/files/logo_uploads/192388/large_shift.ly.png" style="width: 150px; margin-top: 13px;"></span>
+      <span id = "profile-info" style="float:right">
+          <button mat-mini-fab color="warm" >
+            <a [routerLink]="['./profile']">
+              <mat-icon>perm_identity</mat-icon>
+            </a>
+          </button>
+      </span>
     </mat-toolbar>
     <ng-content></ng-content>
   </mat-sidenav-content>
