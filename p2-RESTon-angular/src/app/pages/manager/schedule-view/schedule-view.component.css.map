@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "schedule-view.component.scss"
+    ],
+    "names": [],
+    "file": "schedule-view.component.css"
+}
