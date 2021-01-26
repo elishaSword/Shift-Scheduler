@@ -14,6 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 export class EditShiftComponent implements OnInit {
 
   @Input() shift:Shift;
+  @Input() date: Date;
   users: User[];
   errorMessage: string = "";
   currentDayInt: number;
@@ -28,6 +29,9 @@ export class EditShiftComponent implements OnInit {
   ]
   currentDay: string;
 
+  startTime: string;
+  endTime: string;
+
   constructor(
     private shiftService: ShiftService,
     private userService: UserService,
@@ -41,9 +45,13 @@ export class EditShiftComponent implements OnInit {
   })
   this.currentDayInt = parseInt(this.route.url.split("=")[1][0]);
   this.currentDay = this.days[this.currentDayInt];
+  this.date = this.shift.shiftTime;
   }
 
   editShift() {
+    console.log('clicked');
+    this.shift.shiftTime = this.dateService.changeTime(this.shift.shiftTime, this.startTime)
+    console.log(this.shift);
     this.shiftService.putShift(this.shift)
     .then(res => {
       console.log(res);

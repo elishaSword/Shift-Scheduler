@@ -2,14 +2,14 @@
 <div class="field">
   <label class="label">Start Time</label>
   <div class="control">
-    <input type="time">
+    <input type="time" [(ngModel)]="startTime">
   </div>
 </div>
 
 <div class="field">
   <label class="label">End Time</label>
   <div class="control">
-    <input type="time">
+    <input type="time" [(ngModel)]="endTime">
   </div>
 </div>
 
@@ -30,7 +30,7 @@
 
 <div class="field is-grouped">
   <div class="control">
-    <button class="button is-link">Submit</button>
+    <button class="button is-link" (click)="editShift()">Submit</button>
   </div>
   <div class="control">
     <button class="button is-link is-light">Cancel</button>

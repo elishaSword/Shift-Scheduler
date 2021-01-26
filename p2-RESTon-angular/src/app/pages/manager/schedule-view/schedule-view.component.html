@@ -10,5 +10,5 @@
 
 <button (click)="viewModals('a')">Click</button>
 <rev-modal *ngIf="viewModal" (closeModal)="viewModals('')" [ngSwitch]="viewModal">
-  <rev-new-shift *ngSwitchCase="'a'"></rev-new-shift>
+  <rev-new-shift *ngSwitchCase="'a'" [date]="date"></rev-new-shift>
 </rev-modal>
