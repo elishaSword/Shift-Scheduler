@@ -1,0 +1,9 @@
+$default-color: rgba(0,0,0,1);
+
+.container {
+    text-align: center;
+    border-width: 3px;
+    border-style: solid;
+    border-color: $default-color;
+    padding: 5px;
+}

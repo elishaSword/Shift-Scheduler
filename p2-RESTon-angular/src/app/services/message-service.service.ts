@@ -13,31 +13,31 @@ export class MessageService {
   bulletinUrl: string = "";
   messagesBankUrl: string = "";
 
-  dummyBulletin = {
+  dummyBulletin: Array<Message> = [];
 
-  };
+  messages: BehaviorSubject<Message []> = new BehaviorSubject<Message[]>(this.dummyBulletin);
 
   constructor(private http: HttpClient) { }
 
-  getBulletinMessage(): BulletinMessage {
-    // let bMessage: BehaviorSubject<BulletinMessage> = this.http.get<BulletinMessage[]>(this.bulletinUrl).pipe(tap(_ => this.handleError<BulletinMessage>('getBulletinMessage')));
-    // if(bMessage == null) {
-    //   bMessage = of(this.dummyBulletin);
-    // } 
-    // return bMessage;
-    return null;
-  }
+  // getBulletinMessage(): BulletinMessage {
+  //   // let bMessage: BehaviorSubject<BulletinMessage> = this.http.get<BulletinMessage[]>(this.bulletinUrl).pipe(tap(_ => this.handleError<BulletinMessage>('getBulletinMessage')));
+  //   // if(bMessage == null) {
+  //   //   bMessage = of(this.dummyBulletin);
+  //   // } 
+  //   // return bMessage;
+  //   return null;
+  // }
 
-  getBulletinMessages(): BehaviorSubject<BulletinMessage[]> {
-    return null;
-  }
+  // getBulletinMessages(): BehaviorSubject<BulletinMessage[]> {
+  //   return null;
+  // }
 
   getMessages(): BehaviorSubject<Message[]> {
     
     return null;
   }
 
-  createMessage(message: Message): Observable<any> {
+  postMessage(message: Message): Promise<String> {
     return null;
   }
 
