@@ -4,6 +4,7 @@ import { ScheduleInterface } from './../interfaces/schedule-interface';
 import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Schedule } from '../models/schedule';
+import { Shift } from '../models/shift';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class ScheduleService {
   schedules: BehaviorSubject<Schedule[]> = new BehaviorSubject<Schedule[]>([
     {
       id: 1,
-      startDate: new Date(),
+      startDate: new Date('2021-01-17T00:00:00Z'),
       shifts: [
         {
           id: 1,
@@ -111,14 +112,117 @@ export class ScheduleService {
           schedule: null
         },
       ]
+    },
+    {
+      id: 2,
+      startDate: new Date('2021-01-24T00:00:00Z'),
+      shifts: [
+        {
+          id: 6,
+          user: {
+            id: 1,
+            firstName: 'George',
+            lastName: 'Yoo',
+            email: 'g@g.com',
+            password: null,
+            isManager: false,
+            phone: 12,
+            availability: null
+          },
+          shiftTime:  new Date('2021-01-24T06:00:00Z'),
+          position: {
+            id: 1,
+            name: 'Cook'
+          },
+          schedule: null
+        },
+        {
+          id: 7,
+          user: {
+            id: 2,
+            firstName: 'Dylan',
+            lastName: 'Mahaffey',
+            email: 'dylan@mail.com',
+            password: null,
+            isManager: false,
+            phone: 13,
+            availability: null
+          },
+          shiftTime:  new Date('2021-01-29T10:00:00Z'),
+          position: {
+            id: 1,
+            name: 'Cook'
+          },
+          schedule: null
+        },
+        {
+          id: 8,
+          user: {
+            id: 3,
+            firstName: 'Will',
+            lastName: 'He',
+            email: 'will@mail.com',
+            password: null,
+            isManager: false,
+            phone: 14,
+            availability: null
+          },
+          shiftTime:  new Date('2021-01-30T08:30:00Z'),
+          position: {
+            id: 2,
+            name: 'Waiter'
+          },
+          schedule: null
+        },
+        {
+          id: 9,
+          user: {
+            id: 4,
+            firstName: 'Calvin',
+            lastName: 'Mak',
+            email: 'calvin@mail.com',
+            password: null,
+            isManager: false,
+            phone: 15,
+            availability: null
+          },
+          shiftTime:  new Date('2021-01-27T12:15:00Z'),
+          position: {
+            id: 2,
+            name: 'Waiter'
+          },
+          schedule: null
+        },
+        {
+          id: 10,
+          user: {
+            id: 4,
+            firstName: 'Calvin',
+            lastName: 'Mak',
+            email: 'calvin@mail.com',
+            password: null,
+            isManager: false,
+            phone: 15,
+            availability: null
+          },
+          shiftTime:  new Date('2021-01-27T12:15:00Z'),
+          position: {
+            id: 2,
+            name: 'Waiter'
+          },
+          schedule: null
+        },
+      ]
     }
   ]);
 
 
   constructor(private userService: UserService) {}
 
-  newShift(scheduleId: number) {
-    // this.schedules.next(shift)
+  addShiftToSchedule(shift: Shift) {
+    let schedules = this.schedules.value;
+    schedules.find(e => e.id == shift.schedule.id).shifts.push(shift);
+    this.schedules.next(schedules);
   }
 
   parseShifts(schedule: Schedule) {
