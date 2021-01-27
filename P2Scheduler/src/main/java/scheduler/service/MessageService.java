@@ -27,8 +27,8 @@ public class MessageService {
 		return messageRepo.updateMessage(message);
 	}
 	
-	public boolean deleteMessage(Message message) {
-		return messageRepo.deleteMessage(message);
+	public boolean deleteMessage(int id) {
+		return messageRepo.deleteMessage(messageRepo.getMessageById(id));
 	}
 	
 	public Message getMessageById(int id) {

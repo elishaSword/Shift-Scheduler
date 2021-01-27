@@ -75,9 +75,9 @@ public class ScheduleController {
 		}
 	}
 	
-	@DeleteMapping(value = "delete-schedule")
-	public String delete(HttpServletRequest req, HttpServletResponse resp, @RequestBody() Schedule schedule) {
-		if(scheduleService.deleteSchedule(schedule)) {
+	@DeleteMapping(value = "delete-schedule", params = {"id"})
+	public String delete(HttpServletRequest req, HttpServletResponse resp, int id) {
+		if(scheduleService.deleteSchedule(id)) {
 			resp.setStatus(200);
 			return "Delete successful!";
 		} else {

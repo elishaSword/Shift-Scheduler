@@ -64,9 +64,9 @@ public class PositionController {
 		}
 	}
 	
-	@DeleteMapping(value = "delete-position")
-	public String delete(HttpServletRequest req, HttpServletResponse resp, @RequestBody() Position position) {
-		if(positionService.deletePosition(position)) {
+	@DeleteMapping(value = "delete-position", params = {"id"})
+	public String delete(HttpServletRequest req, HttpServletResponse resp, int id) {
+		if(positionService.deletePosition(id)) {
 			resp.setStatus(200);
 			return "Delete successful!";
 		} else {

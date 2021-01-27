@@ -28,8 +28,8 @@ public class ScheduleService {
 		return scheduleRepo.updateSchedule(schedule);
 	}
 	
-	public boolean deleteSchedule(Schedule schedule) {
-		return scheduleRepo.deleteSchedule(schedule);
+	public boolean deleteSchedule(int id) {
+		return scheduleRepo.deleteSchedule(scheduleRepo.getScheduleById(id));
 	}
 	
 	public Schedule getScheduleById(int id) {

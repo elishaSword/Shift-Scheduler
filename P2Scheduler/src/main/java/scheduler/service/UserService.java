@@ -52,7 +52,7 @@ public class UserService {
 		return userRepo.updateUser(user);
 	}
 
-	public boolean deleteUser(User user) {
-		return userRepo.deleteUser(user);
+	public boolean deleteUser(int id) {
+		return userRepo.deleteUser(userRepo.getUserById(id));
 	}
 }

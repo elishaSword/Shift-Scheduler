@@ -26,8 +26,8 @@ public class BulletinMessageService {
 		return bulletinMessageRepo.updateBulletinMessage(bulletinMessage);
 	}
 	
-	public boolean deleteBulletinMessage(BulletinMessage bulletinMessage) {
-		return bulletinMessageRepo.deleteBulletinMessage(bulletinMessage);
+	public boolean deleteBulletinMessage(int id) {
+		return bulletinMessageRepo.deleteBulletinMessage(bulletinMessageRepo.getBulletinMessageById(id));
 	}
 	
 	public BulletinMessage getBulletinMessageById(int id) {

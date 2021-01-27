@@ -81,9 +81,9 @@ public class MessageController {
 		}
 	}
 	
-	@DeleteMapping(value = "delete-message")
-	public String delete(HttpServletRequest req, HttpServletResponse resp, @RequestBody() Message message) {
-		if(messageService.deleteMessage(message)) {
+	@DeleteMapping(value = "delete-message", params = {"id"})
+	public String delete(HttpServletRequest req, HttpServletResponse resp, int id) {
+		if(messageService.deleteMessage(id)) {
 			resp.setStatus(200);
 			return "Delete successful!";
 		} else {

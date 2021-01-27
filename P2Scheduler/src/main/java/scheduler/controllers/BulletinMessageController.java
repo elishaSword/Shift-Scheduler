@@ -75,9 +75,9 @@ public class BulletinMessageController {
 		}
 	}
 	
-	@DeleteMapping(value = "delete-bulletinMessage")
-	public String delete(HttpServletRequest req, HttpServletResponse resp, @RequestBody() BulletinMessage bulletinMessage) {
-		if(bulletinMessageService.deleteBulletinMessage(bulletinMessage)) {
+	@DeleteMapping(value = "delete-bulletinMessage", params = {"id"})
+	public String delete(HttpServletRequest req, HttpServletResponse resp, int id) {
+		if(bulletinMessageService.deleteBulletinMessage(id)) {
 			resp.setStatus(200);
 			return "Delete successful!";
 		} else {

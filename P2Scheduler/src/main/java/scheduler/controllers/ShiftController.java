@@ -81,9 +81,9 @@ public class ShiftController {
 		}
 	}
 	
-	@DeleteMapping(value = "delete-shift")
-	public String delete(HttpServletRequest req, HttpServletResponse resp, @RequestBody() Shift shift) {
-		if(shiftService.deleteShift(shift)) {
+	@DeleteMapping(value = "delete-shift", params = {"id"})
+	public String delete(HttpServletRequest req, HttpServletResponse resp, int id) {
+		if(shiftService.deleteShift(id)) {
 			resp.setStatus(200);
 			return "Delete successful!";
 		} else {

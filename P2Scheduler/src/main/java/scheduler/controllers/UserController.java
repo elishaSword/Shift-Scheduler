@@ -94,9 +94,9 @@ public class UserController {
 		}
 	}
 	
-	@DeleteMapping(value = "delete-user")
-	public String delete(HttpServletRequest req, HttpServletResponse resp, @RequestBody() User user) {
-		if(userService.deleteUser(user)) {
+	@DeleteMapping(value = "delete-user", params = {"id"})
+	public String delete(HttpServletRequest req, HttpServletResponse resp, int id) {
+		if(userService.deleteUser(id)) {
 			resp.setStatus(200);
 			return "Delete successful!";
 		} else {
@@ -104,4 +104,5 @@ public class UserController {
 			return "Failed to delete account";
 		}
 	}
+
 }
