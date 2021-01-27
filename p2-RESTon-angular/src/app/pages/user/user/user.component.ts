@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'rev-user',
@@ -9,11 +10,11 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  user: User = JSON.parse(atob(localStorage.getItem("user")));
-  // user1: User= new User();
+  // user: User = JSON.parse(atob(localStorage.getItem("user")));
+  user: User;
   myForm: FormGroup;
 
-  constructor(private authService: AuthService, private fb: FormBuilder) { }
+  constructor(private authService: AuthService, private fb: FormBuilder, private userSerivce: UserService) { }
 
 
   ngOnInit(): void {
@@ -40,7 +41,9 @@ export class UserComponent implements OnInit {
     // this.authService.register(this.user1);
     console.log(this.user);
 
-    // this.authService.loggedInUser;
+    this.authService.loggedInUser.subscribe(user =>{
+      this.user = user;
+    });
 
   }
 
@@ -56,6 +59,16 @@ export class UserComponent implements OnInit {
 
   getGeneralError(){
     return 'This field cannot be empty!';
+  }
+
+  onSubmit(form: FormGroup){
+    this.user.firstName = form.value.firstName;
+    this.user.lastName = form.value.lastName;
+    this.user.email = form.value.email;
+    this.user.phone = form.value.phone;
+
+    console.log(this.user);
+
   }
 
 

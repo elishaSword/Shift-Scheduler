@@ -26,11 +26,24 @@ export class AuthService {
    *  used for route guards
    */
   public loggedInIsManager(): boolean {
-    let user: User = JSON.parse(atob(localStorage.getItem("user")));
-    if (user) {
+    let user: User;
+    let localStorageUser = localStorage.getItem("user")
+    if(localStorageUser)
+      user = JSON.parse(atob(localStorage.getItem("user")));
+    if (user)
       this.loggedInUser.next(user);
-    }
+
     return this.loggedInUser.value.isManager;
+  }
+  public isLoggedIn(): boolean {
+    let user: User;
+    let localStorageUser = localStorage.getItem("user")
+    if(localStorageUser)
+      user = JSON.parse(atob(localStorage.getItem("user")));
+    if (user)
+      this.loggedInUser.next(user);
+
+    return !!this.loggedInUser.value;
   }
 
   /**
@@ -38,7 +51,7 @@ export class AuthService {
    *  sets logged in user
    *  Used in login/register methods
    */
-  private setLoggedInUser(user: User) {
+  public setLoggedInUser(user: User) {
     localStorage.setItem("user", btoa(JSON.stringify(user)));
     this.loggedInUser.next(user);
     let navigateTo = 'employee';
@@ -115,16 +128,12 @@ export class AuthService {
   register(user: User): Promise<string> {
     return new Promise((resolve, reject) => {
 
-      let availability = new Availability();
-      availability.id = 0;
-      availability.sunday = false;
-      availability.monday = false;
-      availability.thursday = false;
-      availability.wednesday = false;
-      availability.thursday = false;
-      availability.friday = false;
-      availability.saturday = false;
-      // user.availability = availability;
+      user.id = 0;
+      user.isManager = false;
+      delete user.confirmPassword;
+
+      console.log(user);
+
 
       if(!this.apiSetup && this.isSuccess) {
         user.id = 9001;

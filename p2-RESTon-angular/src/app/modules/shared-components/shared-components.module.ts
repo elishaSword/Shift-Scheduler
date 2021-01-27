@@ -37,10 +37,6 @@ import { MessageFormComponent } from 'src/app/shared/message-form/message-form.c
 import { BulletinFormComponent } from 'src/app/shared/bulletin-form/bulletin-form.component';
 
 
-
-
-
-
 @NgModule({
   declarations: [
     ProfileComponent,
