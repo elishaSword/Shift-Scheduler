@@ -16,6 +16,8 @@ export class UserApiService {
       this.api.get<UserInterface[]>(`all-users`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
+        console.log(error);
+
         reject("Error: " + error);
       })
     })
@@ -29,11 +31,13 @@ export class UserApiService {
       })
     })
   }
-  public post(user: User): Promise<UserInterface> {
+  public post(user: User): Promise<string> {
     return new Promise((resolve, reject) => {
       this.api.post<string>(`signup`, user).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
+        console.log(error);
+
         reject("Error: " + error);
       })
     })
