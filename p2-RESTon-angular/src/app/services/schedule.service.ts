@@ -5,11 +5,15 @@ import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Schedule } from '../models/schedule';
 import { Shift } from '../models/shift';
+import { ScheduleApiService } from './rest/schedule-api.service';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScheduleService {
+
+  apiSetup: boolean = false;
 
   schedules: BehaviorSubject<Schedule[]> = new BehaviorSubject<Schedule[]>([
     {
@@ -116,7 +120,8 @@ export class ScheduleService {
           },
           schedule: null
         },
-      ]
+      ],
+      active: true
     },
     {
       id: 2,
@@ -222,12 +227,13 @@ export class ScheduleService {
           },
           schedule: null
         },
-      ]
+      ],
+      active: true
     }
   ]);
 
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private sheduleAPIService: ScheduleApiService) {}
 
   addShiftToSchedule(shift: Shift) {
     let schedules = this.schedules.value;
@@ -294,4 +300,68 @@ export class ScheduleService {
     });
   }
 
+  postSchedule() {
+    return new Promise((resolve, reject) => {
+
+      let lastSchedule = this.schedules.value[this.schedules.value.length - 1];
+
+      if(lastSchedule.active == false) {
+        return reject("You can only create one schedule at a time.");
+      }
+
+      let schedule = new Schedule();
+      let lastStartDate = lastSchedule.startDate;
+      schedule.startDate = moment(lastStartDate).add(7, "days").toDate();
+      schedule.active = false;
+
+      if(!this.apiSetup) {
+        let lastId = lastSchedule.id + 1;
+        schedule.id = lastId;
+        this.schedules.next(this.schedules.getValue().concat(schedule));
+        console.log(this.schedules.value);
+        return resolve("Successfully created a new Schedule!");
+      }
+
+      this.sheduleAPIService.post(schedule)
+      .then(e => {
+        this.schedules.next(this.schedules.getValue().concat(schedule));
+        resolve("Successfully created a new Schedule!");
+      })
+      .catch(error => {
+        console.log(error);
+        reject("There was an error creating a new Schedule")
+      })
+
+    })
+  }
+
+  pushSchedule() {
+    return new Promise((resolve, reject) => {
+      let lastSchedule = this.schedules.value[this.schedules.value.length - 1];
+      let schedule = lastSchedule;
+
+      if(!this.apiSetup) {
+        if(!lastSchedule.active) {
+          schedule.active = true;
+          this.schedules.next(this.schedules.getValue().concat(schedule));
+          console.log(this.schedules.value);
+          resolve("Successfully pushed the Schedule!");
+        } else {
+          reject("This schedule has already been pushed.")
+        }
+      }
+
+      if(!lastSchedule.active) {
+        this.sheduleAPIService.put(schedule)
+        .then(e => {
+          this.schedules.next(this.schedules.getValue().concat(schedule));
+          resolve("Successfully pushed the Schedule!");
+        })
+        .catch(error => {
+          console.log(error);
+          reject("This schedule has already been pushed.")
+        })
+      }
+    })
+  }
 }
