@@ -34,6 +34,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { AvailabilityComponent } from 'src/app/pages/user/availability/availability.component';
 import {MatSelectModule} from '@angular/material/select';
 import { MessageFormComponent } from 'src/app/shared/message-form/message-form.component';
+import { BulletinFormComponent } from 'src/app/shared/bulletin-form/bulletin-form.component';
 
 
 
@@ -58,6 +59,7 @@ import { MessageFormComponent } from 'src/app/shared/message-form/message-form.c
     WeeklyEnrollsComponent,
     LoaderTwoComponent,
     EditShiftComponent,
+    BulletinFormComponent,
     AvailabilityComponent,
     MessageFormComponent,
   ],
@@ -101,7 +103,8 @@ import { MessageFormComponent } from 'src/app/shared/message-form/message-form.c
     WeeklyEnrollsComponent,
     LoaderTwoComponent,
     EditShiftComponent,
-    AvailabilityComponent
+    BulletinFormComponent,
+    AvailabilityComponent,
     MessageFormComponent,
   ]
 })

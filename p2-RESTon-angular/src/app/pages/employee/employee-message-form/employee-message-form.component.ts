@@ -11,13 +11,19 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class EmployeeMessageFormComponent implements OnInit {
 
-  message: Message;
-  users: Array<User>
-  currentUser: User;
+ 
+  users: Array<User>;
 
-  constructor(private messageService: MessageService, private userService: UserService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.getUsers();
+  } 
+  
+  getUsers(): void {
+    this.userService.getAllEmployees()
+    .then(users => this.users = users).catch();
   }
+
   
 }

@@ -4,11 +4,14 @@ import { Message } from '../models/message';
 import { BulletinMessage } from '../models/bulletin-message';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { MessageApiService } from './rest/message-api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
+
+  apiWorking: boolean = false;
 
   bulletinUrl: string = "";
   messagesBankUrl: string = "";
@@ -17,7 +20,7 @@ export class MessageService {
 
   messages: BehaviorSubject<Message []> = new BehaviorSubject<Message[]>(this.dummyBulletin);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private messageApiService: MessageApiService) { }
 
   // getBulletinMessage(): BulletinMessage {
   //   // let bMessage: BehaviorSubject<BulletinMessage> = this.http.get<BulletinMessage[]>(this.bulletinUrl).pipe(tap(_ => this.handleError<BulletinMessage>('getBulletinMessage')));
@@ -38,7 +41,30 @@ export class MessageService {
   }
 
   postMessage(message: Message): Promise<String> {
-    return null;
+    return new Promise((resolve, reject) => {
+
+      if(!this.apiWorking){
+        this.addMessage(message);
+        return resolve('Messages retrieved successfully.');
+      }
+
+      this.messageApiService.post(message)
+      .then(res => {
+        this.addMessage(message);
+        resolve('Message posted.');
+      })
+      .catch(error => {
+        console.log(error);
+
+        reject('There was an error posting your message');
+      })
+    })
+  }
+
+  private addMessage(message: Message): void {
+    let messages = this.messages.value;
+    messages.push(message);
+    this.messages.next(messages);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
