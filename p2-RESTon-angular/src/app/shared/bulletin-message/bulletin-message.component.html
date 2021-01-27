@@ -3,11 +3,9 @@
     <figure class="media-left"></figure>
     <div class="media-content">
       <div class="content">
-        <p>
-          <strong>{{message.user.firstName}} {{message.user.lastName}} </strong><small>Manager</small><small> {{message.time}}</small>
+          <strong>{{message.user.firstName}} {{message.user.lastName}} </strong> - <small>(Manager)</small><small> @ {{message.time}}</small>
           <br>
-          {{message.content}}
-        </p>
+          <div class="message-content">{{message.content}}</div>
       </div>
     </div>
     <div class="media-right">

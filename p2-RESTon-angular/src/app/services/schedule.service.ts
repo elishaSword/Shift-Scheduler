@@ -31,7 +31,8 @@ export class ScheduleService {
             phone: 12,
             availability: null
           },
-          shiftTime:  new Date('2021-01-20T06:00:00Z'),
+          shiftStartTime:  new Date('2021-01-20T06:00:00Z'),
+          shiftEndTime:  new Date('2021-01-20T12:00:00Z'),
           position: {
             id: 1,
             name: 'Cook'
@@ -50,7 +51,8 @@ export class ScheduleService {
             phone: 13,
             availability: null
           },
-          shiftTime:  new Date('2021-01-20T10:00:00Z'),
+          shiftStartTime:  new Date('2021-01-20T10:00:00Z'),
+          shiftEndTime:  new Date('2021-01-20T18:00:00Z'),
           position: {
             id: 1,
             name: 'Cook'
@@ -69,7 +71,8 @@ export class ScheduleService {
             phone: 14,
             availability: null
           },
-          shiftTime:  new Date('2021-01-20T08:30:00Z'),
+          shiftStartTime:  new Date('2021-01-20T08:30:00Z'),
+          shiftEndTime:  new Date('2021-01-20T10:30:00Z'),
           position: {
             id: 2,
             name: 'Waiter'
@@ -88,7 +91,8 @@ export class ScheduleService {
             phone: 15,
             availability: null
           },
-          shiftTime:  new Date('2021-01-20T12:15:00Z'),
+          shiftStartTime:  new Date('2021-01-20T12:15:00Z'),
+          shiftEndTime:  new Date('2021-01-20T16:15:00Z'),
           position: {
             id: 2,
             name: 'Waiter'
@@ -107,7 +111,8 @@ export class ScheduleService {
             phone: 15,
             availability: null
           },
-          shiftTime:  new Date('2021-01-21T12:15:00Z'),
+          shiftStartTime:  new Date('2021-01-21T12:15:00Z'),
+          shiftEndTime:  new Date('2021-01-21T16:15:00Z'),
           position: {
             id: 2,
             name: 'Waiter'
@@ -132,7 +137,8 @@ export class ScheduleService {
             phone: 12,
             availability: null
           },
-          shiftTime:  new Date('2021-01-24T06:00:00Z'),
+          shiftStartTime:  new Date('2021-01-24T06:00:00Z'),
+          shiftEndTime:  new Date('2021-01-24T10:00:00Z'),
           position: {
             id: 1,
             name: 'Cook'
@@ -151,7 +157,8 @@ export class ScheduleService {
             phone: 13,
             availability: null
           },
-          shiftTime:  new Date('2021-01-29T10:00:00Z'),
+          shiftStartTime:  new Date('2021-01-29T10:00:00Z'),
+          shiftEndTime:  new Date('2021-01-29T15:00:00Z'),
           position: {
             id: 1,
             name: 'Cook'
@@ -170,7 +177,8 @@ export class ScheduleService {
             phone: 14,
             availability: null
           },
-          shiftTime:  new Date('2021-01-30T08:30:00Z'),
+          shiftStartTime:  new Date('2021-01-30T08:30:00Z'),
+          shiftEndTime:  new Date('2021-01-30T16:30:00Z'),
           position: {
             id: 2,
             name: 'Waiter'
@@ -189,7 +197,8 @@ export class ScheduleService {
             phone: 15,
             availability: null
           },
-          shiftTime:  new Date('2021-01-27T12:15:00Z'),
+          shiftStartTime:  new Date('2021-01-27T12:15:00Z'),
+          shiftEndTime:  new Date('2021-01-27T15:15:00Z'),
           position: {
             id: 2,
             name: 'Waiter'
@@ -208,7 +217,8 @@ export class ScheduleService {
             phone: 15,
             availability: null
           },
-          shiftTime:  new Date('2021-01-27T12:15:00Z'),
+          shiftStartTime:  new Date('2021-01-27T12:15:00Z'),
+          shiftEndTime:  new Date('2021-01-27T18:15:00Z'),
           position: {
             id: 2,
             name: 'Waiter'
@@ -242,7 +252,7 @@ export class ScheduleService {
 
   parseShiftsByDay(schedule: Schedule, day: number) {
     let shiftMap = {};
-    let shifts = schedule.shifts.filter(s => s.shiftTime.getUTCDay() == day);
+    let shifts = schedule.shifts.filter(s => s.shiftStartTime.getUTCDay() == day);
 
     for(let shift of shifts) {
       if(!shiftMap[shift.position.name]) {
@@ -266,8 +276,8 @@ export class ScheduleService {
 
           let es = schedule.shifts.filter(shift => shift.user.id == user.id);
           for(let i=0;i<=6;i++) {
-            if(es.filter(shift => shift.shiftTime.getUTCDay() == i).length){
-              let shift = es.find(shift => shift.shiftTime.getUTCDay() == i);
+            if(es.filter(shift => shift.shiftStartTime.getUTCDay() == i).length){
+              let shift = es.find(shift => shift.shiftStartTime.getUTCDay() == i);
               employeeShifts.shifts.push(shift);
             } else {
               employeeShifts.shifts.push(undefined);

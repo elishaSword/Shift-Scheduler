@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ScheduleCalanderComponent } from 'src/app/shared/schedule-calander/schedule-calander.component';
 import { RolesComponent } from 'src/app/shared/roles/roles.component';
 import { ShiftsComponent } from 'src/app/shared/shifts/shifts.component';
-import { BulletinComponent } from 'src/app/shared/bulletin/bulletin.component';
 import { MessageComponent } from 'src/app/shared/message/message.component';
 import { BulletinMessageComponent } from 'src/app/shared/bulletin-message/bulletin-message.component';
 import { NavBarComponent } from 'src/app/shared/nav-bar/nav-bar.component';
@@ -32,6 +31,10 @@ import { EditShiftComponent } from 'src/app/component/manager/edit-shift/edit-sh
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { AvailabilityComponent } from 'src/app/pages/user/availability/availability.component';
+import {MatSelectModule} from '@angular/material/select';
+import { MessageFormComponent } from 'src/app/shared/message-form/message-form.component';
+import { BulletinFormComponent } from 'src/app/shared/bulletin-form/bulletin-form.component';
 
 
 
@@ -45,7 +48,6 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     ScheduleCalanderComponent,
     RolesComponent,
     ShiftsComponent,
-    BulletinComponent,
     MessageComponent,
     BulletinMessageComponent,
     NavBarComponent,
@@ -56,7 +58,10 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     LoaderOneComponent,
     WeeklyEnrollsComponent,
     LoaderTwoComponent,
-    EditShiftComponent
+    EditShiftComponent,
+    BulletinFormComponent,
+    AvailabilityComponent,
+    MessageFormComponent,
   ],
   imports: [
     CommonModule,
@@ -75,6 +80,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatInputModule,
     ReactiveFormsModule ,
     MatProgressSpinnerModule,
+    MatSelectModule,
+    FormsModule,
     FormsModule
 
   ],
@@ -85,7 +92,6 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     NavBarComponent,
     RolesComponent,
     ShiftsComponent,
-    BulletinComponent,
     MessageComponent,
     BulletinMessageComponent,
     ScheduleCalanderComponent,
@@ -96,7 +102,10 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     LoaderOneComponent,
     WeeklyEnrollsComponent,
     LoaderTwoComponent,
-    EditShiftComponent
+    EditShiftComponent,
+    BulletinFormComponent,
+    AvailabilityComponent,
+    MessageFormComponent,
   ]
 })
 export class SharedComponentsModule { }
