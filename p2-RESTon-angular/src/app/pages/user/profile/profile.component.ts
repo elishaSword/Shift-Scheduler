@@ -7,17 +7,17 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit{ 
+export class ProfileComponent{ 
 
-  breakpoint: number;
-  constructor() { }
+  public isMobile: boolean = false;
 
-  ngOnInit() {
-    this.breakpoint = (window.innerWidth <= 400) ? 1 : 20;
-  }
-  
-  onResize(event) {
-    this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 20;
+  constructor(breakpointObserver: BreakpointObserver) {
+    breakpointObserver.observe([
+      // Breakpoints.Handset
+      '(max-width: 599px)'
+    ]).subscribe(result => {
+      this.isMobile = result.matches;
+    });
   }
 
 }
