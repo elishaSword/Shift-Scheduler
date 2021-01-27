@@ -1,10 +1,7 @@
 <ng-container>
   <p>{{dateFormatter(schedule.startDate)}}</p>
   <div class="container calendar-container">
-    <!-- <table border="1" cellpadding="0" cellspacing="0" width="100%"> -->
       <tr id="outter-table">
-        <!-- This will need a static width -->
-        <!-- Possibly dynamically render times using recursion -->
         <th></th>
         <th data="6">6:00 am</th>
         <th>7:00 am</th>
@@ -32,7 +29,7 @@
       </tr>
         <rev-roles
         *ngFor="let shifts of parsedShifts | keyvalue"
-         [shifts] = "shifts.value"
+         [shifts]="shifts.value"
          [roleName]="shifts.key"></rev-roles>
   </div>
 </ng-container>
