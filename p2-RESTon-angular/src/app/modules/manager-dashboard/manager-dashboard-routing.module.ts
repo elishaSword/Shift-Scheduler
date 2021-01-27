@@ -17,7 +17,7 @@ const routes: Routes = [
       {path: 'view-day', component: ScheduleViewComponent},
       {path: 'profile', component: ProfileComponent},
       {path: 'bulletin', component: ManagerBulletinComponent},
-      {path: 'shout-form', component: ManagerShoutFormComponent},
+      {path: 'bulletin-form', component: ManagerShoutFormComponent},
       {path: 'message-form', component: ManagerMessageFormComponent},
     ]
   }

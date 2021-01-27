@@ -12,12 +12,17 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ManagerMessageFormComponent implements OnInit {
 
- 
+  users: Array<User>;
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.getUsers();
   } 
   
+  getUsers(): void {
+    this.userService.getAllEmployees()
+    .then(users => this.users = users).catch();
+  }
 
 }

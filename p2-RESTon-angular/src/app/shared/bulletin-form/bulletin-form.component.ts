@@ -1,18 +1,22 @@
 import { Component, OnInit, Input} from '@angular/core';
-import { Message } from 'src/app/models/message';
 import { MessageService } from 'src/app/services/message-service.service';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { BulletinMessage } from 'src/app/models/bulletin-message';
+import { Position } from 'src/app/models/position';
+import { PositionService } from 'src/app/services/position.service';
+import { BulletinServiceService } from 'src/app/services/bulletin-service.service';
+import { ConstantPool } from '@angular/compiler';
 
 @Component({
-  selector: 'rev-message-form',
-  templateUrl: './message-form.component.html',
-  styleUrls: ['./message-form.component.scss']
+  selector: 'rev-bulletin-form',
+  templateUrl: './bulletin-form.component.html',
+  styleUrls: ['./bulletin-form.component.scss']
 })
-export class MessageFormComponent implements OnInit {
-  message: Message = new Message();
-  @Input() users: Array<User>;
+export class BulletinFormComponent implements OnInit {
+  message: BulletinMessage = new BulletinMessage();
+  @Input() positions: Array<Position>;
   currentUser: User = {
     id: 4,
     firstName: 'Bobby',
@@ -33,12 +37,13 @@ export class MessageFormComponent implements OnInit {
       sunday: true
     }
   };
-  targetUser: User;
+  targetPosition: Position;
 
-  constructor(private messageService: MessageService, private userService: UserService, private authService: AuthService) { }
+  constructor(private bulletinService: BulletinServiceService, private positionService: PositionService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.getUser();
+    this.getPositions();
   } 
   
   // postMessage(): void {
@@ -53,14 +58,17 @@ export class MessageFormComponent implements OnInit {
     // this.authService.loggedInUser.subscribe(user => this.currentUser = user);
   }
 
-  getUsers(): void {
-    this.userService.getAllEmployees()
-    .then(users => this.users = users).catch();
+  getPositions(): void {
+    this.positionService.getPositions()
+    .then(pos => { 
+      this.positions = pos;
+      // console.log(this.positions[0]); 
+    }).catch(error => console.log(error));
   }
 
-  setTargetUser(user): void {
-    this.targetUser = user.value;
-    console.log(user);
+  setTargetPosition(position): void {
+    this.targetPosition = position;
+    console.log(position);
   }
 
   onClear(): void {
@@ -69,12 +77,13 @@ export class MessageFormComponent implements OnInit {
 
   onSubmit(event){
     event.preventDefault();
-    this.message.sender = this.currentUser;
-    this.message.receiver = this.targetUser;
+    this.message.user = this.currentUser;
+    this.message.position = this.targetPosition;
+    console.log(this.targetPosition);
     console.log(this.message);
 
     console.log("submitted");
-    this.messageService.postMessage(this.message)
+    this.bulletinService.postBulletinMessage(this.message)
     .then(message => {
       console.log(message);
     }).catch(

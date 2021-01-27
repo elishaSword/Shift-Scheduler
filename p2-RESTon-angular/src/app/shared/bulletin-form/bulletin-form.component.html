@@ -7,15 +7,10 @@
             <p class="control">
             <label class="label"> Receiver: </label>
             <div class="select">
-                <select (change)="setTargetUser($event)">
-                    <option *ngFor="let user of users" (targetUser)="user">{{user.firstName}} {{user.lastName}}</option>
+                <select (change)="setTargetPosition($event)">
+                    <option *ngFor="let position of positions" [(ngModel)]="message.position">{{position.name}}</option>
                 </select>
             </div>
-            <!-- <div class="select" #showPositions>
-                <select>
-                    <option *ngFor="let position of positions">{{position.name}}</option>
-                </select>
-            </div> -->
         </div>
     </div>
     <div class="field">
