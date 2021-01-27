@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { Message } from 'src/app/models/message';
 import { MessageService } from 'src/app/services/message-service.service';
 import { User } from 'src/app/models/user';
@@ -11,8 +11,8 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./message-form.component.scss']
 })
 export class MessageFormComponent implements OnInit {
-  message: Message;
-  users: Array<User>;
+  message: Message = new Message();
+  @Input() users: Array<User>;
   currentUser: User = {
     id: 4,
     firstName: 'Bobby',
@@ -39,15 +39,14 @@ export class MessageFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser();
-    this.getUsers();
   } 
   
-  postMessage(): void {
-    // this.messageService.createMessage(this.message).subscribe();
-    this.messageService.postMessage(this.message)
-      .then(message => console.log(message))
-      .catch(message => console.log(message));
-  }
+  // postMessage(): void {
+  //   // this.messageService.createMessage(this.message).subscribe();
+  //   this.messageService.postMessage(this.message)
+  //     .then(message => console.log(message))
+  //     .catch(message => console.log(message));
+  // }
 
 
   getUser(): void {
@@ -59,7 +58,29 @@ export class MessageFormComponent implements OnInit {
     .then(users => this.users = users).catch();
   }
 
-  // changeSender(): void {
-  //   this.senderType = !this.senderType;
-  // }
+  setTargetUser(user): void {
+    this.targetUser = user.value;
+    console.log(user);
+  }
+
+  onClear(): void {
+    this.message = null;
+  }
+
+  onSubmit(event){
+    event.preventDefault();
+    this.message.sender = this.currentUser;
+    this.message.receiver = this.targetUser;
+    console.log(this.message);
+
+    console.log("submitted");
+    this.messageService.postMessage(this.message)
+    .then(message => {
+      console.log(message);
+    }).catch(
+      errorMessage => {
+        console.log(errorMessage);
+      }
+    )
+  }
 }

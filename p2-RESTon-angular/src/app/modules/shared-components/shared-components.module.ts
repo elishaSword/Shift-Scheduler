@@ -32,6 +32,7 @@ import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MessageFormComponent } from 'src/app/shared/message-form/message-form.component';
+import { BulletinFormComponent } from 'src/app/shared/bulletin-form/bulletin-form.component';
 
 
 
@@ -56,6 +57,7 @@ import { MessageFormComponent } from 'src/app/shared/message-form/message-form.c
     WeeklyEnrollsComponent,
     LoaderTwoComponent,
     EditShiftComponent,
+    BulletinFormComponent,
     MessageFormComponent,
   ],
   imports: [
@@ -96,6 +98,7 @@ import { MessageFormComponent } from 'src/app/shared/message-form/message-form.c
     WeeklyEnrollsComponent,
     LoaderTwoComponent,
     EditShiftComponent,
+    BulletinFormComponent,
     MessageFormComponent,
   ]
 })
