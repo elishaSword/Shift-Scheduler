@@ -115,16 +115,12 @@ export class AuthService {
   register(user: User): Promise<string> {
     return new Promise((resolve, reject) => {
 
-      let availability = new Availability();
-      availability.id = 0;
-      availability.sunday = false;
-      availability.monday = false;
-      availability.thursday = false;
-      availability.wednesday = false;
-      availability.thursday = false;
-      availability.friday = false;
-      availability.saturday = false;
-      // user.availability = availability;
+      user.id = 0;
+      user.isManager = false;
+      delete user.confirmPassword;
+
+      console.log(user);
+
 
       if(!this.apiSetup && this.isSuccess) {
         user.id = 9001;
