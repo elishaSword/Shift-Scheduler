@@ -5,6 +5,7 @@ import { EmployeeDashboardComponent } from 'src/app/pages/employee/employee-dash
 import { WeeklyViewComponent } from 'src/app/pages/shared/weekly-view/weekly-view.component';
 import { EmployeeBulletinComponent } from 'src/app/pages/employee/employee-bulletin/employee-bulletin.component';
 import { EmployeeMessageFormComponent } from 'src/app/pages/employee/employee-message-form/employee-message-form.component';
+import { ProfileComponent } from 'src/app/pages/user/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
     children :[
       {path: '', component: WeeklyViewComponent},
       {path: 'view-day', component: EmployeeScheduleViewComponent},
+      {path: 'profile', component: ProfileComponent},
       {path: 'bulletin', component: EmployeeBulletinComponent},
       {path: 'message-form', component: EmployeeMessageFormComponent},
       // Lets change the below to something else

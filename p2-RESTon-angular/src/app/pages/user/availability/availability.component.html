@@ -1,0 +1,23 @@
+  <table >
+    
+    <span *ngFor = "let day of days">
+      <mat-form-field appearance="fill">
+        <mat-label>{{day | uppercase}}</mat-label>
+        <mat-select [(value)]="user.availability[day]">
+          <mat-option [value]="true">
+            I'm available!
+          </mat-option>
+          <mat-option [value]="false">
+            I'm busy!
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </span>
+
+
+  </table>
+
+  <button type = "submit" (click) = onSubmit()>Submit</button>
+
+
+
