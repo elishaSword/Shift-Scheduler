@@ -45,14 +45,14 @@ export class EditShiftComponent implements OnInit {
   })
   this.currentDayInt = parseInt(this.route.url.split("=")[1][0]);
   this.currentDay = this.days[this.currentDayInt];
-  this.date = this.shift.shiftTime;
-  this.startTime = `${this.shift.shiftTime.getUTCHours()}:${this.shift.shiftTime.getUTCMinutes()}`
+  this.date = this.shift.shiftStartTime;
+  this.startTime = `${this.shift.shiftStartTime.getUTCHours()}:${this.shift.shiftStartTime.getUTCMinutes()}`
   }
 
   editShift() {
     console.log(this.startTime);
     console.log('clicked');
-    this.shift.shiftTime = this.dateService.changeTime(this.shift.shiftTime, this.startTime)
+    this.shift.shiftStartTime = this.dateService.changeTime(this.shift.shiftStartTime, this.startTime)
     console.log(this.shift);
     // this.shiftService.putShift(this.shift)
     // .then(res => {

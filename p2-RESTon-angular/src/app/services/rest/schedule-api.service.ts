@@ -13,7 +13,7 @@ export class ScheduleApiService {
 
   public get(): Promise<ScheduleInterface[]> {
     return new Promise((resolve, reject) => {
-      this.api.get<ScheduleInterface[]>(`Schedule`).pipe(take(1)).subscribe(res => {
+      this.api.get<ScheduleInterface[]>(`all-schedules`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
@@ -22,7 +22,7 @@ export class ScheduleApiService {
   }
   public getById(schedule: Schedule): Promise<ScheduleInterface> {
     return new Promise((resolve, reject) => {
-      this.api.get<ScheduleInterface>(`Schedule/${schedule.id}`).pipe(take(1)).subscribe(res => {
+      this.api.get<ScheduleInterface>(`schedule/${schedule.id}`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
@@ -31,7 +31,7 @@ export class ScheduleApiService {
   }
   public post(schedule: Schedule): Promise<ScheduleInterface> {
     return new Promise((resolve, reject) => {
-      this.api.post<ScheduleInterface>(`Schedule`, schedule).pipe(take(1)).subscribe(res => {
+      this.api.post<ScheduleInterface>(`insert-schedule`, schedule).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
@@ -40,16 +40,21 @@ export class ScheduleApiService {
   }
   public put(schedule: Schedule): Promise<ScheduleInterface> {
     return new Promise((resolve, reject) => {
-      this.api.put<ScheduleInterface>(`Schedule`, schedule).pipe(take(1)).subscribe(res => {
+      this.api.put<ScheduleInterface>(`update-schedule`, schedule).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
       })
     })
   }
+
+
+
+
+  //same issue
   public delete(schedule: Schedule): Promise<ScheduleInterface> {
     return new Promise((resolve, reject) => {
-      this.api.delete<ScheduleInterface>(`Schedule/${schedule.id}`).pipe(take(1)).subscribe(res => {
+      this.api.delete<ScheduleInterface>(`delete-schedule?id=${schedule.id}`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);

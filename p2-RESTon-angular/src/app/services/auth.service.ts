@@ -77,7 +77,7 @@ export class AuthService {
       if (!user.email || !user.password) {
         return reject("Email and Passord are required.")
       }
-      this.userApi.getByEmail(user)
+      this.userApi.login(user)
       .then(u => {
         if(u.password == user.password) {
           resolve("Successfully logged in!");

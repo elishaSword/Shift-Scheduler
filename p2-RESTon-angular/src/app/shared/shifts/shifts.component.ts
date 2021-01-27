@@ -49,11 +49,11 @@ export class ShiftsComponent implements OnInit {
   }
 
   initialize(): void {
-    this.startTime = +this.shift.shiftTime.getHours();
-    this.endTime = this.shift.shiftTime.getHours() + 8;
+    this.startTime = +this.shift.shiftStartTime.getHours();
+    this.endTime = this.shift.shiftEndTime.getHours();
     this.testTime = (this.endTime) - (this.startTime);
     this.color = 'aqua';
-    this.increment = this.calculateIncrement(this.shift.shiftTime.getMinutes());
+    this.increment = this.calculateIncrement(this.shift.shiftStartTime.getMinutes());
     this.width = this.calculateWidth(this.testTime);
 
     this.shiftObject = {
