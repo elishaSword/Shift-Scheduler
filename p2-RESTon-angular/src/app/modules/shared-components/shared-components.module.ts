@@ -101,7 +101,7 @@ import { MessageFormComponent } from 'src/app/shared/message-form/message-form.c
     WeeklyEnrollsComponent,
     LoaderTwoComponent,
     EditShiftComponent,
-    AvailabilityComponent
+    AvailabilityComponent,
     MessageFormComponent,
   ]
 })
