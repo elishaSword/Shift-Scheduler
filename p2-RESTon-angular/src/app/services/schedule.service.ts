@@ -5,11 +5,14 @@ import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Schedule } from '../models/schedule';
 import { Shift } from '../models/shift';
+import { ScheduleApiService } from './rest/schedule-api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScheduleService {
+
+  apiSetup: boolean = false;
 
   schedules: BehaviorSubject<Schedule[]> = new BehaviorSubject<Schedule[]>([
     {
@@ -217,7 +220,7 @@ export class ScheduleService {
   ]);
 
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private sheduleAPIService: ScheduleApiService) {}
 
   addShiftToSchedule(shift: Shift) {
     let schedules = this.schedules.value;
@@ -284,4 +287,23 @@ export class ScheduleService {
     });
   }
 
+  postSchedule(schedule: Schedule) {
+    return new Promise((resolve, reject) => {
+
+      if(!this.apiSetup) {
+        // this.sheduleAPIService.post(schedule)
+        this.schedules.next(this.schedules.getValue().concat(schedule));
+        return resolve("Successfully created a new Schedule!");
+      }
+
+      // this.sheduleAPIService.post(schedule)
+      // .then(e => {
+      //   resolve("Successfully created a new Schedule!");
+      // })
+      // .catch(error => {
+      //   console.log(error);
+      //   reject("There was an error creating a new Schedule")
+      // })
+    })
+  }
 }
