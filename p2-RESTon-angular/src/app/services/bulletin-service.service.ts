@@ -103,13 +103,14 @@ export class BulletinServiceService {
 
   postBulletinMessage(message: BulletinMessage): Promise<string> {
     return new Promise((resolve, reject) => {
-
+      if(message.content.length == 0) {
+        return reject('Message is Empty');
+      }
       if(!this.apiWorking){
         this.addMessageToBulletin(message);
         return resolve('Messages retrieved successfully.');
       }
       console.log(this.bulletinMessages.value);
-
       this.bulletinMessageApiService.post(message)
       .then(res => {
         this.addMessageToBulletin(message);
@@ -126,6 +127,8 @@ export class BulletinServiceService {
 
   private addMessageToBulletin(message: BulletinMessage): void {
     let messages = this.bulletinMessages.value;
+    console.log("Adding Message");
+    console.log(message);
     messages.push(message);
     this.bulletinMessages.next(messages);
   }
