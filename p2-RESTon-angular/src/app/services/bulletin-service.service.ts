@@ -108,10 +108,12 @@ export class BulletinServiceService {
         this.addMessageToBulletin(message);
         return resolve('Messages retrieved successfully.');
       }
+      console.log(this.bulletinMessages.value);
 
       this.bulletinMessageApiService.post(message)
       .then(res => {
         this.addMessageToBulletin(message);
+        console.log(this.bulletinMessages.value);
         resolve('Message posted.');
       })
       .catch(error => {

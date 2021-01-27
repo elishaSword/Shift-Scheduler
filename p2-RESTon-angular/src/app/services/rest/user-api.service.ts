@@ -34,7 +34,9 @@ export class UserApiService {
   public post(user: User): Promise<string> {
     return new Promise((resolve, reject) => {
       this.api.post<string>(`signup`, user).pipe(take(1)).subscribe(res => {
-        resolve(res);
+        console.log(res);
+
+        resolve("User has successfully been created.");
       }, error => {
         console.log(error);
 
