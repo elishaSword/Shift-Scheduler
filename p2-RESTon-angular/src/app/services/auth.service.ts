@@ -26,11 +26,24 @@ export class AuthService {
    *  used for route guards
    */
   public loggedInIsManager(): boolean {
-    let user: User = JSON.parse(atob(localStorage.getItem("user")));
-    if (user) {
+    let user: User;
+    let localStorageUser = localStorage.getItem("user")
+    if(localStorageUser)
+      user = JSON.parse(atob(localStorage.getItem("user")));
+    if (user)
       this.loggedInUser.next(user);
-    }
+
     return this.loggedInUser.value.isManager;
+  }
+  public isLoggedIn(): boolean {
+    let user: User;
+    let localStorageUser = localStorage.getItem("user")
+    if(localStorageUser)
+      user = JSON.parse(atob(localStorage.getItem("user")));
+    if (user)
+      this.loggedInUser.next(user);
+
+    return !!this.loggedInUser.value;
   }
 
   /**
