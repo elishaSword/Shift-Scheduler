@@ -24,21 +24,26 @@ public class Schedule {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column(name = "schedule_date", nullable = false)
+	@Column(name = "schedule_date", unique = true, nullable = false)
 	private Date startDate;
+	
+	@Column(name = "active", nullable = false)
+	private boolean active;
 	
 	@JsonManagedReference
 	@OneToMany(mappedBy = "schedule", fetch = FetchType.EAGER)
 	private List<Shift> shifts = new ArrayList<>();
+
 	
 	public Schedule() {
 		super();
 	}
 	
-	public Schedule(int id, Date startDate) {
+	public Schedule(int id, Date startDate, boolean active) {
 		super();
 		this.id = id;
 		this.startDate = startDate;
+		this.active = active;
 	}
 
 	public int getId() {
@@ -60,6 +65,22 @@ public class Schedule {
 	@Override
 	public String toString() {
 		return "Schedule [id=" + id + ", startDate=" + startDate + "]";
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public List<Shift> getShifts() {
+		return shifts;
+	}
+
+	public void setShifts(List<Shift> shifts) {
+		this.shifts = shifts;
 	}
 	
 }

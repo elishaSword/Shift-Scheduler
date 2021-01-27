@@ -1,5 +1,6 @@
 package scheduler.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,14 @@ public class ScheduleService {
 	
 	public Schedule getScheduleById(int id) {
 		return scheduleRepo.getScheduleById(id);
+	}
+	
+	public Schedule getScheduleByDate(Date date) {
+		return scheduleRepo.getScheduleByDate(date);
+	}
+	
+	public List<Schedule> getAllActiveSchedule() {
+		return scheduleRepo.getAllActiveSchedules();
 	}
 	
 	public List<Schedule> getAllSchedule() {

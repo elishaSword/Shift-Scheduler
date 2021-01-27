@@ -1,5 +1,6 @@
 package scheduler.controllers;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,10 +35,22 @@ public class ScheduleController {
 		return scheduleService.getScheduleById(id);
 	}
 	
+	@GetMapping(value = "/schedule", params = {"date"})
+	public Schedule getScheduleByDate(HttpServletRequest req, HttpServletResponse resp, Date date) {
+		resp.setStatus(200);
+		return scheduleService.getScheduleByDate(date);
+	}
+	
 	@GetMapping(value = "/all-schedules")
 	public List<Schedule> getAllSchedules(HttpServletRequest req, HttpServletResponse resp) {
 		resp.setStatus(200);
 		return scheduleService.getAllSchedule();
+	}
+	
+	@GetMapping(value = "/all-active-schedules")
+	public List<Schedule> getAllActiveSchedules(HttpServletRequest req, HttpServletResponse resp) {
+		resp.setStatus(200);
+		return scheduleService.getAllActiveSchedule();
 	}
 	
 	@PostMapping(value = "insert-schedule")
