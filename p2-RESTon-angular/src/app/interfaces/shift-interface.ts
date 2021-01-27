@@ -5,7 +5,8 @@ import { UserInterface } from 'src/app/interfaces/user-interface';
 export interface ShiftInterface {
   id: number;
   user: UserInterface;
-  shiftTime: Date;
+  shiftStartTime: Date;
+  shiftEndTime: Date;
   position: PositionInterface;
   schedule: ScheduleInterface;
 }
