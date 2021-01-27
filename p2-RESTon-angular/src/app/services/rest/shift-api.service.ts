@@ -13,7 +13,7 @@ export class ShiftApiService {
 
   public get(): Promise<ShiftInterface[]> {
     return new Promise((resolve, reject) => {
-      this.api.get<ShiftInterface[]>(`Shift`).pipe(take(1)).subscribe(res => {
+      this.api.get<ShiftInterface[]>(`all-shifts`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
@@ -22,7 +22,34 @@ export class ShiftApiService {
   }
   public getById(shift: Shift): Promise<ShiftInterface> {
     return new Promise((resolve, reject) => {
-      this.api.get<ShiftInterface>(`Shift/${shift.id}`).pipe(take(1)).subscribe(res => {
+      this.api.get<ShiftInterface>(`shift?id=${shift.id}`).pipe(take(1)).subscribe(res => {
+        resolve(res);
+      }, error => {
+        reject("Error: " + error);
+      })
+    })
+  }
+  public getByScheduleId(shift: Shift): Promise<ShiftInterface[]> {
+    return new Promise((resolve, reject) => {
+      this.api.get<ShiftInterface[]>(`shift?schedule_id=${shift.id}`).pipe(take(1)).subscribe(res => {
+        resolve(res);
+      }, error => {
+        reject("Error: " + error);
+      })
+    })
+  }
+  public getByUserId(shift: Shift): Promise<ShiftInterface[]> {
+    return new Promise((resolve, reject) => {
+      this.api.get<ShiftInterface[]>(`shift?user_id=${shift.id}`).pipe(take(1)).subscribe(res => {
+        resolve(res);
+      }, error => {
+        reject("Error: " + error);
+      })
+    })
+  }
+  public getByPositionId(shift: Shift): Promise<ShiftInterface[]> {
+    return new Promise((resolve, reject) => {
+      this.api.get<ShiftInterface[]>(`shift?position_id=${shift.id}`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
@@ -31,7 +58,7 @@ export class ShiftApiService {
   }
   public post(shift: Shift): Promise<ShiftInterface> {
     return new Promise((resolve, reject) => {
-      this.api.post<ShiftInterface>(`Shift`, shift).pipe(take(1)).subscribe(res => {
+      this.api.post<ShiftInterface>(`insert-shift`, shift).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
@@ -40,16 +67,20 @@ export class ShiftApiService {
   }
   public put(shift: Shift): Promise<ShiftInterface> {
     return new Promise((resolve, reject) => {
-      this.api.put<ShiftInterface>(`Shift`, shift).pipe(take(1)).subscribe(res => {
+      this.api.put<ShiftInterface>(`update-shift`, shift).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
       })
     })
   }
+
+
+
+  // will have to figure out passing the request body
   public delete(shift: Shift): Promise<ShiftInterface> {
     return new Promise((resolve, reject) => {
-      this.api.delete<ShiftInterface>(`Shift/${shift.id}`).pipe(take(1)).subscribe(res => {
+      this.api.delete<ShiftInterface>(`delete-shift?id=${shift.id}`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);

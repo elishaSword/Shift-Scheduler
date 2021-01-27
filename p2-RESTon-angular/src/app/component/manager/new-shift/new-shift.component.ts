@@ -58,14 +58,14 @@ export class NewShiftComponent implements OnInit {
     this.currentDayInt = this.date.getUTCDay();
     this.shift.schedule = this.schedule;
     this.currentDay = this.days[this.currentDayInt];
-    this.shift.shiftTime = this.date;
+    this.shift.shiftStartTime = this.date;
   }
 
   postShift() {
     console.log(this.users);
     this.shift.user = this.users.find(e => e.id == this.userId)
     this.shift.position = this.positions.find(e => e.id == this.positionId)
-    this.shift.shiftTime = this.dateService.changeTime(this.date, this.startTime)
+    this.shift.shiftStartTime = this.dateService.changeTime(this.date, this.startTime)
     console.log(this.shift);
     this.shiftService.postNewShift(this.shift)
     .then(res => {

@@ -13,7 +13,7 @@ export class PositionApiService {
 
   public get(): Promise<PositionInterface[]> {
     return new Promise((resolve, reject) => {
-      this.api.get<PositionInterface[]>(`Position`).pipe(take(1)).subscribe(res => {
+      this.api.get<PositionInterface[]>(`all-positions`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
@@ -22,7 +22,7 @@ export class PositionApiService {
   }
   public getById(position: Position): Promise<PositionInterface> {
     return new Promise((resolve, reject) => {
-      this.api.get<PositionInterface>(`Position/${position.id}`).pipe(take(1)).subscribe(res => {
+      this.api.get<PositionInterface>(`position?id=${position.id}`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
@@ -31,7 +31,7 @@ export class PositionApiService {
   }
   public post(position: Position): Promise<PositionInterface> {
     return new Promise((resolve, reject) => {
-      this.api.post<PositionInterface>(`Position`, position).pipe(take(1)).subscribe(res => {
+      this.api.post<PositionInterface>(`insert-position`, position).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
@@ -40,16 +40,18 @@ export class PositionApiService {
   }
   public put(position: Position): Promise<PositionInterface> {
     return new Promise((resolve, reject) => {
-      this.api.put<PositionInterface>(`Position`, position).pipe(take(1)).subscribe(res => {
+      this.api.put<PositionInterface>(`update-position`, position).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
       })
     })
   }
+
+
   public delete(position: Position): Promise<PositionInterface> {
     return new Promise((resolve, reject) => {
-      this.api.delete<PositionInterface>(`Position/${position.id}`).pipe(take(1)).subscribe(res => {
+      this.api.delete<PositionInterface>(`delete-position?id=${position.id}`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
