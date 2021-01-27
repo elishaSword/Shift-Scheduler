@@ -9,12 +9,17 @@ import { Observable } from 'rxjs';
 export class EmployeeGuard implements CanActivate {
   constructor(
     private authService: AuthService,
+    private router: Router
   ) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     // let isEmployee = !this.authService.loggedInIsManager();
     let isEmployee = this.authService.isLoggedIn();
+    if(!isEmployee) {
+      this.router.navigate(['login']);
+      return true;
+    }
     return isEmployee;
   }
 
