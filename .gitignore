@@ -1,7 +1,7 @@
 /.metadata/
 
 # Target folder
-target.*
+P2Scheduler/target.*
 
 # Compiled class file
 *.class

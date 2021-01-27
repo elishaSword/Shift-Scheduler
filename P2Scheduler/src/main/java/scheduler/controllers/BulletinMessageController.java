@@ -36,13 +36,13 @@ public class BulletinMessageController {
 	
 	
 	@GetMapping(value = "/bulletin-message", params = {"position_id"})
-	public List<BulletinMessage> getBulletinMessageByUser(HttpServletRequest req, HttpServletResponse resp, int id) {
+	public List<BulletinMessage> getBulletinMessageByPosition(HttpServletRequest req, HttpServletResponse resp, int id) {
 		resp.setStatus(200);
 		return bulletinMessageService.getBulletinMessageByPosition(id);
 	}
 	
 	@GetMapping(value = "/bulletin-message", params = {"user_id"})
-	public List<BulletinMessage> getBulletinMessageByPosition(HttpServletRequest req, HttpServletResponse resp, int id) {
+	public List<BulletinMessage> getBulletinMessageByUser(HttpServletRequest req, HttpServletResponse resp, int id) {
 		resp.setStatus(200);
 		return bulletinMessageService.getBulletinMessageByUser(id);
 	}
