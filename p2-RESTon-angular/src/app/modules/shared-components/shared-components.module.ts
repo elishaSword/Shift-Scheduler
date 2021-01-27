@@ -30,8 +30,10 @@ import { ProfileComponent } from 'src/app/pages/user/profile/profile.component';
 import { UserComponent } from 'src/app/pages/user/user/user.component';
 import { EditShiftComponent } from 'src/app/component/manager/edit-shift/edit-shift.component';
 import {MatInputModule} from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { AvailabilityComponent } from 'src/app/pages/user/availability/availability.component';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -56,7 +58,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     LoaderOneComponent,
     WeeklyEnrollsComponent,
     LoaderTwoComponent,
-    EditShiftComponent
+    EditShiftComponent,
+    AvailabilityComponent,
   ],
   imports: [
     CommonModule,
@@ -74,7 +77,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatMenuModule,
     MatInputModule,
     ReactiveFormsModule ,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    FormsModule,
 
   ],
   exports: [
@@ -95,7 +100,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     LoaderOneComponent,
     WeeklyEnrollsComponent,
     LoaderTwoComponent,
-    EditShiftComponent
+    EditShiftComponent,
+    AvailabilityComponent
+
   ]
 })
 export class SharedComponentsModule { }
