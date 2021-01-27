@@ -27,8 +27,8 @@ public class AvailabilityService {
 		return availabilityRepo.updateAvailability(availability);
 	}
 	
-	public boolean deleteAvailability(Availability availability) {
-		return availabilityRepo.deleteAvailability(availability);
+	public boolean deleteAvailability(int id) {
+		return availabilityRepo.deleteAvailability(availabilityRepo.getAvailabilityById(id));
 	}
 	
 	public Availability getAvailabilityById(int id) {

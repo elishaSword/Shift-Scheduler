@@ -29,8 +29,8 @@ public class ShiftService {
 		return shiftRepo.updateShift(shift);
 	}
 	
-	public boolean deleteShift(Shift shift) {
-		return shiftRepo.deleteShift(shift);
+	public boolean deleteShift(int id) {
+		return shiftRepo.deleteShift(shiftRepo.getShiftById(id));
 	}
 	
 	public Shift getShiftById(int id) {

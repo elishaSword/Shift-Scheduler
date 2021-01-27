@@ -27,8 +27,8 @@ public class PositionService {
 		return positionRepo.updatePosition(position);
 	}
 	
-	public boolean deletePosition(Position position) {
-		return positionRepo.deletePosition(position);
+	public boolean deletePosition(int id) {
+		return positionRepo.deletePosition(positionRepo.getPositionById(id));
 	}
 	
 	public Position getPositionById(int id) {

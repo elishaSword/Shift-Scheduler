@@ -63,9 +63,9 @@ public class AvailabilityController {
 		}
 	}
 	
-	@DeleteMapping(value = "delete-availability")
-	public String delete(HttpServletRequest req, HttpServletResponse resp, @RequestBody() Availability availability) {
-		if(availabilityService.deleteAvailability(availability)) {
+	@DeleteMapping(value = "delete-availability", params = {"id"})
+	public String delete(HttpServletRequest req, HttpServletResponse resp, int id) {
+		if(availabilityService.deleteAvailability(id)) {
 			resp.setStatus(200);
 			return "Delete successful!";
 		} else {
