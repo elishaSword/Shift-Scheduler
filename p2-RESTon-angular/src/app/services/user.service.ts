@@ -99,13 +99,13 @@ export class UserService {
   getAllEmployees(): Promise<User[]> {
     return new Promise((resolve, reject) => {
 
-      if(!this.apiWorking) {
-        return resolve(this.users.value);
-      }
+      // if(!this.apiWorking) {
+      //   return resolve(this.users.value);
+      // }
 
-      if(this.users.value.length) {
-        resolve(this.users.value);
-      }
+      // if(this.users.value.length) {
+      //   resolve(this.users.value);
+      // }
 
       this.userApiService.get()
       .then(res => {
