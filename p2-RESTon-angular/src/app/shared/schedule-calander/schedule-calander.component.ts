@@ -1,6 +1,6 @@
 import { ScheduleService } from './../../services/schedule.service';
 import { Schedule } from 'src/app/models/schedule';
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DateService } from 'src/app/services/date.service';
 
@@ -9,15 +9,14 @@ import { DateService } from 'src/app/services/date.service';
   templateUrl: './schedule-calander.component.html',
   styleUrls: ['./schedule-calander.component.scss']
 })
-export class ScheduleCalanderComponent implements OnInit {
+export class ScheduleCalanderComponent implements OnInit, AfterContentChecked {
 
   @Input() schedule: Schedule;
   parsedShifts;
   day: number;
-
-
+  date: Date;
   num: number = 80;
-
+  shiftCount: number;
   constructor(
     private scheduleService: ScheduleService,
     private activatedRoute: ActivatedRoute,
@@ -25,12 +24,24 @@ export class ScheduleCalanderComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.day = parseInt(this.activatedRoute.snapshot.queryParams.day);
-    this.parsedShifts = this.scheduleService.parseShiftsByDay(this.schedule, this.day);
+    this.initialize();
+    this.shiftCount = this.schedule.shifts.length;
+  }
+
+  ngAfterContentChecked(): void {
+    this.initialize();
   }
 
   dateFormatter(date: Date) {
     return this.dateService.dateFormatter(date, this.day);
   }
 
+  initialize(): void {
+    if(this.schedule.shifts.length != this.shiftCount) {
+      this.day = parseInt(this.activatedRoute.snapshot.queryParams.day);
+      this.parsedShifts = this.scheduleService.parseShiftsByDay(this.schedule, this.day);
+      this.date = this.dateService.addDays(this.schedule.startDate, this.day);
+      this.shiftCount = this.schedule.shifts.length;
+    }
+  }
 }

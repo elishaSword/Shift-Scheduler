@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Position } from 'src/app/models/position';
 import { Shift } from 'src/app/models/shift';
 import { User } from 'src/app/models/user';
 import { DateService } from 'src/app/services/date.service';
+import { PositionService } from 'src/app/services/position.service';
 import { ShiftService } from 'src/app/services/shift.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -14,7 +16,9 @@ import { UserService } from 'src/app/services/user.service';
 export class EditShiftComponent implements OnInit {
 
   @Input() shift:Shift;
+  @Input() date: Date;
   users: User[];
+  positions: Position[];
   errorMessage: string = "";
   currentDayInt: number;
   days: string[] = [
@@ -27,23 +31,38 @@ export class EditShiftComponent implements OnInit {
     "saturday"
   ]
   currentDay: string;
+  userId: number;
+  startTime: string;
+  endTime: string;
+  positionId: number;
 
   constructor(
     private shiftService: ShiftService,
     private userService: UserService,
     private route: Router,
-    private dateService: DateService
+    private dateService: DateService,
+    private positionService: PositionService,
     ) { }
 
   ngOnInit(): void {
     this.userService.getAllEmployees().then(e => {
       this.users = e;
   })
+  this.positionService.getPositions().then(e => {
+    this.positions = e;
+  })
   this.currentDayInt = parseInt(this.route.url.split("=")[1][0]);
   this.currentDay = this.days[this.currentDayInt];
+  this.date = this.shift.shiftStartTime;
+  this.startTime = `${this.shift.shiftStartTime.getUTCHours()}:${this.shift.shiftStartTime.getUTCMinutes()}`
   }
 
   editShift() {
+    this.shift.user = this.users.find(e => e.id == this.userId)
+    this.shift.position = this.positions.find(e => e.id == this.positionId)
+    console.log(this.shift.position);
+    this.shift.shiftStartTime = this.dateService.changeTime(this.shift.shiftStartTime, this.startTime)
+    console.log(this.shift);
     this.shiftService.putShift(this.shift)
     .then(res => {
       console.log(res);

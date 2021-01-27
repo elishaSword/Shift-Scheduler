@@ -2,11 +2,15 @@ $aesthetic-color: rgba(0,0,0,1);
 
 .media {
     border-top: 1px $aesthetic-color;
-    border-bottom: 1px $aesthetic-color;
+    border-bottom: 0px;
     border-left: 0px;
     border-right: 0px;
     border-style: solid;
     width: 80%;
     margin-left: 10%;
     padding: 5px;
+}
+
+div .message-content {
+    text-align: center;
 }

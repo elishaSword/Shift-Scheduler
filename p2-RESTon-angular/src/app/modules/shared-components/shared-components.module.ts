@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ScheduleCalanderComponent } from 'src/app/shared/schedule-calander/schedule-calander.component';
 import { RolesComponent } from 'src/app/shared/roles/roles.component';
 import { ShiftsComponent } from 'src/app/shared/shifts/shifts.component';
-import { BulletinComponent } from 'src/app/shared/bulletin/bulletin.component';
 import { MessageComponent } from 'src/app/shared/message/message.component';
 import { BulletinMessageComponent } from 'src/app/shared/bulletin-message/bulletin-message.component';
 import { NavBarComponent } from 'src/app/shared/nav-bar/nav-bar.component';
@@ -34,6 +33,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { AvailabilityComponent } from 'src/app/pages/user/availability/availability.component';
 import {MatSelectModule} from '@angular/material/select';
+import { MessageFormComponent } from 'src/app/shared/message-form/message-form.component';
 
 
 
@@ -47,7 +47,6 @@ import {MatSelectModule} from '@angular/material/select';
     ScheduleCalanderComponent,
     RolesComponent,
     ShiftsComponent,
-    BulletinComponent,
     MessageComponent,
     BulletinMessageComponent,
     NavBarComponent,
@@ -60,6 +59,7 @@ import {MatSelectModule} from '@angular/material/select';
     LoaderTwoComponent,
     EditShiftComponent,
     AvailabilityComponent,
+    MessageFormComponent,
   ],
   imports: [
     CommonModule,
@@ -80,6 +80,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatProgressSpinnerModule,
     MatSelectModule,
     FormsModule,
+    FormsModule
 
   ],
   exports: [
@@ -89,7 +90,6 @@ import {MatSelectModule} from '@angular/material/select';
     NavBarComponent,
     RolesComponent,
     ShiftsComponent,
-    BulletinComponent,
     MessageComponent,
     BulletinMessageComponent,
     ScheduleCalanderComponent,
@@ -102,7 +102,7 @@ import {MatSelectModule} from '@angular/material/select';
     LoaderTwoComponent,
     EditShiftComponent,
     AvailabilityComponent
-
+    MessageFormComponent,
   ]
 })
 export class SharedComponentsModule { }

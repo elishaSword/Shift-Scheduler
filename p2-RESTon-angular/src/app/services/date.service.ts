@@ -30,4 +30,11 @@ export class DateService {
     let newTime = diff/60;
     return moment(date).add(newTime, 'hours').toDate();
   }
+
+  changeTime(date: Date, newTime: string): Date {
+    let newDateString: string = `
+    ${date.getUTCMonth() + 1}/${date.getUTCDate()}/${date.getUTCFullYear()} ${newTime}Z
+  `
+  return new Date(newDateString);
+  }
 }

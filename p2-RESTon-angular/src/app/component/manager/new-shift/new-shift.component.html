@@ -2,22 +2,38 @@
 <div class="field">
   <label class="label">Start Time</label>
   <div class="control">
-    <input type="time">
+    <input type="time" [(ngModel)]="startTime">
   </div>
 </div>
 
 <div class="field">
   <label class="label">End Time</label>
   <div class="control">
-    <input type="time">
+    <input type="time" [(ngModel)]="endTime">
   </div>
 </div>
+
+<div class="field">
+  <label class="label">Position</label>
+  <div class="control">
+    <div class="select">
+      <select [(ngModel)]="positionId">
+        <ng-container *ngFor="let position of positions">
+          <option [value]="position.id">
+              {{position.name}}
+          </option>
+        </ng-container>
+      </select>
+    </div>
+  </div>
+</div>
+
 
 <div class="field">
   <label class="label">Employees</label>
   <div class="control">
     <div class="select">
-      <select>
+      <select [(ngModel)]="userId">
         <ng-container *ngFor="let employee of users">
           <option [attr.disabled]="employee.availability[currentDay] == true ? null : true" [value]="employee.id">
               {{employee.firstName + ' ' + employee.lastName}}

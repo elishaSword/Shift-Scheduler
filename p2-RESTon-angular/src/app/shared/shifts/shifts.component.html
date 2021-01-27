@@ -2,7 +2,7 @@
 <td class="inner-table">
     <tr>
       <td *ngFor="let n of num">
-        <span class="shift" [ngStyle]="shiftObject" *ngIf="shift.shiftTime.getUTCHours() == n" (click)="viewModals(true)">{{shift.user.firstName}} {{shift.user.lastName}}</span>
+        <span class="shift" [ngStyle]="shiftObject" *ngIf="shift.shiftStartTime.getUTCHours() == n" (click)="viewModals(true)">{{shift.user.firstName}} {{shift.user.lastName}}</span>
       </td>
     </tr>
 </td>

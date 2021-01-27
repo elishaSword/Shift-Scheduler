@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  apiSetup: boolean = false;
+  apiSetup: boolean = true;
   isSuccess: boolean = true;
 
   loggedInUser: BehaviorSubject<User> = new BehaviorSubject<User>(null);
@@ -77,7 +77,7 @@ export class AuthService {
       if (!user.email || !user.password) {
         return reject("Email and Passord are required.")
       }
-      this.userApi.getByEmail(user)
+      this.userApi.login(user)
       .then(u => {
         if(u.password == user.password) {
           resolve("Successfully logged in!");
@@ -115,9 +115,19 @@ export class AuthService {
   register(user: User): Promise<string> {
     return new Promise((resolve, reject) => {
 
+      let availability = new Availability();
+      availability.id = 0;
+      availability.sunday = false;
+      availability.monday = false;
+      availability.thursday = false;
+      availability.wednesday = false;
+      availability.thursday = false;
+      availability.friday = false;
+      availability.saturday = false;
+      // user.availability = availability;
 
       if(!this.apiSetup && this.isSuccess) {
-        user.id = 9000;
+        user.id = 9001;
         user.isManager = false;
         user.firstName= 'Calvin';
         user.lastName= 'Mak';
@@ -126,14 +136,7 @@ export class AuthService {
         user.phone= 15;
         let availability = new Availability();
         availability.id = 50;
-        availability.sunday = true;
-        availability.monday = true;
-        availability.thursday = true;
-        availability.wednesday = true;
-        availability.thursday = true;
-        availability.friday = true;
-        availability.saturday = true;
-        user.availability = availability;
+
         this.setLoggedInUser(user);
         return resolve("Successfully created your Account!");
       }
@@ -145,7 +148,7 @@ export class AuthService {
       this.userApi.post(user)
       .then(u => {
         resolve("Successfully created your Account!");
-        this.setLoggedInUser(u);
+        // this.setLoggedInUser(u);
       })
       .catch(error => {
         console.log(error);
