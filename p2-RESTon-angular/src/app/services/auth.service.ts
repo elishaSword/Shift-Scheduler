@@ -51,7 +51,7 @@ export class AuthService {
    *  sets logged in user
    *  Used in login/register methods
    */
-  private setLoggedInUser(user: User) {
+  public setLoggedInUser(user: User) {
     localStorage.setItem("user", btoa(JSON.stringify(user)));
     this.loggedInUser.next(user);
     let navigateTo = 'employee';
