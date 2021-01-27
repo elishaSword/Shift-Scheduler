@@ -1,10 +1,18 @@
 /.metadata/
 
 # Target folder
-target.*
+P2Scheduler/target.*
+P2Scheduler/\..*
+P2Scheduler/Servers
 
 # Compiled class file
 *.class
+
+# Project files
+P2Scheduler/.project
+
+# Classpath files
+P2Scheduler/.classpath
 
 # Log file
 *.log

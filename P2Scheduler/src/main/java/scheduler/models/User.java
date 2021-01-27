@@ -37,7 +37,7 @@ public class User {
 	private boolean isManager;
 
 	@Column(name = "phone")
-	private Integer phone;
+	private String phone;
 	
 	@JsonManagedReference
 	@OneToOne(cascade = CascadeType.ALL)
@@ -64,7 +64,7 @@ public class User {
 		this.isManager = isManager;
 	}
 	
-	public User(int id, String firstName, String lastName, String email, String password, boolean isManager, Integer phone) {
+	public User(int id, String firstName, String lastName, String email, String password, boolean isManager, String phone) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -76,7 +76,7 @@ public class User {
 	}
 	
 	public User(int id, String firstName, String lastName, String email, String password, boolean isManager,
-			Integer phone, Availability availability) {
+			String phone, Availability availability) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -120,11 +120,11 @@ public class User {
 		this.isManager = isManager;
 	}
 
-	public Integer getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Integer phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 

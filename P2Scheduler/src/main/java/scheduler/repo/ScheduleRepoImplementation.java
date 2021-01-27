@@ -1,11 +1,13 @@
 package scheduler.repo;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import scheduler.models.Message;
 import scheduler.models.Schedule;
 
 @Repository("ScheduleRepo")
@@ -61,6 +63,22 @@ public class ScheduleRepoImplementation implements ScheduleRepo{
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	@Override
+	public Schedule getScheduleByDate(Date startDate) {
+		List<Schedule> schedule = sesFact.getCurrentSession().createQuery("from Schedule where schedule_date = :schedule_date", Schedule.class)
+				.setParameter("schedule_date", startDate).list();
+		if(schedule.size() > 0)
+			return schedule.get(0);
+		else
+			return null;
+	}
+
+	@Override
+	public List<Schedule> getAllActiveSchedules() {
+		return sesFact.getCurrentSession().createQuery("from Schedule where active = :active", Schedule.class)
+				.setParameter("active", true).list();
 	}
 
 }
