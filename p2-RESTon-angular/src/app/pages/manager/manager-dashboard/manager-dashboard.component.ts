@@ -9,7 +9,6 @@ import { ScheduleService } from 'src/app/services/schedule.service';
 export class ManagerDashboardComponent implements OnInit {
 
   schedules: Schedule[] = [];
-  newSchedule: Schedule = new Schedule();
   viewModal:string = "";
 
   constructor(
@@ -25,10 +24,5 @@ export class ManagerDashboardComponent implements OnInit {
 
   viewModals(modal: string): void{
     this.viewModal = modal;
-  }
-
-  postSchedule(): void {
-    console.log(this.schedules);
-    this.scheduleService.postSchedule(this.newSchedule)
   }
 }

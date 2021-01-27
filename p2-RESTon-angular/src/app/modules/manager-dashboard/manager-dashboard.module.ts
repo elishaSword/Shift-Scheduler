@@ -10,6 +10,7 @@ import { ManagerBulletinComponent } from 'src/app/pages/manager/manager-bulletin
 import { ManagerMessageFormComponent } from 'src/app/pages/manager/manager-message-form/manager-message-form.component';
 import { ManagerShoutFormComponent } from 'src/app/pages/manager/manager-shout-form/manager-shout-form.component';
 import { FormsModule } from '@angular/forms';
+import { ManagerWeeklyViewComponent } from 'src/app/pages/manager/manager-weekly-view/manager-weekly-view.component';
 
 
 
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     NewShiftComponent,
     ManagerBulletinComponent,
     ManagerMessageFormComponent,
-    ManagerShoutFormComponent
+    ManagerShoutFormComponent,
+    ManagerWeeklyViewComponent
   ],
   imports: [
     CommonModule,
