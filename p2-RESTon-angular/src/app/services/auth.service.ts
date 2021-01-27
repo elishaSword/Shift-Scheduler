@@ -32,6 +32,13 @@ export class AuthService {
     }
     return this.loggedInUser.value.isManager;
   }
+  public isLoggedIn(): boolean {
+    let user: User = JSON.parse(atob(localStorage.getItem("user")));
+    if (user) {
+      this.loggedInUser.next(user);
+    }
+    return this.loggedInUser.value instanceof User;
+  }
 
   /**
    * @param User
