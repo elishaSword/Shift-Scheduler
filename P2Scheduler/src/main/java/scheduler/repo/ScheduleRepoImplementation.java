@@ -7,7 +7,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import scheduler.models.Message;
 import scheduler.models.Schedule;
 
 @Repository("ScheduleRepo")
