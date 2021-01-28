@@ -53,7 +53,7 @@ export class NewShiftComponent implements OnInit {
     this.userService.getAllEmployees().then(e => {
       this.users = e;
     })
-    this.positionService.getPositions().subscribe(e => {
+    this.positionService.getPositions().then(e => {
       this.positions = e;
     })
     this.currentDayInt = this.date.getUTCDay();

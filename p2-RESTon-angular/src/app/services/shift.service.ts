@@ -17,13 +17,15 @@ export class ShiftService {
 
     return new Promise((resolve, reject) => {
       if(!this.apiSetUp) {
-        shift.id = 100;
+        shift.id = 0;
         this.scheduleService.addShiftToSchedule(shift);
         return resolve("Shift successfully added!");
       }
+      console.log(shift)
       this.shiftAPIService.post(shift)
-      .then(shift => {
-        this.scheduleService.addShiftToSchedule(shift);
+      .then(newShift => {
+        newShift.schedule = shift.schedule;
+        this.scheduleService.addShiftToSchedule(newShift);
         resolve("Shift successfully added!");
       })
       .catch(error => {
@@ -36,7 +38,7 @@ export class ShiftService {
   putShift(shift: Shift): Promise<string> {
     return new Promise((resolve, reject) => {
       if(!this.apiSetUp) {
-        shift.id = 100;
+        shift.id = 0;
         this.scheduleService.addShiftToSchedule(shift);
         return resolve("Shift successfully updated!");
       }

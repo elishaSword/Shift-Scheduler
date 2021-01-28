@@ -73,7 +73,7 @@ export class BulletinFormComponent implements OnInit {
 
   getPositions(): void {
     this.positionService.getPositions()
-    .subscribe(pos => {
+    .then(pos => {
       this.positions = pos;
       // console.log(this.positions[0]);
     }, error => console.log(error))
