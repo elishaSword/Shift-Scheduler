@@ -1,6 +1,8 @@
 package scheduler.controllers;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,21 +38,21 @@ public class ShiftController {
 	}
 	
 	@GetMapping(value = "/shift", params = {"schedule_id"})
-	public List<Shift> getShiftBySchedule(HttpServletRequest req, HttpServletResponse resp, int id) {
+	public List<Shift> getShiftBySchedule(HttpServletRequest req, HttpServletResponse resp, int schedule_id) {
 		resp.setStatus(200);
-		return shiftService.getShiftBySchedule(id);
+		return shiftService.getShiftBySchedule(schedule_id);
 	}
 	
 	@GetMapping(value = "/shift", params = {"user_id"})
-	public List<Shift> getShiftByUser(HttpServletRequest req, HttpServletResponse resp, int id) {
+	public List<Shift> getShiftByUser(HttpServletRequest req, HttpServletResponse resp, int user_id) {
 		resp.setStatus(200);
-		return shiftService.getShiftByUser(id);
+		return shiftService.getShiftByUser(user_id);
 	}
 	
 	@GetMapping(value = "/shift", params = {"position_id"})
-	public List<Shift> getShiftByPosition(HttpServletRequest req, HttpServletResponse resp, int id) {
+	public List<Shift> getShiftByPosition(HttpServletRequest req, HttpServletResponse resp, int position_id) {
 		resp.setStatus(200);
-		return shiftService.getShiftByPosition(id);
+		return shiftService.getShiftByPosition(position_id);
 	}
 	
 	@GetMapping(value = "/all-shifts")
@@ -82,13 +84,13 @@ public class ShiftController {
 	}
 	
 	@DeleteMapping(value = "delete-shift", params = {"id"})
-	public String delete(HttpServletRequest req, HttpServletResponse resp, int id) {
+	public Map<String, String> delete(HttpServletRequest req, HttpServletResponse resp, int id) {
 		if(shiftService.deleteShift(id)) {
 			resp.setStatus(200);
-			return "Delete successful!";
+			return Collections.singletonMap("response", "Delete successful!");
 		} else {
 			resp.setStatus(500);
-			return "Failed to delete account";
+			return Collections.singletonMap("response", "Failed to delete account");
 		}
 	}
 }

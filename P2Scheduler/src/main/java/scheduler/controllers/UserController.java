@@ -1,6 +1,8 @@
 package scheduler.controllers;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,18 +45,18 @@ public class UserController {
 	}
 	
 	@PostMapping(value = "/signup")
-	public String signup(HttpServletRequest req, HttpServletResponse resp, @RequestBody() User user) {
+	public Map<String, String> signup(HttpServletRequest req, HttpServletResponse resp, @RequestBody() User user) {
 		if(userService.checkEmail(user.getEmail())) {
 			if(userService.insertUser(user)) {
 				resp.setStatus(200);
-				return "Signup successful!";
+				return Collections.singletonMap("response", "Sign up successful!");
 			} else {
 				resp.setStatus(500);
-				return "Failed to create account";
+				return Collections.singletonMap("response", "Failed to create account");
 			}
 		} else {
 			resp.setStatus(400);
-			return "Email taken";
+			return Collections.singletonMap("response", "Email taken");
 		}
 	}
 	
@@ -95,13 +97,13 @@ public class UserController {
 	}
 	
 	@DeleteMapping(value = "delete-user", params = {"id"})
-	public String delete(HttpServletRequest req, HttpServletResponse resp, int id) {
+	public Map<String, String> delete(HttpServletRequest req, HttpServletResponse resp, int id) {
 		if(userService.deleteUser(id)) {
 			resp.setStatus(200);
-			return "Delete successful!";
+			return Collections.singletonMap("response", "Delete successful!");
 		} else {
 			resp.setStatus(500);
-			return "Failed to delete account";
+			return Collections.singletonMap("response", "Failed to delete account");
 		}
 	}
 
