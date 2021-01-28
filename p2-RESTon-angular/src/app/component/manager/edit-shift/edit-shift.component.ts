@@ -17,6 +17,7 @@ import { Schedule } from 'src/app/models/schedule';
 })
 export class EditShiftComponent implements OnInit {
 
+  @Input() allShifts: Shift[];
   @Input() currentSchedule: Schedule;
   @Input() shift:Shift;
   @Input() date: Date;
@@ -79,5 +80,18 @@ export class EditShiftComponent implements OnInit {
     .catch(err => {
       this.errorMessage = err;
     })
+  }
+
+  isAvailable(user: User): boolean {
+    let available = false;
+
+    let exists = this.allShifts.find(s => s.user.id == user.id)
+    if (!user.availability[this.currentDay] || exists) {
+      console.log('triggered');
+      available = true;
+    }
+
+    console.log(available, user);
+    return available;
   }
 }
