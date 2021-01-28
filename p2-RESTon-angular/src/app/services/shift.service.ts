@@ -9,7 +9,7 @@ import { ScheduleService } from './schedule.service';
 })
 export class ShiftService {
 
-  apiSetUp: boolean = false;
+  apiSetUp: boolean = true;
 
   constructor(private shiftAPIService: ShiftApiService, private scheduleService: ScheduleService) { }
 

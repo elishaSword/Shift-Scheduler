@@ -14,7 +14,7 @@ export class ProfileComponent{
   constructor(breakpointObserver: BreakpointObserver) {
     breakpointObserver.observe([
       // Breakpoints.Handset
-      '(max-width: 599px)'
+      '(max-width: 1200px)'
     ]).subscribe(result => {
       this.isMobile = result.matches;
     });

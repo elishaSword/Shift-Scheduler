@@ -9,15 +9,15 @@ import { BulletinServiceService } from 'src/app/services/bulletin-service.servic
 })
 export class ManagerBulletinComponent implements OnInit {
 
-  @Input() myMessages: Array<BulletinMessage>;
+  myMessages: Array<BulletinMessage>;
 
   constructor(private bulletinService: BulletinServiceService) { }
 
   ngOnInit(): void {
     this.bulletinService.bulletinMessages.subscribe(messages => {
-    this.myMessages = messages;
-    // console.log(messages);
-  });
+      this.myMessages = messages;
+      console.log(messages);
+    });
   }
 
 }

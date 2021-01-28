@@ -51,14 +51,18 @@ export class AuthService {
    *  sets logged in user
    *  Used in login/register methods
    */
-  public setLoggedInUser(user: User) {
+  public setLoggedInUser(user: User, overrideNavigate?: boolean) {
     localStorage.setItem("user", btoa(JSON.stringify(user)));
     this.loggedInUser.next(user);
-    let navigateTo = 'employee';
-    if (user.isManager) {
-      navigateTo = 'manager';
+    console.log(overrideNavigate);
+    if (overrideNavigate){
+      let navigateTo = 'employee';
+      console.log("navigating")
+      if (user.isManager) {
+        navigateTo = 'manager';
+      }
+      this.router.navigate([navigateTo]);
     }
-    this.router.navigate([navigateTo]);
   }
 
   /**
@@ -88,7 +92,7 @@ export class AuthService {
       }
 
       if (!user.email || !user.password) {
-        return reject("Email and Passord are required.")
+        return reject("Email and Password are required.")
       }
       this.userApi.login(user)
       .then(u => {

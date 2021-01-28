@@ -8,43 +8,36 @@ import { PositionApiService } from './rest/position-api.service';
 })
 export class PositionService {
 
-  apiWorking: boolean = false;
+  apiWorking: boolean = true;
 
-  positions: BehaviorSubject<Position[]> = new BehaviorSubject<Position[]>([
-    {
-      id: 1,
-      name: 'Cook'
-    },
-    {
-      id: 2,
-      name: 'Waiter'
-    },
-    {
-      id: 3,
-      name: 'Manager'
-    }
-  ]);
+  // positions: BehaviorSubject<Position[]> = new BehaviorSubject<Position[]>([
+  //   {
+  //     id: 1,
+  //     name: 'Cook'
+  //   },
+  //   {
+  //     id: 2,
+  //     name: 'Waiter'
+  //   },
+  //   {
+  //     id: 3,
+  //     name: 'Manager'
+  //   }
+  // ]);
+
+  positions: BehaviorSubject<Position[]> = new BehaviorSubject<Position[]>([])
+
   constructor(private positionApiService: PositionApiService) { }
 
-  getPositions(): Promise<Position[]> {
-    return new Promise((resolve, reject) => {
-      if(!this.apiWorking) {
-        return resolve(this.positions.value)
-      }
-
-      if(this.positions.value.length) {
-        resolve(this.positions.value);
-      }
-
-      this.positionApiService.get()
-      .then(res => {
-        this.positions.next(res);
-        resolve(res);
-      })
-      .catch(err => {
-        console.log(err);
-        reject("There was an error getting all positions");
-      })
+  getPositions(): BehaviorSubject<Position[]> {
+    this.positionApiService.get()
+    .then(res => {
+      this.positions.next(res);
     })
+    .catch(err => {
+      console.log(err);
+    })
+    return this.positions;
   }
+
 }

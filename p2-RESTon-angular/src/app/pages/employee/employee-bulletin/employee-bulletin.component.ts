@@ -18,7 +18,7 @@ export class EmployeeBulletinComponent implements OnInit {
   ngOnInit(): void {
     this.bulletinService.bulletinMessages.subscribe(messages => {
       this.myMessages = messages;
-      // console.log(messages);
+      console.log(messages);
     });
   }
 

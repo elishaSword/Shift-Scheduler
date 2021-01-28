@@ -103,7 +103,7 @@ export class UserService {
       this.userApiService.put(user)
       .then(res => { 
         resolve(res);
-        this.authSerivce.setLoggedInUser(res);
+        this.authSerivce.setLoggedInUser(res, false);
       })
       .catch(error => {
         console.log(error);

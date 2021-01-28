@@ -42,7 +42,9 @@ export class MessageService {
 
   postMessage(message: Message): Promise<String> {
     return new Promise((resolve, reject) => {
-
+      if(message.content.length == 0) {
+        return reject("Message is Empty");
+      }
       if(!this.apiWorking){
         this.addMessage(message);
         return resolve('Messages retrieved successfully.');

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { NavLink } from 'src/app/models/nav-link';
 import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'rev-nav-bar',
@@ -13,6 +14,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavBarComponent implements OnInit{
 
   @Input() navLinks: NavLink[];
+  user: User;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -29,5 +31,7 @@ export class NavBarComponent implements OnInit{
 
   constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService) {}
 
-  ngOnInit(){}
+  ngOnInit(){
+    this.user = this.authService.loggedInUser.value;
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
@@ -13,11 +14,17 @@ export class UserComponent implements OnInit {
   // user: User = JSON.parse(atob(localStorage.getItem("user")));
   user: User;
   myForm: FormGroup;
+  message:boolean = false;
 
-  constructor(private authService: AuthService, private fb: FormBuilder, private userSerivce: UserService) { }
+
+  constructor(private authService: AuthService, private fb: FormBuilder, private userSerivce: UserService, private _snackBar: MatSnackBar) { }
 
 
   ngOnInit(): void {
+    this.authService.loggedInUser.subscribe(user =>{
+      this.user = user;
+    });
+
     this.myForm = this.fb.group({
       firstName: [this.user.firstName, [
         Validators.required
@@ -40,11 +47,6 @@ export class UserComponent implements OnInit {
 
     // this.authService.register(this.user1);
     console.log(this.user);
-
-    this.authService.loggedInUser.subscribe(user =>{
-      this.user = user;
-    });
-
   }
 
   // email = new FormControl(this.user.email, [Validators.required, Validators.email]);
@@ -69,6 +71,15 @@ export class UserComponent implements OnInit {
 
     console.log(this.user);
 
+    this.userSerivce.updateUser(this.user)
+    .then(user => {
+      console.log(user);
+      this._snackBar.open("Profile update successful", "Dismiss", {
+        duration: 3000,
+      })
+    }).catch(error => {
+      console.log(error);
+    });
   }
 
 

@@ -3,6 +3,9 @@ import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
 import { Availability } from 'src/app/models/availability';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserApiService } from 'src/app/services/rest/user-api.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'rev-availability',
@@ -10,37 +13,55 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./availability.component.scss']
 })
 export class AvailabilityComponent implements OnInit{
-  user: User = JSON.parse(atob(localStorage.getItem("user")));
+  // user: User = JSON.parse(atob(localStorage.getItem("user")));
   avail:Availability;
   days:string[] = [];
   myForm: FormGroup;
+  user: User;
+  message:boolean = false;
+  touch:boolean = false;
 
 
-  constructor(private authService: AuthService, private fb: FormBuilder) {}
+
+  constructor(private authService: AuthService, private fb: FormBuilder, private userApiService: UserApiService, private _snackBar: MatSnackBar) {}
 
   ngOnInit(){
-    // this.authService.loggedInUser 
-    this.avail = this.user.availability;
+    this.user = this.authService.loggedInUser.value;
+    this.avail = this.authService.loggedInUser.value.availability;
+    
     delete this.avail.id;
     delete this.avail.user;
-
+    console.log(this.avail)
     Object.keys(this.avail).forEach(key => {
       this.days.push(key);
     })
-
-    // let group = {};
-
-    // for (const day of this.days){
-    //   group[`${day}`] = [this.user.availability[day]];
-    // }
-    // this.myForm = this.fb.group(group);
     
   }
 
 
-  onSubmit(){
-    console.log(this.user.availability);
-  
-  }
+    select(){
+      this.touch = true;
+    }
 
+
+    onSubmit(): Promise<User> {
+      return new Promise((resolve, reject) =>{
+        this.userApiService.put(this.user)
+        .then(res => { 
+          resolve(res);
+          this.authService.setLoggedInUser(res, false);
+          this._snackBar.open("Availability update successful", "Dismiss", {
+            duration: 3000,
+          })
+          this.message = true;
+        })
+        .catch(error => {
+          console.log(error);
+          reject('There was an error updating the current user');
+        })
+      })
+    }
+
+
+  
 }

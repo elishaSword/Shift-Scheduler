@@ -16,7 +16,7 @@ export class ManagerDashboardComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.scheduleService.schedules.subscribe(schedules => {
+    this.scheduleService.getSchedules().subscribe(schedules => {
       this.schedules = schedules;
       // this.currentSchedule = schedules[this.currentScheduleIndex];
     })
