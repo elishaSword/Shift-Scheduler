@@ -1,6 +1,10 @@
+
+import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { Room } from 'src/app/models/room';
+import { User } from 'src/app/models/user';
 import { MessageService } from 'src/app/services/message-service.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'rev-chatroom',
@@ -9,15 +13,49 @@ import { MessageService } from 'src/app/services/message-service.service';
 })
 export class ChatroomComponent implements OnInit {
 
-  rooms: Array<Room> = new Array<Room>();
+  // rooms: Array<Room> = new Array<Room>();  
+  public isMobile: boolean = false;
+  users: Array<User>;
+  currentUser: User = JSON.parse(atob(localStorage.getItem("user")));;
+  receiver: User;
 
-  constructor(private messageService: MessageService) { }
-
+  constructor(private messageService: MessageService, private userService: UserService, breakpointObserver: BreakpointObserver) {
+    breakpointObserver.observe([
+      // Breakpoints.Handset
+      '(max-width: 1200px)'
+    ]).subscribe(result => {
+      this.isMobile = result.matches;
+    });
+  }
+  
   ngOnInit(): void {
+    this.getUser();
+    this.getUsers();
+  }
+
+  checkUser(user: User): string {
+    // console.log(user);
+    // console.log(this.currentUser);
+    if(user.id === this.currentUser.id) {
+      return "(You)";
+    }
+  }
+
+  getUser(): void {
+    // console.log(this.currentUser);
   }
 
   //retrieves, populates, and creates chatrooms
   getRooms(): void {
 
+  }
+
+  setUser(user: User) {
+    this.receiver = user;
+  }
+
+  getUsers(): void {
+    this.userService.getAllEmployees()
+    .then(users => this.users = users).catch();
   }
 }
