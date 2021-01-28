@@ -8,7 +8,6 @@ import { MessageService } from 'src/app/services/message-service.service';
   styleUrls: ['./messaging.component.scss']
 })
 export class MessagingComponent implements OnInit {
-
   message: Message;
 
   constructor(private messageService: MessageService) { }

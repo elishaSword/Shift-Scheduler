@@ -38,7 +38,7 @@ import { BulletinFormComponent } from 'src/app/shared/bulletin-form/bulletin-for
 import { ChatroomComponent } from 'src/app/shared/chatroom/chatroom.component';
 import { MessageRoomComponent } from 'src/app/pages/shared/message-room/message-room.component';
 import { MessagingComponent } from 'src/app/shared/messaging/messaging.component';
-import {MatSnackBarModule} from '@angular/material/snack-bar'
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
