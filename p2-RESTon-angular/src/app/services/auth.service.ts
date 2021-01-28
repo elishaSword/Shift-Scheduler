@@ -97,7 +97,9 @@ export class AuthService {
       .then(u => {
         if(u.password == user.password) {
           resolve("Successfully logged in!");
-          this.setLoggedInUser(u);
+          console.log(u);
+
+          this.setLoggedInUser(u, true);
         } else {
           reject("Email/Password is incorrect")
         }
@@ -149,7 +151,7 @@ export class AuthService {
         let availability = new Availability();
         availability.id = 50;
 
-        this.setLoggedInUser(user);
+        this.setLoggedInUser(user, false);
         return resolve("Successfully created your Account!");
       }
       if(!this.apiSetup && !this.isSuccess) {

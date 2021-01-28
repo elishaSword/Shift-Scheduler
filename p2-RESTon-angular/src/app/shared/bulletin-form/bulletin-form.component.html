@@ -8,7 +8,7 @@
             <label class="label"> Receiver: </label>
             <div class="select">
                 <select (change)="setTargetPosition($event.target.value)">
-                    <option value = "0">All</option>
+                    <option [value]="null">All</option>
                     <option *ngFor="let position of positions" [ngValue]="position">{{position.name}}</option>
                 </select>
             </div>

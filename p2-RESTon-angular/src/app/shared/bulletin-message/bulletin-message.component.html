@@ -3,7 +3,7 @@
     <figure class="media-left"></figure>
     <div class="media-content">
       <div class="content">
-          <strong>{{message.user.firstName}} {{message.user.lastName}} </strong> - <small>(Manager)</small><small> @ {{message.time}}</small>
+          <strong>{{message.user.firstName}} {{message.user.lastName}} </strong> - <small>(Manager)</small><small> @{{formatDate(message.time)}}</small>
           <br>
           <div class="message-content">{{message.content}}</div>
       </div>
