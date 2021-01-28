@@ -12,10 +12,10 @@ const routes: Routes = [
     path: '',
     component: EmployeeDashboardComponent,
     children :[
-      {path: '', component: WeeklyViewComponent},
+      {path: '', component: EmployeeBulletinComponent},
+      {path: 'weekly-view', component: WeeklyViewComponent},
       {path: 'view-day', component: EmployeeScheduleViewComponent},
       {path: 'profile', component: ProfileComponent},
-      {path: 'bulletin', component: EmployeeBulletinComponent},
       {path: 'message-form', component: EmployeeMessageFormComponent},
       // Lets change the below to something else
       {path: '**', redirectTo: "/week-calender"},

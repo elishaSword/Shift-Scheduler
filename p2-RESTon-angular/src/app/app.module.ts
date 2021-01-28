@@ -21,7 +21,8 @@ import { MessageRoomComponent } from './pages/shared/message-room/message-room.c
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

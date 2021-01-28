@@ -4,11 +4,13 @@
       [opened]="(isHandset$ | async) === true">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item [routerLink]="['./bulletin']">Bulletin</a>
-      <a mat-list-item [routerLink]="['./view-day']">View Daily</a>
+      <a mat-list-item [routerLink]="['./']">Bulletin</a>
       <mat-divider></mat-divider>
-      <a mat-list-item *ngIf="!user.isManager" [routerLink]="['/employee']">Employee Page</a>
-      <a mat-list-item *ngIf="user.isManager" [routerLink]="['/manager']">Manager Page</a>
+      <a mat-list-item *ngIf="!user.isManager" [routerLink]="['/employee']">Home</a>
+      <a mat-list-item *ngIf="user.isManager" [routerLink]="['/manager']">Home</a>
+      <a mat-list-item >Schedule</a>
+      <a mat-list-item >Profile</a>
+      <a mat-list-item >DM's</a>
 
       <button mat-raised-button (click) = "logout()" class = "button is-danger is-ligh" id ="logout" [disabled] = "showSpinner">
         <span>

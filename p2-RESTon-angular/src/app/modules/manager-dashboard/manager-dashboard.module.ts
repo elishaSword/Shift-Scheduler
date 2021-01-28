@@ -9,8 +9,9 @@ import { ScheduleViewComponent } from 'src/app/pages/manager/schedule-view/sched
 import { ManagerBulletinComponent } from 'src/app/pages/manager/manager-bulletin/manager-bulletin.component';
 import { ManagerMessageFormComponent } from 'src/app/pages/manager/manager-message-form/manager-message-form.component';
 import { ManagerShoutFormComponent } from 'src/app/pages/manager/manager-shout-form/manager-shout-form.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ManagerWeeklyViewComponent } from 'src/app/pages/manager/manager-weekly-view/manager-weekly-view.component';
+import { RegisterFormComponent } from 'src/app/pages/manager/register-form/register-form.component';
 
 
 
@@ -22,13 +23,15 @@ import { ManagerWeeklyViewComponent } from 'src/app/pages/manager/manager-weekly
     ManagerBulletinComponent,
     ManagerMessageFormComponent,
     ManagerShoutFormComponent,
-    ManagerWeeklyViewComponent
+    ManagerWeeklyViewComponent,
+    RegisterFormComponent
   ],
   imports: [
     CommonModule,
     ManagerDashboardRoutingModule,
     SharedComponentsModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ManagerDashboardModule { }

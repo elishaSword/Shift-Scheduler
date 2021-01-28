@@ -76,7 +76,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatCardModule,
     MatMenuModule,
     MatInputModule,
-    ReactiveFormsModule ,
+    ReactiveFormsModule,
     MatProgressSpinnerModule,
     MatSelectModule,
     FormsModule,
