@@ -14,6 +14,7 @@ import * as moment from 'moment';
 export class ScheduleService {
 
   apiSetup: boolean = true;
+  daysShift: BehaviorSubject<Shift[]> = new BehaviorSubject<Shift[]>([]);
 
   private schedules: BehaviorSubject<Schedule[]> = new BehaviorSubject<Schedule[]>([]);
 
@@ -51,7 +52,7 @@ export class ScheduleService {
   parseShiftsByDay(schedule: Schedule, day: number) {
     let shiftMap = {};
     let shifts = schedule.shifts.filter(s => new Date(s.shiftStartTime).getUTCDay() == day);
-
+    this.daysShift.next(shifts);
     for(let shift of shifts) {
       if(!shiftMap[shift.position.name]) {
         shiftMap[shift.position.name] = [];

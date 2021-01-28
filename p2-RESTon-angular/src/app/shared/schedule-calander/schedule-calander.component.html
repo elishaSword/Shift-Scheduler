@@ -31,7 +31,7 @@
           <tr *ngFor="let shifts of parsedShifts | keyvalue">
             <td>{{shifts.key}}</td>
             <td colspan="24">
-              <rev-shifts [shift]="s" *ngFor="let s of shifts.value" [currentSchedule]='schedule'></rev-shifts>
+              <rev-shifts [allShifts]="allShifts" [shift]="s" *ngFor="let s of shifts.value" [currentSchedule]='schedule'></rev-shifts>
             </td>
           </tr>
       </ng-container>

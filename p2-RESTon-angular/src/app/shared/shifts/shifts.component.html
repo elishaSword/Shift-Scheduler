@@ -8,6 +8,6 @@
 </td>
 
 <rev-modal *ngIf="viewModal" (closeModal)="viewModals(false)" [ngSwitch]="currentUser">
-  <rev-edit-shift [shift]="shift" *ngSwitchCase="'manager'" [currentSchedule]="currentSchedule"></rev-edit-shift>
+  <rev-edit-shift [allShifts]="allShifts" [shift]="shift" *ngSwitchCase="'manager'" [currentSchedule]="currentSchedule"></rev-edit-shift>
   <rev-view-shift [shift]="shift" *ngSwitchCase="'employee'"></rev-view-shift>
 </rev-modal>
