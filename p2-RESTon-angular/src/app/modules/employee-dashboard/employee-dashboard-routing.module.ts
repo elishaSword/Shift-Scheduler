@@ -1,3 +1,4 @@
+
 import { EmployeeScheduleViewComponent } from './../../pages/employee/employee-schedule-view/employee-schedule-view.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -16,7 +17,6 @@ const routes: Routes = [
       {path: 'weekly-view', component: WeeklyViewComponent},
       {path: 'view-day', component: EmployeeScheduleViewComponent},
       {path: 'profile', component: ProfileComponent},
-      {path: 'message-form', component: EmployeeMessageFormComponent},
       {path: 'bulletin', component: EmployeeBulletinComponent},
       {path: 'chat', component: MessageRoomComponent},
       // Lets change the below to something else
