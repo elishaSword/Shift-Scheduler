@@ -1,2 +1,18 @@
-<rev-messaging></rev-messaging>
-<rev-message-form></rev-message-form>
+<div class = "grid-container">
+    <div class="chatroom-header" *ngIf="receiver">To: {{receiver.firstName}} {{receiver.lastName}}</div>
+    <mat-grid-list [cols]="10">
+      <mat-grid-tile [colspan]="2" [rowspan]="2">
+        <mat-list>
+            <mat-list-item class="list-item" *ngFor="let user of users" (click)="setUser(user)">{{user.firstName}} {{user.lastName}} {{checkUser(user)}}</mat-list-item>
+        </mat-list>
+      </mat-grid-tile>
+      
+  
+        <mat-grid-tile [colspan]="8" [rowspan]="2">
+            <rev-messaging [user]="receiver" *ngIf="receiver"></rev-messaging>
+        </mat-grid-tile>  
+        <mat-grid-tile [colspan]="8" [rowspan]="2">
+            <rev-message-form [receiver]="receiver" *ngIf="receiver"></rev-message-form>
+        </mat-grid-tile>
+    </mat-grid-list>
+  </div>

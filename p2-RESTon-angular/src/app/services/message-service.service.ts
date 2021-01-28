@@ -5,6 +5,7 @@ import { BulletinMessage } from '../models/bulletin-message';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageApiService } from './rest/message-api.service';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -22,25 +23,13 @@ export class MessageService {
 
   constructor(private http: HttpClient, private messageApiService: MessageApiService) { }
 
-  // getBulletinMessage(): BulletinMessage {
-  //   // let bMessage: BehaviorSubject<BulletinMessage> = this.http.get<BulletinMessage[]>(this.bulletinUrl).pipe(tap(_ => this.handleError<BulletinMessage>('getBulletinMessage')));
-  //   // if(bMessage == null) {
-  //   //   bMessage = of(this.dummyBulletin);
-  //   // } 
-  //   // return bMessage;
-  //   return null;
-  // }
-
-  // getBulletinMessages(): BehaviorSubject<BulletinMessage[]> {
-  //   return null;
-  // }
-
-  getMessages(): BehaviorSubject<Message[]> {
+  getMessages(user: User): BehaviorSubject<Message[]> {
     
     return null;
   }
 
   postMessage(message: Message): Promise<String> {
+    // console.log(message);
     return new Promise((resolve, reject) => {
       if(message.content.length == 0) {
         return reject("Message is Empty");
