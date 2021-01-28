@@ -4,6 +4,8 @@ import { User } from 'src/app/models/user';
 import { Availability } from 'src/app/models/availability';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserApiService } from 'src/app/services/rest/user-api.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'rev-availability',
@@ -16,9 +18,12 @@ export class AvailabilityComponent implements OnInit{
   days:string[] = [];
   myForm: FormGroup;
   user: User;
+  message:boolean = false;
+  touch:boolean = false;
 
 
-  constructor(private authService: AuthService, private fb: FormBuilder, private userApiService: UserApiService) {}
+
+  constructor(private authService: AuthService, private fb: FormBuilder, private userApiService: UserApiService, private _snackBar: MatSnackBar) {}
 
   ngOnInit(){
     this.user = this.authService.loggedInUser.value;
@@ -30,24 +35,25 @@ export class AvailabilityComponent implements OnInit{
     Object.keys(this.avail).forEach(key => {
       this.days.push(key);
     })
-
-    // let group = {};
-
-    // for (const day of this.days){
-    //   group[`${day}`] = [this.user.availability[day]];
-    // }
-    // this.myForm = this.fb.group(group);
     
   }
 
 
+    select(){
+      this.touch = true;
+    }
+
+
     onSubmit(): Promise<User> {
-      console.log(this.user.availability);
       return new Promise((resolve, reject) =>{
         this.userApiService.put(this.user)
         .then(res => { 
           resolve(res);
           this.authService.setLoggedInUser(res, false);
+          this._snackBar.open("Availability update successful", "Dismiss", {
+            duration: 3000,
+          })
+          this.message = true;
         })
         .catch(error => {
           console.log(error);
@@ -55,5 +61,7 @@ export class AvailabilityComponent implements OnInit{
         })
       })
     }
+
+
   
 }

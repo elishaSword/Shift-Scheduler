@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Room } from 'src/app/models/room';
+import { MessageService } from 'src/app/services/message-service.service';
 
 @Component({
   selector: 'rev-chatroom',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatroomComponent implements OnInit {
 
-  constructor() { }
+  rooms: Array<Room> = new Array<Room>();
+
+  constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
   }
 
+  //retrieves, populates, and creates chatrooms
+  getRooms(): void {
+
+  }
 }
