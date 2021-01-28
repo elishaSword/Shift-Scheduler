@@ -1,4 +1,4 @@
-<ng-container>
+<ng-container *ngIf="currentSchedule; else elseBlock">
   <div class="center">
     <button (click)='changeSchedule(-1)'>Previous</button>
     <button (click)='changeSchedule(1)'>Next</button>
@@ -18,3 +18,5 @@
     </div>
 </ng-container>
 
+<!-- NEED TO CHANGE -->
+<ng-template #elseBlock>No Current Schedules</ng-template>

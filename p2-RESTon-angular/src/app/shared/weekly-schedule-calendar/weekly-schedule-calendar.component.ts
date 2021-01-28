@@ -23,9 +23,12 @@ export class WeeklyScheduleCalendarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.scheduleService.schedules.subscribe(schedules => {
-      this.schedules = schedules;
-      this.currentSchedule = schedules[this.currentScheduleIndex];
+    this.scheduleService.getSchedules().subscribe(schedules => {
+      if(schedules.length > 0) {
+        this.schedules = schedules;
+        this.currentSchedule = schedules[this.currentScheduleIndex];
+        console.log(this.currentSchedule);
+      }
     })
   }
 

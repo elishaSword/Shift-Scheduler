@@ -17,7 +17,7 @@ export class EmployeeScheduleViewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.scheduleService.schedules.subscribe(schedules => {
+    this.scheduleService.getSchedules().subscribe(schedules => {
       this.currentSchedule = schedules.find(e => {
         const csId = this.activatedRoute.snapshot.queryParams.scheduleId;
         return e.id == csId;
