@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { Schedule } from 'src/app/models/schedule';
 import { ScheduleService } from 'src/app/services/schedule.service';
-
 @Component({
   selector: 'rev-manager-weekly-view',
   templateUrl: './manager-weekly-view.component.html',
   styleUrls: ['./manager-weekly-view.component.scss']
 })
 export class ManagerWeeklyViewComponent implements OnInit {
+
+  error:string = '';
+  currentSchedule: Schedule = new Schedule();
+  pushing: boolean = false;
 
   constructor(
   private scheduleService: ScheduleService
@@ -16,11 +20,24 @@ export class ManagerWeeklyViewComponent implements OnInit {
   }
 
   postSchedule(): void {
-    this.scheduleService.postSchedule();
+    this.scheduleService.postSchedule()
+    .then(e => this.error = "")
+    .catch(e => this.error = e);
   }
 
   pushSchedule(): void {
-    this.scheduleService.pushSchedule();
+    this.pushing = true;
+    this.scheduleService.pushSchedule(this.currentSchedule)
+    .then(e => this.pushing = false)
+    .catch(err => console.log(err));
+  }
+
+  getSchedule(schedule: Schedule) {
+    this.currentSchedule = schedule;
+  }
+
+  closeError() {
+    this.error = '';
   }
 
 }

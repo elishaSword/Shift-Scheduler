@@ -1,13 +1,10 @@
-<ng-container>
+<ng-container *ngIf="currentSchedule; else elseBlock">
   <div class="center">
     <button (click)='changeSchedule(-1)'>Previous</button>
     <button (click)='changeSchedule(1)'>Next</button>
   </div>
   <div class="container calendar-container table is-full-width">
-    <!-- <table border="1" cellpadding="0" cellspacing="0" width="100%"> -->
       <tr id="outter-table">
-        <!-- This will need a static width -->
-        <!-- Possibly dynamically render times using recursion -->
         <th></th>
         <th><a [routerLink]="'view-day'" [queryParams]="{day: 0, scheduleId: currentSchedule.id}">Sunday</a><p>{{dateFormatter(currentSchedule.startDate)}}</p></th>
         <th><a [routerLink]="'view-day'" [queryParams]="{day: 1, scheduleId: currentSchedule.id}">Monday</a><p>{{dateFormatter(currentSchedule.startDate, 1)}}</p></th>
@@ -21,3 +18,5 @@
     </div>
 </ng-container>
 
+<!-- NEED TO CHANGE -->
+<ng-template #elseBlock>No Current Schedules</ng-template>
