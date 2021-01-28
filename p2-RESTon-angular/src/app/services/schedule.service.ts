@@ -30,6 +30,8 @@ export class ScheduleService {
 
   addShiftToSchedule(shift: Shift) {
     let schedules = this.schedules.value;
+    console.log(shift);
+    console.log(schedules);
     schedules.find(e => e.id == shift.schedule.id).shifts.push(shift);
     this.schedules.next(schedules);
   }

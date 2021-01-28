@@ -61,7 +61,8 @@ export class ShiftApiService {
       this.api.post<ShiftInterface>(`insert-shift`, shift).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
-        reject("Error: " + error);
+        // reject("Error: " + error);
+        reject(error);
       })
     })
   }
@@ -70,6 +71,7 @@ export class ShiftApiService {
       this.api.put<ShiftInterface>(`update-shift`, shift).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
+        console.log(error);
         reject("Error: " + error);
       })
     })

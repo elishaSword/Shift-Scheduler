@@ -40,6 +40,7 @@ export class ScheduleCalanderComponent implements OnInit, AfterContentChecked {
     if(this.schedule.shifts.length != this.shiftCount) {
       this.day = parseInt(this.activatedRoute.snapshot.queryParams.day);
       this.parsedShifts = this.scheduleService.parseShiftsByDay(this.schedule, this.day);
+      console.log(this.parsedShifts);
       this.date = this.dateService.addDays(this.schedule.startDate, this.day);
       this.shiftCount = this.schedule.shifts.length;
     }
