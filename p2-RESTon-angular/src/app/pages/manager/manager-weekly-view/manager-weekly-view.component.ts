@@ -8,6 +8,8 @@ import { ScheduleService } from 'src/app/services/schedule.service';
 })
 export class ManagerWeeklyViewComponent implements OnInit {
 
+  error:string = '';
+
   constructor(
   private scheduleService: ScheduleService
   ) { }
@@ -16,7 +18,9 @@ export class ManagerWeeklyViewComponent implements OnInit {
   }
 
   postSchedule(): void {
-    this.scheduleService.postSchedule();
+    this.scheduleService.postSchedule()
+    .then(e => this.error = "")
+    .catch(e => this.error = e);
   }
 
   pushSchedule(): void {
