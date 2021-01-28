@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Schedule } from 'src/app/models/schedule';
 import { ScheduleService } from 'src/app/services/schedule.service';
@@ -11,6 +11,7 @@ import { DateService } from 'src/app/services/date.service';
   styleUrls: ['./weekly-schedule-calendar.component.scss']
 })
 export class WeeklyScheduleCalendarComponent implements OnInit {
+  @Output() scheduleChange:EventEmitter<Schedule> = new EventEmitter<Schedule>();
 
   schedules: Schedule[] = [];
   currentSchedule: Schedule;
@@ -27,7 +28,7 @@ export class WeeklyScheduleCalendarComponent implements OnInit {
       if(schedules.length > 0) {
         this.schedules = schedules;
         this.currentSchedule = schedules[this.currentScheduleIndex];
-        console.log(this.currentSchedule);
+        this.scheduleChange.emit(this.currentSchedule);
       }
     })
   }
@@ -46,6 +47,8 @@ export class WeeklyScheduleCalendarComponent implements OnInit {
     if(this.schedules[this.currentScheduleIndex + index]) {
       this.currentScheduleIndex += index;
       this.currentSchedule = this.schedules[this.currentScheduleIndex];
+      this.scheduleChange.emit(this.currentSchedule);
     }
   }
+
 }

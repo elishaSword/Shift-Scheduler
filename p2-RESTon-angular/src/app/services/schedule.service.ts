@@ -15,223 +15,6 @@ export class ScheduleService {
 
   apiSetup: boolean = true;
 
-  // schedules: BehaviorSubject<Schedule[]> = new BehaviorSubject<Schedule[]>([
-  //   {
-  //     id: 1,
-  //     startDate: new Date('2021-01-17T00:00:00Z'),
-  //     shifts: [
-  //       {
-  //         id: 1,
-  //         user: {
-  //           id: 1,
-  //           firstName: 'George',
-  //           lastName: 'Yoo',
-  //           email: 'g@g.com',
-  //           password: null,
-  //           isManager: false,
-  //           phone: 12,
-  //           availability: null
-  //         },
-  //         shiftStartTime:  new Date('2021-01-20T06:00:00Z'),
-  //         shiftEndTime:  new Date('2021-01-20T12:00:00Z'),
-  //         position: {
-  //           id: 1,
-  //           name: 'Cook'
-  //         },
-  //         schedule: null
-  //       },
-  //       {
-  //         id: 2,
-  //         user: {
-  //           id: 2,
-  //           firstName: 'Dylan',
-  //           lastName: 'Mahaffey',
-  //           email: 'dylan@mail.com',
-  //           password: null,
-  //           isManager: false,
-  //           phone: 13,
-  //           availability: null
-  //         },
-  //         shiftStartTime:  new Date('2021-01-20T10:00:00Z'),
-  //         shiftEndTime:  new Date('2021-01-20T18:00:00Z'),
-  //         position: {
-  //           id: 1,
-  //           name: 'Cook'
-  //         },
-  //         schedule: null
-  //       },
-  //       {
-  //         id: 3,
-  //         user: {
-  //           id: 3,
-  //           firstName: 'Will',
-  //           lastName: 'He',
-  //           email: 'will@mail.com',
-  //           password: null,
-  //           isManager: false,
-  //           phone: 14,
-  //           availability: null
-  //         },
-  //         shiftStartTime:  new Date('2021-01-20T08:30:00Z'),
-  //         shiftEndTime:  new Date('2021-01-20T10:30:00Z'),
-  //         position: {
-  //           id: 2,
-  //           name: 'Waiter'
-  //         },
-  //         schedule: null
-  //       },
-  //       {
-  //         id: 4,
-  //         user: {
-  //           id: 4,
-  //           firstName: 'Calvin',
-  //           lastName: 'Mak',
-  //           email: 'calvin@mail.com',
-  //           password: null,
-  //           isManager: false,
-  //           phone: 15,
-  //           availability: null
-  //         },
-  //         shiftStartTime:  new Date('2021-01-20T12:15:00Z'),
-  //         shiftEndTime:  new Date('2021-01-20T16:15:00Z'),
-  //         position: {
-  //           id: 2,
-  //           name: 'Waiter'
-  //         },
-  //         schedule: null
-  //       },
-  //       {
-  //         id: 5,
-  //         user: {
-  //           id: 4,
-  //           firstName: 'Calvin',
-  //           lastName: 'Mak',
-  //           email: 'calvin@mail.com',
-  //           password: null,
-  //           isManager: false,
-  //           phone: 15,
-  //           availability: null
-  //         },
-  //         shiftStartTime:  new Date('2021-01-21T12:15:00Z'),
-  //         shiftEndTime:  new Date('2021-01-21T16:15:00Z'),
-  //         position: {
-  //           id: 2,
-  //           name: 'Waiter'
-  //         },
-  //         schedule: null
-  //       },
-  //     ],
-  //     active: true
-  //   },
-  //   {
-  //     id: 2,
-  //     startDate: new Date('2021-01-24T00:00:00Z'),
-  //     shifts: [
-  //       {
-  //         id: 6,
-  //         user: {
-  //           id: 1,
-  //           firstName: 'George',
-  //           lastName: 'Yoo',
-  //           email: 'g@g.com',
-  //           password: null,
-  //           isManager: false,
-  //           phone: 12,
-  //           availability: null
-  //         },
-  //         shiftStartTime:  new Date('2021-01-24T06:00:00Z'),
-  //         shiftEndTime:  new Date('2021-01-24T10:00:00Z'),
-  //         position: {
-  //           id: 1,
-  //           name: 'Cook'
-  //         },
-  //         schedule: null
-  //       },
-  //       {
-  //         id: 7,
-  //         user: {
-  //           id: 2,
-  //           firstName: 'Dylan',
-  //           lastName: 'Mahaffey',
-  //           email: 'dylan@mail.com',
-  //           password: null,
-  //           isManager: false,
-  //           phone: 13,
-  //           availability: null
-  //         },
-  //         shiftStartTime:  new Date('2021-01-29T10:00:00Z'),
-  //         shiftEndTime:  new Date('2021-01-29T15:00:00Z'),
-  //         position: {
-  //           id: 1,
-  //           name: 'Cook'
-  //         },
-  //         schedule: null
-  //       },
-  //       {
-  //         id: 8,
-  //         user: {
-  //           id: 3,
-  //           firstName: 'Will',
-  //           lastName: 'He',
-  //           email: 'will@mail.com',
-  //           password: null,
-  //           isManager: false,
-  //           phone: 14,
-  //           availability: null
-  //         },
-  //         shiftStartTime:  new Date('2021-01-30T08:30:00Z'),
-  //         shiftEndTime:  new Date('2021-01-30T16:30:00Z'),
-  //         position: {
-  //           id: 2,
-  //           name: 'Waiter'
-  //         },
-  //         schedule: null
-  //       },
-  //       {
-  //         id: 9,
-  //         user: {
-  //           id: 4,
-  //           firstName: 'Calvin',
-  //           lastName: 'Mak',
-  //           email: 'calvin@mail.com',
-  //           password: null,
-  //           isManager: false,
-  //           phone: 15,
-  //           availability: null
-  //         },
-  //         shiftStartTime:  new Date('2021-01-27T12:15:00Z'),
-  //         shiftEndTime:  new Date('2021-01-27T15:15:00Z'),
-  //         position: {
-  //           id: 2,
-  //           name: 'Waiter'
-  //         },
-  //         schedule: null
-  //       },
-  //       {
-  //         id: 10,
-  //         user: {
-  //           id: 4,
-  //           firstName: 'Calvin',
-  //           lastName: 'Mak',
-  //           email: 'calvin@mail.com',
-  //           password: null,
-  //           isManager: false,
-  //           phone: 15,
-  //           availability: null
-  //         },
-  //         shiftStartTime:  new Date('2021-01-27T12:15:00Z'),
-  //         shiftEndTime:  new Date('2021-01-27T18:15:00Z'),
-  //         position: {
-  //           id: 2,
-  //           name: 'Waiter'
-  //         },
-  //         schedule: null
-  //       },
-  //     ],
-  //     active: true
-  //   }
-  // ]);
-
   private schedules: BehaviorSubject<Schedule[]> = new BehaviorSubject<Schedule[]>([]);
 
   constructor(private userService: UserService, private sheduleAPIService: ScheduleApiService) {}
@@ -325,8 +108,6 @@ export class ScheduleService {
         schedule = this.postFromNew();
       }
 
-      console.log(schedule);
-
       if(!this.apiSetup) {
         this.schedules.next(this.schedules.getValue().concat(schedule));
         console.log(this.schedules.value);
@@ -366,14 +147,12 @@ export class ScheduleService {
     return schedule;
   }
 
-  pushSchedule() {
+  pushSchedule(schedule: Schedule) {
     return new Promise((resolve, reject) => {
-      let lastSchedule = this.schedules.value[this.schedules.value.length - 1];
-      let schedule = lastSchedule;
+      schedule.active = true;
 
       if(!this.apiSetup) {
-        if(!lastSchedule.active) {
-          schedule.active = true;
+        if(!schedule.active) {
           this.schedules.next(this.schedules.getValue().concat(schedule));
           console.log(this.schedules.value);
           resolve("Successfully pushed the Schedule!");
@@ -382,17 +161,16 @@ export class ScheduleService {
         }
       }
 
-      if(!lastSchedule.active) {
-        this.sheduleAPIService.put(schedule)
-        .then(e => {
-          this.schedules.next(this.schedules.getValue().concat(schedule));
-          resolve("Successfully pushed the Schedule!");
-        })
-        .catch(error => {
-          console.log(error);
-          reject("This schedule has already been pushed.")
-        })
-      }
+      this.sheduleAPIService.put(schedule)
+      .then(e => {
+        this.schedules.next(this.schedules.getValue().concat(schedule));
+        resolve("Successfully pushed the Schedule!");
+      })
+      .catch(error => {
+        console.log(error);
+        reject("This schedule has already been pushed.")
+      })
+
     })
   }
 }

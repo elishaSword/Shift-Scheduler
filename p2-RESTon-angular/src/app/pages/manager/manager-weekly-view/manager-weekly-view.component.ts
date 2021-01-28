@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Schedule } from 'src/app/models/schedule';
 import { ScheduleService } from 'src/app/services/schedule.service';
 
 @Component({
@@ -9,6 +10,8 @@ import { ScheduleService } from 'src/app/services/schedule.service';
 export class ManagerWeeklyViewComponent implements OnInit {
 
   error:string = '';
+  currentSchedule: Schedule = new Schedule();
+  pushing: boolean = false;
 
   constructor(
   private scheduleService: ScheduleService
@@ -24,7 +27,14 @@ export class ManagerWeeklyViewComponent implements OnInit {
   }
 
   pushSchedule(): void {
-    this.scheduleService.pushSchedule();
+    this.pushing = true;
+    this.scheduleService.pushSchedule(this.currentSchedule)
+    .then(e => this.pushing = false)
+    .catch(err => console.log(err));
+  }
+
+  getSchedule(schedule: Schedule) {
+    this.currentSchedule = schedule;
   }
 
 }
