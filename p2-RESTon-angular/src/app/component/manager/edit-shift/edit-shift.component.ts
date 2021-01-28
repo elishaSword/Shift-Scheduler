@@ -48,9 +48,11 @@ export class EditShiftComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    console.log(this.currentSchedule);
-    this.userService.getAllEmployees().then(e => {
-      this.users = e;
+  this.userId = this.shift.user.id;
+  this.positionId = this.shift.position.id;
+  console.log(this.currentSchedule);
+  this.userService.getAllEmployees().then(e => {
+    this.users = e;
   })
   this.positionService.getPositions().then(e => {
     this.positions = e;
@@ -58,8 +60,9 @@ export class EditShiftComponent implements OnInit {
   this.currentDayInt = parseInt(this.route.url.split("=")[1][0]);
   this.currentDay = this.days[this.currentDayInt];
   this.date = this.shift.shiftStartTime;
-  this.startTime = moment.utc(this.shift.shiftStartTime).format("hh:mm");
-  this.endTime = moment.utc(this.shift.shiftEndTime).format("hh:mm");
+  this.startTime = moment.utc(this.shift.shiftStartTime).format("HH:mm");
+  console.log(this.shift.shiftEndTime);
+  this.endTime = moment.utc(this.shift.shiftEndTime).format("HH:mm");
   }
 
   editShift() {
@@ -68,6 +71,7 @@ export class EditShiftComponent implements OnInit {
     this.shift.shiftStartTime = this.dateService.changeTime(new Date(this.shift.shiftStartTime), this.startTime)
     this.shift.shiftEndTime = this.dateService.changeTime(new Date(this.shift.shiftEndTime), this.endTime)
     this.shift.schedule = this.currentSchedule;
+
     this.shiftService.putShift(this.shift)
     .then(res => {
       console.log(res);

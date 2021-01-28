@@ -28,7 +28,6 @@ export class WeeklyScheduleCalendarComponent implements OnInit {
       if(schedules.length > 0) {
         this.schedules = schedules;
         this.currentSchedule = schedules[this.currentScheduleIndex];
-        // console.log(this.currentSchedule);
         this.scheduleChange.emit(this.currentSchedule);
       }
     })

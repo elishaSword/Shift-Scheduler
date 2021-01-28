@@ -1,5 +1,5 @@
 import { Route } from '@angular/compiler/src/core';
-import { AfterContentChecked, Component, Input, OnChanges, OnInit } from '@angular/core';
+import { AfterContentChecked, Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ShiftInterface } from 'src/app/interfaces/shift-interface';
 import { Schedule } from 'src/app/models/schedule';
@@ -22,8 +22,7 @@ export class ShiftsComponent implements OnInit, AfterContentChecked {
   @Input() shift: Shift;
   viewModal: boolean = false;
   currentUser: string;
-  currentSchedule: Schedule;
-
+  @Input() currentSchedule: Schedule;
   empName: string = 'Dylan';
   startTime: any;
   endTime: any;
@@ -42,11 +41,13 @@ export class ShiftsComponent implements OnInit, AfterContentChecked {
   ngOnInit(): void {
     this.initialize();
     this.currentUser = this.route.url.split('/')[1];
+
   }
 
   ngAfterContentChecked(): void {
     this.initialize();
     this.currentUser = this.route.url.split('/')[1];
+
   }
 
   // Width of times (hours) are currently static pixels, needs to change to something more responsive
@@ -59,9 +60,6 @@ export class ShiftsComponent implements OnInit, AfterContentChecked {
   }
 
   initialize(): void {
-    this.scheduleService.getSchedules().subscribe(schedules => {
-      this.currentSchedule = schedules.find(e => e.id == parseInt(this.route.url.split('=')[2]))
-    })
     this.currentShiftStart = new Date(this.shift.shiftStartTime);
     this.startTime = new Date(this.shift.shiftStartTime).getHours();
     this.endTime =  new Date(this.shift.shiftEndTime).getHours();

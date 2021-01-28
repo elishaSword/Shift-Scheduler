@@ -21,9 +21,11 @@ export class ShiftService {
         this.scheduleService.addShiftToSchedule(shift);
         return resolve("Shift successfully added!");
       }
+      console.log(shift)
       this.shiftAPIService.post(shift)
-      .then(shift => {
-        this.scheduleService.addShiftToSchedule(shift);
+      .then(newShift => {
+        newShift.schedule = shift.schedule;
+        this.scheduleService.addShiftToSchedule(newShift);
         resolve("Shift successfully added!");
       })
       .catch(error => {
