@@ -22,7 +22,7 @@ public class Message {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "sender_id", nullable = false)
 	private User sender;
 	
@@ -32,7 +32,7 @@ public class Message {
 	@Column(name = "time", nullable = false)
 	private Date time;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "reciever_id", nullable = false)
 	private User reciever;
 
