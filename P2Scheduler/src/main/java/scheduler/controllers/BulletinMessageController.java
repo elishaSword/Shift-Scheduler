@@ -1,6 +1,8 @@
 package scheduler.controllers;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,15 +38,15 @@ public class BulletinMessageController {
 	
 	
 	@GetMapping(value = "/bulletin-message", params = {"position_id"})
-	public List<BulletinMessage> getBulletinMessageByPosition(HttpServletRequest req, HttpServletResponse resp, int id) {
+	public List<BulletinMessage> getBulletinMessageByPosition(HttpServletRequest req, HttpServletResponse resp, int position_id) {
 		resp.setStatus(200);
-		return bulletinMessageService.getBulletinMessageByPosition(id);
+		return bulletinMessageService.getBulletinMessageByPosition(position_id);
 	}
 	
 	@GetMapping(value = "/bulletin-message", params = {"user_id"})
-	public List<BulletinMessage> getBulletinMessageByUser(HttpServletRequest req, HttpServletResponse resp, int id) {
+	public List<BulletinMessage> getBulletinMessageByUser(HttpServletRequest req, HttpServletResponse resp, int user_id) {
 		resp.setStatus(200);
-		return bulletinMessageService.getBulletinMessageByUser(id);
+		return bulletinMessageService.getBulletinMessageByUser(user_id);
 	}
 	
 	@GetMapping(value = "/all-bulletin-messages")
@@ -76,13 +78,13 @@ public class BulletinMessageController {
 	}
 	
 	@DeleteMapping(value = "delete-bulletinMessage", params = {"id"})
-	public String delete(HttpServletRequest req, HttpServletResponse resp, int id) {
+	public Map<String, String> delete(HttpServletRequest req, HttpServletResponse resp, int id) {
 		if(bulletinMessageService.deleteBulletinMessage(id)) {
 			resp.setStatus(200);
-			return "Delete successful!";
+			return Collections.singletonMap("response", "Delete successful!");
 		} else {
 			resp.setStatus(500);
-			return "Failed to delete account";
+			return Collections.singletonMap("response", "Failed to delete account");
 		}
 	}
 }

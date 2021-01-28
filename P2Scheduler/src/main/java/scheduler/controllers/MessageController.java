@@ -1,6 +1,8 @@
 package scheduler.controllers;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,21 +38,21 @@ public class MessageController {
 	}
 	
 	@GetMapping(value = "/message", params = {"sender_id", "reciever_id"})
-	public List<Message> getMessageBySchedule(HttpServletRequest req, HttpServletResponse resp, int senderId, int recieverId) {
+	public List<Message> getMessageBySchedule(HttpServletRequest req, HttpServletResponse resp, int sender_id, int reciever_id) {
 		resp.setStatus(200);
-		return messageService.getMessageBySenderAndReciever(senderId, recieverId);
+		return messageService.getMessageBySenderAndReciever(sender_id, reciever_id);
 	}
 	
 	@GetMapping(value = "/message", params = {"sender_id"})
-	public List<Message> getMessageByUser(HttpServletRequest req, HttpServletResponse resp, int id) {
+	public List<Message> getMessageByUser(HttpServletRequest req, HttpServletResponse resp, int sender_id) {
 		resp.setStatus(200);
-		return messageService.getMessageBySender(id);
+		return messageService.getMessageBySender(sender_id);
 	}
 	
 	@GetMapping(value = "/message", params = {"reciever_id"})
-	public List<Message> getMessageByPosition(HttpServletRequest req, HttpServletResponse resp, int id) {
+	public List<Message> getMessageByPosition(HttpServletRequest req, HttpServletResponse resp, int reciever_id) {
 		resp.setStatus(200);
-		return messageService.getMessageByReciever(id);
+		return messageService.getMessageByReciever(reciever_id);
 	}
 	
 	@GetMapping(value = "/all-messages")
@@ -82,13 +84,13 @@ public class MessageController {
 	}
 	
 	@DeleteMapping(value = "delete-message", params = {"id"})
-	public String delete(HttpServletRequest req, HttpServletResponse resp, int id) {
+	public Map<String, String> delete(HttpServletRequest req, HttpServletResponse resp, int id) {
 		if(messageService.deleteMessage(id)) {
 			resp.setStatus(200);
-			return "Delete successful!";
+			return Collections.singletonMap("response", "Delete successful!");
 		} else {
 			resp.setStatus(500);
-			return "Failed to delete account";
+			return Collections.singletonMap("response", "Failed to delete account");
 		}
 	}
 }

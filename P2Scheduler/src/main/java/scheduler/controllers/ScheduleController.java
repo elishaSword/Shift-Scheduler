@@ -1,7 +1,9 @@
 package scheduler.controllers;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -76,13 +78,13 @@ public class ScheduleController {
 	}
 	
 	@DeleteMapping(value = "delete-schedule", params = {"id"})
-	public String delete(HttpServletRequest req, HttpServletResponse resp, int id) {
+	public Map<String, String> delete(HttpServletRequest req, HttpServletResponse resp, int id) {
 		if(scheduleService.deleteSchedule(id)) {
 			resp.setStatus(200);
-			return "Delete successful!";
+			return Collections.singletonMap("response", "Delete successful!");
 		} else {
 			resp.setStatus(500);
-			return "Failed to delete account";
+			return Collections.singletonMap("response", "Failed to delete account");
 		}
 	}
 }
