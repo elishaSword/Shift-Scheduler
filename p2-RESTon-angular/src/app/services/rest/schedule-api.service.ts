@@ -42,6 +42,7 @@ export class ScheduleApiService {
       this.api.put<Schedule>(`update-schedule`, schedule).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
+        console.log(error);
         reject("Error: " + error);
       })
     })
