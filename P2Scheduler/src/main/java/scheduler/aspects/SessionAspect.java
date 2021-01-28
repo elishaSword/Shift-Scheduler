@@ -17,15 +17,15 @@ public class SessionAspect {
 	public Object dummyAllAround(ProceedingJoinPoint pjp) throws Throwable {
 		Object output;
 
-		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-		HttpSession session = attr.getRequest().getSession(false);
-		
-		if (!pjp.getSignature().toString().contains("login") && (session == null || (Integer) session.getAttribute("user_id") == null)) {
-			output = null;
-			attr.getResponse().sendError(401);
-		} else {
+//		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+//		HttpSession session = attr.getRequest().getSession(false);
+//		
+//		if (!pjp.getSignature().toString().contains("login") && (session == null || (Integer) session.getAttribute("user_id") == null)) {
+//			output = null;
+//			attr.getResponse().sendError(401);
+//		} else {
 			output = pjp.proceed();
-		}
+//		}
 		
 		return output;
 	}
