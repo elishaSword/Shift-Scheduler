@@ -59,7 +59,6 @@ export class BulletinFormComponent implements OnInit {
       ]]
     });
   }
-
   // postMessage(): void {
   //   // this.messageService.createMessage(this.message).subscribe();
   //   this.messageService.postMessage(this.message)
@@ -100,8 +99,7 @@ export class BulletinFormComponent implements OnInit {
     this.message.position = this.targetPosition;
     console.log(this.targetPosition);
     console.log(this.message);
-
-
+    
     // console.log("submitted");
     this.bulletinService.postBulletinMessage(this.message)
     .then(message => {
