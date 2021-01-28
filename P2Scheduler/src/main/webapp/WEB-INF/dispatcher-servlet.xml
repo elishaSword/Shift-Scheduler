@@ -24,6 +24,9 @@
 	<!--  Turning on tx annotations (Spring ORM) -->
 	<tx:annotation-driven/>
 	
+	<!-- use AOP with annotations -->
+	<aop:aspectj-autoproxy />
+	
 	
 	<!--  DATASOURCE
 			This bean is a JDBC instance
