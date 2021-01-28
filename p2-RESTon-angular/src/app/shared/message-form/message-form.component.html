@@ -7,8 +7,8 @@
             <p class="control">
             <label class="label"> Receiver: </label>
             <div class="select">
-                <select (change)="setTargetUser($event)">
-                    <option *ngFor="let user of users" (targetUser)="user">{{user.firstName}} {{user.lastName}}</option>
+                <select (change)="setTargetUser($event.target.value)">
+                    <option *ngFor="let user of users" [ngValue]="user">{{user.firstName}} {{user.lastName}}</option>
                 </select>
             </div>
             <!-- <div class="select" #showPositions>
@@ -21,7 +21,8 @@
     <div class="field">
         <div class="control">
         <label class="label">Message</label>
-            <textarea class="textarea" placeholder="Message" [(ngModel)]="message.content" name="content"></textarea>
+        <div><strong class="error">{{error}}</strong></div>
+        <textarea [ngClass]="(error)?'input is-danger':'input'" class="textarea" placeholder="Message" [(ngModel)]="message.content" name="content" required></textarea>
         </div>
     </div>
     <div class="control">

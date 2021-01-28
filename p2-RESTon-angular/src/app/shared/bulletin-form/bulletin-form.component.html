@@ -7,16 +7,18 @@
             <p class="control">
             <label class="label"> Receiver: </label>
             <div class="select">
-                <select (change)="setTargetPosition($event)">
-                    <option *ngFor="let position of positions" [(ngModel)]="message.position">{{position.name}}</option>
+                <select (change)="setTargetPosition($event.target.value)">
+                    <option value = "0">All</option>
+                    <option *ngFor="let position of positions" [ngValue]="position">{{position.name}}</option>
                 </select>
             </div>
         </div>
     </div>
     <div class="field">
         <div class="control">
-        <label class="label">Message</label>
-            <textarea class="textarea" placeholder="Message" [(ngModel)]="message.content" name="content"></textarea>
+            <label class="label">Message</label>
+            <div class="error"><strong>{{error}}</strong></div>
+            <textarea [ngClass]="(error)?'input is-danger':'input'" class="textarea" placeholder="Message" [(ngModel)]="message.content" name="content" required></textarea>
         </div>
     </div>
     <div class="control">
