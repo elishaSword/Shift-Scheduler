@@ -3,6 +3,7 @@ import { BulletinMessageInterface } from 'src/app/interfaces/bulletin-message-in
 import { BulletinMessage } from 'src/app/models/bulletin-message';
 import { ApiService } from './api.service';
 import { take } from 'rxjs/operators'
+import { User } from 'src/app/models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,15 @@ export class BulletinMessageApiService {
     })
   }
 
-
+  public getByUserId(user: User): Promise<BulletinMessageInterface[]> {
+    return new Promise((resolve, reject) => {
+      this.api.get<BulletinMessageInterface[]>(`bulletin-message?user_id=${user.id}`).pipe(take(1)).subscribe(res => {
+        resolve(res);
+      }, error => {
+        reject("Error: " + error);
+      })
+    })
+  }
 
 
 
