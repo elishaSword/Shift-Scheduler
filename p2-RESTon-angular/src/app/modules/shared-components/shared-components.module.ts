@@ -35,6 +35,8 @@ import { AvailabilityComponent } from 'src/app/pages/user/availability/availabil
 import {MatSelectModule} from '@angular/material/select';
 import { MessageFormComponent } from 'src/app/shared/message-form/message-form.component';
 import { BulletinFormComponent } from 'src/app/shared/bulletin-form/bulletin-form.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 
 @NgModule({
@@ -78,7 +80,8 @@ import { BulletinFormComponent } from 'src/app/shared/bulletin-form/bulletin-for
     MatProgressSpinnerModule,
     MatSelectModule,
     FormsModule,
-    FormsModule
+    FormsModule,
+    MatSnackBarModule
 
   ],
   exports: [
