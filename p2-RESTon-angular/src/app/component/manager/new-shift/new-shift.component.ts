@@ -8,6 +8,8 @@ import { DateService } from 'src/app/services/date.service';
 import { PositionService } from 'src/app/services/position.service';
 import { ShiftService } from 'src/app/services/shift.service';
 import { UserService } from 'src/app/services/user.service';
+import * as moment from 'moment';
+import { ScheduleService } from 'src/app/services/schedule.service';
 
 @Component({
   selector: 'rev-new-shift',
@@ -16,6 +18,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class NewShiftComponent implements OnInit {
 
+  allShifts: Shift[] = [];
   @Input() schedule: Schedule;
   @Input() date: Date;
   schedules: Schedule[]
@@ -39,27 +42,31 @@ export class NewShiftComponent implements OnInit {
   positionId: number;
   startTime: string;
   endTime: string;
-
+  currentShiftsInDay: Shift[];
 
   constructor(
     private userService: UserService,
     private route: Router,
     private dateService: DateService,
     private positionService: PositionService,
-    private shiftService: ShiftService
+    private shiftService: ShiftService,
+    private scheduleService: ScheduleService
     ) { }
 
-  ngOnInit(): void {
-    this.userService.getAllEmployees().then(e => {
-      this.users = e;
-    })
-    this.positionService.getPositions().then(e => {
-      this.positions = e;
-    })
-    this.currentDayInt = this.date.getUTCDay();
-    this.shift.schedule = this.schedule;
-    this.currentDay = this.days[this.currentDayInt];
-    this.shift.shiftStartTime = this.date;
+    ngOnInit(): void {
+      this.scheduleService.daysShift.subscribe(e => {
+        this.allShifts = e;
+      })
+      this.userService.getAllEmployees().then(e => {
+        this.users = e;
+      })
+      this.positionService.getPositions().then(e => {
+        this.positions = e;
+      })
+      this.currentDayInt = this.date.getUTCDay();
+      this.shift.schedule = this.schedule;
+      this.currentDay = this.days[this.currentDayInt];
+      this.shift.shiftStartTime = this.date;
   }
 
   postShift() {
@@ -69,7 +76,6 @@ export class NewShiftComponent implements OnInit {
     this.shift.shiftStartTime = this.dateService.changeTime(this.date, this.startTime)
     this.shift.shiftEndTime = this.dateService.changeTime(this.date, this.endTime)
     this.shift.id = 0;
-    console.log(this.shift);
     this.shiftService.postNewShift(this.shift)
     .then(res => {
       console.log(res);
@@ -79,5 +85,16 @@ export class NewShiftComponent implements OnInit {
     })
   }
 
+  isAvailable(user: User): boolean {
+    let available = false;
 
+    let exists = this.allShifts.find(s => s.user.id == user.id)
+    if (!user.availability[this.currentDay] || exists) {
+      console.log('triggered');
+      available = true;
+    }
+
+    console.log(available, user);
+    return available;
+  }
 }
