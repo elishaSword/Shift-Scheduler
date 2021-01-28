@@ -9,7 +9,7 @@ import { startWith, switchMap } from 'rxjs/operators';
 })
 export class BulletinServiceService {
 
-  apiWorking: boolean = false;
+  apiWorking: boolean = true;
 
   bulletinMessages: BehaviorSubject<BulletinMessage[]> = new BehaviorSubject<BulletinMessage[]>([
     {
@@ -99,7 +99,7 @@ export class BulletinServiceService {
     })
   }
 
-  
+
 
   postBulletinMessage(message: BulletinMessage): Promise<string> {
     return new Promise((resolve, reject) => {

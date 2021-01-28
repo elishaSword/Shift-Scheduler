@@ -96,11 +96,12 @@ export class BulletinFormComponent implements OnInit {
   onSubmit(event){
     event.preventDefault();
     this.message.user = this.currentUser;
+    if (this.targetPosition.id == 0) {
+      this.targetPosition = null;
+    }
     this.message.position = this.targetPosition;
-    console.log(this.targetPosition);
-    console.log(this.message);
-    
-    // console.log("submitted");
+    this.message.time = new Date();
+
     this.bulletinService.postBulletinMessage(this.message)
     .then(message => {
       console.log(message);

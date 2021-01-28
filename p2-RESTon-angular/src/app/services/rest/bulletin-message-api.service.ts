@@ -13,9 +13,11 @@ export class BulletinMessageApiService {
 
   public get(): Promise<BulletinMessageInterface[]> {
     return new Promise((resolve, reject) => {
-      this.api.get<BulletinMessageInterface[]>(`all-bulletin-message`).pipe(take(1)).subscribe(res => {
+      this.api.get<BulletinMessageInterface[]>(`all-bulletin-messages`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
+        console.log(error);
+
         reject("Error: " + error);
       })
     })
@@ -39,6 +41,8 @@ export class BulletinMessageApiService {
       this.api.post<BulletinMessageInterface>(`insert-bulletin-message`, bulletinMessage).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
+        console.log(error);
+
         reject("Error: " + error);
       })
     })
