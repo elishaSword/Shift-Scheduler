@@ -39,7 +39,7 @@ public class ScheduleRepoImplementation implements ScheduleRepo{
 
 	@Override
 	public List<Schedule> getAllSchedules() {
-		return sesFact.getCurrentSession().createQuery("from Schedule", Schedule.class).list();
+		return sesFact.getCurrentSession().createQuery("from Schedule s ORDER BY s.schedule_date ASC", Schedule.class).list();
 	}
 
 	@Override

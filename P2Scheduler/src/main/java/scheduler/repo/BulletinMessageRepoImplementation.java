@@ -38,7 +38,7 @@ public class BulletinMessageRepoImplementation implements BulletinMessageRepo {
 
 	@Override
 	public List<BulletinMessage> getAllBulletinMessages() {
-		return sesFact.getCurrentSession().createQuery("from BulletinMessage", BulletinMessage.class).list();
+		return sesFact.getCurrentSession().createQuery("from BulletinMessage b ORDER BY b.time ASC", BulletinMessage.class).list();
 	}
 
 	@Override

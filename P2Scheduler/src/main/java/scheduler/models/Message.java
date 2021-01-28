@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "message_table")
-public class Message {
+public class Message implements Comparable<Message>{
 	@Id
 	@Column(name = "message_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -94,6 +94,11 @@ public class Message {
 	public String toString() {
 		return "Message [id=" + id + ", sender=" + sender + ", content=" + content + ", time=" + time + ", reciever="
 				+ reciever + "]";
+	}
+
+	@Override
+	public int compareTo(Message o) {
+		return this.getTime().compareTo(o.getTime());
 	}
 
 

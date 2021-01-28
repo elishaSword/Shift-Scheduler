@@ -1,5 +1,6 @@
 package scheduler.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,11 @@ public class MessageService {
 	}
 	
 	public List<Message> getMessageBySenderAndReciever(int senderId, int recieverId) {
-		return messageRepo.getBySenderAndReciever(senderId, recieverId);
+		List<Message> conversation = new ArrayList<Message>();
+		conversation.addAll(messageRepo.getBySenderAndReciever(senderId, recieverId));
+		conversation.addAll(messageRepo.getBySenderAndReciever(recieverId, senderId));
+		conversation.sort(null);
+		return conversation;
 	}
 	
 	public List<Message> getAllMessage() {

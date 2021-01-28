@@ -43,20 +43,20 @@ public class MessageRepoImplementation implements MessageRepo {
 
 	@Override
 	public List<Message> getBySender(int senderId) {
-		return sesFact.getCurrentSession().createQuery("from Message where sender_id = :sender_id", Message.class)
+		return sesFact.getCurrentSession().createQuery("from Message m where sender_id = :sender_id ORDER BY m.time ASC", Message.class)
 				.setParameter("sender_id", senderId).list();
 	}
 
 	@Override
 	public List<Message> getByReciever(int recieverId) {
-		return sesFact.getCurrentSession().createQuery("from Message where reciever_id = :reciever_id", Message.class)
+		return sesFact.getCurrentSession().createQuery("from Message m where reciever_id = :reciever_id ORDER BY m.time ASC", Message.class)
 				.setParameter("reciever_id", recieverId).list();
 	}
 
 	@Override
 	public List<Message> getBySenderAndReciever(int senderId, int recieverId) {
 		return sesFact.getCurrentSession()
-				.createQuery("from Message where sender_id = :sender_id AND reciever_id = : receiver_id", Message.class)
+				.createQuery("from Message m where sender_id = :sender_id AND reciever_id = :reciever_id ORDER BY m.time ASC", Message.class)
 				.setParameter("sender_id", senderId).setParameter("reciever_id", recieverId).list();
 	}
 
