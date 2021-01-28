@@ -4,10 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ScheduleCalanderComponent } from 'src/app/shared/schedule-calander/schedule-calander.component';
 import { RolesComponent } from 'src/app/shared/roles/roles.component';
 import { ShiftsComponent } from 'src/app/shared/shifts/shifts.component';
-import { BulletinComponent } from 'src/app/shared/bulletin/bulletin.component';
 import { MessageComponent } from 'src/app/shared/message/message.component';
 import { BulletinMessageComponent } from 'src/app/shared/bulletin-message/bulletin-message.component';
-import { MessageFormComponent } from 'src/app/shared/message-form/message-form.component';
 import { NavBarComponent } from 'src/app/shared/nav-bar/nav-bar.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -23,16 +21,31 @@ import { LoaderOneComponent } from 'src/app/shared/loaders/loader-one/loader-one
 import { WeeklyEnrollsComponent } from 'src/app/shared/weekly-enrolls/weekly-enrolls.component';
 import { LoaderTwoComponent } from 'src/app/shared/loaders/loader-two/loader-two.component';
 import { RouterModule } from '@angular/router';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { ProfileComponent } from 'src/app/pages/user/profile/profile.component';
+import { UserComponent } from 'src/app/pages/user/user/user.component';
+import { EditShiftComponent } from 'src/app/component/manager/edit-shift/edit-shift.component';
+import {MatInputModule} from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { AvailabilityComponent } from 'src/app/pages/user/availability/availability.component';
+import {MatSelectModule} from '@angular/material/select';
+import { MessageFormComponent } from 'src/app/shared/message-form/message-form.component';
+import { BulletinFormComponent } from 'src/app/shared/bulletin-form/bulletin-form.component';
+
 
 @NgModule({
   declarations: [
+    ProfileComponent,
+    UserComponent,
     ScheduleCalanderComponent,
     RolesComponent,
     ShiftsComponent,
-    BulletinComponent,
     MessageComponent,
     BulletinMessageComponent,
-    MessageFormComponent,
     NavBarComponent,
     ModalComponent,
     ViewShiftComponent,
@@ -40,29 +53,43 @@ import { RouterModule } from '@angular/router';
     WeeklyScheduleCalendarComponent,
     LoaderOneComponent,
     WeeklyEnrollsComponent,
-    LoaderTwoComponent
+    LoaderTwoComponent,
+    EditShiftComponent,
+    BulletinFormComponent,
+    AvailabilityComponent,
+    MessageFormComponent,
   ],
   imports: [
     CommonModule,
     HttpClientModule,
+    MatButtonModule,
     LayoutModule,
     MatToolbarModule,
-    MatButtonModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    RouterModule
+    RouterModule,
+    MatGridListModule,
+    MatDialogModule,
+    MatCardModule,
+    MatMenuModule,
+    MatInputModule,
+    ReactiveFormsModule ,
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    FormsModule,
+    FormsModule
 
   ],
   exports: [
+    ProfileComponent,
+    UserComponent,
     ScheduleCalanderComponent,
     NavBarComponent,
     RolesComponent,
     ShiftsComponent,
-    BulletinComponent,
     MessageComponent,
     BulletinMessageComponent,
-    MessageFormComponent,
     ScheduleCalanderComponent,
     ModalComponent,
     ViewShiftComponent,
@@ -70,7 +97,11 @@ import { RouterModule } from '@angular/router';
     WeeklyScheduleCalendarComponent,
     LoaderOneComponent,
     WeeklyEnrollsComponent,
-    LoaderTwoComponent
+    LoaderTwoComponent,
+    EditShiftComponent,
+    BulletinFormComponent,
+    AvailabilityComponent,
+    MessageFormComponent,
   ]
 })
 export class SharedComponentsModule { }

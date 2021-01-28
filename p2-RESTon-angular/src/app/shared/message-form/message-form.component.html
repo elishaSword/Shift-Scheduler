@@ -1,41 +1,33 @@
-
-<div class="field is-grouped">
-<p class="control">
-    Sender: <strong>{{user.firstName}} {{user.lastName}}</strong>
-</p>
-<div class="field">
-<p class="control">
-    <label class="checkbox">
-        <input class="checkbox" (click)="changeSender()"> Send to all
-    </label>
-</p>
-</div>
-<div class="field">
-    <label class="label">Receiver: </label>
-    <p class="control" style="float:right">
-        <div class="select" *ngIf="senderType; else showPositions">
-            <select>
-                <option *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</option>
-            </select>
-        </div>
-        <div class="select" #showPositions>
-            <select>
-                <option *ngFor="let position of positions">{{position.name}}</option>
-            </select>
+<form (submit)="onSubmit($event)">
+    <div class="field is-grouped">
+        <p class="control" >
+            <label class="label"> Sender:</label> <em>{{currentUser.firstName}} {{currentUser.lastName}}</em>
+        </p>
+        <div class="field">
+            <p class="control">
+            <label class="label"> Receiver: </label>
+            <div class="select">
+                <select (change)="setTargetUser($event)">
+                    <option *ngFor="let user of users" (targetUser)="user">{{user.firstName}} {{user.lastName}}</option>
+                </select>
+            </div>
+            <!-- <div class="select" #showPositions>
+                <select>
+                    <option *ngFor="let position of positions">{{position.name}}</option>
+                </select>
+            </div> -->
         </div>
     </div>
-</div>
-<div class="field">
-    <label class="label">Message</label>
-    <div class="control">
-        <textarea class="textarea" placeholder="Message"></textarea>
-    </div>
-</div>
-<div class="field is-grouped">
-    <div class="control">
-      <button class="button is-link">Submit</button>
+    <div class="field">
+        <div class="control">
+        <label class="label">Message</label>
+            <textarea class="textarea" placeholder="Message" [(ngModel)]="message.content" name="content"></textarea>
+        </div>
     </div>
     <div class="control">
-      <button class="button is-link is-light">Cancel</button>
+        <button class="button is-link" type="submit" value = "Submit">Submit</button>
     </div>
-  </div>
+    <!-- <div class="control">
+        <button class="button is-link is-light">Cancel</button>
+    </div> -->
+</form>

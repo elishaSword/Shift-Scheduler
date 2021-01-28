@@ -2,6 +2,7 @@ import { ScheduleService } from './../../../services/schedule.service';
 import { Component, OnInit } from '@angular/core';
 import { Schedule } from 'src/app/models/schedule';
 import { ActivatedRoute } from '@angular/router';
+import { DateService } from 'src/app/services/date.service';
 
 @Component({
   selector: 'rev-schedule-view',
@@ -11,10 +12,14 @@ import { ActivatedRoute } from '@angular/router';
 export class ScheduleViewComponent implements OnInit {
 
   currentSchedule: Schedule;
+  viewModal:string = "";
+  date: Date;
+  day: number;
 
   constructor(
     private scheduleService: ScheduleService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private dateService: DateService
   ) { }
 
   ngOnInit(): void {
@@ -23,7 +28,15 @@ export class ScheduleViewComponent implements OnInit {
         const csId = this.activatedRoute.snapshot.queryParams.scheduleId;
         return e.id == csId;
       });
+      console.log("current Schedule View: ", this.currentSchedule);
     })
+    this.day = parseInt(this.activatedRoute.snapshot.queryParams.day);
+    this.date = this.dateService.addDays(this.currentSchedule.startDate, this.day);
   }
+
+  viewModals(modal: string): void{
+    this.viewModal = modal;
+  }
+
 
 }

@@ -1,3 +1,4 @@
+import { Availability } from './../models/availability';
 import { User } from './../models/user';
 import { UserApiService } from './rest/user-api.service';
 import { Injectable } from '@angular/core';
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  apiSetup: boolean = false;
+  apiSetup: boolean = true;
   isSuccess: boolean = true;
 
   loggedInUser: BehaviorSubject<User> = new BehaviorSubject<User>(null);
@@ -25,11 +26,24 @@ export class AuthService {
    *  used for route guards
    */
   public loggedInIsManager(): boolean {
-    let user: User = JSON.parse(atob(localStorage.getItem("user")));
-    if (user) {
+    let user: User;
+    let localStorageUser = localStorage.getItem("user")
+    if(localStorageUser)
+      user = JSON.parse(atob(localStorage.getItem("user")));
+    if (user)
       this.loggedInUser.next(user);
-    }
+
     return this.loggedInUser.value.isManager;
+  }
+  public isLoggedIn(): boolean {
+    let user: User;
+    let localStorageUser = localStorage.getItem("user")
+    if(localStorageUser)
+      user = JSON.parse(atob(localStorage.getItem("user")));
+    if (user)
+      this.loggedInUser.next(user);
+
+    return !!this.loggedInUser.value;
   }
 
   /**
@@ -37,7 +51,7 @@ export class AuthService {
    *  sets logged in user
    *  Used in login/register methods
    */
-  private setLoggedInUser(user: User) {
+  public setLoggedInUser(user: User) {
     localStorage.setItem("user", btoa(JSON.stringify(user)));
     this.loggedInUser.next(user);
     let navigateTo = 'employee';
@@ -76,7 +90,7 @@ export class AuthService {
       if (!user.email || !user.password) {
         return reject("Email and Passord are required.")
       }
-      this.userApi.getByEmail(user)
+      this.userApi.login(user)
       .then(u => {
         if(u.password == user.password) {
           resolve("Successfully logged in!");
@@ -96,20 +110,42 @@ export class AuthService {
    * Logs out the logged in user
    * returns you to the landing page
    */
-  public logout() {
-    localStorage.clear();
-    this.loggedInUser.next(null);
-    this.router.navigate(['']);
+  public logout(): Promise<string> {
+    return new Promise((resolve, reject) => {
+      this.userApi.logout(this.loggedInUser.value)
+      .then(res => {
+        localStorage.clear();
+        this.loggedInUser.next(null);
+        this.router.navigate(['']);
+        resolve(res);
+      }).catch(error => {
+        reject("There was an error logging out.")
+      });
+
+    })
   }
 
   register(user: User): Promise<string> {
     return new Promise((resolve, reject) => {
 
+      user.id = 0;
+      user.isManager = false;
+      delete user.confirmPassword;
+
+      console.log(user);
+
 
       if(!this.apiSetup && this.isSuccess) {
-        user.id = 9000;
+        user.id = 9001;
         user.isManager = false;
-        user.availability = null;
+        user.firstName= 'Calvin';
+        user.lastName= 'Mak';
+        user.email= 'calvin@mail.com';
+        user.password= null;
+        user.phone= 15;
+        let availability = new Availability();
+        availability.id = 50;
+
         this.setLoggedInUser(user);
         return resolve("Successfully created your Account!");
       }
@@ -121,7 +157,7 @@ export class AuthService {
       this.userApi.post(user)
       .then(u => {
         resolve("Successfully created your Account!");
-        this.setLoggedInUser(u);
+        // this.setLoggedInUser(u);
       })
       .catch(error => {
         console.log(error);

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })
-export class NavBarComponent {
+export class NavBarComponent implements OnInit{
 
   @Input() navLinks: NavLink[];
 
@@ -20,10 +20,14 @@ export class NavBarComponent {
       shareReplay()
     );
 
+  showSpinner: boolean = false;
+
   logout(){
+    this.showSpinner = true;
     this.authService.logout();
   }
 
   constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService) {}
 
+  ngOnInit(){}
 }

@@ -1,0 +1,25 @@
+
+<div class = "grid-container">
+  <mat-grid-list [cols]="isMobile ? 10 : 20" rowHeight="1:2">
+
+    <mat-grid-tile [colspan]="isMobile ? 10 : 11" [rowspan]="isMobile ? 8 : 2">
+      <mat-card class="dashboard-card">
+        <rev-availability></rev-availability>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="isMobile ? 10 : 9" [rowspan]="isMobile ? 10 : 4">
+      <mat-card class="dashboard-card">
+          <rev-user class = "form-area"></rev-user>
+      </mat-card>
+    </mat-grid-tile>
+
+    
+    <mat-grid-tile [colspan]="isMobile ? 10 : 11" [rowspan]="isMobile ? 2 : 2">
+      <mat-card class="dashboard-card">
+      </mat-card>
+    </mat-grid-tile>
+
+    
+  </mat-grid-list>
+</div>

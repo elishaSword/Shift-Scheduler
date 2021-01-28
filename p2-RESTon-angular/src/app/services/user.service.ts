@@ -2,14 +2,16 @@ import { BehaviorSubject } from 'rxjs';
 import { UserApiService } from './rest/user-api.service';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  apiWorking: boolean = false;
+  apiWorking: boolean = true;
 
+  // users: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
   users: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([
     {
       id: 1,
@@ -93,18 +95,33 @@ export class UserService {
     }
   ]);
 
-  constructor(private userApiService: UserApiService) { }
+  constructor(private userApiService: UserApiService, private authSerivce: AuthService) { }
+
+  updateUser(user: User): Promise<User> {
+    return new Promise((resolve, reject) =>{
+
+      this.userApiService.put(user)
+      .then(res => { 
+        resolve(res);
+        this.authSerivce.setLoggedInUser(res);
+      })
+      .catch(error => {
+        console.log(error);
+        reject('There was an error updating the current user');
+      })
+    })
+  }
 
   getAllEmployees(): Promise<User[]> {
     return new Promise((resolve, reject) => {
 
-      if(!this.apiWorking) {
-        return resolve(this.users.value);
-      }
+      // if(!this.apiWorking) {
+      //   return resolve(this.users.value);
+      // }
 
-      if(this.users.value.length) {
-        return resolve(this.users.value);
-      }
+      // if(this.users.value.length) {
+      //   resolve(this.users.value);
+      // }
 
       this.userApiService.get()
       .then(res => {

@@ -1,3 +1,4 @@
+import { UserService } from './../../../services/user.service';
 import { ScheduleService } from './../../../services/schedule.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,11 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor(private scheduleSercice: ScheduleService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    console.log('test');
+    this.userService.getAllEmployees()
+    .then(res => {
+      console.log(res);
 
+    })
+    .catch(error => {
+      console.log(error);
+
+    })
   }
 
 }

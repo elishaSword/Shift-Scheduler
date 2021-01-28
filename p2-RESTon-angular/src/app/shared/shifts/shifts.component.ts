@@ -1,6 +1,9 @@
+import { Route } from '@angular/compiler/src/core';
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ShiftInterface } from 'src/app/interfaces/shift-interface';
 import { Shift } from 'src/app/models/shift';
+import { DateService } from 'src/app/services/date.service';
 
 @Component({
   selector: 'rev-shifts',
@@ -15,7 +18,8 @@ export class ShiftsComponent implements OnInit {
   ]
 
   @Input() shift: Shift;
-
+  viewModal: boolean = false;
+  currentUser: string;
 
   empName: string = 'Dylan';
   startTime: any;
@@ -26,10 +30,13 @@ export class ShiftsComponent implements OnInit {
   width: number;
   shiftObject;
 
-  constructor() { }
+  constructor(
+    private route: Router
+    ) { }
 
   ngOnInit(): void {
     this.initialize();
+    this.currentUser = this.route.url.split('/')[1];
   }
 
   // Width of times (hours) are currently static pixels, needs to change to something more responsive
@@ -42,11 +49,11 @@ export class ShiftsComponent implements OnInit {
   }
 
   initialize(): void {
-    this.startTime = +this.shift.shiftTime.getHours();
-    this.endTime = this.shift.shiftTime.getHours() + 8;
+    this.startTime = +this.shift.shiftStartTime.getHours();
+    this.endTime = this.shift.shiftEndTime.getHours();
     this.testTime = (this.endTime) - (this.startTime);
-    this.color = 'green';
-    this.increment = this.calculateIncrement(this.shift.shiftTime.getMinutes());
+    this.color = 'aqua';
+    this.increment = this.calculateIncrement(this.shift.shiftStartTime.getMinutes());
     this.width = this.calculateWidth(this.testTime);
 
     this.shiftObject = {
@@ -55,5 +62,9 @@ export class ShiftsComponent implements OnInit {
       left: this.increment + "px"
     }
 
+  }
+
+  viewModals(bool: boolean): void {
+    this.viewModal = bool;
   }
 }
