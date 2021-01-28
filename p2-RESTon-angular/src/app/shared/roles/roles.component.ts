@@ -17,8 +17,7 @@ export class RolesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ngOnChanges(): void {
-    // this.roleName =
-  }
+  // ngOnChanges(): void {
+  // }
 
 }

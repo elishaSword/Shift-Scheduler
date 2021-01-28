@@ -8,6 +8,7 @@ import { PositionService } from 'src/app/services/position.service';
 import { ShiftService } from 'src/app/services/shift.service';
 import { UserService } from 'src/app/services/user.service';
 import * as moment from 'moment';
+import { Schedule } from 'src/app/models/schedule';
 
 @Component({
   selector: 'rev-edit-shift',
@@ -16,6 +17,7 @@ import * as moment from 'moment';
 })
 export class EditShiftComponent implements OnInit {
 
+  @Input() currentSchedule: Schedule;
   @Input() shift:Shift;
   @Input() date: Date;
   users: User[];
@@ -46,10 +48,11 @@ export class EditShiftComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    console.log(this.currentSchedule);
     this.userService.getAllEmployees().then(e => {
       this.users = e;
   })
-  this.positionService.getPositions().subscribe(e => {
+  this.positionService.getPositions().then(e => {
     this.positions = e;
   })
   this.currentDayInt = parseInt(this.route.url.split("=")[1][0]);
@@ -62,10 +65,9 @@ export class EditShiftComponent implements OnInit {
   editShift() {
     this.shift.user = this.users.find(e => e.id == this.userId)
     this.shift.position = this.positions.find(e => e.id == this.positionId)
-    console.log(this.shift.position);
-    this.shift.shiftStartTime = this.dateService.changeTime(this.shift.shiftStartTime, this.startTime)
-    this.shift.shiftEndTime = this.dateService.changeTime(this.shift.shiftEndTime, this.endTime)
-    console.log(this.shift);
+    this.shift.shiftStartTime = this.dateService.changeTime(new Date(this.shift.shiftStartTime), this.startTime)
+    this.shift.shiftEndTime = this.dateService.changeTime(new Date(this.shift.shiftEndTime), this.endTime)
+    this.shift.schedule = this.currentSchedule;
     this.shiftService.putShift(this.shift)
     .then(res => {
       console.log(res);

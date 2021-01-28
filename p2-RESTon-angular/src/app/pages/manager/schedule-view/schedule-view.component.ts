@@ -33,7 +33,6 @@ export class ScheduleViewComponent implements OnInit {
         this.currentSchedule.startDate = new Date(this.currentSchedule.startDate);
         this.day = parseInt(this.activatedRoute.snapshot.queryParams.day);
         this.date = this.dateService.addDays(this.currentSchedule.startDate, this.day);
-        console.log(this.currentSchedule);
       }
     })
 

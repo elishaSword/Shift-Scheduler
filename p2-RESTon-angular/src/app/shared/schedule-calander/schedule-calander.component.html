@@ -3,14 +3,14 @@
   <div class="container calendar-container">
       <tr id="outter-table">
         <th></th>
-        <th data="6">6:00 am</th>
+        <th>6:00 am</th>
         <th>7:00 am</th>
         <th>8:00 am</th>
         <th>9:00 am</th>
         <th>10:00 am</th>
         <th>11:00 am</th>
         <th>12:00 pm</th>
-        <th data="13">1:00 pm</th>
+        <th>1:00 pm</th>
         <th>2:00 pm</th>
         <th>3:00 pm</th>
         <th>4:00 pm</th>
@@ -27,12 +27,12 @@
         <th>4:00 am</th>
         <th>5:00 am</th>
       </tr>
-      <ng-template *ngIf="schedule.shifts.length">
+      <ng-container *ngIf="schedule.shifts.length">
         <rev-roles
         *ngFor="let shifts of parsedShifts | keyvalue"
          [shifts]="shifts.value"
          [roleName]="shifts.key"></rev-roles>
 
-      </ng-template>
+      </ng-container>
   </div>
 </ng-container>

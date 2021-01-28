@@ -17,7 +17,7 @@ export class ShiftService {
 
     return new Promise((resolve, reject) => {
       if(!this.apiSetUp) {
-        shift.id = 100;
+        shift.id = 0;
         this.scheduleService.addShiftToSchedule(shift);
         return resolve("Shift successfully added!");
       }
@@ -36,7 +36,7 @@ export class ShiftService {
   putShift(shift: Shift): Promise<string> {
     return new Promise((resolve, reject) => {
       if(!this.apiSetUp) {
-        shift.id = 100;
+        shift.id = 0;
         this.scheduleService.addShiftToSchedule(shift);
         return resolve("Shift successfully updated!");
       }
