@@ -18,6 +18,10 @@ export class UserComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.authService.loggedInUser.subscribe(user =>{
+      this.user = user;
+    });
+
     this.myForm = this.fb.group({
       firstName: [this.user.firstName, [
         Validators.required
@@ -41,9 +45,7 @@ export class UserComponent implements OnInit {
     // this.authService.register(this.user1);
     console.log(this.user);
 
-    this.authService.loggedInUser.subscribe(user =>{
-      this.user = user;
-    });
+
 
   }
 
@@ -69,6 +71,12 @@ export class UserComponent implements OnInit {
 
     console.log(this.user);
 
+    this.userSerivce.updateUser(this.user)
+    .then(user => {
+      console.log(user);
+    }).catch(error => {
+      console.log(error);
+    });
   }
 
 

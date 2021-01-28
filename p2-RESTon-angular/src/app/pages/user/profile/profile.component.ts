@@ -7,14 +7,14 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent{ 
+export class ProfileComponent{
 
   public isMobile: boolean = false;
 
   constructor(breakpointObserver: BreakpointObserver) {
     breakpointObserver.observe([
-      // Breakpoints.Handset
-      '(max-width: 599px)'
+      Breakpoints.Handset
+      // '(max-width: 599px)'
     ]).subscribe(result => {
       this.isMobile = result.matches;
     });
