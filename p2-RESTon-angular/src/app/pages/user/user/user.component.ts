@@ -44,9 +44,6 @@ export class UserComponent implements OnInit {
 
     // this.authService.register(this.user1);
     console.log(this.user);
-
-
-
   }
 
   // email = new FormControl(this.user.email, [Validators.required, Validators.email]);
