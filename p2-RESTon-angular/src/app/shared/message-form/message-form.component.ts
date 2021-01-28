@@ -12,8 +12,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class MessageFormComponent implements OnInit {
   message: Message = new Message();
-  @Input() users: Array<User>;
-  currentUser: User =  JSON.parse(atob(localStorage.getItem("user")));
+  // @Input() users: Array<User>;
+  currentUser: User = JSON.parse(atob(localStorage.getItem("user")));
   // {
   //   id: 4,
   //   firstName: 'Bobby',
@@ -34,7 +34,7 @@ export class MessageFormComponent implements OnInit {
   //     sunday: true
   //   }
   // };
-  targetUser: User;
+  @Input() receiver: User;
   error: string;
 
   constructor(private messageService: MessageService, private userService: UserService, private authService: AuthService) { }
@@ -42,6 +42,11 @@ export class MessageFormComponent implements OnInit {
   ngOnInit(): void {
     this.getUser();
   } 
+
+  // ngOnChange(change): void {
+  //   console.log(change);
+  //   //this.receiver = user;
+  // }
   
   // postMessage(): void {
   //   // this.messageService.createMessage(this.message).subscribe();
@@ -53,36 +58,26 @@ export class MessageFormComponent implements OnInit {
 
   getUser(): void {
     // this.authService.loggedInUser.subscribe(user => this.currentUser = user);
-  }
-
-  getUsers(): void {
-    this.userService.getAllEmployees()
-    .then(users => this.users = users).catch();
-  }
-
-  setTargetUser(user): void {
-    this.users.forEach(theUser => {
-      if(user === (theUser.firstName + ' ' + theUser.lastName)) {
-        this.targetUser = user;
-        return;
-      }
-    });
+    // console.log(this.currentUser);
   }
 
   onClear(): void {
-    this.message = null;
+    this.message = new Message();
   }
 
   onSubmit(event){
     event.preventDefault();
     this.message.sender = this.currentUser;
-    this.message.receiver = this.targetUser;
-    console.log(this.message);
+    this.message.receiver = this.receiver;
+    // console.log(this.currentUser);
+    // console.log(this.receiver);
+    // console.log(this.message);
 
     console.log("submitted");
     this.messageService.postMessage(this.message)
     .then(message => {
       console.log(message);
+      this.message = new Message();
     }).catch(
       errorMessage => {
         console.log(errorMessage);

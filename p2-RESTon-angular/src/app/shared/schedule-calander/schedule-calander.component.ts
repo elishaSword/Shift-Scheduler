@@ -1,8 +1,9 @@
 import { ScheduleService } from './../../services/schedule.service';
 import { Schedule } from 'src/app/models/schedule';
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, Input, OnChanges, OnInit } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DateService } from 'src/app/services/date.service';
+import { Shift } from 'src/app/models/shift';
 
 @Component({
   selector: 'rev-schedule-calander',
@@ -11,8 +12,10 @@ import { DateService } from 'src/app/services/date.service';
 })
 export class ScheduleCalanderComponent implements OnInit, AfterContentChecked {
 
+  @Output() setAllShifts: EventEmitter<Shift[]> = new EventEmitter<Shift[]>();
   @Input() schedule: Schedule;
   parsedShifts;
+  allShifts: any[] = [];
   day: number;
   date: Date;
   num: number = 80;
@@ -40,6 +43,13 @@ export class ScheduleCalanderComponent implements OnInit, AfterContentChecked {
     if(this.schedule.shifts.length != this.shiftCount) {
       this.day = parseInt(this.activatedRoute.snapshot.queryParams.day);
       this.parsedShifts = this.scheduleService.parseShiftsByDay(this.schedule, this.day);
+      this.allShifts = []
+      for(let e of Object.values(this.parsedShifts)) {
+        this.allShifts = this.allShifts.concat(e);
+      }
+      console.log(this.allShifts);
+      this.setAllShifts.emit(this.allShifts);
+      console.log(this.parsedShifts);
       this.date = this.dateService.addDays(this.schedule.startDate, this.day);
       this.shiftCount = this.schedule.shifts.length;
     }

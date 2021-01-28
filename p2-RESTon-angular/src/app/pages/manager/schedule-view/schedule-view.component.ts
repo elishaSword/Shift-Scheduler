@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Schedule } from 'src/app/models/schedule';
 import { ActivatedRoute } from '@angular/router';
 import { DateService } from 'src/app/services/date.service';
+import { Shift } from 'src/app/models/shift';
 
 @Component({
   selector: 'rev-schedule-view',
@@ -24,7 +25,6 @@ export class ScheduleViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.scheduleService.getSchedules().subscribe(schedules => {
-      // console.log(schedules)
       this.currentSchedule = schedules.find(e => {
         const csId = this.activatedRoute.snapshot.queryParams.scheduleId;
         return e.id == csId;
@@ -33,7 +33,6 @@ export class ScheduleViewComponent implements OnInit {
         this.currentSchedule.startDate = new Date(this.currentSchedule.startDate);
         this.day = parseInt(this.activatedRoute.snapshot.queryParams.day);
         this.date = this.dateService.addDays(this.currentSchedule.startDate, this.day);
-        console.log(this.currentSchedule);
       }
     })
 

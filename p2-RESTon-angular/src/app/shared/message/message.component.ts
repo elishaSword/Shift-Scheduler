@@ -16,4 +16,7 @@ export class MessageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getName(): string {
+    return this.message.sender.firstName + ' ' + this.message.sender.lastName;
+  }
 }

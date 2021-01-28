@@ -5,9 +5,9 @@ import { ManagerDashboardComponent } from 'src/app/pages/manager/manager-dashboa
 import { ProfileComponent } from 'src/app/pages/user/profile/profile.component';
 import { ManagerBulletinComponent } from 'src/app/pages/manager/manager-bulletin/manager-bulletin.component';
 import { ManagerShoutFormComponent } from 'src/app/pages/manager/manager-shout-form/manager-shout-form.component';
-import { ManagerMessageFormComponent } from 'src/app/pages/manager/manager-message-form/manager-message-form.component';
 import { ManagerWeeklyViewComponent } from 'src/app/pages/manager/manager-weekly-view/manager-weekly-view.component';
 import { RegisterFormComponent } from 'src/app/pages/manager/register-form/register-form.component';
+import { MessageRoomComponent } from 'src/app/pages/shared/message-room/message-room.component';
 
 const routes: Routes = [
   {
@@ -21,6 +21,7 @@ const routes: Routes = [
       {path: 'bulletin-form', component: ManagerShoutFormComponent},
       {path: 'message-form', component: ManagerMessageFormComponent},
       {path: 'register', component: RegisterFormComponent},
+      {path: 'chat', component: MessageRoomComponent},
     ]
   }
 ];
