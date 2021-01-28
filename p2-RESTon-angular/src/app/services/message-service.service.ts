@@ -23,9 +23,46 @@ export class MessageService {
 
   constructor(private http: HttpClient, private messageApiService: MessageApiService) { }
 
-  getMessages(user: User): BehaviorSubject<Message[]> {
-    
-    return null;
+  getMessages(): Promise<String> {
+    return new Promise((resolve, reject) => {
+      if(!this.apiWorking){
+        return resolve('Messages retrieved successfully.');
+      }
+
+      this.messageApiService.get()
+      .then(res => {
+        res.forEach(message => {
+          this.addMessage(message);
+        })
+        resolve('Message posted.');
+      })
+      .catch(error => {
+        console.log(error);
+
+        reject('There was an error posting your message');
+      })
+    })
+  }
+
+  getMessagesBySender(user: User): Promise<String> {
+    return new Promise((resolve, reject) => {
+      if(!this.apiWorking){
+        return resolve('Messages retrieved successfully.');
+      }
+
+      this.messageApiService.getBySenderId(user)
+      .then(res => {
+        res.forEach(message => {
+          this.addMessage(message);
+        })
+        resolve('Message posted.');
+      })
+      .catch(error => {
+        console.log(error);
+
+        reject('There was an error posting your message');
+      })
+    })
   }
 
   postMessage(message: Message): Promise<String> {

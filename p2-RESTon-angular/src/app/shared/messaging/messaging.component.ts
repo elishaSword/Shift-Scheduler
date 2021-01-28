@@ -21,6 +21,7 @@ export class MessagingComponent implements OnInit {
   }
 
   ngOnChanges(change): void {
+    this.messageService.getMessages();
     this.loadMessages();
   }
 
