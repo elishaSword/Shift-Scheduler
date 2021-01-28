@@ -40,6 +40,7 @@ export class NewShiftComponent implements OnInit {
   startTime: string;
   endTime: string;
 
+
   constructor(
     private userService: UserService,
     private route: Router,
@@ -52,7 +53,7 @@ export class NewShiftComponent implements OnInit {
     this.userService.getAllEmployees().then(e => {
       this.users = e;
     })
-    this.positionService.getPositions().then(e => {
+    this.positionService.getPositions().subscribe(e => {
       this.positions = e;
     })
     this.currentDayInt = this.date.getUTCDay();
@@ -66,6 +67,8 @@ export class NewShiftComponent implements OnInit {
     this.shift.user = this.users.find(e => e.id == this.userId)
     this.shift.position = this.positions.find(e => e.id == this.positionId)
     this.shift.shiftStartTime = this.dateService.changeTime(this.date, this.startTime)
+    this.shift.shiftEndTime = this.dateService.changeTime(this.date, this.endTime)
+    this.shift.id = 0;
     console.log(this.shift);
     this.shiftService.postNewShift(this.shift)
     .then(res => {

@@ -54,15 +54,14 @@ export class AuthService {
   public setLoggedInUser(user: User, overrideNavigate?: boolean) {
     localStorage.setItem("user", btoa(JSON.stringify(user)));
     this.loggedInUser.next(user);
-    let navigateTo = 'employee';
-    let navigateProfile = './profile'
-    if (user.isManager) {
-      navigateTo = 'manager';
-    }
-    if (!overrideNavigate){
+    console.log(overrideNavigate);
+    if (overrideNavigate){
+      let navigateTo = 'employee';
+      console.log("navigating")
+      if (user.isManager) {
+        navigateTo = 'manager';
+      }
       this.router.navigate([navigateTo]);
-    } else{
-      this.router.navigate([navigateProfile]);
     }
   }
 

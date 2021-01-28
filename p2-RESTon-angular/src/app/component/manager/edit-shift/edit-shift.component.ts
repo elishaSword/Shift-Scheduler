@@ -7,6 +7,7 @@ import { DateService } from 'src/app/services/date.service';
 import { PositionService } from 'src/app/services/position.service';
 import { ShiftService } from 'src/app/services/shift.service';
 import { UserService } from 'src/app/services/user.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'rev-edit-shift',
@@ -48,13 +49,14 @@ export class EditShiftComponent implements OnInit {
     this.userService.getAllEmployees().then(e => {
       this.users = e;
   })
-  this.positionService.getPositions().then(e => {
+  this.positionService.getPositions().subscribe(e => {
     this.positions = e;
   })
   this.currentDayInt = parseInt(this.route.url.split("=")[1][0]);
   this.currentDay = this.days[this.currentDayInt];
   this.date = this.shift.shiftStartTime;
-  this.startTime = `${this.shift.shiftStartTime.getUTCHours()}:${this.shift.shiftStartTime.getUTCMinutes()}`
+  this.startTime = moment.utc(this.shift.shiftStartTime).format("hh:mm");
+  this.endTime = moment.utc(this.shift.shiftEndTime).format("hh:mm");
   }
 
   editShift() {
@@ -62,6 +64,7 @@ export class EditShiftComponent implements OnInit {
     this.shift.position = this.positions.find(e => e.id == this.positionId)
     console.log(this.shift.position);
     this.shift.shiftStartTime = this.dateService.changeTime(this.shift.shiftStartTime, this.startTime)
+    this.shift.shiftEndTime = this.dateService.changeTime(this.shift.shiftEndTime, this.endTime)
     console.log(this.shift);
     this.shiftService.putShift(this.shift)
     .then(res => {

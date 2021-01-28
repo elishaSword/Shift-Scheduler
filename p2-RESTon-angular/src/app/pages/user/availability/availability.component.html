@@ -1,28 +1,24 @@
-  <table >
-    
-    <mat-card>
+<table >
+  <div class = "demo">
     <span *ngFor = "let day of days" class = "each-day">
-      <mat-form-field appearance="fill">
-        <mat-label>{{day | uppercase}}</mat-label>
-        <mat-select [(value)]="user.availability[day]">
-          <mat-option [value]="true">
-            I'm available!
-          </mat-option>
-          <mat-option [value]="false">
-            I'm busy!
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      
+    <mat-card>
+        <mat-form-field appearance="fill">
+          <mat-label>{{day | uppercase}}</mat-label>
+          <mat-select [(value)]="user.availability[day]" (click) = select()>
+            <mat-option [value]="true">
+              I'm available!
+            </mat-option>
+            <mat-option [value]="false">
+              I'm busy!
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+      </mat-card>
     </span>
-
-  </mat-card>
-  <button mat-raised-button color="accent" type = "submit" (click) = onSubmit()>Submit</button>
-
-
-
-
-  </table>
+    <button mat-raised-button color="accent" *ngIf = "touch" type = "submit" (click) = onSubmit()>Submit</button>
+  </div>
+</table>
 
 
 

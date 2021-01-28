@@ -20,5 +20,4 @@ export class ChatroomComponent implements OnInit {
   getRooms(): void {
 
   }
-
 }
