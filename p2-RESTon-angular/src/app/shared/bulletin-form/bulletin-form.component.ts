@@ -58,8 +58,8 @@ export class BulletinFormComponent implements OnInit {
         Validators.required
       ]]
     });
-  } 
-  
+  }
+
   // postMessage(): void {
   //   // this.messageService.createMessage(this.message).subscribe();
   //   this.messageService.postMessage(this.message)
@@ -74,10 +74,10 @@ export class BulletinFormComponent implements OnInit {
 
   getPositions(): void {
     this.positionService.getPositions()
-    .then(pos => { 
+    .subscribe(pos => {
       this.positions = pos;
-      // console.log(this.positions[0]); 
-    }).catch(error => console.log(error));
+      // console.log(this.positions[0]);
+    }, error => console.log(error))
   }
 
   setTargetPosition(position): void {
@@ -100,7 +100,7 @@ export class BulletinFormComponent implements OnInit {
     this.message.position = this.targetPosition;
     console.log(this.targetPosition);
     console.log(this.message);
-    
+
 
     // console.log("submitted");
     this.bulletinService.postBulletinMessage(this.message)

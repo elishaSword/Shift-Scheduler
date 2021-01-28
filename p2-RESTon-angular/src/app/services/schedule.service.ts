@@ -21,7 +21,9 @@ export class ScheduleService {
 
   getSchedules(): BehaviorSubject<Schedule[]> {
     this.sheduleAPIService.get()
-    .then(e => this.schedules.next(e))
+    .then(e => {
+      this.schedules.next(e)
+    })
     .catch(err => console.log(err));
     return this.schedules;
   }
@@ -46,7 +48,7 @@ export class ScheduleService {
 
   parseShiftsByDay(schedule: Schedule, day: number) {
     let shiftMap = {};
-    let shifts = schedule.shifts.filter(s => s.shiftStartTime.getUTCDay() == day);
+    let shifts = schedule.shifts.filter(s => new Date(s.shiftStartTime).getUTCDay() == day);
 
     for(let shift of shifts) {
       if(!shiftMap[shift.position.name]) {
@@ -70,8 +72,8 @@ export class ScheduleService {
 
           let es = schedule.shifts.filter(shift => shift.user.id == user.id);
           for(let i=0;i<=6;i++) {
-            if(es.filter(shift => shift.shiftStartTime.getUTCDay() == i).length){
-              let shift = es.find(shift => shift.shiftStartTime.getUTCDay() == i);
+            if(es.filter(shift => new Date(shift.shiftStartTime).getUTCDay() == i).length){
+              let shift = es.find(shift => new Date(shift.shiftStartTime).getUTCDay() == i);
               employeeShifts.shifts.push(shift);
             } else {
               employeeShifts.shifts.push(undefined);

@@ -49,7 +49,7 @@ export class EditShiftComponent implements OnInit {
     this.userService.getAllEmployees().then(e => {
       this.users = e;
   })
-  this.positionService.getPositions().then(e => {
+  this.positionService.getPositions().subscribe(e => {
     this.positions = e;
   })
   this.currentDayInt = parseInt(this.route.url.split("=")[1][0]);
