@@ -35,6 +35,9 @@ import { AvailabilityComponent } from 'src/app/pages/user/availability/availabil
 import {MatSelectModule} from '@angular/material/select';
 import { MessageFormComponent } from 'src/app/shared/message-form/message-form.component';
 import { BulletinFormComponent } from 'src/app/shared/bulletin-form/bulletin-form.component';
+import { ChatroomComponent } from 'src/app/shared/chatroom/chatroom.component';
+import { MessageRoomComponent } from 'src/app/pages/shared/message-room/message-room.component';
+import { MessagingComponent } from 'src/app/shared/messaging/messaging.component';
 
 
 @NgModule({
@@ -58,6 +61,9 @@ import { BulletinFormComponent } from 'src/app/shared/bulletin-form/bulletin-for
     BulletinFormComponent,
     AvailabilityComponent,
     MessageFormComponent,
+    ChatroomComponent,
+    MessagingComponent,
+    MessageRoomComponent,
   ],
   imports: [
     CommonModule,
@@ -102,6 +108,9 @@ import { BulletinFormComponent } from 'src/app/shared/bulletin-form/bulletin-for
     BulletinFormComponent,
     AvailabilityComponent,
     MessageFormComponent,
+    ChatroomComponent,
+    MessagingComponent,
+    MessageRoomComponent,
   ]
 })
 export class SharedComponentsModule { }

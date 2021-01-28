@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Message } from 'src/app/models/message';
+import { MessageService } from 'src/app/services/message-service.service';
 
 @Component({
   selector: 'rev-messaging',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessagingComponent implements OnInit {
 
-  constructor() { }
+  message: Message;
+
+  constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
+
+  }
+
+  postMessage(message: Message): void {
+    this.messageService.postMessage(message);
   }
 
 }
