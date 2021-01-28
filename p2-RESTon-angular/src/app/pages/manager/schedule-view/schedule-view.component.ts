@@ -24,14 +24,19 @@ export class ScheduleViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.scheduleService.getSchedules().subscribe(schedules => {
+      // console.log(schedules)
       this.currentSchedule = schedules.find(e => {
         const csId = this.activatedRoute.snapshot.queryParams.scheduleId;
         return e.id == csId;
       });
-      console.log("current Schedule View: ", this.currentSchedule);
+      if(this.currentSchedule) {
+        this.currentSchedule.startDate = new Date(this.currentSchedule.startDate);
+        this.day = parseInt(this.activatedRoute.snapshot.queryParams.day);
+        this.date = this.dateService.addDays(this.currentSchedule.startDate, this.day);
+        console.log(this.currentSchedule);
+      }
     })
-    this.day = parseInt(this.activatedRoute.snapshot.queryParams.day);
-    this.date = this.dateService.addDays(this.currentSchedule.startDate, this.day);
+
   }
 
   viewModals(modal: string): void{

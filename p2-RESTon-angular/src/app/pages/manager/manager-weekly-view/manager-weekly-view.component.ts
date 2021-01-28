@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Schedule } from 'src/app/models/schedule';
 import { ScheduleService } from 'src/app/services/schedule.service';
-
 @Component({
   selector: 'rev-manager-weekly-view',
   templateUrl: './manager-weekly-view.component.html',
@@ -35,6 +34,10 @@ export class ManagerWeeklyViewComponent implements OnInit {
 
   getSchedule(schedule: Schedule) {
     this.currentSchedule = schedule;
+  }
+
+  closeError() {
+    this.error = '';
   }
 
 }

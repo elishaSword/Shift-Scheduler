@@ -28,7 +28,10 @@ export class WeeklyScheduleCalendarComponent implements OnInit {
       if(schedules.length > 0) {
         this.schedules = schedules;
         this.currentSchedule = schedules[this.currentScheduleIndex];
+        console.log(this.currentSchedule);
         this.scheduleChange.emit(this.currentSchedule);
+        // console.log(moment(this.currentSchedule.startDate).toDate());
+        // console.log(moment.utc(this.currentSchedule.startDate).toDate());
       }
     })
   }
@@ -40,6 +43,7 @@ export class WeeklyScheduleCalendarComponent implements OnInit {
   }
 
   dateFormatter(date: Date, days?: number) {
+    // console.log(moment(date).toDate());
     return this.dateService.dateFormatter(date, days);
   }
 

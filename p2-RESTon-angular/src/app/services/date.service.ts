@@ -10,15 +10,17 @@ export class DateService {
 
   addDays(currentDate: Date, days: any) {
     let newDate: Date = new Date(currentDate);
-    newDate.setDate(newDate.getDate() + days);
-    return newDate;
+    // newDate.setDate(newDate.getDate() + days);
+    return moment(newDate).add(days, 'days').toDate();
   }
 
   dateFormatter(date: Date, days?:number ) {
     if(days) {
       date = this.addDays(date, days)
     }
+    // console.log(moment(date).toDate());
     let newDate = this.dateDiff(moment(date).toDate());
+    // console.log(newDate);
     let dateString: string = `
       ${newDate.getMonth() + 1}/${newDate.getDate()}/${newDate.getFullYear()}
     `
