@@ -19,6 +19,15 @@ export class ScheduleApiService {
       })
     })
   }
+  public getAllActive(): Promise<Schedule[]> {
+    return new Promise((resolve, reject) => {
+      this.api.get<Schedule[]>(`all-active-schedules`).pipe(take(1)).subscribe(res => {
+        resolve(res);
+      }, error => {
+        reject("Error: " + error);
+      })
+    })
+  }
   public getById(schedule: Schedule): Promise<Schedule> {
     return new Promise((resolve, reject) => {
       this.api.get<Schedule>(`schedule/${schedule.id}`).pipe(take(1)).subscribe(res => {
