@@ -43,6 +43,7 @@ export class AuthService {
     if (user)
       this.loggedInUser.next(user);
 
+    console.log("this is the looged in user from local storage", this.loggedInUser.value);
     return !!this.loggedInUser.value;
   }
 
@@ -54,10 +55,8 @@ export class AuthService {
   public setLoggedInUser(user: User, overrideNavigate?: boolean) {
     localStorage.setItem("user", btoa(JSON.stringify(user)));
     this.loggedInUser.next(user);
-    console.log(overrideNavigate);
     if (overrideNavigate){
       let navigateTo = 'employee';
-      console.log("navigating")
       if (user.isManager) {
         navigateTo = 'manager';
       }

@@ -1,6 +1,5 @@
 <p>Register-form</p>
 <form [formGroup] = "myForm" (ngSubmit) = "onSubmit(myForm)">
-    Value: {{myForm.value | json}}
 
     <hr>
 
@@ -34,7 +33,9 @@
             <div *ngIf = "email.errors?.required && email.touched">
                 we need your eeeemail, no questions!
             </div>
-
+            <div class = "input is-danger" *ngIf = "validEmail">
+                Please Enter a valid email
+            </div>
         </div>
 
         <div>

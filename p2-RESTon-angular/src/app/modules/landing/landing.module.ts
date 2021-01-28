@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { LandingRoutingModule } from './landing-routing.module';
-import { RegisterFormComponent } from 'src/app/login/register-form/register-form.component';
 import { LoginFormComponent } from 'src/app/login/login-form/login-form.component';
 import { LoginPageComponent } from 'src/app/pages/landing/login-page/login-page.component';
 import { SharedComponentsModule } from '../shared-components/shared-components.module';
@@ -18,7 +17,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LandingPageComponent,
     LoginPageComponent,
     LoginFormComponent,
-    RegisterFormComponent
   ],
   imports: [
     CommonModule,

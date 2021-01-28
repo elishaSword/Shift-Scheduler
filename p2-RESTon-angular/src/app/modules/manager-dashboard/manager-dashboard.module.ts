@@ -8,8 +8,9 @@ import { NewShiftComponent } from 'src/app/component/manager/new-shift/new-shift
 import { ScheduleViewComponent } from 'src/app/pages/manager/schedule-view/schedule-view.component';
 import { ManagerBulletinComponent } from 'src/app/pages/manager/manager-bulletin/manager-bulletin.component';
 import { ManagerShoutFormComponent } from 'src/app/pages/manager/manager-shout-form/manager-shout-form.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ManagerWeeklyViewComponent } from 'src/app/pages/manager/manager-weekly-view/manager-weekly-view.component';
+import { RegisterFormComponent } from 'src/app/pages/manager/register-form/register-form.component';
 
 
 
@@ -20,13 +21,15 @@ import { ManagerWeeklyViewComponent } from 'src/app/pages/manager/manager-weekly
     NewShiftComponent,
     ManagerBulletinComponent,
     ManagerShoutFormComponent,
-    ManagerWeeklyViewComponent
+    ManagerWeeklyViewComponent,
+    RegisterFormComponent
   ],
   imports: [
     CommonModule,
     ManagerDashboardRoutingModule,
     SharedComponentsModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ManagerDashboardModule { }

@@ -12,9 +12,11 @@ const routes: Routes = [
     path: '',
     component: EmployeeDashboardComponent,
     children :[
-      {path: '', component: WeeklyViewComponent},
+      {path: '', component: EmployeeBulletinComponent},
+      {path: 'weekly-view', component: WeeklyViewComponent},
       {path: 'view-day', component: EmployeeScheduleViewComponent},
       {path: 'profile', component: ProfileComponent},
+      {path: 'message-form', component: EmployeeMessageFormComponent},
       {path: 'bulletin', component: EmployeeBulletinComponent},
       {path: 'chat', component: MessageRoomComponent},
       // Lets change the below to something else
