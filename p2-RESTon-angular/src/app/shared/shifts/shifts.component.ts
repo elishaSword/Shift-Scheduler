@@ -13,7 +13,7 @@ import { ScheduleService } from 'src/app/services/schedule.service';
   styleUrls: ['./shifts.component.scss']
 })
 
-export class ShiftsComponent implements OnInit, OnChanges, AfterContentChecked {
+export class ShiftsComponent implements OnInit, AfterContentChecked {
 
   num: number[] = [
     6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 1, 2, 3, 4, 5
@@ -42,11 +42,6 @@ export class ShiftsComponent implements OnInit, OnChanges, AfterContentChecked {
   ngOnInit(): void {
     this.initialize();
     this.currentUser = this.route.url.split('/')[1];
-  }
-
-  ngOnChanges(): void {
-    // this.initialize();
-    // this.currentUser = this.route.url.split('/')[1];
   }
 
   ngAfterContentChecked(): void {
