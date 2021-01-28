@@ -7,7 +7,7 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent{ 
+export class ProfileComponent{
 
   public isMobile: boolean = false;
 
