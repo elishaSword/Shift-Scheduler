@@ -8,6 +8,8 @@ import { ScheduleService } from 'src/app/services/schedule.service';
   templateUrl: './employee-schedule-view.component.html',
   styleUrls: ['./employee-schedule-view.component.scss']
 })
+
+
 export class EmployeeScheduleViewComponent implements OnInit {
   currentSchedule: Schedule;
 
@@ -23,6 +25,11 @@ export class EmployeeScheduleViewComponent implements OnInit {
         return e.id == csId;
       });
     })
+  }
+
+  formatDate(date: number): Date {
+    let newDate = new Date(this.currentSchedule.startDate);
+    return newDate;
   }
 
 }
