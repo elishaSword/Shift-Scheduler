@@ -8,6 +8,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 
 import { AvailabilityComponent } from './availability.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe('AvailabilityComponent', () => {
   let component: AvailabilityComponent;
@@ -24,6 +28,11 @@ describe('AvailabilityComponent', () => {
         MatGridListModule,
         MatIconModule,
         MatMenuModule,
+        RouterTestingModule, 
+        HttpClientTestingModule, 
+        FormsModule, 
+        ReactiveFormsModule,
+        MatSnackBarModule
       ]
     }).compileComponents();
   }));

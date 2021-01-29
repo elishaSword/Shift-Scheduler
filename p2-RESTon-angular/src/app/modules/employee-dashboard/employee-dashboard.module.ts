@@ -7,6 +7,8 @@ import { EmployeeDashboardComponent } from 'src/app/pages/employee/employee-dash
 import { EmployeeScheduleViewComponent } from 'src/app/pages/employee/employee-schedule-view/employee-schedule-view.component';
 import { ViewMyShiftComponent } from 'src/app/component/employee/view-my-shift/view-my-shift.component';
 import { EmployeeBulletinComponent } from 'src/app/pages/employee/employee-bulletin/employee-bulletin.component';
+import { FormBuilder, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -20,6 +22,8 @@ import { EmployeeBulletinComponent } from 'src/app/pages/employee/employee-bulle
     SharedComponentsModule,
     CommonModule,
     EmployeeDashboardRoutingModule,
+    FormsModule,
+    HttpClientModule
   ]
 })
 export class EmployeeDashboardModule { }
