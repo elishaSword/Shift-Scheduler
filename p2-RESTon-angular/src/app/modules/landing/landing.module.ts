@@ -7,6 +7,7 @@ import { LoginPageComponent } from 'src/app/pages/landing/login-page/login-page.
 import { SharedComponentsModule } from '../shared-components/shared-components.module';
 import { LandingPageComponent } from 'src/app/pages/landing/landing-page/landing-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -23,6 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LandingRoutingModule,
     SharedComponentsModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule
 
   ]

@@ -43,19 +43,6 @@ export class MessageFormComponent implements OnInit {
     this.getUser();
   } 
 
-  // ngOnChange(change): void {
-  //   console.log(change);
-  //   //this.receiver = user;
-  // }
-  
-  // postMessage(): void {
-  //   // this.messageService.createMessage(this.message).subscribe();
-  //   this.messageService.postMessage(this.message)
-  //     .then(message => console.log(message))
-  //     .catch(message => console.log(message));
-  // }
-
-
   getUser(): void {
     // this.authService.loggedInUser.subscribe(user => this.currentUser = user);
     // console.log(this.currentUser);

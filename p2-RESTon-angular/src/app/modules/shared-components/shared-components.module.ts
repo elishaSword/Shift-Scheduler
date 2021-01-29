@@ -85,7 +85,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatProgressSpinnerModule,
     MatSelectModule,
     FormsModule,
-    FormsModule,
     MatSnackBarModule
 
   ],

@@ -11,6 +11,7 @@ import { ManagerShoutFormComponent } from 'src/app/pages/manager/manager-shout-f
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ManagerWeeklyViewComponent } from 'src/app/pages/manager/manager-weekly-view/manager-weekly-view.component';
 import { RegisterFormComponent } from 'src/app/pages/manager/register-form/register-form.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -29,6 +30,7 @@ import { RegisterFormComponent } from 'src/app/pages/manager/register-form/regis
     ManagerDashboardRoutingModule,
     SharedComponentsModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule
   ]
 })

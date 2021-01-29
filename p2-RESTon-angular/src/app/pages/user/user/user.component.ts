@@ -12,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserComponent implements OnInit {
   // user: User = JSON.parse(atob(localStorage.getItem("user")));
-  user: User;
+  user: User = new User();
   myForm: FormGroup;
   message:boolean = false;
 

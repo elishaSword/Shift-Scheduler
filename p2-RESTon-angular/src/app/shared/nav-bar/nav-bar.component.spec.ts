@@ -8,6 +8,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { NavBarComponent } from './nav-bar.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('NavBarComponent', () => {
   let component: NavBarComponent;
@@ -24,6 +28,11 @@ describe('NavBarComponent', () => {
         MatListModule,
         MatSidenavModule,
         MatToolbarModule,
+        MatSnackBarModule,
+        RouterTestingModule, 
+        HttpClientTestingModule, 
+        FormsModule, 
+        ReactiveFormsModule
       ]
     }).compileComponents();
   }));
