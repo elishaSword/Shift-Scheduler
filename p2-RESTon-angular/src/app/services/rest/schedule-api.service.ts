@@ -15,6 +15,8 @@ export class ScheduleApiService {
       this.api.get<Schedule[]>(`all-schedules`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
+        console.log(error);
+
         reject("Error: " + error);
       })
     })

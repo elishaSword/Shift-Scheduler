@@ -27,6 +27,7 @@ export class MessageService {
   private displayMessages: BehaviorSubject<Message[]> = new BehaviorSubject<Message[]>([]);
 
   reciever: User;
+  lastReciever: User;
 
   constructor(private http: HttpClient, private messageApiService: MessageApiService, private authService: AuthService) { }
 
@@ -41,7 +42,9 @@ export class MessageService {
     let sender: User = this.authService.loggedInUser.value;
     this.intervalValue.pipe(startWith(0))
     .subscribe(res => {
-      console.log(sender,this.reciever);
+      // console.log("sender",sender);
+      // console.log("reciever",this.reciever);
+
       this.messageApiService.getDirectMessages(sender, this.reciever).then(messages => {
         this.displayMessages.next(messages);
       });
