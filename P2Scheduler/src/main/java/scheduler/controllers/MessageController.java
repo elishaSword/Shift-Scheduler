@@ -38,7 +38,7 @@ public class MessageController {
 		return messageService.getMessageById(id);
 	}
 	
-	@GetMapping(value = "/message", params = {"sender_id", "reciever_id"})
+	@GetMapping(value = "/conversation", params = {"sender_id", "reciever_id"})
 	public List<Message> getMessageBySchedule(HttpServletRequest req, HttpServletResponse resp, int sender_id, int reciever_id) {
 		resp.setStatus(200);
 		return messageService.getMessageBySenderAndReciever(sender_id, reciever_id);
