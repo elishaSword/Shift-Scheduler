@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { MessageInterface } from 'src/app/interfaces/message-interface';
 import { Message } from 'src/app/models/message';
 import { ApiService } from './api.service';
 import { take } from 'rxjs/operators'
@@ -13,9 +12,9 @@ export class MessageApiService {
   constructor(private api: ApiService) { }
 
   //all
-  public get(): Promise<MessageInterface[]> {
+  public get(): Promise<Message[]> {
     return new Promise((resolve, reject) => {
-      this.api.get<MessageInterface[]>(`all-messages`).pipe(take(1)).subscribe(res => {
+      this.api.get<Message[]>(`all-messages`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
@@ -24,9 +23,9 @@ export class MessageApiService {
   }
 
   //id
-  public getById(message: Message): Promise<MessageInterface> {
+  public getById(message: Message): Promise<Message> {
     return new Promise((resolve, reject) => {
-      this.api.get<MessageInterface>(`message?id=${message.id}`).pipe(take(1)).subscribe(res => {
+      this.api.get<Message>(`message?id=${message.id}`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
@@ -35,9 +34,9 @@ export class MessageApiService {
   }
 
   //user: sender id
-  public getBySenderId(sender: User): Promise<MessageInterface[]> {
+  public getBySenderId(sender: User): Promise<Message[]> {
     return new Promise((resolve, reject) => {
-      this.api.get<MessageInterface>(`message?sender_id=${sender.id}`).pipe(take(1)).subscribe(res => {
+      this.api.get<Message>(`message?sender_id=${sender.id}`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
@@ -46,9 +45,9 @@ export class MessageApiService {
   }
 
   //user: receiver id
-  public getByReceiverId(receiver: User): Promise<MessageInterface[]> {
+  public getByReceiverId(receiver: User): Promise<Message[]> {
     return new Promise((resolve, reject) => {
-      this.api.get<MessageInterface>(`message?receiver_id=${receiver.id}`).pipe(take(1)).subscribe(res => {
+      this.api.get<Message>(`message?receiver_id=${receiver.id}`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
@@ -57,9 +56,9 @@ export class MessageApiService {
   }
 
   //users: sender id and receiver id
-  public getDirectMessages(sender: User, receiver: User): Promise<MessageInterface>  {
+  public getDirectMessages(sender: User, receiver: User): Promise<Message[]>  {
     return new Promise((resolve, reject) => {
-      this.api.get<MessageInterface>(`message?sender_id=${sender.id}&receiver_id=${receiver.id}`).pipe(take(1)).subscribe(res => {
+      this.api.get<Message>(`message?sender_id=${sender.id}&receiver_id=${receiver.id}`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
@@ -67,27 +66,29 @@ export class MessageApiService {
     })
   }
 
-  public post(message: Message): Promise<MessageInterface> {
+  public post(message: Message): Promise<Message> {
+    console.log(message);
     return new Promise((resolve, reject) => {
-      this.api.post<MessageInterface>(`insert-message`, message).pipe(take(1)).subscribe(res => {
+      this.api.post<Message>(`insert-message`, message).pipe(take(1)).subscribe(res => {
+        resolve(res);
+      }, error => {
+        console.log(error.error);
+        reject("Error: " + error);
+      })
+    })
+  }
+  public put(message: Message): Promise<Message> {
+    return new Promise((resolve, reject) => {
+      this.api.put<Message>(`update-message`, message).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
       })
     })
   }
-  public put(message: Message): Promise<MessageInterface> {
+  public delete(message: Message): Promise<Message> {
     return new Promise((resolve, reject) => {
-      this.api.put<MessageInterface>(`update-message`, message).pipe(take(1)).subscribe(res => {
-        resolve(res);
-      }, error => {
-        reject("Error: " + error);
-      })
-    })
-  }
-  public delete(message: Message): Promise<MessageInterface> {
-    return new Promise((resolve, reject) => {
-      this.api.delete<MessageInterface>(`delete-message?id=${message.id}`).pipe(take(1)).subscribe(res => {
+      this.api.delete<Message>(`delete-message?id=${message.id}`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
         reject("Error: " + error);
