@@ -14,15 +14,9 @@ export class ManagerBulletinComponent implements OnInit {
   constructor(private bulletinService: BulletinServiceService) { }
 
   ngOnInit(): void {
-    console.log('init');
 
-    this.bulletinService.populateBulletinMessages()
-    .then(res => console.log(res))
-    .catch(error => console.log(error))
-
-    this.bulletinService.bulletinMessages.subscribe(messages => {
+    this.bulletinService.BulletinMessages.subscribe(messages => {
       this.myMessages = messages;
-      console.log(messages);
     });
   }
 

@@ -43,7 +43,6 @@ export class AuthService {
     if (user)
       this.loggedInUser.next(user);
 
-    console.log("this is the looged in user from local storage", this.loggedInUser.value);
     return !!this.loggedInUser.value;
   }
 

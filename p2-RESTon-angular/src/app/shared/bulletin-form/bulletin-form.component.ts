@@ -18,26 +18,6 @@ export class BulletinFormComponent implements OnInit {
   message: BulletinMessage = new BulletinMessage();
   @Input() positions: Array<Position>;
   currentUser: User = JSON.parse(atob(localStorage.getItem("user")));
-  /*{
-    id: 4,
-    firstName: 'Bobby',
-    lastName: 'McApple',
-    email: 'mcApple@mail.com',
-    password: null,
-    isManager: false,
-    phone: 15,
-    availability: {
-      id: 1,
-      user: null,
-      monday: true,
-      tuesday: true,
-      wednesday: true,
-      thursday: true,
-      friday: true,
-      saturday: true,
-      sunday: true
-    }
-  };*/
 
   targetPosition: Position = new Position();
   error: string;
@@ -59,23 +39,15 @@ export class BulletinFormComponent implements OnInit {
       ]]
     });
   }
-  // postMessage(): void {
-  //   // this.messageService.createMessage(this.message).subscribe();
-  //   this.messageService.postMessage(this.message)
-  //     .then(message => console.log(message))
-  //     .catch(message => console.log(message));
-  // }
 
 
   getUser(): void {
-    // this.authService.loggedInUser.subscribe(user => this.currentUser = user);
   }
 
   getPositions(): void {
     this.positionService.getPositions()
     .then(pos => {
       this.positions = pos;
-      // console.log(this.positions[0]);
     }, error => console.log(error))
   }
 
@@ -101,14 +73,17 @@ export class BulletinFormComponent implements OnInit {
     }
     this.message.position = this.targetPosition;
     this.message.time = new Date();
+    this.message.content = this.message.content.trim();
 
     this.bulletinService.postBulletinMessage(this.message)
     .then(message => {
       console.log(message);
+      this.message = new BulletinMessage();
     }).catch(
       errorMessage => {
         console.log(errorMessage);
         this.error = errorMessage;
+        this.message = new BulletinMessage();
       }
     );
   }
