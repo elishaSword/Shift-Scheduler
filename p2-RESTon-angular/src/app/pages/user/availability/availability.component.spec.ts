@@ -12,6 +12,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 
 describe('AvailabilityComponent', () => {
   let component: AvailabilityComponent;
@@ -39,6 +40,9 @@ describe('AvailabilityComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AvailabilityComponent);
+    TestBed.resetTestEnvironment();
+    TestBed.initTestEnvironment(BrowserDynamicTestingModule,
+       platformBrowserDynamicTesting());
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

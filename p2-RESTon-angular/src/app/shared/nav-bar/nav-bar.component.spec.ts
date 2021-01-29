@@ -12,6 +12,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 
 describe('NavBarComponent', () => {
   let component: NavBarComponent;
@@ -39,6 +40,9 @@ describe('NavBarComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NavBarComponent);
+    TestBed.resetTestEnvironment();
+    TestBed.initTestEnvironment(BrowserDynamicTestingModule,
+       platformBrowserDynamicTesting());
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

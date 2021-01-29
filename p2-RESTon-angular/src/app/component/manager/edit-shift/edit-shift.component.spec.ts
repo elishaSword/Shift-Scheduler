@@ -7,12 +7,16 @@ import { FormsModule } from '@angular/forms';
 import { Shift } from 'src/app/models/shift';
 import { User } from 'src/app/models/user';
 import { DummyData } from 'src/app/dummydata';
+import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 
 describe('EditShiftComponent', () => {
   let component: EditShiftComponent;
   let fixture: ComponentFixture<EditShiftComponent>;
 
   beforeEach(async () => {
+    TestBed.resetTestEnvironment();
+    TestBed.initTestEnvironment(BrowserDynamicTestingModule,
+       platformBrowserDynamicTesting());
     await TestBed.configureTestingModule({
       declarations: [ EditShiftComponent ],
       imports: [ RouterTestingModule, HttpClientTestingModule, FormsModule]
@@ -23,6 +27,9 @@ describe('EditShiftComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(EditShiftComponent);
     component = fixture.componentInstance;
+    TestBed.resetTestEnvironment();
+    TestBed.initTestEnvironment(BrowserDynamicTestingModule,
+       platformBrowserDynamicTesting());
     let data: DummyData  = new DummyData();
     const shift: Shift = data.getShift();
     component.shift = shift;
