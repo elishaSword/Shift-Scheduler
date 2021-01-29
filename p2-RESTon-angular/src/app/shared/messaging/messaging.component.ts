@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Message } from 'src/app/models/message';
 import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
 import { MessageService } from 'src/app/services/message-service.service';
 
 @Component({
@@ -12,14 +13,15 @@ import { MessageService } from 'src/app/services/message-service.service';
 export class MessagingComponent implements OnInit, OnChanges, OnDestroy {
   
   @Input() user: User;
-  myUser: User = JSON.parse(atob(localStorage.getItem("user")));
+  myUser: User;
   messages: Array<Message>;
 
   watchMessages: BehaviorSubject<Message[]>;
 
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService, private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.myUser = this.authService.loggedInUser.value;
     this.messageService.reciever = this.user;
     this.watchMessages = this.messageService.Messages;
     this.watchMessages.subscribe(messages => this.messages = messages);

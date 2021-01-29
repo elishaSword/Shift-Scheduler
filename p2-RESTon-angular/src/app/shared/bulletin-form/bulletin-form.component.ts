@@ -17,7 +17,7 @@ import { ConstantPool } from '@angular/compiler';
 export class BulletinFormComponent implements OnInit {
   message: BulletinMessage = new BulletinMessage();
   @Input() positions: Array<Position>;
-  currentUser: User = JSON.parse(atob(localStorage.getItem("user")));
+  currentUser: User;
 
   targetPosition: Position = new Position();
   error: string;
@@ -27,6 +27,7 @@ export class BulletinFormComponent implements OnInit {
   constructor(private fb: FormBuilder, private bulletinService: BulletinServiceService, private positionService: PositionService, private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.currentUser = this.authService.loggedInUser.value;
     this.getUser();
     this.getPositions();
     this.targetPosition.name = 'All';
