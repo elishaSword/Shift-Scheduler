@@ -21,8 +21,6 @@ export class ManagerDashboardComponent implements OnInit, OnDestroy {
     this.scheduleBehavior = this.scheduleService.getSchedules();
     this.scheduleBehavior.subscribe(schedules => {
       this.schedules = schedules;
-      // this.currentSchedule = schedules[this.currentScheduleIndex];
-      console.log("Inside manager-dashboard");
     })
   }
 

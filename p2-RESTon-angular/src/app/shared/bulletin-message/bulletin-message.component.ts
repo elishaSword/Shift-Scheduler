@@ -16,7 +16,6 @@ export class BulletinMessageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.message);
   }
 
   formatDate(date: Date) {
