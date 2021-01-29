@@ -20,7 +20,8 @@ const routes: Routes = [
       {path: 'bulletin', component: EmployeeBulletinComponent},
       {path: 'chat', component: MessageRoomComponent},
       // Lets change the below to something else
-      {path: '**', redirectTo: "/week-calender"},
+      // {path: '**', redirectTo: "/week-calender"},
+      {path: '**', redirectTo: "*/bulletin"},
     ]
   }
 ];
