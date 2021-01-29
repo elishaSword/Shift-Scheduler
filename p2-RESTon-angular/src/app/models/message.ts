@@ -4,6 +4,6 @@ export class Message implements MessageInterface {
   sender = null;
   content = '';
   time = null;
-  receiver = null;
+  reciever = null;
 }
  

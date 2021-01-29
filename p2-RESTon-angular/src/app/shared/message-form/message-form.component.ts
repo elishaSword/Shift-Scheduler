@@ -44,8 +44,7 @@ export class MessageFormComponent implements OnInit {
   } 
 
   getUser(): void {
-    // this.authService.loggedInUser.subscribe(user => this.currentUser = user);
-    // console.log(this.currentUser);
+    this.authService.loggedInUser.subscribe(user => this.currentUser = user);
   }
 
   onClear(): void {
@@ -55,7 +54,7 @@ export class MessageFormComponent implements OnInit {
   onSubmit(event){
     event.preventDefault();
     this.message.sender = this.currentUser;
-    this.message.receiver = this.receiver;
+    this.message.reciever = this.receiver;
     // console.log(this.currentUser);
     // console.log(this.receiver);
     // console.log(this.message);

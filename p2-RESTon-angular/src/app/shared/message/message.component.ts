@@ -17,7 +17,6 @@ export class MessageComponent implements OnInit {
   }
 
   getName(): string {
-    console.log(this.message);
     if (this.message.sender === undefined) {
       return;
     }
