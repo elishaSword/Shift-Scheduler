@@ -43,13 +43,13 @@ public class BulletinMessageRepoImplementation implements BulletinMessageRepo {
 
 	@Override
 	public List<BulletinMessage> getByUser(int userId) {
-		return sesFact.getCurrentSession().createQuery("from BulletinMessage where user_id = :user_id", BulletinMessage.class)
+		return sesFact.getCurrentSession().createQuery("from BulletinMessage b where user_id = :user_id ORDER BY b.time ASC", BulletinMessage.class)
 				.setParameter("user_id", userId).list();
 	}
 
 	@Override
 	public List<BulletinMessage> getByPosition(int positionId) {
-		return sesFact.getCurrentSession().createQuery("from BulletinMessage where position_id = :position_id", BulletinMessage.class)
+		return sesFact.getCurrentSession().createQuery("from BulletinMessage b where position_id = :position_id ORDER BY b.time ASC", BulletinMessage.class)
 				.setParameter("position_id", positionId).list();
 	}
 
