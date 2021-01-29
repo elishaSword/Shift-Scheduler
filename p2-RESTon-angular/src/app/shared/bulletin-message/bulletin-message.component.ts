@@ -1,6 +1,7 @@
 import { DateService } from 'src/app/services/date.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { BulletinMessage } from 'src/app/models/bulletin-message';
+import * as moment from 'moment';
 
 @Component({
   selector: 'rev-bulletin-message',
@@ -19,7 +20,8 @@ export class BulletinMessageComponent implements OnInit {
   }
 
   formatDate(date: Date) {
-    return this.dateService.dateFormatter(date);
+
+    return moment(date).format('DD/MM/YYYY hh:MM A');
   }
 
 }

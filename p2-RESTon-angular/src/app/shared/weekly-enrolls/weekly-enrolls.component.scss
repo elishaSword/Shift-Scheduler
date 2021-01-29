@@ -25,3 +25,20 @@ th {
   justify-content: center;
   align-items: center;
 }
+
+.schedule-row {
+  padding-top: 0.8em;
+}
+
+.shift-button {
+  padding-right: 13px;
+  padding-left: 13px;
+}
+
+.is-success:hover {
+  cursor: pointer;
+}
+
+.is-primary:disabled {
+  cursor: no-drop;
+}

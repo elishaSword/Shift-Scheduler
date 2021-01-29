@@ -1,7 +1,8 @@
 .schedule-wrapper {
-  width: 95%;
+  width: 65%;
   min-width: 1200px;
   margin: 0 auto;
+  overflow: auto;
 }
 td,
 th {
@@ -35,4 +36,11 @@ th {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  padding-bottom: 2em;
+}
+
+.week-button {
+  text-decoration: underline;
+  text-underline-position: below;
+  text-align: center;
 }
