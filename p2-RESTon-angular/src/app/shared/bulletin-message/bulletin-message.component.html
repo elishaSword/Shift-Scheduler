@@ -3,11 +3,15 @@
     <figure class="media-left"></figure>
     <div class="media-content">
       <div class="content">
-          <strong>{{message.user.firstName}} {{message.user.lastName}} </strong> - <small>(Manager)</small><small> @{{formatDate(message.time)}}</small>
+          <strong class="username">{{message.user.firstName}} {{message.user.lastName}} </strong> <small class="tag is-primary">Manager</small>
           <br>
-          <div class="message-content">{{message.content}}</div>
+          <div class="message-content">"{{message.content}}"</div>
+        </div>
       </div>
-    </div>
-    <div class="media-right">
+      <div class="media-right">
+        <div class="media-content">
+
+          <small class="date-sent tag is-warning is-light">{{formatDate(message.time)}}</small>
+        </div>
       </div>
   </article>

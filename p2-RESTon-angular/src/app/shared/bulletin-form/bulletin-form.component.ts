@@ -19,7 +19,7 @@ export class BulletinFormComponent implements OnInit {
   @Input() positions: Array<Position>;
   currentUser: User;
 
-  // targetPosition: Position = new Position();
+  targetPosition: Position = new Position();
   error: string;
 
   myForm: FormGroup
@@ -30,7 +30,7 @@ export class BulletinFormComponent implements OnInit {
     this.currentUser = this.authService.loggedInUser.value;
     this.getUser();
     // this.getPositions();
-    // this.targetPosition.name = 'All';
+    this.targetPosition.name = 'All';
     this.myForm = this.fb.group({
       positionName: ['', [
         Validators.required
@@ -54,9 +54,6 @@ export class BulletinFormComponent implements OnInit {
 
   // setTargetPosition(position): void {
   //   // console.log(position);
-  //   if (this.targetPosition == null) {
-  //     return;
-  //   }
   //   this.positions.forEach(pos => {
   //     if(position === pos.name) {
   //       this.targetPosition = pos;
