@@ -3,6 +3,7 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { Room } from 'src/app/models/room';
 import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
 import { MessageService } from 'src/app/services/message-service.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -16,10 +17,10 @@ export class ChatroomComponent implements OnInit {
   // rooms: Array<Room> = new Array<Room>();  
   public isMobile: boolean = false;
   users: Array<User>;
-  currentUser: User = JSON.parse(atob(localStorage.getItem("user")));;
+  currentUser: User;;
   receiver: User;
 
-  constructor(private messageService: MessageService, private userService: UserService, breakpointObserver: BreakpointObserver) {
+  constructor(private messageService: MessageService, private userService: UserService,private authService: AuthService, breakpointObserver: BreakpointObserver) {
     breakpointObserver.observe([
       // Breakpoints.Handset
       '(max-width: 1200px)'
@@ -29,6 +30,7 @@ export class ChatroomComponent implements OnInit {
   }
   
   ngOnInit(): void {
+    this.currentUser = this.authService.loggedInUser.value;
     this.getUser();
     this.getUsers();
   }

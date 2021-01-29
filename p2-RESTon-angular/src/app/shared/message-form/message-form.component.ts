@@ -13,33 +13,15 @@ import { AuthService } from 'src/app/services/auth.service';
 export class MessageFormComponent implements OnInit {
   message: Message = new Message();
   // @Input() users: Array<User>;
-  currentUser: User = JSON.parse(atob(localStorage.getItem("user")));
-  // {
-  //   id: 4,
-  //   firstName: 'Bobby',
-  //   lastName: 'McApple',
-  //   email: 'mcApple@mail.com',
-  //   password: null,
-  //   isManager: false,
-  //   phone: 15,
-  //   availability: {
-  //     id: 1,
-  //     user: null,
-  //     monday: true,
-  //     tuesday: true,
-  //     wednesday: true,
-  //     thursday: true,
-  //     friday: true,
-  //     saturday: true,
-  //     sunday: true
-  //   }
-  // };
+  currentUser: User;
+
   @Input() receiver: User;
   error: string;
 
   constructor(private messageService: MessageService, private userService: UserService, private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.currentUser = this.authService.loggedInUser.value;
     this.getUser();
   } 
 
