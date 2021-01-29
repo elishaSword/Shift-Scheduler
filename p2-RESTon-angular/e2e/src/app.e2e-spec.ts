@@ -10,7 +10,18 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', async () => {
     await page.navigateTo();
-    expect(await page.getTitleText()).toEqual('p2-RESTon-angular app is running!');
+    expect(await page.getTitleText()).toEqual('Shiftly');
+  });
+
+  it('should display login page', async () => {
+    await page.loginNavigateTo();
+    expect(await page.getFormText()).toEqual('Email');
+  });
+
+  it('when login is successful, they should forward to employee dashboard', async () => {
+    await page.loginNavigateTo();
+    await page.fillCredentials();
+    await setTimeout(() => expect(browser.getCurrentUrl()).toContain("#/employee"), 3000)
   });
 
   afterEach(async () => {
