@@ -29,7 +29,7 @@ export class BulletinFormComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = this.authService.loggedInUser.value;
     this.getUser();
-    this.getPositions();
+    // this.getPositions();
     this.targetPosition.name = 'All';
     this.myForm = this.fb.group({
       positionName: ['', [
@@ -45,22 +45,22 @@ export class BulletinFormComponent implements OnInit {
   getUser(): void {
   }
 
-  getPositions(): void {
-    this.positionService.getPositions()
-    .then(pos => {
-      this.positions = pos;
-    }, error => console.log(error))
-  }
+  // getPositions(): void {
+  //   this.positionService.getPositions()
+  //   .then(pos => {
+  //     this.positions = pos;
+  //   }, error => console.log(error))
+  // }
 
-  setTargetPosition(position): void {
-    // console.log(position);
-    this.positions.forEach(pos => {
-      if(position === pos.name) {
-        this.targetPosition = pos;
-        return;
-      }
-    });
-  }
+  // setTargetPosition(position): void {
+  //   // console.log(position);
+  //   this.positions.forEach(pos => {
+  //     if(position === pos.name) {
+  //       this.targetPosition = pos;
+  //       return;
+  //     }
+  //   });
+  // }
 
   onClear(): void {
     this.message = null;
@@ -69,10 +69,10 @@ export class BulletinFormComponent implements OnInit {
   onSubmit(event){
     event.preventDefault();
     this.message.user = this.currentUser;
-    if (this.targetPosition.id == 0) {
-      this.targetPosition = null;
-    }
-    this.message.position = this.targetPosition;
+    // if (this.targetPosition.id == 0) {
+    //   this.targetPosition = null;
+    // }
+    this.message.position = null;
     this.message.time = new Date();
     this.message.content = this.message.content.trim();
 
