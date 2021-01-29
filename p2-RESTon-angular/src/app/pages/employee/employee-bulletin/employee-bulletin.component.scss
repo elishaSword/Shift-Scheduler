@@ -1,12 +1,16 @@
 $default-color: rgba(0,0,0,1);
 
 .container {
-    border-width: 3px;
-    border-style: solid;
-    border-color: $default-color;
-    padding: 5px;
+    padding: 100px 0;
+    width: 98vw;
+    max-width: 800px;
 }
 
-h3 {
+h1 {
     text-align: center;
+}
+.bulletin-window {
+  margin-top: 20px;
+  max-height: 60vh;
+  overflow: auto;
 }

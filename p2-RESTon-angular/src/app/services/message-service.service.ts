@@ -42,9 +42,6 @@ export class MessageService {
     let sender: User = this.authService.loggedInUser.value;
     this.intervalValue.pipe(startWith(0))
     .subscribe(res => {
-      // console.log("sender",sender);
-      // console.log("reciever",this.reciever);
-
       this.messageApiService.getDirectMessages(sender, this.reciever).then(messages => {
         this.displayMessages.next(messages);
       });
