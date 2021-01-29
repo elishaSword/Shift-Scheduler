@@ -59,6 +59,10 @@ export class MessageApiService {
   public getDirectMessages(sender: User, receiver: User): Promise<Message[]>  {
     return new Promise((resolve, reject) => {
       this.api.get<Message[]>(`conversation?sender_id=${sender.id}&reciever_id=${receiver.id}`).pipe(take(1)).subscribe(res => {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 668ae6a931e9d8ecc0c4764aed09a4df98f922f5
         resolve(res);
       }, error => {
         reject("Error: " + error);

@@ -13,6 +13,7 @@ export class ApiService {
   private baseURL: string = environment.api;
 
   get<T>(endpoint: string, headers?): Observable<any>{
+
     if(!headers) {
       headers = {withCredentials: true}
     }

@@ -100,12 +100,12 @@ export class AuthService {
 
           this.setLoggedInUser(u, true);
         } else {
-          reject("Email/Password is incorrect")
+          return reject("Email/Password is incorrect")
         }
       })
       .catch(error => {
         console.log(error);
-        reject("There was a problem logging in");
+        reject("Email/Password is incorrect");
       })
     })
   }
