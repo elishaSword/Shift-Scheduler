@@ -12,6 +12,8 @@ export class LoginFormComponent implements OnInit {
 
   user: User = new User();
   error: string = '';
+  hide = true;
+
 
   constructor(private authService: AuthService) { }
 

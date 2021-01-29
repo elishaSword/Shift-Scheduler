@@ -39,11 +39,13 @@ import { ChatroomComponent } from 'src/app/shared/chatroom/chatroom.component';
 import { MessageRoomComponent } from 'src/app/pages/shared/message-room/message-room.component';
 import { MessagingComponent } from 'src/app/shared/messaging/messaging.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { LoginFormComponent } from 'src/app/login/login-form/login-form.component';
 
 
 @NgModule({
   declarations: [
     ProfileComponent,
+    LoginFormComponent,
     UserComponent,
     ScheduleCalanderComponent,
     RolesComponent,
@@ -86,7 +88,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatSelectModule,
     FormsModule,
     MatSnackBarModule
-
   ],
   exports: [
     ProfileComponent,
@@ -112,6 +113,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     ChatroomComponent,
     MessagingComponent,
     MessageRoomComponent,
+    LoginFormComponent
   ]
 })
 export class SharedComponentsModule { }

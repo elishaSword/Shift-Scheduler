@@ -8,7 +8,7 @@ import { SharedComponentsModule } from '../shared-components/shared-components.m
 import { LandingPageComponent } from 'src/app/pages/landing/landing-page/landing-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 
@@ -17,16 +17,16 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     LandingPageComponent,
     LoginPageComponent,
-    LoginFormComponent,
+    // LoginFormComponent,
   ],
   imports: [
     CommonModule,
+    MatFormFieldModule,
     LandingRoutingModule,
     SharedComponentsModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
   ]
 })
 export class LandingModule { }
