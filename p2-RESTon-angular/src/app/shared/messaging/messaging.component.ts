@@ -11,10 +11,10 @@ import { MessageService } from 'src/app/services/message-service.service';
   styleUrls: ['./messaging.component.scss']
 })
 export class MessagingComponent implements OnInit, OnChanges, OnDestroy {
-  
+
   @Input() user: User;
   myUser: User;
-  messages: Array<Message>;
+  messages: Array<Message> = [];
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
   watchMessages: BehaviorSubject<Message[]>;
@@ -25,7 +25,11 @@ export class MessagingComponent implements OnInit, OnChanges, OnDestroy {
     this.myUser = this.authService.loggedInUser.value;
     this.messageService.reciever = this.user;
     this.watchMessages = this.messageService.Messages;
-    this.watchMessages.subscribe(messages => this.messages = messages);
+    this.watchMessages.subscribe(messages => {
+      if (this.messages.length != messages.length || this.messages.length == 0) {
+        this.messages = messages
+      }
+    });
     this.scrollToBottom();
   }
 
@@ -33,9 +37,9 @@ export class MessagingComponent implements OnInit, OnChanges, OnDestroy {
     this.messageService.reciever = this.user;
     console.log(this.user);
   }
-  
-  ngAfterViewChecked() {        
-    this.scrollToBottom();        
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
   }
 
   ngOnDestroy(): void {
@@ -52,10 +56,10 @@ export class MessagingComponent implements OnInit, OnChanges, OnDestroy {
       })
     });
   }
-  
+
   scrollToBottom(): void {
     try {
         this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-    } catch(err) { }                 
+    } catch(err) { }
   }
 }
