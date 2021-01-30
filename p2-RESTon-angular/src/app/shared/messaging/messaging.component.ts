@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Message } from 'src/app/models/message';
 import { User } from 'src/app/models/user';
@@ -15,6 +15,7 @@ export class MessagingComponent implements OnInit, OnChanges, OnDestroy {
   @Input() user: User;
   myUser: User;
   messages: Array<Message>;
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
   watchMessages: BehaviorSubject<Message[]>;
 
@@ -25,11 +26,16 @@ export class MessagingComponent implements OnInit, OnChanges, OnDestroy {
     this.messageService.reciever = this.user;
     this.watchMessages = this.messageService.Messages;
     this.watchMessages.subscribe(messages => this.messages = messages);
+    this.scrollToBottom();
   }
 
   ngOnChanges(): void {
     this.messageService.reciever = this.user;
     console.log(this.user);
+  }
+  
+  ngAfterViewChecked() {        
+    this.scrollToBottom();        
   }
 
   ngOnDestroy(): void {
@@ -45,5 +51,11 @@ export class MessagingComponent implements OnInit, OnChanges, OnDestroy {
         }
       })
     });
+  }
+  
+  scrollToBottom(): void {
+    try {
+        this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch(err) { }                 
   }
 }

@@ -21,7 +21,7 @@ export class BulletinMessageComponent implements OnInit {
 
   formatDate(date: Date) {
 
-    return moment(date).format('DD/MM/YYYY hh:MM A');
+    return moment.utc(date).format('DD/MM/YYYY hh:MM A');
   }
 
 }
