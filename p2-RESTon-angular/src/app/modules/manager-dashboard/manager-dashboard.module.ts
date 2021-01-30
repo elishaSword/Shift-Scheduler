@@ -23,7 +23,6 @@ import { HttpClientModule } from '@angular/common/http';
     ManagerBulletinComponent,
     ManagerShoutFormComponent,
     ManagerWeeklyViewComponent,
-    RegisterFormComponent
   ],
   imports: [
     CommonModule,

@@ -40,6 +40,7 @@ import { MessageRoomComponent } from 'src/app/pages/shared/message-room/message-
 import { MessagingComponent } from 'src/app/shared/messaging/messaging.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { LoginFormComponent } from 'src/app/login/login-form/login-form.component';
+import { RegisterFormComponent } from 'src/app/pages/manager/register-form/register-form.component';
 
 
 @NgModule({
@@ -67,6 +68,7 @@ import { LoginFormComponent } from 'src/app/login/login-form/login-form.componen
     ChatroomComponent,
     MessagingComponent,
     MessageRoomComponent,
+    RegisterFormComponent
   ],
   imports: [
     CommonModule,
@@ -113,7 +115,8 @@ import { LoginFormComponent } from 'src/app/login/login-form/login-form.componen
     ChatroomComponent,
     MessagingComponent,
     MessageRoomComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    RegisterFormComponent
   ]
 })
 export class SharedComponentsModule { }

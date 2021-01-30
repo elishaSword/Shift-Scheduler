@@ -8,6 +8,7 @@
       <mat-divider></mat-divider>
       <a mat-list-item *ngIf="!user.isManager" [routerLink]="['/employee']" (click)="drawer.toggle()">Home</a>
       <a mat-list-item *ngIf="user.isManager" [routerLink]="['/manager']" (click)="drawer.toggle()">Home</a>
+      <a mat-list-item *ngIf="user.isManager" [routerLink]="['register']" (click)="drawer.toggle()">Register</a>
       <a mat-list-item routerLink="./weekly-view" (click)="drawer.toggle()">Schedule</a>
       <a mat-list-item routerLink="./profile" (click)="drawer.toggle()">Profile</a>
       <a mat-list-item routerLink="./chat" (click)="drawer.toggle()">DM's</a>
