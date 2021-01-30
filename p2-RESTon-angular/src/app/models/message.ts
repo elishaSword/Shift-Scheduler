@@ -1,9 +1,9 @@
+import { User } from './user';
 import { MessageInterface } from './../interfaces/message-interface';
 export class Message implements MessageInterface {
   id = 0;
-  sender = null;
+  sender: User = null;
   content = '';
   time = null;
-  reciever = null;
+  reciever: User = null;
 }
- 

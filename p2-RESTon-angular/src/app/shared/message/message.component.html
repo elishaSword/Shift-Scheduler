@@ -1,11 +1,8 @@
-<article class="media mine">
-    <div class="media-content">
-      <div class="content">
-        <p>
-          <strong>{{getName()}}</strong> @ <small>{{formatDate(message.time)}}</small>
-          <br>
-          {{message.content}}
-        </p>
-      </div>
-    </div>
-  </article>
+<div class="media" [ngClass]="{ 'mine': isMine() }">
+  <div class="message">
+    <p>
+      <strong>{{getName()}}</strong> @ <small>{{formatDate(message.time)}}</small>
+    </p>
+    {{message.content}}
+  </div>
+</div>
