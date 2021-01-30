@@ -1,13 +1,13 @@
 .schedule-wrapper {
-  width: 65%;
+  width: 90%;
   min-width: 1200px;
   margin: 0 auto;
   overflow: auto;
 }
 td,
 th {
-  min-width: 150px;
-  height: 25px;
+  min-width: 12em;
+  height: 2em;
 }
 
 #outter-table th {
@@ -16,12 +16,12 @@ th {
 
 .inner-table tr td {
   position: relative;
-  height: 25px;
+  height: 2em;
 }
 
 .shift {
   position: absolute;
-  height: 25px;
+  height: 10em;
   border-style: solid;
   border-radius: 5px;
   top: 0;
@@ -43,4 +43,9 @@ th {
   text-decoration: underline;
   text-underline-position: below;
   text-align: center;
+}
+
+.nav-btn-container {
+  display: flex;
+  justify-content: flex-end;
 }

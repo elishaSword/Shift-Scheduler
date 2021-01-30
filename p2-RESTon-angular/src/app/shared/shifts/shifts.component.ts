@@ -57,7 +57,7 @@ export class ShiftsComponent implements OnInit, AfterContentChecked {
   }
 
   calculateIncrement(startTime: number): number {
-    return (startTime/60)*100;
+    return (startTime/60)*25;
   }
 
   initialize(): void {
@@ -65,7 +65,7 @@ export class ShiftsComponent implements OnInit, AfterContentChecked {
     this.startTime = new Date(this.shift.shiftStartTime).getHours();
     this.endTime =  new Date(this.shift.shiftEndTime).getHours();
     this.testTime = (this.endTime) - (this.startTime);
-    this.color = 'aqua';
+    // this.color = 'aqua';
     this.increment = this.calculateIncrement(new Date(this.shift.shiftStartTime).getMinutes());
     this.width = this.calculateWidth(this.testTime);
 

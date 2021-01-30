@@ -1,39 +1,44 @@
-<ng-container>
-  <p>{{dateFormatter(schedule.startDate)}}</p>
-  <div class="container calendar-container">
-      <tr id="outter-table">
-        <th></th>
-        <th>6:00 am</th>
-        <th>7:00 am</th>
-        <th>8:00 am</th>
-        <th>9:00 am</th>
-        <th>10:00 am</th>
-        <th>11:00 am</th>
-        <th>12:00 pm</th>
-        <th>1:00 pm</th>
-        <th>2:00 pm</th>
-        <th>3:00 pm</th>
-        <th>4:00 pm</th>
-        <th>5:00 pm</th>
-        <th>6:00 pm</th>
-        <th>7:00 pm</th>
-        <th>9:00 pm</th>
-        <th>10:00 pm</th>
-        <th>11:00 pm</th>
-        <th>12:00 am</th>
-        <th>1:00 am</th>
-        <th>2:00 am</th>
-        <th>3:00 am</th>
-        <th>4:00 am</th>
-        <th>5:00 am</th>
-      </tr>
-      <ng-container *ngIf="schedule.shifts.length">
-          <tr *ngFor="let shifts of parsedShifts | keyvalue">
-            <td>{{shifts.key}}</td>
-            <td colspan="24">
-              <rev-shifts [allShifts]="allShifts" [shift]="s" *ngFor="let s of shifts.value" [currentSchedule]='schedule'></rev-shifts>
-            </td>
-          </tr>
-      </ng-container>
-  </div>
-</ng-container>
+<div class="wrapper">
+  <ng-container>
+    <div class="current-day-container">
+      <p class="current-day">{{dateFormatter(schedule.startDate)}}</p>
+    </div>
+    <div class="calendar-container">
+        <tr id="outter-table">
+          <th></th>
+          <th class="table-header">6:00 am</th>
+          <th class="table-header">7:00 am</th>
+          <th class="table-header">8:00 am</th>
+          <th class="table-header">9:00 am</th>
+          <th class="table-header">10:00 am</th>
+          <th class="table-header">11:00 am</th>
+          <th class="table-header">12:00 pm</th>
+          <th class="table-header">1:00 pm</th>
+          <th class="table-header">2:00 pm</th>
+          <th class="table-header">3:00 pm</th>
+          <th class="table-header">4:00 pm</th>
+          <th class="table-header">5:00 pm</th>
+          <th class="table-header">6:00 pm</th>
+          <th class="table-header">7:00 pm</th>
+          <th class="table-header">9:00 pm</th>
+          <th class="table-header">10:00 pm</th>
+          <th class="table-header">11:00 pm</th>
+          <th class="table-header">12:00 am</th>
+          <th class="table-header">1:00 am</th>
+          <th class="table-header">2:00 am</th>
+          <th class="table-header">3:00 am</th>
+          <th class="table-header">4:00 am</th>
+          <th class="table-header">5:00 am</th>
+        </tr>
+        <ng-container *ngIf="schedule.shifts.length">
+            <tr *ngFor="let shifts of parsedShifts | keyvalue">
+              <td class="role-names">{{shifts.key}}</td>
+              <td colspan="24">
+                <rev-shifts [allShifts]="allShifts" [shift]="s" *ngFor="let s of shifts.value" [currentSchedule]='schedule'></rev-shifts>
+              </td>
+              <hr>
+            </tr>
+        </ng-container>
+    </div>
+  </ng-container>
+</div>

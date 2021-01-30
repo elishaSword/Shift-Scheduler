@@ -6,7 +6,7 @@
       <button class="tag is-success shift-button" (click)="viewModals(shift)">View Shift</button>
     </div>
     <div *ngIf="scheduleCheck(shift, employee.availability, i) == 'Off'">
-      <button class="tag is-primary is-light shift-button" [disabled]='true'>View Shift</button>
+      <p class="tag is-light shift-button"> Available </p>
 
     </div>
     <div *ngIf="scheduleCheck(shift, employee.availability, i) == 'Not Scheduled'">

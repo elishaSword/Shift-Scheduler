@@ -18,9 +18,7 @@ export class DateService {
     if(days) {
       date = this.addDays(date, days)
     }
-    // console.log(moment(date).toDate());
     let newDate = this.dateDiff(moment(date).toDate());
-    // console.log(newDate);
     let dateString: string = `
       ${newDate.getMonth() + 1}/${newDate.getDate()}/${newDate.getFullYear()}
     `

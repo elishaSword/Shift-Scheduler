@@ -40,7 +40,6 @@ export class WeeklyScheduleCalendarComponent implements OnInit {
   }
 
   dateFormatter(date: Date, days?: number) {
-    // console.log(moment(date).toDate());
     return this.dateService.dateFormatter(date, days);
   }
 
