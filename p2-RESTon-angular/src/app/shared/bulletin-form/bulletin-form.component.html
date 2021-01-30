@@ -3,16 +3,16 @@
         <p class="control" >
             <label class="label"> Sender:</label> <em>{{currentUser.firstName}} {{currentUser.lastName}}</em>
         </p>
-        <div class="field">
+        <!-- <div class="field">
             <p class="control">
             <label class="label"> Receiver: </label>
             <div class="select">
                 <select (change)="setTargetPosition($event.target.value)">
-                    <option value = "0">All</option>
+                    <option [value]="null">All</option>
                     <option *ngFor="let position of positions" [ngValue]="position">{{position.name}}</option>
                 </select>
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="field">
         <div class="control">

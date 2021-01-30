@@ -1,4 +1,7 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { EmployeeScheduleViewComponent } from './employee-schedule-view.component';
 
@@ -8,7 +11,8 @@ describe('EmployeeScheduleViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EmployeeScheduleViewComponent ]
+      declarations: [ EmployeeScheduleViewComponent ],
+      imports: [ RouterTestingModule, HttpClientTestingModule, FormsModule]
     })
     .compileComponents();
   });

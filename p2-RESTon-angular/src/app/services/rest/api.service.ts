@@ -13,6 +13,7 @@ export class ApiService {
   private baseURL: string = environment.api;
 
   get<T>(endpoint: string, headers?): Observable<any>{
+
     if(!headers) {
       headers = {withCredentials: true}
     }
@@ -20,8 +21,6 @@ export class ApiService {
   }
 
   post<T>(endpoint:string, body: any, headers?): Observable<any>{
-    console.log('we are posting', this.baseURL+endpoint, body);
-
     if(!headers) {
       headers = {withCredentials: true}
     }

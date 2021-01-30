@@ -29,15 +29,18 @@ export class PositionService {
 
   constructor(private positionApiService: PositionApiService) { }
 
-  getPositions(): BehaviorSubject<Position[]> {
-    this.positionApiService.get()
-    .then(res => {
-      this.positions.next(res);
+  getPositions(): Promise<Position[]> {
+    return new Promise((resolve, reject) => {
+
+      this.positionApiService.get()
+      .then(res => {
+        resolve(res);
+      })
+      .catch(err => {
+        console.log(err);
+        reject('There was an error getting positions');
+      })
     })
-    .catch(err => {
-      console.log(err);
-    })
-    return this.positions;
   }
 
 }

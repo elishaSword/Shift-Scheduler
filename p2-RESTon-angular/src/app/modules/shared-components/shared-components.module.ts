@@ -35,13 +35,18 @@ import { AvailabilityComponent } from 'src/app/pages/user/availability/availabil
 import {MatSelectModule} from '@angular/material/select';
 import { MessageFormComponent } from 'src/app/shared/message-form/message-form.component';
 import { BulletinFormComponent } from 'src/app/shared/bulletin-form/bulletin-form.component';
+import { ChatroomComponent } from 'src/app/shared/chatroom/chatroom.component';
+import { MessageRoomComponent } from 'src/app/pages/shared/message-room/message-room.component';
+import { MessagingComponent } from 'src/app/shared/messaging/messaging.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-
+import { LoginFormComponent } from 'src/app/login/login-form/login-form.component';
+import { RegisterFormComponent } from 'src/app/pages/manager/register-form/register-form.component';
 
 
 @NgModule({
   declarations: [
     ProfileComponent,
+    LoginFormComponent,
     UserComponent,
     ScheduleCalanderComponent,
     RolesComponent,
@@ -60,6 +65,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     BulletinFormComponent,
     AvailabilityComponent,
     MessageFormComponent,
+    ChatroomComponent,
+    MessagingComponent,
+    MessageRoomComponent,
+    RegisterFormComponent
   ],
   imports: [
     CommonModule,
@@ -76,13 +85,11 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatCardModule,
     MatMenuModule,
     MatInputModule,
-    ReactiveFormsModule ,
+    ReactiveFormsModule,
     MatProgressSpinnerModule,
     MatSelectModule,
     FormsModule,
-    FormsModule,
     MatSnackBarModule
-
   ],
   exports: [
     ProfileComponent,
@@ -105,6 +112,11 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     BulletinFormComponent,
     AvailabilityComponent,
     MessageFormComponent,
+    ChatroomComponent,
+    MessagingComponent,
+    MessageRoomComponent,
+    LoginFormComponent,
+    RegisterFormComponent
   ]
 })
 export class SharedComponentsModule { }

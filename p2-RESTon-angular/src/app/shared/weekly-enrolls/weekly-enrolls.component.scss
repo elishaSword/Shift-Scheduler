@@ -1,6 +1,6 @@
 td,
 th {
-  min-width: 150px;
+  min-width: 12em;
   height: 25px;
 }
 
@@ -24,4 +24,21 @@ th {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.schedule-row {
+  padding-top: 2em;
+}
+
+.shift-button {
+  padding-right: 13px;
+  padding-left: 13px;
+}
+
+.is-success:hover {
+  cursor: pointer;
+}
+
+.is-primary:disabled {
+  cursor: no-drop;
 }

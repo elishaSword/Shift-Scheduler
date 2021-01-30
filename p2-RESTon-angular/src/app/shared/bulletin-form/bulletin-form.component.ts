@@ -17,27 +17,7 @@ import { ConstantPool } from '@angular/compiler';
 export class BulletinFormComponent implements OnInit {
   message: BulletinMessage = new BulletinMessage();
   @Input() positions: Array<Position>;
-  currentUser: User = JSON.parse(atob(localStorage.getItem("user")));
-  /*{
-    id: 4,
-    firstName: 'Bobby',
-    lastName: 'McApple',
-    email: 'mcApple@mail.com',
-    password: null,
-    isManager: false,
-    phone: 15,
-    availability: {
-      id: 1,
-      user: null,
-      monday: true,
-      tuesday: true,
-      wednesday: true,
-      thursday: true,
-      friday: true,
-      saturday: true,
-      sunday: true
-    }
-  };*/
+  currentUser: User;
 
   targetPosition: Position = new Position();
   error: string;
@@ -47,8 +27,9 @@ export class BulletinFormComponent implements OnInit {
   constructor(private fb: FormBuilder, private bulletinService: BulletinServiceService, private positionService: PositionService, private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.currentUser = this.authService.loggedInUser.value;
     this.getUser();
-    this.getPositions();
+    // this.getPositions();
     this.targetPosition.name = 'All';
     this.myForm = this.fb.group({
       positionName: ['', [
@@ -60,35 +41,26 @@ export class BulletinFormComponent implements OnInit {
     });
   }
 
-  // postMessage(): void {
-  //   // this.messageService.createMessage(this.message).subscribe();
-  //   this.messageService.postMessage(this.message)
-  //     .then(message => console.log(message))
-  //     .catch(message => console.log(message));
-  // }
-
 
   getUser(): void {
-    // this.authService.loggedInUser.subscribe(user => this.currentUser = user);
   }
 
-  getPositions(): void {
-    this.positionService.getPositions()
-    .subscribe(pos => {
-      this.positions = pos;
-      // console.log(this.positions[0]);
-    }, error => console.log(error))
-  }
+  // getPositions(): void {
+  //   this.positionService.getPositions()
+  //   .then(pos => {
+  //     this.positions = pos;
+  //   }, error => console.log(error))
+  // }
 
-  setTargetPosition(position): void {
-    // console.log(position);
-    this.positions.forEach(pos => {
-      if(position === pos.name) {
-        this.targetPosition = pos;
-        return;
-      }
-    });
-  }
+  // setTargetPosition(position): void {
+  //   // console.log(position);
+  //   this.positions.forEach(pos => {
+  //     if(position === pos.name) {
+  //       this.targetPosition = pos;
+  //       return;
+  //     }
+  //   });
+  // }
 
   onClear(): void {
     this.message = null;
@@ -97,19 +69,22 @@ export class BulletinFormComponent implements OnInit {
   onSubmit(event){
     event.preventDefault();
     this.message.user = this.currentUser;
-    this.message.position = this.targetPosition;
-    console.log(this.targetPosition);
-    console.log(this.message);
+    // if (this.targetPosition.id == 0) {
+    //   this.targetPosition = null;
+    // }
+    this.message.position = null;
+    this.message.time = new Date();
+    this.message.content = this.message.content.trim();
 
-
-    // console.log("submitted");
     this.bulletinService.postBulletinMessage(this.message)
     .then(message => {
       console.log(message);
+      this.message = new BulletinMessage();
     }).catch(
       errorMessage => {
         console.log(errorMessage);
         this.error = errorMessage;
+        this.message = new BulletinMessage();
       }
     );
   }

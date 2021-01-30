@@ -15,6 +15,17 @@ export class ScheduleApiService {
       this.api.get<Schedule[]>(`all-schedules`).pipe(take(1)).subscribe(res => {
         resolve(res);
       }, error => {
+        console.log(error);
+
+        reject("Error: " + error);
+      })
+    })
+  }
+  public getAllActive(): Promise<Schedule[]> {
+    return new Promise((resolve, reject) => {
+      this.api.get<Schedule[]>(`all-active-schedules`).pipe(take(1)).subscribe(res => {
+        resolve(res);
+      }, error => {
         reject("Error: " + error);
       })
     })

@@ -54,10 +54,8 @@ export class AuthService {
   public setLoggedInUser(user: User, overrideNavigate?: boolean) {
     localStorage.setItem("user", btoa(JSON.stringify(user)));
     this.loggedInUser.next(user);
-    console.log(overrideNavigate);
     if (overrideNavigate){
       let navigateTo = 'employee';
-      console.log("navigating")
       if (user.isManager) {
         navigateTo = 'manager';
       }
@@ -98,14 +96,16 @@ export class AuthService {
       .then(u => {
         if(u.password == user.password) {
           resolve("Successfully logged in!");
-          this.setLoggedInUser(u);
+          console.log(u);
+
+          this.setLoggedInUser(u, true);
         } else {
-          reject("Email/Password is incorrect")
+          return reject("Email/Password is incorrect")
         }
       })
       .catch(error => {
         console.log(error);
-        reject("There was a problem logging in");
+        reject("Email/Password is incorrect");
       })
     })
   }
@@ -150,7 +150,7 @@ export class AuthService {
         let availability = new Availability();
         availability.id = 50;
 
-        this.setLoggedInUser(user);
+        this.setLoggedInUser(user, false);
         return resolve("Successfully created your Account!");
       }
       if(!this.apiSetup && !this.isSuccess) {

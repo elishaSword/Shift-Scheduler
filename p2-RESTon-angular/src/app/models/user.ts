@@ -10,5 +10,6 @@ export class User implements UserInterface {
   isManager = null;
   phone = 0;
   availability: Availability = null;
-  constructor() {}
+  constructor() {
+  }
 }

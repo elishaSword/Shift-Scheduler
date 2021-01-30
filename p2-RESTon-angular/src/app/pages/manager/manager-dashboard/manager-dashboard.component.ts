@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Schedule } from 'src/app/models/schedule';
 import { ScheduleService } from 'src/app/services/schedule.service';
 @Component({
@@ -6,20 +7,25 @@ import { ScheduleService } from 'src/app/services/schedule.service';
   templateUrl: './manager-dashboard.component.html',
   styleUrls: ['./manager-dashboard.component.scss']
 })
-export class ManagerDashboardComponent implements OnInit {
+export class ManagerDashboardComponent implements OnInit, OnDestroy {
 
   schedules: Schedule[] = [];
-  viewModal:string = "";
+  viewModal: string = "";
+  scheduleBehavior: BehaviorSubject<Schedule[]>;
 
   constructor(
     private scheduleService: ScheduleService
     ) { }
 
   ngOnInit(): void {
-    this.scheduleService.getSchedules().subscribe(schedules => {
+    this.scheduleBehavior = this.scheduleService.getSchedules();
+    this.scheduleBehavior.subscribe(schedules => {
       this.schedules = schedules;
-      // this.currentSchedule = schedules[this.currentScheduleIndex];
     })
+  }
+
+  ngOnDestroy(): void {
+    this.scheduleBehavior.unsubscribe();
   }
 
   viewModals(modal: string): void{

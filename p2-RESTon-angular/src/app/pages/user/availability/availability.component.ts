@@ -26,13 +26,19 @@ export class AvailabilityComponent implements OnInit{
   constructor(private authService: AuthService, private fb: FormBuilder, private userApiService: UserApiService, private _snackBar: MatSnackBar) {}
 
   ngOnInit(){
+    this.authService.loggedInUser.subscribe(value => {
+      console.log("this is the subscribed value within the availability component: ", value);
+    });
     this.user = this.authService.loggedInUser.value;
     this.avail = this.authService.loggedInUser.value.availability;
+    console.log("we are checking out the user inside oninit " , this.user)
     
-    delete this.avail.id;
-    delete this.avail.user;
-    console.log(this.avail)
+    // delete this.avail.id;
+    // delete this.avail.user;
     Object.keys(this.avail).forEach(key => {
+      if(key == "id"){
+        return
+      }
       this.days.push(key);
     })
     

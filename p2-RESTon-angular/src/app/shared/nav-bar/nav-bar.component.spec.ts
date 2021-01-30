@@ -8,6 +8,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { NavBarComponent } from './nav-bar.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 
 describe('NavBarComponent', () => {
   let component: NavBarComponent;
@@ -24,12 +29,20 @@ describe('NavBarComponent', () => {
         MatListModule,
         MatSidenavModule,
         MatToolbarModule,
+        MatSnackBarModule,
+        RouterTestingModule, 
+        HttpClientTestingModule, 
+        FormsModule, 
+        ReactiveFormsModule
       ]
     }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NavBarComponent);
+    TestBed.resetTestEnvironment();
+    TestBed.initTestEnvironment(BrowserDynamicTestingModule,
+       platformBrowserDynamicTesting());
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -101,7 +101,7 @@ export class UserService {
     return new Promise((resolve, reject) =>{
 
       this.userApiService.put(user)
-      .then(res => { 
+      .then(res => {
         resolve(res);
         this.authSerivce.setLoggedInUser(res, false);
       })
@@ -114,14 +114,6 @@ export class UserService {
 
   getAllEmployees(): Promise<User[]> {
     return new Promise((resolve, reject) => {
-
-      // if(!this.apiWorking) {
-      //   return resolve(this.users.value);
-      // }
-
-      // if(this.users.value.length) {
-      //   resolve(this.users.value);
-      // }
 
       this.userApiService.get()
       .then(res => {

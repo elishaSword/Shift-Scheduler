@@ -2,45 +2,102 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Message } from '../models/message';
 import { BulletinMessage } from '../models/bulletin-message';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { BehaviorSubject, interval, Observable, of } from 'rxjs';
+import { catchError, map, startWith, switchMap, tap } from 'rxjs/operators';
 import { MessageApiService } from './rest/message-api.service';
+import { User } from '../models/user';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
 
-  apiWorking: boolean = false;
+  apiWorking: boolean = true;
 
   bulletinUrl: string = "";
   messagesBankUrl: string = "";
 
+  isPolling: boolean = false;
+  intervalValue: Observable<any> = interval(500);
+
   dummyBulletin: Array<Message> = [];
 
   messages: BehaviorSubject<Message []> = new BehaviorSubject<Message[]>(this.dummyBulletin);
+  private displayMessages: BehaviorSubject<Message[]> = new BehaviorSubject<Message[]>([]);
 
-  constructor(private http: HttpClient, private messageApiService: MessageApiService) { }
+  reciever: User;
+  lastReciever: User;
 
-  // getBulletinMessage(): BulletinMessage {
-  //   // let bMessage: BehaviorSubject<BulletinMessage> = this.http.get<BulletinMessage[]>(this.bulletinUrl).pipe(tap(_ => this.handleError<BulletinMessage>('getBulletinMessage')));
-  //   // if(bMessage == null) {
-  //   //   bMessage = of(this.dummyBulletin);
-  //   // } 
-  //   // return bMessage;
-  //   return null;
-  // }
+  constructor(private http: HttpClient, private messageApiService: MessageApiService, private authService: AuthService) { }
 
-  // getBulletinMessages(): BehaviorSubject<BulletinMessage[]> {
-  //   return null;
-  // }
+  get Messages(): BehaviorSubject<Message[]> {
+    this.pollMessages();
+    return this.displayMessages;
+  }
 
-  getMessages(): BehaviorSubject<Message[]> {
-    
-    return null;
+  pollMessages(): void {
+    // if(this.isPolling) {
+    // }
+    let sender: User = this.authService.loggedInUser.value;
+    this.intervalValue.pipe(startWith(0))
+    .subscribe(res => {
+      this.messageApiService.getDirectMessages(sender, this.reciever).then(messages => {
+        this.displayMessages.next(messages);
+      });
+    }, error => {
+      console.log(error);
+    })
+    this.isPolling = true;
+  }
+
+
+
+  getMessages(): Promise<String> {
+    return new Promise((resolve, reject) => {
+      if(!this.apiWorking){
+        return resolve('Messages retrieved successfully.');
+      }
+
+      this.messageApiService.get()
+      .then(res => {
+        res.forEach(message => {
+          this.addMessage(message);
+        })
+        resolve('Message posted.');
+      })
+      .catch(error => {
+        console.log(error);
+
+        reject('There was an error posting your message');
+      })
+    })
+  }
+
+  getMessagesBySender(user: User): Promise<String> {
+    return new Promise((resolve, reject) => {
+      if(!this.apiWorking){
+        return resolve('Messages retrieved successfully.');
+      }
+
+      this.messageApiService.getBySenderId(user)
+      .then(res => {
+        res.forEach(message => {
+          this.addMessage(message);
+        })
+        resolve('Message posted.');
+      })
+      .catch(error => {
+        console.log(error);
+
+        reject('There was an error posting your message');
+      })
+    })
   }
 
   postMessage(message: Message): Promise<String> {
+    // console.log(message);
+    message.time = new Date();
     return new Promise((resolve, reject) => {
       if(message.content.length == 0) {
         return reject("Message is Empty");
@@ -52,7 +109,7 @@ export class MessageService {
 
       this.messageApiService.post(message)
       .then(res => {
-        this.addMessage(message);
+        // this.addMessage(message);
         resolve('Message posted.');
       })
       .catch(error => {

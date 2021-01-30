@@ -8,6 +8,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 
 import { ProfileComponent } from './profile.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormsModule } from '@angular/forms';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
@@ -24,6 +27,7 @@ describe('ProfileComponent', () => {
         MatGridListModule,
         MatIconModule,
         MatMenuModule,
+        RouterTestingModule, HttpClientTestingModule, FormsModule
       ]
     }).compileComponents();
   }));

@@ -9,75 +9,30 @@ import { startWith, switchMap } from 'rxjs/operators';
 })
 export class BulletinServiceService {
 
-  apiWorking: boolean = false;
+  apiWorking: boolean = true;
 
-  bulletinMessages: BehaviorSubject<BulletinMessage[]> = new BehaviorSubject<BulletinMessage[]>([
-    {
-      id: 0,
-      user: {
-        id: 4,
-        firstName: 'Calvin',
-        lastName: 'Mak',
-        email: 'calvin@mail.com',
-        password: null,
-        isManager: false,
-        phone: 15,
-        availability: {
-          id: 1,
-          user: null,
-          monday: true,
-          tuesday: true,
-          wednesday: true,
-          thursday: true,
-          friday: true,
-          saturday: true,
-          sunday: true
-        }
-      },
-      content: 'test',
-      time: 637,
-      position: null,
-    },
-    {
-      id: 1,
-      user: {
-        id: 4,
-        firstName: 'Calvin',
-        lastName: 'Mak',
-        email: 'calvin@mail.com',
-        password: null,
-        isManager: false,
-        phone: 15,
-        availability: {
-          id: 1,
-          user: null,
-          monday: true,
-          tuesday: true,
-          wednesday: true,
-          thursday: true,
-          friday: true,
-          saturday: true,
-          sunday: true
-        }
-      },
-      content: 'test2',
-      time: 640,
-      position: null,
-    }
-  ]);
+  private bulletinMessages: BehaviorSubject<BulletinMessage[]> = new BehaviorSubject<BulletinMessage[]>([]);
 
   isPolling: boolean = false;
 
   constructor(private bulletinMessageApiService: BulletinMessageApiService) { }
 
+  get BulletinMessages(): BehaviorSubject<BulletinMessage[]> {
+    this.polebulletinMessages();
+    return this.bulletinMessages;
+  }
+
   polebulletinMessages(): void {
-    // Not sure about this working yet. We need the api to be working to get this to work
+    if(this.isPolling) {
+      return;
+    }
     interval(500).pipe(startWith(0), switchMap(() => this.bulletinMessageApiService.get()))
     .subscribe(res => {
-      console.log(res);
+      this.bulletinMessages.next(res);
     }, error => {
       console.log(error);
     })
+    this.isPolling = true;
   }
 
   populateBulletinMessages(): Promise<string> {
@@ -99,7 +54,7 @@ export class BulletinServiceService {
     })
   }
 
-  
+
 
   postBulletinMessage(message: BulletinMessage): Promise<string> {
     return new Promise((resolve, reject) => {

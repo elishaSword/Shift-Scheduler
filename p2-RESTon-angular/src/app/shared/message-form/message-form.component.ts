@@ -12,77 +12,40 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class MessageFormComponent implements OnInit {
   message: Message = new Message();
-  @Input() users: Array<User>;
-  currentUser: User =  JSON.parse(atob(localStorage.getItem("user")));
-  // {
-  //   id: 4,
-  //   firstName: 'Bobby',
-  //   lastName: 'McApple',
-  //   email: 'mcApple@mail.com',
-  //   password: null,
-  //   isManager: false,
-  //   phone: 15,
-  //   availability: {
-  //     id: 1,
-  //     user: null,
-  //     monday: true,
-  //     tuesday: true,
-  //     wednesday: true,
-  //     thursday: true,
-  //     friday: true,
-  //     saturday: true,
-  //     sunday: true
-  //   }
-  // };
-  targetUser: User;
+  // @Input() users: Array<User>;
+  currentUser: User;
+
+  @Input() receiver: User;
   error: string;
 
   constructor(private messageService: MessageService, private userService: UserService, private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.currentUser = this.authService.loggedInUser.value;
     this.getUser();
   } 
-  
-  // postMessage(): void {
-  //   // this.messageService.createMessage(this.message).subscribe();
-  //   this.messageService.postMessage(this.message)
-  //     .then(message => console.log(message))
-  //     .catch(message => console.log(message));
-  // }
-
 
   getUser(): void {
-    // this.authService.loggedInUser.subscribe(user => this.currentUser = user);
-  }
-
-  getUsers(): void {
-    this.userService.getAllEmployees()
-    .then(users => this.users = users).catch();
-  }
-
-  setTargetUser(user): void {
-    this.users.forEach(theUser => {
-      if(user === (theUser.firstName + ' ' + theUser.lastName)) {
-        this.targetUser = user;
-        return;
-      }
-    });
+    this.authService.loggedInUser.subscribe(user => this.currentUser = user);
   }
 
   onClear(): void {
-    this.message = null;
+    this.message = new Message();
   }
 
   onSubmit(event){
     event.preventDefault();
     this.message.sender = this.currentUser;
-    this.message.receiver = this.targetUser;
-    console.log(this.message);
+    this.message.reciever = this.receiver;
+    // console.log(this.currentUser);
+    // console.log(this.receiver);
+    // console.log(this.message);
 
     console.log("submitted");
     this.messageService.postMessage(this.message)
     .then(message => {
       console.log(message);
+      this.message = new Message();
     }).catch(
       errorMessage => {
         console.log(errorMessage);

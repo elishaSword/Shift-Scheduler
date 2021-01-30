@@ -1,5 +1,6 @@
 .grid-container {
   margin: 20px;
+  
 }
 
 .dashboard-card {
@@ -12,11 +13,13 @@
 
 .dashboard-card-content {
   text-align: center;
+  
 }
 
 .mat-card {
   box-shadow: 2px 3px 10px 5px rgba(129, 129, 129, 0.75);
   transform: scale(1);
+  
 }
 
 .mat-card:hover {
@@ -31,3 +34,6 @@
   width: 100%;
 }
 
+.tile-one{
+  overflow-y: auto;
+}

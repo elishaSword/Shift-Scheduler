@@ -1,4 +1,7 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { WeeklyEnrollsComponent } from './weekly-enrolls.component';
 
@@ -8,7 +11,8 @@ describe('WeeklyEnrollsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WeeklyEnrollsComponent ]
+      declarations: [ WeeklyEnrollsComponent ],
+      imports: [ RouterTestingModule, HttpClientTestingModule, FormsModule, ReactiveFormsModule]
     })
     .compileComponents();
   });
