@@ -13,9 +13,7 @@ import { EmailValidationService } from 'src/app/services/email-validation.servic
 export class RegisterFormComponent implements OnInit {
 
   myForm: FormGroup;
-
   user: User = new User();
-
   validEmail: boolean = false;
 
   constructor(private fb: FormBuilder, private authService: AuthService, private mailboxService: EmailValidationService) { }
@@ -51,7 +49,7 @@ export class RegisterFormComponent implements OnInit {
       phone:[null, [
         Validators.required,
         Validators.minLength(10),
-        Validators.maxLength(10)
+        Validators.maxLength(11)
       ]],
     }, {
       validators: this.passwordMatchValidator("password", "confirmPassword")
@@ -99,17 +97,18 @@ export class RegisterFormComponent implements OnInit {
       if(this.validEmail){
         console.log(this.validEmail + 'inside the if')
         console.log(this.user.email);
-        // this.authService.register(this.user)
-        // .then(response => {
-        //   console.log(response);
-        // }).catch(
-        //   errorMessage => {
-        //     console.log(errorMessage);
-        //     // this.error = errorMessage;
-        //   }
-        // )
+        this.authService.register(this.user)
+        .then(response => {
+          console.log(response);
+          return this.validEmail = false;
+        }).catch(
+          errorMessage => {
+            console.log(errorMessage);
+            // this.error = errorMessage;
+            return this.validEmail = true;
+          }
+        )
         
-        return this.validEmail = false;
       } else{
         console.log("failed creating user due to invalid email");
         return this.validEmail = true;
@@ -123,6 +122,7 @@ export class RegisterFormComponent implements OnInit {
 
 
   }
+
 
   get email(){
     return this.myForm.get('email');
