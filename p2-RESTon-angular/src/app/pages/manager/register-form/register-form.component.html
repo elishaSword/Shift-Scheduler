@@ -1,59 +1,53 @@
 <div class="form-container">
-
-<form [formGroup] = "myForm" (ngSubmit) = "onSubmit(myForm)">
+    
+    <h1>---—— New Employee ——---</h1>
+    <form [formGroup] = "myForm" (ngSubmit) = "onSubmit(myForm)" class="example-form">
+        
+    <div >
 
     <div class = "box">
-
-    <div>
-        <mat-form-field appearance="outline">
-            <mat-label>First Name</mat-label>
-            <input matInput placeHolder="first name" formControlName = "firstName" required>
-            <mat-error *ngIf = "firstName.errors?.required && firstName.touched">
-                This field is required
-            </mat-error>
-        </mat-form-field>
+        
+        <div *ngIf = "error" class="help is-danger"> {{ error }}</div>
+        <div *ngIf = "validEmail" class="help is-danger">
+            Submitted E-mail doesn't exist
+        </div>
 
 
-        <mat-form-field appearance="outline">
-            <mat-label>Last Name</mat-label>
-            <input matInput placeHolder = "last name" formControlName = "lastName" required>
-            <mat-error *ngIf = "lastName.errors?.required && lastName.touched">
-                This field is required
-            </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="example-full-width">
             <mat-label>Email</mat-label>
             <div >
-                <input matInput placeHolder = "email" formControlName = "email" required>
+                <input matInput placeHolder = "email" formControlName = "email" required placeholder="useremail@mail.com">
             </div>
-            <mat-error *ngIf = "email.invalid && email.touched">
+            <mat-error *ngIf = "email.invalid && email.dirty">
                 Invalid E-mail format
             </mat-error>
             <mat-error *ngIf = "email.errors?.required && email.touched">
                 This field is required
             </mat-error>
-            <mat-hint *ngIf = "validEmail">
-                Submitted E-mail doesn't exist
-            </mat-hint>
+
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
-            <mat-label>Phone Number</mat-label>
-            <input matInput placeHolder = "phone" formControlName = "phone" required maxlength="10">
-            <mat-error *ngIf = "phone.errors?.required && phone.touched">
+        <table class="example-full-width" cellspacing="0"><tr>
+        <td><mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput placeHolder="first name" formControlName = "firstName" required placeholder="Ellen">
+            <mat-error *ngIf = "firstName.errors?.required && firstName.touched">
                 This field is required
             </mat-error>
-            <mat-error *ngIf = "phone.errors?.maxlength && phone.touched">
-                Too Long!
-            </mat-error>
-            <mat-error *ngIf = "phone.errors?.minlength && phone.touched">
-                Too Short!
-            </mat-error>
-        </mat-form-field> 
+        </mat-form-field></td>
 
 
-        <mat-form-field appearance="outline">
+        <td><mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput placeHolder = "last name" formControlName = "lastName" required placeholder="Smith">
+            <mat-error *ngIf = "lastName.errors?.required && lastName.touched">
+                This field is required
+            </mat-error>
+        </mat-form-field></td>
+        </tr></table> 
+
+
+        <mat-form-field appearance="outline" class="example-full-width">
             <mat-label>Password</mat-label>
             <input matInput placeHolder = "password" formControlName = "password"   type = "password" required>
             <mat-error *ngIf = "password.errors?.required && password.touched">
@@ -62,7 +56,7 @@
         </mat-form-field>
 
 
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="example-full-width">
             <mat-label>Confirm Password</mat-label>
             <input 
                 matInput
@@ -78,10 +72,29 @@
                 This field is required
             </mat-error>
         </mat-form-field>
+
+
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Phone Number</mat-label>
+            <input matInput type="tel" placeHolder = "phone" formControlName = "phone" required maxlength="10" placeholder="555-555-1234">
+            <mat-error *ngIf = "phone.errors?.required && phone.touched">
+                This field is required
+            </mat-error>
+            <mat-error *ngIf = "phone.errors?.maxlength && phone.touched">
+                Too Long!
+            </mat-error>
+            <mat-error *ngIf = "phone.errors?.minlength && phone.touched">
+                Too Short!
+            </mat-error>
+        </mat-form-field> 
+
+        
         
         <div>
-            <button type = "submit" [disabled] = "myForm.invalid" class = "button is-link">Submit</button>
+            <button *ngIf="!pending" type = "submit" [disabled] = "myForm.invalid" class = "button is-success">Register Now</button>
         </div>
+        <button *ngIf="pending" class="button is-success is-loading"></button>
+
     </div>
 </div>
 
