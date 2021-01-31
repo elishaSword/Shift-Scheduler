@@ -1,7 +1,7 @@
 <!-- ----------------- START OF SHIFT COMPONENTS ----------------- -->
 <td class="inner-table">
     <tr>
-      <td *ngFor="let n of num">
+      <td class="shift-grid" *ngFor="let n of num">
         <span class="shift" [ngStyle]="shiftObject" *ngIf="currentShiftStart.getUTCHours() == n" (click)="viewModals(true)">{{shift.user.firstName}} {{shift.user.lastName}}</span>
       </td>
     </tr>

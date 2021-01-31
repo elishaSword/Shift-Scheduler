@@ -31,8 +31,29 @@ th {
 }
 
 .shift-button {
+  color: white;
   padding-right: 13px;
   padding-left: 13px;
+}
+
+.view-button {
+  background: linear-gradient(
+    90deg,
+    rgba(250, 90, 255, 1) 2%,
+    rgba(163, 63, 255, 1) 47%,
+    rgba(0, 195, 157, 1) 94%
+  );
+  background-size: 400%;
+  animation: bg-animation 60s infinite alternate;
+}
+
+@keyframes bg-animation {
+  0% {
+    background-position: left;
+  }
+  100% {
+    background-position: right;
+  }
 }
 
 .is-success:hover {

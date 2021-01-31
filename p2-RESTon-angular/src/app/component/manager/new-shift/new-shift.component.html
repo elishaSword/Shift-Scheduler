@@ -1,23 +1,17 @@
 <h2>Post Shift</h2>
 
-<!-- <mat-form-field class="example-full-width">
-  <mat-label>Position</mat-label>
-  <input matInput placeholder="pat@example.com" [formControl]="email" required >
-  <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-</mat-form-field> -->
 <form ngNativeValidate>
-  <div *ngIf="this.errorMessage">Error!</div>
   <div class="field">
     <label class="label">Start Time</label>
     <div class="control">
-      <input type="time" [(ngModel)]="startTime" name="startTime" class="input">
+      <input type="time" required class="input">
     </div>
   </div>
 
   <div class="field">
     <label class="label">End Time</label>
     <div class="control">
-      <input type="time" [(ngModel)]="endTime" name="endTime" required class="input">
+      <input type="time" required class="input">
     </div>
   </div>
 

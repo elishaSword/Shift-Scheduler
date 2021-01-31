@@ -57,7 +57,7 @@ export class ShiftsComponent implements OnInit, AfterContentChecked {
   }
 
   calculateIncrement(startTime: number): number {
-    return (startTime/60)*25;
+    return (startTime/60)*100;
   }
 
   initialize(): void {

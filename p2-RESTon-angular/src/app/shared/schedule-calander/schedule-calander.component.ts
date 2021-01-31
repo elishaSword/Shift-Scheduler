@@ -19,6 +19,7 @@ export class ScheduleCalanderComponent implements OnInit, AfterContentChecked {
   day: number;
   date: Date;
   num: number = 80;
+  number: number[] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
   shiftCount: number;
   constructor(
     private scheduleService: ScheduleService,
