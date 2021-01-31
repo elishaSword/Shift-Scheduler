@@ -24,7 +24,7 @@ export class NewShiftComponent implements OnInit {
   schedules: Schedule[]
   positions: Position[];
   users: User[];
-  shift:Shift = new Shift();
+  shift: Shift = new Shift();
   errorMessage: string = "";
   currentDayInt: number;
   currentScheduleInt: number;
@@ -66,16 +66,17 @@ export class NewShiftComponent implements OnInit {
       this.currentDayInt = this.date.getUTCDay();
       this.shift.schedule = this.schedule;
       this.currentDay = this.days[this.currentDayInt];
-      this.shift.shiftStartTime = this.date;
+      this.startTime = moment(this.shift.shiftStartTime).format("HH:mm");
+      this.endTime = moment(this.shift.shiftEndTime).format("HH:mm");
   }
 
   postShift() {
-    console.log(this.users);
     this.shift.user = this.users.find(e => e.id == this.userId)
     this.shift.position = this.positions.find(e => e.id == this.positionId)
     this.shift.shiftStartTime = this.dateService.changeTime(this.date, this.startTime)
     this.shift.shiftEndTime = this.dateService.changeTime(this.date, this.endTime)
     this.shift.id = 0;
+    console.log("this is what is posting: ", this.shift)
     this.shiftService.postNewShift(this.shift)
     .then(res => {
       console.log(res);
@@ -90,11 +91,10 @@ export class NewShiftComponent implements OnInit {
 
     let exists = this.allShifts.find(s => s.user.id == user.id)
     if (!user.availability[this.currentDay] || exists) {
-      console.log('triggered');
       available = true;
     }
 
-    console.log(available, user);
+    // console.log(available, user);
     return available;
   }
 }

@@ -8,13 +8,10 @@
 }
 
 .table-header {
-  border-left: 1px solid black;
-  z-index: 100;
-}
-
-.table-header:after {
-  border-left: 1px solid black;
-  z-index: 100;
+  border: 1px solid lightgray;
+  border-top: 0;
+  border-bottom: 0;
+  border-right: 0;
 }
 
 td,
@@ -22,7 +19,6 @@ th {
   min-width: 100px;
   max-width: 100px;
   height: 50px;
-  padding-top: 2em;
 }
 
 tr td {
@@ -36,13 +32,12 @@ tr td {
 .current-day-container {
   display: flex;
   justify-content: center;
-  align-items: center;
   padding: 2em;
 }
 
 .current-day {
-  display: flex;
-  justify-content: flex-end;
+  font-weight: bold;
+  font-size: x-large;
 }
 
 .wrapper {
@@ -50,4 +45,9 @@ tr td {
   min-width: 1200px;
   margin: 0 auto;
   overflow: auto;
+}
+
+.role-names {
+  font-weight: bold;
+  font-size: large;
 }

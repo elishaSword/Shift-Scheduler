@@ -15,6 +15,9 @@ export class RegisterFormComponent implements OnInit {
   myForm: FormGroup;
   user: User = new User();
   validEmail: boolean = false;
+  error: string = '';
+  pending:boolean = false;
+
 
   constructor(private fb: FormBuilder, private authService: AuthService, private mailboxService: EmailValidationService) { }
 
@@ -87,7 +90,8 @@ export class RegisterFormComponent implements OnInit {
   onSubmit(form: FormGroup) {
     this.user = form.value;
 
-    console.log(this.mailboxService.showValidation(this.user.email));
+    this.pending = true;
+    // console.log(this.mailboxService.showValidation(this.user.email));
 
     this.mailboxService.showValidation(this.user.email)
     .subscribe((validation: Mailbox) => {
@@ -100,17 +104,20 @@ export class RegisterFormComponent implements OnInit {
         this.authService.register(this.user)
         .then(response => {
           console.log(response);
+          this.pending = false;
           return this.validEmail = false;
         }).catch(
           errorMessage => {
             console.log(errorMessage);
-            // this.error = errorMessage;
+            this.error = errorMessage;
+            this.pending = false;
             return this.validEmail = true;
           }
         )
         
       } else{
-        console.log("failed creating user due to invalid email");
+        // console.log("failed creating user due to invalid email");
+        this.pending = false;
         return this.validEmail = true;
       }
     });

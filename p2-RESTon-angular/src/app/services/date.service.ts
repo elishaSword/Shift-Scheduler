@@ -33,8 +33,10 @@ export class DateService {
 
   changeTime(date: Date, newTime: string): Date {
     let newDateString: string = `
-    ${date.getUTCMonth() + 1}/${date.getUTCDate()}/${date.getUTCFullYear()} ${newTime}Z
+    ${date.getUTCMonth() + 1}/${date.getUTCDate()}/${date.getUTCFullYear()} ${newTime}
   `
+  console.log(moment(newDateString).toDate());
+  console.log(moment.utc(newDateString).toDate());
   return new Date(newDateString);
   }
 }
