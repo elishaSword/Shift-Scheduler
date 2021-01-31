@@ -5,7 +5,6 @@
       <hr>
     </div>
     <div class="calendar-container">
-      <thead>
         <tr id="outter-table">
           <th ></th>
           <th class="table-header">6:00 am</th>
@@ -22,6 +21,7 @@
           <th class="table-header">5:00 pm</th>
           <th class="table-header">6:00 pm</th>
           <th class="table-header">7:00 pm</th>
+          <th class="table-header">8:00 pm</th>
           <th class="table-header">9:00 pm</th>
           <th class="table-header">10:00 pm</th>
           <th class="table-header">11:00 pm</th>
@@ -32,9 +32,7 @@
           <th class="table-header">4:00 am</th>
           <th class="table-header">5:00 am</th>
         </tr>
-      </thead>
         <ng-container *ngIf="schedule.shifts.length">
-          <ng-container>
             <tr *ngFor="let shifts of parsedShifts | keyvalue">
               <td class="role-names">{{shifts.key}}</td>
               <td>
@@ -43,7 +41,6 @@
               <hr>
             </tr>
           </ng-container>
-        </ng-container>
       </div>
   </ng-container>
 </div>

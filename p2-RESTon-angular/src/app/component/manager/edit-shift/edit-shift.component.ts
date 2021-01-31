@@ -52,7 +52,6 @@ export class EditShiftComponent implements OnInit {
 
     this.userId = this.shift.user.id;
     this.positionId = this.shift.position.id;
-    console.log(this.currentSchedule);
     this.userService.getAllEmployees().then(e => {
       this.users = e;
     })
@@ -62,9 +61,8 @@ export class EditShiftComponent implements OnInit {
     this.currentDayInt = parseInt(this.route.url.split("=")[1][0]);
     this.currentDay = this.days[this.currentDayInt];
     this.date = this.shift.shiftStartTime;
-    this.startTime = moment.utc(this.shift.shiftStartTime).format("HH:mm");
-    console.log(this.shift.shiftEndTime);
-    this.endTime = moment.utc(this.shift.shiftEndTime).format("HH:mm");
+    this.startTime = moment(this.shift.shiftStartTime).format("HH:mm");
+    this.endTime = moment(this.shift.shiftEndTime).format("HH:mm");
   }
 
   editShift() {
@@ -72,6 +70,7 @@ export class EditShiftComponent implements OnInit {
     this.shift.position = this.positions.find(e => e.id == this.positionId)
     this.shift.shiftStartTime = this.dateService.changeTime(new Date(this.shift.shiftStartTime), this.startTime)
     this.shift.shiftEndTime = this.dateService.changeTime(new Date(this.shift.shiftEndTime), this.endTime)
+
     this.shift.schedule = this.currentSchedule;
 
     this.shiftService.putShift(this.shift)
@@ -88,11 +87,8 @@ export class EditShiftComponent implements OnInit {
 
     let exists = this.allShifts.find(s => s.user.id == user.id)
     if (!user.availability[this.currentDay] || exists) {
-      console.log('triggered');
       available = true;
     }
-
-    console.log(available, user);
     return available;
   }
 }

@@ -70,7 +70,7 @@ export class NewShiftComponent implements OnInit {
   }
 
   postShift() {
-    console.log(this.users);
+    // console.log(this.users);
     this.shift.user = this.users.find(e => e.id == this.userId)
     this.shift.position = this.positions.find(e => e.id == this.positionId)
     this.shift.shiftStartTime = this.dateService.changeTime(this.date, this.startTime)

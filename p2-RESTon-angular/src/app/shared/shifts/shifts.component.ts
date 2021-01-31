@@ -27,6 +27,10 @@ export class ShiftsComponent implements OnInit, AfterContentChecked {
   empName: string = 'Dylan';
   startTime: any;
   endTime: any;
+  startTimeMins: any;
+  endTimeMins: any;
+  totalStartMins
+  totalEndMins
   testTime: number;
   color: string;
   increment: number;
@@ -51,9 +55,8 @@ export class ShiftsComponent implements OnInit, AfterContentChecked {
 
   }
 
-  // Width of times (hours) are currently static pixels, needs to change to something more responsive
   calculateWidth(startTime: number): number {
-    return startTime*100;
+    return (startTime/60)*100;
   }
 
   calculateIncrement(startTime: number): number {
@@ -64,8 +67,11 @@ export class ShiftsComponent implements OnInit, AfterContentChecked {
     this.currentShiftStart = new Date(this.shift.shiftStartTime);
     this.startTime = new Date(this.shift.shiftStartTime).getHours();
     this.endTime =  new Date(this.shift.shiftEndTime).getHours();
-    this.testTime = (this.endTime) - (this.startTime);
-    // this.color = 'aqua';
+    this.startTimeMins = new Date(this.shift.shiftStartTime).getMinutes();
+    this.endTimeMins = new Date(this.shift.shiftEndTime).getMinutes();
+    this.totalStartMins = (this.startTime * 60) + this.startTimeMins;
+    this.totalEndMins = (this.endTime * 60) + this.endTimeMins;
+    this.testTime = (this.totalEndMins) - (this.totalStartMins);
     this.increment = this.calculateIncrement(new Date(this.shift.shiftStartTime).getMinutes());
     this.width = this.calculateWidth(this.testTime);
 
