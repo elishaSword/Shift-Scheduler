@@ -16,6 +16,7 @@ export class ShiftService {
   postNewShift(shift: Shift): Promise<string> {
 
     return new Promise((resolve, reject) => {
+      console.log('test');
       if(!this.apiSetUp) {
         shift.id = 0;
         this.scheduleService.addShiftToSchedule(shift);

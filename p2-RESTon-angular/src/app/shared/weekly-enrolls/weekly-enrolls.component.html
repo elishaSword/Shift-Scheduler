@@ -3,7 +3,7 @@
 
   <td class="schedule-row" *ngFor='let shift of employee.shifts; let i = index'>
     <div *ngIf="scheduleCheck(shift) == 'Scheduled'">
-      <button class="tag is-success shift-button" (click)="viewModals(shift)">View Shift</button>
+      <button class="tag shift-button view-button" (click)="viewModals(shift)">View Shift</button>
     </div>
     <div *ngIf="scheduleCheck(shift, employee.availability, i) == 'Off'">
       <p class="tag is-light shift-button"> Available </p>

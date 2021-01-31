@@ -1,11 +1,12 @@
-<div class="wrapper">
+<div class="wrapper table-container">
   <ng-container>
     <div class="current-day-container">
       <p class="current-day">{{dateFormatter(schedule.startDate)}}</p>
+      <hr>
     </div>
     <div class="calendar-container">
         <tr id="outter-table">
-          <th></th>
+          <th ></th>
           <th class="table-header">6:00 am</th>
           <th class="table-header">7:00 am</th>
           <th class="table-header">8:00 am</th>
@@ -20,6 +21,7 @@
           <th class="table-header">5:00 pm</th>
           <th class="table-header">6:00 pm</th>
           <th class="table-header">7:00 pm</th>
+          <th class="table-header">8:00 pm</th>
           <th class="table-header">9:00 pm</th>
           <th class="table-header">10:00 pm</th>
           <th class="table-header">11:00 pm</th>
@@ -33,12 +35,12 @@
         <ng-container *ngIf="schedule.shifts.length">
             <tr *ngFor="let shifts of parsedShifts | keyvalue">
               <td class="role-names">{{shifts.key}}</td>
-              <td colspan="24">
+              <td>
                 <rev-shifts [allShifts]="allShifts" [shift]="s" *ngFor="let s of shifts.value" [currentSchedule]='schedule'></rev-shifts>
               </td>
               <hr>
             </tr>
-        </ng-container>
-    </div>
+          </ng-container>
+      </div>
   </ng-container>
 </div>
