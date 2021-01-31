@@ -75,7 +75,6 @@ export class NewShiftComponent implements OnInit {
     this.shift.position = this.positions.find(e => e.id == this.positionId)
     this.shift.shiftStartTime = this.dateService.changeTime(this.date, this.startTime)
     this.shift.shiftEndTime = this.dateService.changeTime(this.date, this.endTime)
-
     this.shift.id = 0;
     console.log("this is what is posting: ", this.shift)
     this.shiftService.postNewShift(this.shift)
