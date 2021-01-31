@@ -68,6 +68,7 @@ export class EditShiftComponent implements OnInit {
   editShift() {
     this.shift.user = this.users.find(e => e.id == this.userId)
     this.shift.position = this.positions.find(e => e.id == this.positionId)
+
     this.shift.shiftStartTime = this.dateService.changeTime(new Date(this.shift.shiftStartTime), this.startTime)
     this.shift.shiftEndTime = this.dateService.changeTime(new Date(this.shift.shiftEndTime), this.endTime)
 

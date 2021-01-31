@@ -1,17 +1,16 @@
 <h2>Post Shift</h2>
 
-<form ngNativeValidate>
   <div class="field">
     <label class="label">Start Time</label>
     <div class="control">
-      <input type="time" required class="input">
+      <input type="time" [(ngModel)]="startTime">
     </div>
   </div>
 
   <div class="field">
     <label class="label">End Time</label>
     <div class="control">
-      <input type="time" required class="input">
+      <input type="time" [(ngModel)]="endTime">
     </div>
   </div>
 
@@ -54,4 +53,3 @@
       <button class="button is-link is-light">Cancel</button>
     </div>
   </div>
-</form>
